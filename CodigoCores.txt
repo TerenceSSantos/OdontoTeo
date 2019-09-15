@@ -1,0 +1,7 @@
+clInfoBk = $00E2FFFF
+clMaroon = $00010080
+clGreen = $00018000
+clBlue = $00FE0000
+clAqua = $00FEFF00
+clRed = $000100FF
+clBlueSky = $00EFCAA6

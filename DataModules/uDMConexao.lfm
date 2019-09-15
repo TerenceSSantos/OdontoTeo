@@ -1,0 +1,19 @@
+object dmConexao: TdmConexao
+  OldCreateOrder = False
+  Height = 150
+  HorizontalOffset = 311
+  VerticalOffset = 119
+  Width = 150
+  PPI = 96
+  object zConexao: TZConnection
+    ControlsCodePage = cCP_UTF8
+    AutoEncodeStrings = False
+    Port = 0
+    Database = 'D:\Projetos\Lazarus\OdontoTeo\Banco\ODONTOTEO.FDB'
+    User = 'SYSDBA'
+    Password = 'masterkey'
+    Protocol = 'firebird-3.0'
+    left = 57
+    top = 49
+  end
+end
