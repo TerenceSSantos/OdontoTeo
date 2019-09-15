@@ -12,7 +12,7 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="69"/>
+        <UsageCount Value="85"/>
       </Unit0>
       <Unit1>
         <Filename Value="Forms\uPrincipal.pas"/>
@@ -23,7 +23,7 @@
         <EditorIndex Value="3"/>
         <TopLine Value="64"/>
         <CursorPos X="8" Y="83"/>
-        <UsageCount Value="69"/>
+        <UsageCount Value="85"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit1>
@@ -35,7 +35,7 @@
         <ResourceBaseClass Value="DataModule"/>
         <EditorIndex Value="1"/>
         <TopLine Value="3"/>
-        <UsageCount Value="66"/>
+        <UsageCount Value="82"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit2>
@@ -45,9 +45,10 @@
         <ComponentName Value="frmCadPaciente"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <TopLine Value="319"/>
-        <CursorPos X="45" Y="341"/>
-        <UsageCount Value="64"/>
+        <IsVisibleTab Value="True"/>
+        <TopLine Value="342"/>
+        <CursorPos X="48" Y="344"/>
+        <UsageCount Value="80"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit3>
@@ -57,11 +58,10 @@
         <ComponentName Value="frmLocalizaPaciente"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="2"/>
-        <TopLine Value="21"/>
+        <TopLine Value="20"/>
         <CursorPos X="10" Y="43"/>
-        <UsageCount Value="24"/>
+        <UsageCount Value="40"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit4>
@@ -71,7 +71,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="163"/>
         <CursorPos X="3" Y="176"/>
-        <UsageCount Value="7"/>
+        <UsageCount Value="5"/>
       </Unit5>
       <Unit6>
         <Filename Value="D:\lazarus\lcl\customdrawncontrols.pas"/>
@@ -79,128 +79,128 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="822"/>
         <CursorPos X="155" Y="835"/>
-        <UsageCount Value="7"/>
+        <UsageCount Value="5"/>
       </Unit6>
     </Units>
     <JumpHistory Count="30" HistoryIndex="29">
       <Position1>
         <Filename Value="Forms\ucadpacientes.pas"/>
-        <Caret Line="108" Column="7" TopLine="83"/>
+        <Caret Line="54" Column="26" TopLine="43"/>
       </Position1>
       <Position2>
         <Filename Value="Forms\ucadpacientes.pas"/>
-        <Caret Line="107" Column="7" TopLine="82"/>
+        <Caret Line="192" Column="23" TopLine="177"/>
       </Position2>
       <Position3>
         <Filename Value="Forms\ucadpacientes.pas"/>
-        <Caret Line="106" Column="7" TopLine="81"/>
+        <Caret Line="191" Column="23" TopLine="176"/>
       </Position3>
       <Position4>
         <Filename Value="Forms\ucadpacientes.pas"/>
-        <Caret Line="105" Column="7" TopLine="80"/>
+        <Caret Line="192" Column="23" TopLine="177"/>
       </Position4>
       <Position5>
         <Filename Value="Forms\ucadpacientes.pas"/>
-        <Caret Line="104" Column="7" TopLine="79"/>
+        <Caret Line="191" Column="23" TopLine="176"/>
       </Position5>
       <Position6>
         <Filename Value="Forms\ucadpacientes.pas"/>
-        <Caret Line="103" Column="7" TopLine="78"/>
+        <Caret Line="192" Column="23" TopLine="177"/>
       </Position6>
       <Position7>
         <Filename Value="Forms\ucadpacientes.pas"/>
-        <Caret Line="104" Column="7" TopLine="79"/>
+        <Caret Line="191" Column="23" TopLine="176"/>
       </Position7>
       <Position8>
         <Filename Value="Forms\ucadpacientes.pas"/>
-        <Caret Line="105" Column="7" TopLine="80"/>
+        <Caret Line="9" Column="55"/>
       </Position8>
       <Position9>
-        <Filename Value="Forms\ucadpacientes.pas"/>
-        <Caret Line="121" Column="7" TopLine="96"/>
+        <Filename Value="Forms\uCadPacientes.pas"/>
+        <Caret Line="9" Column="55"/>
       </Position9>
       <Position10>
-        <Filename Value="Forms\ucadpacientes.pas"/>
-        <Caret Line="125" Column="7" TopLine="100"/>
+        <Filename Value="Forms\uCadPacientes.pas"/>
+        <Caret Line="338" Column="14" TopLine="335"/>
       </Position10>
       <Position11>
-        <Filename Value="Forms\ucadpacientes.pas"/>
-        <Caret Line="130" Column="7" TopLine="105"/>
+        <Filename Value="Forms\uLocalizarPaciente.pas"/>
       </Position11>
       <Position12>
-        <Filename Value="Forms\ucadpacientes.pas"/>
-        <Caret Line="129" Column="7" TopLine="104"/>
+        <Filename Value="Forms\uCadPacientes.pas"/>
+        <Caret Line="342" Column="45" TopLine="320"/>
       </Position12>
       <Position13>
-        <Filename Value="Forms\ucadpacientes.pas"/>
-        <Caret Line="128" Column="7" TopLine="103"/>
+        <Filename Value="Forms\uCadPacientes.pas"/>
+        <Caret Line="324" TopLine="304"/>
       </Position13>
       <Position14>
-        <Filename Value="Forms\ucadpacientes.pas"/>
-        <Caret Line="127" Column="7" TopLine="102"/>
+        <Filename Value="Forms\uCadPacientes.pas"/>
+        <Caret Line="348" Column="59" TopLine="340"/>
       </Position14>
       <Position15>
-        <Filename Value="Forms\ucadpacientes.pas"/>
-        <Caret Line="126" Column="7" TopLine="101"/>
+        <Filename Value="Forms\uCadPacientes.pas"/>
+        <Caret Line="345" Column="42" TopLine="332"/>
       </Position15>
       <Position16>
-        <Filename Value="Forms\ucadpacientes.pas"/>
-        <Caret Line="125" Column="7" TopLine="100"/>
+        <Filename Value="Forms\uCadPacientes.pas"/>
+        <Caret Line="348" Column="39" TopLine="332"/>
       </Position16>
       <Position17>
-        <Filename Value="Forms\ucadpacientes.pas"/>
-        <Caret Line="126" Column="7" TopLine="95"/>
+        <Filename Value="Forms\uCadPacientes.pas"/>
+        <Caret Line="345" Column="40" TopLine="332"/>
       </Position17>
       <Position18>
-        <Filename Value="Forms\ucadpacientes.pas"/>
-        <Caret Line="53" Column="27" TopLine="41"/>
+        <Filename Value="Forms\uCadPacientes.pas"/>
+        <Caret Line="347" Column="31" TopLine="334"/>
       </Position18>
       <Position19>
-        <Filename Value="Forms\ucadpacientes.pas"/>
-        <Caret Line="52" Column="26" TopLine="41"/>
+        <Filename Value="Forms\uCadPacientes.pas"/>
+        <Caret Line="345" Column="31" TopLine="335"/>
       </Position19>
       <Position20>
-        <Filename Value="Forms\ucadpacientes.pas"/>
-        <Caret Line="54" Column="26" TopLine="43"/>
+        <Filename Value="Forms\uCadPacientes.pas"/>
+        <Caret Line="245" Column="3" TopLine="316"/>
       </Position20>
       <Position21>
-        <Filename Value="Forms\ucadpacientes.pas"/>
-        <Caret Line="192" Column="23" TopLine="177"/>
+        <Filename Value="Forms\uCadPacientes.pas"/>
+        <Caret Line="313" Column="58" TopLine="303"/>
       </Position21>
       <Position22>
-        <Filename Value="Forms\ucadpacientes.pas"/>
-        <Caret Line="191" Column="23" TopLine="176"/>
+        <Filename Value="Forms\uCadPacientes.pas"/>
+        <Caret Line="400" Column="22" TopLine="388"/>
       </Position22>
       <Position23>
-        <Filename Value="Forms\ucadpacientes.pas"/>
-        <Caret Line="192" Column="23" TopLine="177"/>
+        <Filename Value="Forms\uCadPacientes.pas"/>
+        <Caret Line="314" Column="60" TopLine="301"/>
       </Position23>
       <Position24>
-        <Filename Value="Forms\ucadpacientes.pas"/>
-        <Caret Line="191" Column="23" TopLine="176"/>
+        <Filename Value="Forms\uCadPacientes.pas"/>
+        <Caret Line="395" Column="16" TopLine="386"/>
       </Position24>
       <Position25>
-        <Filename Value="Forms\ucadpacientes.pas"/>
-        <Caret Line="192" Column="23" TopLine="177"/>
+        <Filename Value="Forms\uCadPacientes.pas"/>
+        <Caret Line="352" TopLine="347"/>
       </Position25>
       <Position26>
-        <Filename Value="Forms\ucadpacientes.pas"/>
-        <Caret Line="191" Column="23" TopLine="176"/>
+        <Filename Value="Forms\uCadPacientes.pas"/>
+        <Caret Line="344" Column="24" TopLine="342"/>
       </Position26>
       <Position27>
-        <Filename Value="Forms\ucadpacientes.pas"/>
-        <Caret Line="9" Column="55"/>
+        <Filename Value="Forms\uCadPacientes.pas"/>
+        <Caret Line="313" Column="58" TopLine="297"/>
       </Position27>
       <Position28>
         <Filename Value="Forms\uCadPacientes.pas"/>
-        <Caret Line="9" Column="55"/>
+        <Caret Line="390" Column="4" TopLine="367"/>
       </Position28>
       <Position29>
         <Filename Value="Forms\uCadPacientes.pas"/>
-        <Caret Line="338" Column="14" TopLine="335"/>
+        <Caret Line="314" Column="20" TopLine="306"/>
       </Position29>
       <Position30>
-        <Filename Value="Forms\uLocalizarPaciente.pas"/>
+        <Filename Value="Forms\uCadPacientes.pas"/>
+        <Caret Line="401" Column="118" TopLine="388"/>
       </Position30>
     </JumpHistory>
     <RunParams>

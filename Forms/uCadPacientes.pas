@@ -242,7 +242,7 @@ type
       lblPai: TLabel;
       lblMae: TLabel;
       miglstCadPaciente: TImageList;
-      pcCadPacientes: TPageControl;
+//      pcCadPacientes: TPageControl;
       pnlBotoes: TBCPanel;
       btnNovoCadastro: TBitBtn;
       btnFechar: TBCButton;
@@ -302,21 +302,28 @@ type
       tabSinaisSintomas: TTabSheet;
       UpDown1: TUpDown;
       UpDown2: TUpDown;
+      procedure btnCancelaCadastroClick(Sender: TObject);
       procedure btnFecharClick(Sender: TObject);
+      procedure btnNovoCadastroClick(Sender: TObject);
       procedure btnProcuraPacienteClick(Sender: TObject);
+      procedure FormShow(Sender: TObject);
       procedure pnlTituloMouseDown(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
       procedure pnlTituloMouseMove(Sender: TObject; Shift: TShiftState; X, Y: Integer);
       procedure pnlTituloMouseUp(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
    private
-
+      procedure HabilitaControles(controle: TWinControl);
+      procedure DesabilitaControles(controle: TWinControl);
    public
 
    end;
+
+   TEstado = (Navegacao, Inclusao, Edicao);
 
 var
    frmCadPaciente: TfrmCadPaciente;
    capitura : boolean = false;
    px, py : integer;
+   estado : TEstado = Navegacao;    // Navegacao, Inclusao, Edicao
 
 implementation
 
@@ -332,6 +339,19 @@ begin
    frmCadPaciente.Close;
 end;
 
+procedure TfrmCadPaciente.btnCancelaCadastroClick(Sender: TObject);
+begin
+   DesabilitaControles(pcCadPaciente.ActivePage);
+end;
+
+procedure TfrmCadPaciente.btnNovoCadastroClick(Sender: TObject);
+var
+   i : integer;
+begin
+   estado := Inclusao;
+   HabilitaControles(pcCadPaciente.ActivePage);
+end;
+
 procedure TfrmCadPaciente.btnProcuraPacienteClick(Sender: TObject);
 begin
    try
@@ -340,6 +360,11 @@ begin
    finally
       FreeAndNil(frmLocalizaPaciente);
    end;
+end;
+
+procedure TfrmCadPaciente.FormShow(Sender: TObject);
+begin
+   pcCadPaciente.TabIndex := 0;
 end;
 
 procedure TfrmCadPaciente.pnlTituloMouseDown(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
@@ -365,6 +390,35 @@ procedure TfrmCadPaciente.pnlTituloMouseUp(Sender: TObject; Button: TMouseButton
 begin
    capitura := false;
 end;
+
+procedure TfrmCadPaciente.HabilitaControles(controle: TWinControl);
+var
+   i : integer;
+begin
+    if controle is TTabSheet then
+      HabilitaControles(TWinControl(controle.Controls[0]))      {*******************************************************************}
+   else                                                         {**   Identificar qual o TabSheet, seus controles internos, para  **}
+   if controle is TScrollBox then                               {**                então habilitar o Panel                        **}
+      HabilitaControles(TWinControl(controle.Controls[0]))      {*******************************************************************}
+   else
+   if controle is TBCPanel then
+      TBCPanel(controle).Enabled := true;
+end;
+
+procedure TfrmCadPaciente.DesabilitaControles(controle: TWinControl);
+var
+   i : integer;
+begin
+   if controle is TTabSheet then
+      HabilitaControles(TWinControl(controle.Controls[0]))      {*******************************************************************}
+   else                                                         {**   Identificar qual o TabSheet, seus controles internos, para  **}
+   if controle is TScrollBox then                               {**                então desabilitar o Panel                      **}
+      HabilitaControles(TWinControl(controle.Controls[0]))      {*******************************************************************}
+   else
+   if controle is TBCPanel then
+      TBCPanel(controle).Enabled := false;
+end;
+
 
 end.
 

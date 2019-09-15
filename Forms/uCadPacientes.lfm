@@ -7,6 +7,7 @@ object frmCadPaciente: TfrmCadPaciente
   Caption = 'Cadastro de Pacientes'
   ClientHeight = 547
   ClientWidth = 1091
+  OnShow = FormShow
   Position = poScreenCenter
   LCLVersion = '2.0.2.0'
   object pnlTitulo: TBCPanel
@@ -440,6 +441,7 @@ object frmCadPaciente: TfrmCadPaciente
       Layout = blGlyphTop
       Images = miglstCadPaciente
       ImageIndex = 0
+      OnClick = btnNovoCadastroClick
       ParentFont = False
       TabOrder = 0
     end
@@ -501,7 +503,7 @@ object frmCadPaciente: TfrmCadPaciente
       TabOrder = 3
     end
     object btnCancelaCadastro: TBitBtn
-      Left = 710
+      Left = 711
       Height = 80
       Top = 2
       Width = 125
@@ -516,6 +518,7 @@ object frmCadPaciente: TfrmCadPaciente
       Layout = blGlyphTop
       Images = miglstCadPaciente
       ImageIndex = 5
+      OnClick = btnCancelaCadastroClick
       ParentFont = False
       TabOrder = 4
     end
@@ -644,8 +647,8 @@ object frmCadPaciente: TfrmCadPaciente
       Left = 16
       Height = 21
       Top = 24
-      Width = 58
-      Caption = 'Código:'
+      Width = 62
+      Caption = 'Código: '
       Font.CharSet = ANSI_CHARSET
       Font.Color = clBlack
       Font.Height = -16
@@ -657,7 +660,7 @@ object frmCadPaciente: TfrmCadPaciente
       ParentFont = False
     end
     object lblNomePaciente: TLabel
-      Left = 184
+      Left = 169
       Height = 21
       Top = 24
       Width = 139
@@ -678,10 +681,10 @@ object frmCadPaciente: TfrmCadPaciente
     Height = 366
     Top = 181
     Width = 1091
-    ActivePage = tabDadosBasicos
+    ActivePage = tabAnamnese
     Align = alClient
     Images = miglstCadPaciente
-    TabIndex = 0
+    TabIndex = 6
     TabOrder = 3
     object tabDadosBasicos: TTabSheet
       Caption = 'Dados Basicos'
@@ -741,6 +744,7 @@ object frmCadPaciente: TfrmCadPaciente
         Border.Style = bboSolid
         Border.Width = 1
         BorderBCStyle = bpsBorder
+        Enabled = False
         FontEx.Color = clDefault
         FontEx.EndEllipsis = False
         FontEx.FontQuality = fqSystemClearType
@@ -815,10 +819,12 @@ object frmCadPaciente: TfrmCadPaciente
           Font.Style = [fsBold]
           NumbersOnly = True
           ParentFont = False
+          ReadOnly = True
+          TabStop = False
           TabOrder = 0
         end
         object edtNomePaciente: TEdit
-          Left = 223
+          Left = 224
           Height = 23
           Top = 61
           Width = 350
@@ -927,7 +933,7 @@ object frmCadPaciente: TfrmCadPaciente
           Font.Quality = fqDraft
           Font.Style = [fsBold]
           ParentFont = False
-          TabOrder = 4
+          TabOrder = 5
         end
         object lblNaturalidade: TLabel
           Left = 237
@@ -959,7 +965,7 @@ object frmCadPaciente: TfrmCadPaciente
           Font.Quality = fqDraft
           Font.Style = [fsBold]
           ParentFont = False
-          TabOrder = 5
+          TabOrder = 9
         end
         object lblNacionalidade: TLabel
           Left = 693
@@ -991,7 +997,7 @@ object frmCadPaciente: TfrmCadPaciente
           Font.Quality = fqDraft
           Font.Style = [fsBold]
           ParentFont = False
-          TabOrder = 6
+          TabOrder = 11
         end
         object lblEstadoCivil: TLabel
           Left = 72
@@ -1029,7 +1035,7 @@ object frmCadPaciente: TfrmCadPaciente
             'Viúvo(a)'
           )
           ParentFont = False
-          TabOrder = 7
+          TabOrder = 4
         end
         object bvSexo: TBevel
           Left = 616
@@ -1059,7 +1065,7 @@ object frmCadPaciente: TfrmCadPaciente
           Top = 172
           Width = 70
           Caption = 'Feminino'
-          Color = 16049884
+          Color = 16445670
           Font.CharSet = ANSI_CHARSET
           Font.Color = 129
           Font.Height = -12
@@ -1069,7 +1075,7 @@ object frmCadPaciente: TfrmCadPaciente
           Font.Style = [fsBold]
           ParentColor = False
           ParentFont = False
-          TabOrder = 8
+          TabOrder = 6
         end
         object rbtnMasculino: TRadioButton
           Left = 749
@@ -1077,7 +1083,7 @@ object frmCadPaciente: TfrmCadPaciente
           Top = 172
           Width = 75
           Caption = 'Masculino'
-          Color = 16049884
+          Color = 16445670
           Font.CharSet = ANSI_CHARSET
           Font.Color = 129
           Font.Height = -12
@@ -1087,7 +1093,7 @@ object frmCadPaciente: TfrmCadPaciente
           Font.Style = [fsBold]
           ParentColor = False
           ParentFont = False
-          TabOrder = 9
+          TabOrder = 7
         end
         object lblDtNascimento: TLabel
           Left = 72
@@ -1121,7 +1127,7 @@ object frmCadPaciente: TfrmCadPaciente
           Font.Quality = fqDraft
           Font.Style = [fsBold]
           ParentFont = False
-          TabOrder = 10
+          TabOrder = 8
           Color = clInfoBk
           TrailingSeparator = False
           TextForNullDate = 'VAZIA'
@@ -1198,7 +1204,7 @@ object frmCadPaciente: TfrmCadPaciente
             'TO'
           )
           ParentFont = False
-          TabOrder = 11
+          TabOrder = 10
         end
         object lblParaDataVazia: TLabel
           Left = 72
@@ -1269,6 +1275,7 @@ object frmCadPaciente: TfrmCadPaciente
         Border.Style = bboSolid
         Border.Width = 1
         BorderBCStyle = bpsBorder
+        Enabled = False
         FontEx.Color = clDefault
         FontEx.EndEllipsis = False
         FontEx.FontQuality = fqSystemClearType
@@ -1403,6 +1410,7 @@ object frmCadPaciente: TfrmCadPaciente
         Border.Style = bboSolid
         Border.Width = 1
         BorderBCStyle = bpsBorder
+        Enabled = False
         FontEx.Color = clDefault
         FontEx.EndEllipsis = False
         FontEx.FontQuality = fqSystemClearType
@@ -1657,6 +1665,7 @@ object frmCadPaciente: TfrmCadPaciente
         Border.Style = bboSolid
         Border.Width = 1
         BorderBCStyle = bpsBorder
+        Enabled = False
         FontEx.Color = clDefault
         FontEx.EndEllipsis = False
         FontEx.FontQuality = fqSystemClearType
@@ -1969,6 +1978,7 @@ object frmCadPaciente: TfrmCadPaciente
         Border.Style = bboSolid
         Border.Width = 1
         BorderBCStyle = bpsBorder
+        Enabled = False
         FontEx.Color = clDefault
         FontEx.EndEllipsis = False
         FontEx.FontQuality = fqSystemClearType
@@ -2540,6 +2550,7 @@ object frmCadPaciente: TfrmCadPaciente
         Border.Style = bboSolid
         Border.Width = 1
         BorderBCStyle = bpsBorder
+        Enabled = False
         FontEx.Color = clDefault
         FontEx.EndEllipsis = False
         FontEx.FontQuality = fqSystemClearType
@@ -2875,7 +2886,6 @@ object frmCadPaciente: TfrmCadPaciente
         HorzScrollBar.Smooth = True
         HorzScrollBar.Tracking = True
         VertScrollBar.Page = 323
-        VertScrollBar.Position = 327
         Align = alClient
         BorderStyle = bsNone
         ClientHeight = 323
@@ -2926,6 +2936,7 @@ object frmCadPaciente: TfrmCadPaciente
           Border.Style = bboSolid
           Border.Width = 1
           BorderBCStyle = bpsBorder
+          Enabled = False
           FontEx.Color = clDefault
           FontEx.EndEllipsis = False
           FontEx.FontQuality = fqSystemClearType
@@ -3035,7 +3046,7 @@ object frmCadPaciente: TfrmCadPaciente
             Left = 408
             Height = 23
             Top = 33
-            Width = 107
+            Width = 152
             Color = 14876671
             Font.Color = 65664
             Font.Height = -12
@@ -4229,6 +4240,7 @@ object frmCadPaciente: TfrmCadPaciente
         Border.Style = bboSolid
         Border.Width = 1
         BorderBCStyle = bpsBorder
+        Enabled = False
         FontEx.Color = clDefault
         FontEx.EndEllipsis = False
         FontEx.FontQuality = fqSystemClearType
@@ -4667,6 +4679,7 @@ object frmCadPaciente: TfrmCadPaciente
         Border.Style = bboSolid
         Border.Width = 1
         BorderBCStyle = bpsBorder
+        Enabled = False
         FontEx.Color = clDefault
         FontEx.EndEllipsis = False
         FontEx.FontQuality = fqSystemClearType
