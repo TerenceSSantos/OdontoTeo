@@ -451,6 +451,7 @@ object frmCadPaciente: TfrmCadPaciente
       Top = 2
       Width = 125
       Caption = 'Alterar Cadastro'
+      Enabled = False
       Font.CharSet = ANSI_CHARSET
       Font.Color = 65664
       Font.Height = -13
@@ -461,6 +462,7 @@ object frmCadPaciente: TfrmCadPaciente
       Layout = blGlyphTop
       Images = miglstCadPaciente
       ImageIndex = 13
+      OnClick = btnAlteraCadastroClick
       ParentFont = False
       TabOrder = 1
     end
@@ -470,6 +472,7 @@ object frmCadPaciente: TfrmCadPaciente
       Top = 2
       Width = 125
       Caption = 'Apagar Cadastro'
+      Enabled = False
       Font.CharSet = ANSI_CHARSET
       Font.Color = 65664
       Font.Height = -13
@@ -489,6 +492,8 @@ object frmCadPaciente: TfrmCadPaciente
       Top = 2
       Width = 125
       Caption = 'Gravar Cadastro'
+      Default = True
+      Enabled = False
       Font.CharSet = ANSI_CHARSET
       Font.Color = 65664
       Font.Height = -13
@@ -499,6 +504,7 @@ object frmCadPaciente: TfrmCadPaciente
       Layout = blGlyphTop
       Images = miglstCadPaciente
       ImageIndex = 6
+      OnClick = btnGravaCadastroClick
       ParentFont = False
       TabOrder = 3
     end
@@ -508,6 +514,7 @@ object frmCadPaciente: TfrmCadPaciente
       Top = 2
       Width = 125
       Caption = 'Cancelar Cadastro'
+      Enabled = False
       Font.CharSet = ANSI_CHARSET
       Font.Color = 65664
       Font.Height = -13
@@ -681,10 +688,10 @@ object frmCadPaciente: TfrmCadPaciente
     Height = 366
     Top = 181
     Width = 1091
-    ActivePage = tabAnamnese
+    ActivePage = tabDadosBasicos
     Align = alClient
     Images = miglstCadPaciente
-    TabIndex = 6
+    TabIndex = 0
     TabOrder = 3
     object tabDadosBasicos: TTabSheet
       Caption = 'Dados Basicos'

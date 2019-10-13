@@ -302,8 +302,10 @@ type
       tabSinaisSintomas: TTabSheet;
       UpDown1: TUpDown;
       UpDown2: TUpDown;
+      procedure btnAlteraCadastroClick(Sender: TObject);
       procedure btnCancelaCadastroClick(Sender: TObject);
       procedure btnFecharClick(Sender: TObject);
+      procedure btnGravaCadastroClick(Sender: TObject);
       procedure btnNovoCadastroClick(Sender: TObject);
       procedure btnProcuraPacienteClick(Sender: TObject);
       procedure FormShow(Sender: TObject);
@@ -313,6 +315,7 @@ type
    private
       procedure HabilitaControles(controle: TWinControl);
       procedure DesabilitaControles(controle: TWinControl);
+      procedure EstadoBotoes;
    public
 
    end;
@@ -336,12 +339,29 @@ uses
 
 procedure TfrmCadPaciente.btnFecharClick(Sender: TObject);
 begin
-   frmCadPaciente.Close;
+   if estado in [Inclusao, Edicao] then
+      MessageDlg('A V I S O !', 'Você deve cancelar ou gravar o registro antes de sair!', mtWarning, [mbOK],0)
+   else
+      frmCadPaciente.Close;
+end;
+
+procedure TfrmCadPaciente.btnGravaCadastroClick(Sender: TObject);
+begin
+   estado := Navegacao;
+   EstadoBotoes;
 end;
 
 procedure TfrmCadPaciente.btnCancelaCadastroClick(Sender: TObject);
 begin
+   estado := Navegacao;
+   EstadoBotoes;
    DesabilitaControles(pcCadPaciente.ActivePage);
+end;
+
+procedure TfrmCadPaciente.btnAlteraCadastroClick(Sender: TObject);
+begin
+   estado := Edicao;
+   EstadoBotoes;
 end;
 
 procedure TfrmCadPaciente.btnNovoCadastroClick(Sender: TObject);
@@ -350,6 +370,7 @@ var
 begin
    estado := Inclusao;
    HabilitaControles(pcCadPaciente.ActivePage);
+   EstadoBotoes;
 end;
 
 procedure TfrmCadPaciente.btnProcuraPacienteClick(Sender: TObject);
@@ -417,6 +438,30 @@ begin
    else
    if controle is TBCPanel then
       TBCPanel(controle).Enabled := false;
+end;
+
+procedure TfrmCadPaciente.EstadoBotoes;
+begin
+   if (estado = Inclusao) OR (estado = Edicao) then
+   begin
+      btnNovoCadastro.Enabled := false;
+      btnAlteraCadastro.Enabled := false;
+      btnApagaCadastro.Enabled := false;
+      btnGravaCadastro.Enabled := true;
+      btnCancelaCadastro.Enabled := true;
+      btnProcuraPaciente.Enabled := false;
+   end
+   else
+   if estado = Navegacao then
+   begin
+      btnNovoCadastro.Enabled := true;
+      btnAlteraCadastro.Enabled := true;
+      btnApagaCadastro.Enabled := true;
+      btnGravaCadastro.Enabled := false;
+      btnCancelaCadastro.Enabled := false;
+      btnProcuraPaciente.Enabled := true;
+   end;
+
 end;
 
 
