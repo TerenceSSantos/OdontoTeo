@@ -8,7 +8,7 @@ uses
    {$ENDIF}{$ENDIF}
    Interfaces, // this includes the LCL widgetset
    Forms, notlcldesigner, datetimectrls, zcomponent, rxnew, uPrincipal,
-   uDMConexao, uCadPacientes, uLocalizarPaciente
+   uDMConexao, uCadPacientes, uLocalizarPaciente, uDMCadPaciente
    { you can add units after this };
 
 {$R *.res}
@@ -20,6 +20,7 @@ begin
    Application.Initialize;
    Application.CreateForm(TdmConexao, dmConexao);
    Application.CreateForm(TfrmPrincipal, frmPrincipal);
+   Application.CreateForm(TdmTblPaciente, dmTblPaciente);
    Application.Run;
 end.
 

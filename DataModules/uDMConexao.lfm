@@ -8,6 +8,10 @@ object dmConexao: TdmConexao
   object zConexao: TZConnection
     ControlsCodePage = cCP_UTF8
     AutoEncodeStrings = False
+    Properties.Strings = (
+      'AutoEncodeStrings='
+    )
+    BeforeConnect = zConexaoBeforeConnect
     Port = 0
     Database = 'D:\Projetos\Lazarus\OdontoTeo\Banco\ODONTOTEO.FDB'
     User = 'SYSDBA'

@@ -1,0 +1,14 @@
+object dmTblPaciente: TdmTblPaciente
+  OldCreateOrder = False
+  Height = 220
+  HorizontalOffset = 650
+  VerticalOffset = 102
+  Width = 388
+  PPI = 96
+  object qryTblPaciente: TZQuery
+    Connection = dmConexao.zConexao
+    Params = <>
+    left = 45
+    top = 32
+  end
+end
