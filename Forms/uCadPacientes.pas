@@ -331,7 +331,7 @@ var
 implementation
 
 uses
-   customdrawn_common, uLocalizarPaciente;
+   customdrawn_common, uLocalizarPaciente, uClassPaciente;
 
 {$R *.lfm}
 
@@ -384,8 +384,19 @@ begin
 end;
 
 procedure TfrmCadPaciente.FormShow(Sender: TObject);
+var
+   paciente : TPaciente;
 begin
    pcCadPaciente.TabIndex := 0;
+   try
+      paciente := TPaciente.Create;
+      if paciente.TabelaVazia = false then
+         ShowMessage('A tabela está vazia')
+      else
+         ShowMessage('A tabela contém dados');
+   finally
+      FreeAndNil(paciente);
+   end;
 end;
 
 procedure TfrmCadPaciente.pnlTituloMouseDown(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);

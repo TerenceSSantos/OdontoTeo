@@ -5,35 +5,50 @@ unit uDMCadPaciente;
 interface
 
 uses
-   Classes, SysUtils, ZDataset;
+   Classes, SysUtils, db, ZDataset;
 
 type
 
-   { TdmTblPaciente }
+   { TdmCadPaciente }
 
-   TdmTblPaciente = class(TDataModule)
+   TdmCadPaciente = class(TDataModule)
+      dsTblPaciente: TDataSource;
       qryTblPaciente: TZQuery;
    private
 
    public
-      function TabelaVazia(tabela : TZQuery) : boolean;
+      function TabelaVazia(query: TZQuery; tabela: string): boolean;
+      function TblPacienteVazia : boolean;
    end;
 
 var
-   dmTblPaciente: TdmTblPaciente;
+   dmCadPaciente: TdmCadPaciente;
 
 implementation
 
 {$R *.lfm}
 
-{ TdmTblPaciente }
+{ TdmCadPaciente }
 
-function TdmTblPaciente.TabelaVazia(tabela: TZQuery): boolean;
+function TdmCadPaciente.TabelaVazia(query: TZQuery; tabela: string): boolean;
 begin
-   tabela.Close;
-   tabela.SQL.Add('select first 2 * from ' + tabela.Name);
-   tabela.Open;
-   if tabela.IsEmpty then
+   query.Close;                           { TODO : Continuar com o código para tabela vazia do cadastro de pacientes }
+   query.SQL.Clear;
+   query.SQL.Add('select first 2 * from ' + tabela);
+   query.Open;
+   if query.IsEmpty then
+      result := true
+   else
+      result := false;
+end;
+
+function TdmCadPaciente.TblPacienteVazia: boolean;
+begin
+   //qryTblPaciente.Close;
+   //qryTblPaciente.SQL.Clear;
+   //qryTblPaciente.SQL.Add('select first 2 * from tbl_paciente');
+   //qryTblPaciente.Open;
+   if qryTblPaciente.IsEmpty then
       result := true
    else
       result := false;
