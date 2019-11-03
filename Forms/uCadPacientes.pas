@@ -6,7 +6,7 @@ interface
 
 uses
    Classes, SysUtils, Forms, Controls, Graphics, Dialogs, ExtCtrls, Buttons,
-   StdCtrls, ComCtrls, MaskEdit, CustomDrawnControls, DateTimePicker, BCPanel, BCButton{, ovcsc};
+   StdCtrls, ComCtrls, MaskEdit, CustomDrawnControls, DateTimePicker, BCPanel, BCButton, uClassPaciente{, ovcsc};
 
 type
 
@@ -308,7 +308,10 @@ type
       procedure btnGravaCadastroClick(Sender: TObject);
       procedure btnNovoCadastroClick(Sender: TObject);
       procedure btnProcuraPacienteClick(Sender: TObject);
+      procedure FormCreate(Sender: TObject);
+      procedure FormDestroy(Sender: TObject);
       procedure FormShow(Sender: TObject);
+      procedure pcCadPacienteChanging(Sender: TObject; var AllowChange: Boolean);
       procedure pnlTituloMouseDown(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
       procedure pnlTituloMouseMove(Sender: TObject; Shift: TShiftState; X, Y: Integer);
       procedure pnlTituloMouseUp(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
@@ -327,11 +330,12 @@ var
    capitura : boolean = false;
    px, py : integer;
    estado : TEstado = Navegacao;    // Navegacao, Inclusao, Edicao
+   paciente : TPaciente;
 
 implementation
 
 uses
-   customdrawn_common, uLocalizarPaciente, uClassPaciente;
+   customdrawn_common, uLocalizarPaciente;
 
 {$R *.lfm}
 
@@ -383,19 +387,39 @@ begin
    end;
 end;
 
+procedure TfrmCadPaciente.FormCreate(Sender: TObject);
+begin
+   paciente := TPaciente.Create;
+end;
+
+procedure TfrmCadPaciente.FormDestroy(Sender: TObject);
+begin
+   FreeAndNil(paciente);
+end;
+
 procedure TfrmCadPaciente.FormShow(Sender: TObject);
-var
-   paciente : TPaciente;
 begin
    pcCadPaciente.TabIndex := 0;
-   try
-      paciente := TPaciente.Create;
-      if paciente.TabelaVazia = false then
-         ShowMessage('A tabela está vazia')
-      else
-         ShowMessage('A tabela contém dados');
-   finally
-      FreeAndNil(paciente);
+   if paciente.TabelaVazia = true then
+   begin
+      btnProcuraPaciente.Enabled := false;
+      btnAlteraCadastro.Enabled := false;
+      btnApagaCadastro.Enabled := false;
+   end
+   else
+   begin
+      btnProcuraPaciente.Enabled := true;
+      btnAlteraCadastro.Enabled := true;
+      btnApagaCadastro.Enabled := true;
+   end;
+end;
+
+procedure TfrmCadPaciente.pcCadPacienteChanging(Sender: TObject; var AllowChange: Boolean);
+begin
+   if estado in [Edicao, Inclusao] then
+   begin
+      AllowChange := false;
+      ShowMessage('Você deve gravar ou cancelar a operação atual');
    end;
 end;
 

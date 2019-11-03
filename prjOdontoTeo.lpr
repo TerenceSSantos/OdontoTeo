@@ -19,8 +19,8 @@ begin
    Application.Scaled := True;
    Application.Initialize;
    Application.CreateForm(TdmConexao, dmConexao);
-   Application.CreateForm(TfrmPrincipal, frmPrincipal);
    Application.CreateForm(TdmCadPaciente, dmCadPaciente);
+   Application.CreateForm(TfrmPrincipal, frmPrincipal);
    Application.Run;
 end.
 

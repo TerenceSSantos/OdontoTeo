@@ -7,9 +7,11 @@ object frmCadPaciente: TfrmCadPaciente
   Caption = 'Cadastro de Pacientes'
   ClientHeight = 547
   ClientWidth = 1091
+  OnCreate = FormCreate
+  OnDestroy = FormDestroy
   OnShow = FormShow
   Position = poScreenCenter
-  LCLVersion = '2.0.2.0'
+  LCLVersion = '2.0.4.0'
   object pnlTitulo: TBCPanel
     Left = 0
     Height = 32
@@ -693,6 +695,7 @@ object frmCadPaciente: TfrmCadPaciente
     Images = miglstCadPaciente
     TabIndex = 0
     TabOrder = 3
+    OnChanging = pcCadPacienteChanging
     object tabDadosBasicos: TTabSheet
       Caption = 'Dados Basicos'
       ClientHeight = 323

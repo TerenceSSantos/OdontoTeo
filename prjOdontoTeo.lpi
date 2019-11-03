@@ -94,6 +94,7 @@
         <Filename Value="DataModules\uDMCadPaciente.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="dmCadPaciente"/>
+        <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
       </Unit5>
       <Unit6>

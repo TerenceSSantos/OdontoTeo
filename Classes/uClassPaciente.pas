@@ -56,8 +56,7 @@ uses
 
 function TPaciente.TabelaVazia : boolean;
 begin
-//   result := dmCadPaciente.TabelaVazia(dmCadPaciente.qryTblPaciente, 'tbl_paciente');
-   result := dmCadPaciente.TblPacienteVazia;
+      result := dmCadPaciente.TblPacienteVazia;
 end;
 
 end.

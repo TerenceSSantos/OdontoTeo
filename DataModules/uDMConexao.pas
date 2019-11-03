@@ -5,7 +5,7 @@ unit uDMConexao;
 interface
 
 uses
-   Classes, SysUtils, ZConnection, Forms;
+   Classes, SysUtils, ZConnection, Forms, ZAbstractConnection;
 
 type
 
@@ -14,6 +14,8 @@ type
    TdmConexao = class(TDataModule)
       zConexao: TZConnection;
       procedure zConexaoBeforeConnect(Sender: TObject);
+      procedure zConexaoLogin(Sender: TObject; var Username: string;
+         var Password: string);
    private
 
    public
@@ -38,11 +40,17 @@ begin
      {$IFDEF WINDOWS}
      zConexao.Database := Application.Location + '\Banco\OdontoTeo.fdb';
      {$ENDIF}
-     if zConexao.Connected = false then
-        zConexao.Connect;
+//     if zConexao.Connected = false then
+        //zConexao.Connected := true;
   except on E: Exception do
      raise exception.Create('Não foi possível conectar ao Banco de Dados, erro:' + LineEnding + E.Message);
   end;
+end;
+
+procedure TdmConexao.zConexaoLogin(Sender: TObject; var Username: string; var Password: string);
+begin
+   if zConexao.Connected = false then
+        zConexao.Connected := true;
 end;
 
 end.

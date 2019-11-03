@@ -1,3 +1,3 @@
-Aplicativo Desktop de Cl�nica Odontol�gica
+Aplicativo Desktop de Clínica Odontológica
 
-Aplicativo desktop sendo desenvolvido em Lázarus e utilização do bando de dados Firebird.
+Aplicativo desktop sendo desenvolvido em Lazarus e utilizando o bando de dados Firebird, versão 3.0.4.33054.

@@ -1,22 +1,22 @@
 object dmCadPaciente: TdmCadPaciente
   OldCreateOrder = False
   Height = 220
-  HorizontalOffset = 629
-  VerticalOffset = 171
+  HorizontalOffset = 618
+  VerticalOffset = 121
   Width = 388
   PPI = 96
+  object dsTblPaciente: TDataSource
+    DataSet = qryTblPaciente
+    left = 176
+    top = 32
+  end
   object qryTblPaciente: TZQuery
     Connection = dmConexao.zConexao
     SQL.Strings = (
       'select first 2 * from tbl_paciente'
     )
     Params = <>
-    left = 45
-    top = 32
-  end
-  object dsTblPaciente: TDataSource
-    DataSet = qryTblPaciente
-    left = 176
+    left = 48
     top = 32
   end
 end

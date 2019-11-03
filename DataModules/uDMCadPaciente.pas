@@ -17,8 +17,8 @@ type
    private
 
    public
-      function TabelaVazia(query: TZQuery; tabela: string): boolean;
       function TblPacienteVazia : boolean;
+      procedure Pacientes;
    end;
 
 var
@@ -26,32 +26,31 @@ var
 
 implementation
 
+uses
+   uDMConexao;
+
 {$R *.lfm}
 
 { TdmCadPaciente }
 
-function TdmCadPaciente.TabelaVazia(query: TZQuery; tabela: string): boolean;
+function TdmCadPaciente.TblPacienteVazia: boolean;
 begin
-   query.Close;                           { TODO : Continuar com o código para tabela vazia do cadastro de pacientes }
-   query.SQL.Clear;
-   query.SQL.Add('select first 2 * from ' + tabela);
-   query.Open;
-   if query.IsEmpty then
+   qryTblPaciente.SQL.Clear;
+   qryTblPaciente.Close;
+   qryTblPaciente.SQL.Add('select first 2 * from tbl_paciente');
+   qryTblPaciente.Open;
+   if qryTblPaciente.IsEmpty then
       result := true
    else
       result := false;
 end;
 
-function TdmCadPaciente.TblPacienteVazia: boolean;
+procedure TdmCadPaciente.Pacientes;
 begin
-   //qryTblPaciente.Close;
-   //qryTblPaciente.SQL.Clear;
-   //qryTblPaciente.SQL.Add('select first 2 * from tbl_paciente');
-   //qryTblPaciente.Open;
-   if qryTblPaciente.IsEmpty then
-      result := true
-   else
-      result := false;
+   qryTblPaciente.SQL.Clear;
+   qryTblPaciente.Close;
+   qryTblPaciente.SQL.Add('select id_paciente, nome_paciente from tbl_paciente');
+   qryTblPaciente.Open;
 end;
 
 end.

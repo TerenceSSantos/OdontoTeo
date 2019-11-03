@@ -7,7 +7,8 @@ object frmLocalizaPaciente: TfrmLocalizaPaciente
   Caption = 'frmLocalizaPaciente'
   ClientHeight = 529
   ClientWidth = 361
-  LCLVersion = '2.0.2.0'
+  OnShow = FormShow
+  LCLVersion = '2.0.4.0'
   object pnlTitulo: TBCPanel
     Left = 0
     Height = 32
@@ -72,6 +73,9 @@ object frmLocalizaPaciente: TfrmLocalizaPaciente
     Rounding.RoundY = 10
     Rounding.RoundOptions = [rrBottomRightSquare, rrBottomLeftSquare, rrDefault]
     TabOrder = 0
+    OnMouseDown = pnlTituloMouseDown
+    OnMouseMove = pnlTituloMouseMove
+    OnMouseUp = pnlTituloMouseUp
     object btnFechar: TBCButton
       Left = 322
       Height = 24
@@ -470,7 +474,23 @@ object frmLocalizaPaciente: TfrmLocalizaPaciente
       Width = 345
       AutoEdit = False
       Color = clWindow
-      Columns = <>
+      Columns = <      
+        item
+          ReadOnly = True
+          Title.Alignment = taCenter
+          Title.Caption = 'Código'
+          Width = 70
+          FieldName = 'ID_PACIENTE'
+        end      
+        item
+          ReadOnly = True
+          Title.Alignment = taCenter
+          Title.Caption = 'Nome do paciente'
+          Width = 240
+          FieldName = 'NOME_PACIENTE'
+        end>
+      DataSource = dmCadPaciente.dsTblPaciente
+      Options = [dgTitles, dgIndicator, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit]
       TabOrder = 1
     end
     object btnLocalizarPaciente: TSpeedButton

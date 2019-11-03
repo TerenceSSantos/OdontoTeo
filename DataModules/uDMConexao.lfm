@@ -1,17 +1,19 @@
 object dmConexao: TdmConexao
   OldCreateOrder = False
   Height = 150
-  HorizontalOffset = 311
-  VerticalOffset = 119
-  Width = 150
+  HorizontalOffset = 298
+  VerticalOffset = 103
+  Width = 245
   PPI = 96
   object zConexao: TZConnection
     ControlsCodePage = cCP_UTF8
-    AutoEncodeStrings = False
+    ClientCodepage = 'UTF8'
     Properties.Strings = (
-      'AutoEncodeStrings='
+      'codepage=UTF8'
+      'controls_cp=CP_UTF8'
     )
     BeforeConnect = zConexaoBeforeConnect
+    OnLogin = zConexaoLogin
     Port = 0
     Database = 'D:\Projetos\Lazarus\OdontoTeo\Banco\ODONTOTEO.FDB'
     User = 'SYSDBA'
