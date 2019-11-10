@@ -7,8 +7,9 @@ object frmPrincipal: TfrmPrincipal
   Caption = 'frmPrincipal'
   ClientHeight = 707
   ClientWidth = 905
+  OnCreate = FormCreate
   OnShow = FormShow
-  LCLVersion = '2.0.2.0'
+  LCLVersion = '2.0.4.0'
   WindowState = wsMaximized
   object pnlTitulo: TBCPanel
     Left = 0

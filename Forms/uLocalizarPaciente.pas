@@ -5,8 +5,7 @@ unit uLocalizarPaciente;
 interface
 
 uses
-   Classes, SysUtils, db, Forms, Controls, Graphics, Dialogs, ExtCtrls,
-   StdCtrls, DBGrids, Buttons, BCPanel, BCButton;
+   Classes, SysUtils, db, Forms, Controls, Graphics, Dialogs, ExtCtrls, StdCtrls, DBGrids, Buttons, BCPanel, BCButton;
 
 type
 

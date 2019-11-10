@@ -5,8 +5,8 @@ unit uPrincipal;
 interface
 
 uses
-   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, ExtCtrls, StdCtrls,
-   Buttons, BCPanel, BCButton, SpkToolbar, spkt_Tab, spkt_Pane, spkt_Buttons;
+   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, ExtCtrls, StdCtrls, Buttons, BCPanel, BCButton, SpkToolbar,
+   spkt_Tab, spkt_Pane, spkt_Buttons, Translations;
 
 type
 
@@ -32,6 +32,7 @@ type
       Timer1: TTimer;
       procedure btnMinimizarClick(Sender: TObject);
       procedure btnFecharClick(Sender: TObject);
+      procedure FormCreate(Sender: TObject);
       procedure FormShow(Sender: TObject);
       procedure spkbtnCadPacientesClick(Sender: TObject);
       procedure Timer1Timer(Sender: TObject);
@@ -55,6 +56,11 @@ uses uCadPacientes;
 procedure TfrmPrincipal.btnFecharClick(Sender: TObject);
 begin
    Application.Terminate;
+end;
+
+procedure TfrmPrincipal.FormCreate(Sender: TObject);
+begin
+   TranslateUnitResourceStrings('LclStrConsts', ExtractFilePath(Application.ExeName ) + 'lclstrconsts.pt_BR.po', 'pt_BR', '');
 end;
 
 procedure TfrmPrincipal.btnMinimizarClick(Sender: TObject);

@@ -40,11 +40,9 @@ begin
      {$IFDEF WINDOWS}
      zConexao.Database := Application.Location + '\Banco\OdontoTeo.fdb';
      {$ENDIF}
-//     if zConexao.Connected = false then
-        //zConexao.Connected := true;
-  except on E: Exception do
+   except on E: Exception do
      raise exception.Create('Não foi possível conectar ao Banco de Dados, erro:' + LineEnding + E.Message);
-  end;
+   end;
 end;
 
 procedure TdmConexao.zConexaoLogin(Sender: TObject; var Username: string; var Password: string);

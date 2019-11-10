@@ -1,19 +1,19 @@
 object frmLocalizaPaciente: TfrmLocalizaPaciente
-  Left = 1182
+  Left = 1155
   Height = 529
-  Top = 101
-  Width = 361
+  Top = 102
+  Width = 400
   BorderStyle = bsNone
   Caption = 'frmLocalizaPaciente'
   ClientHeight = 529
-  ClientWidth = 361
+  ClientWidth = 400
   OnShow = FormShow
   LCLVersion = '2.0.4.0'
   object pnlTitulo: TBCPanel
     Left = 0
     Height = 32
     Top = 0
-    Width = 361
+    Width = 400
     Align = alTop
     Background.Color = clBtnFace
     Background.ColorOpacity = 255
@@ -77,7 +77,7 @@ object frmLocalizaPaciente: TfrmLocalizaPaciente
     OnMouseMove = pnlTituloMouseMove
     OnMouseUp = pnlTituloMouseUp
     object btnFechar: TBCButton
-      Left = 322
+      Left = 361
       Height = 24
       Hint = 'Fechar o Cadastro de Pacientes'
       Top = 4
@@ -365,7 +365,7 @@ object frmLocalizaPaciente: TfrmLocalizaPaciente
     Left = 0
     Height = 497
     Top = 32
-    Width = 361
+    Width = 400
     Align = alClient
     Background.Color = clBtnFace
     Background.ColorOpacity = 255
@@ -428,9 +428,11 @@ object frmLocalizaPaciente: TfrmLocalizaPaciente
       Left = 8
       Height = 72
       Top = 0
-      Width = 345
+      Width = 384
       ClientHeight = 52
-      ClientWidth = 341
+      ClientWidth = 380
+      Color = 16775925
+      ParentColor = False
       TabOrder = 0
       object lblLocalizarPaciente: TLabel
         Left = 10
@@ -452,7 +454,7 @@ object frmLocalizaPaciente: TfrmLocalizaPaciente
         Left = 10
         Height = 23
         Top = 16
-        Width = 324
+        Width = 363
         AutoSize = False
         Color = 14876671
         Font.CharSet = ANSI_CHARSET
@@ -471,9 +473,10 @@ object frmLocalizaPaciente: TfrmLocalizaPaciente
       Left = 8
       Height = 344
       Top = 80
-      Width = 345
+      Width = 384
+      AlternateColor = 131071
       AutoEdit = False
-      Color = clWindow
+      Color = 14876671
       Columns = <      
         item
           ReadOnly = True
@@ -486,7 +489,7 @@ object frmLocalizaPaciente: TfrmLocalizaPaciente
           ReadOnly = True
           Title.Alignment = taCenter
           Title.Caption = 'Nome do paciente'
-          Width = 240
+          Width = 279
           FieldName = 'NOME_PACIENTE'
         end>
       DataSource = dmCadPaciente.dsTblPaciente
@@ -494,7 +497,7 @@ object frmLocalizaPaciente: TfrmLocalizaPaciente
       TabOrder = 1
     end
     object btnLocalizarPaciente: TSpeedButton
-      Left = 96
+      Left = 109
       Height = 46
       Top = 432
       Width = 183
