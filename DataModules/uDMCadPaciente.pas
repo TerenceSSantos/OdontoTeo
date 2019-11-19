@@ -5,7 +5,7 @@ unit uDMCadPaciente;
 interface
 
 uses
-   Classes, SysUtils, db, ZDataset;
+   Classes, SysUtils, db, ZDataset, dialogs;
 
 type
 
@@ -19,6 +19,8 @@ type
    public
       function TblPacienteVazia : boolean;
       procedure Pacientes;
+      procedure Pacientes(nomePaciente : string);
+      function Pacientes(idPaciente : integer) : TDataSet;
    end;
 
 var
@@ -49,8 +51,26 @@ procedure TdmCadPaciente.Pacientes;
 begin
    qryTblPaciente.SQL.Clear;
    qryTblPaciente.Close;
-   qryTblPaciente.SQL.Add('select id_paciente, nome_paciente from tbl_paciente');
+   qryTblPaciente.SQL.Add('select id_paciente, nome_paciente from tbl_paciente order by nome_paciente');
    qryTblPaciente.Open;
+end;
+
+procedure TdmCadPaciente.Pacientes(nomePaciente: string);
+begin
+   qryTblPaciente.SQL.Clear;
+   qryTblPaciente.Close;
+   qryTblPaciente.SQL.Add('select id_paciente, nome_paciente from tbl_paciente where nome_paciente containing '  +
+                           QuotedStr(nomePaciente) + ' order by nome_paciente');
+   qryTblPaciente.Open;
+end;
+
+function TdmCadPaciente.Pacientes(idPaciente: integer): TDataSet;
+begin
+   qryTblPaciente.SQL.Clear;
+   qryTblPaciente.Close;
+   qryTblPaciente.SQL.Add('select * from tbl_paciente where id_paciente = '+ IntToStr(idPaciente));
+   qryTblPaciente.Open;
+   result := qryTblPaciente;
 end;
 
 end.

@@ -7,6 +7,8 @@ object frmLocalizaPaciente: TfrmLocalizaPaciente
   Caption = 'frmLocalizaPaciente'
   ClientHeight = 529
   ClientWidth = 400
+  OnClose = FormClose
+  OnCreate = FormCreate
   OnShow = FormShow
   LCLVersion = '2.0.4.0'
   object pnlTitulo: TBCPanel
@@ -451,10 +453,10 @@ object frmLocalizaPaciente: TfrmLocalizaPaciente
         ParentFont = False
       end
       object edtLocalizarPaciente: TEdit
-        Left = 10
+        Left = 8
         Height = 23
         Top = 16
-        Width = 363
+        Width = 365
         AutoSize = False
         Color = 14876671
         Font.CharSet = ANSI_CHARSET
@@ -464,7 +466,7 @@ object frmLocalizaPaciente: TfrmLocalizaPaciente
         Font.Pitch = fpVariable
         Font.Quality = fqDraft
         Font.Style = [fsBold]
-        NumbersOnly = True
+        OnChange = edtLocalizarPacienteChange
         ParentFont = False
         TabOrder = 0
       end
@@ -641,6 +643,7 @@ object frmLocalizaPaciente: TfrmLocalizaPaciente
         92EB3FBE7ACC38BB759B4BC182596ECC9A0F0000000000000000000000000000
         0000000000000000000000000000000000000000000000000000
       }
+      OnClick = btnLocalizarPacienteClick
       ParentFont = False
     end
   end

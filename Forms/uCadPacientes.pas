@@ -5,8 +5,8 @@ unit uCadPacientes;
 interface
 
 uses
-   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, ExtCtrls, Buttons,
-   StdCtrls, ComCtrls, MaskEdit, CustomDrawnControls, DateTimePicker, BCPanel, BCButton, uClassPaciente{, ovcsc};
+   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, ExtCtrls, Buttons, StdCtrls, ComCtrls, MaskEdit, {CustomDrawnControls,}
+   DateTimePicker, BCPanel, BCButton, uClassPaciente, uLocalizarPaciente;
 
 type
 
@@ -320,7 +320,7 @@ type
       procedure DesabilitaControles(controle: TWinControl);
       procedure EstadoBotoes;
    public
-
+      procedure PreencheDadosBasicos;
    end;
 
    TEstado = (Navegacao, Inclusao, Edicao);
@@ -330,12 +330,14 @@ var
    capitura : boolean = false;
    px, py : integer;
    estado : TEstado = Navegacao;    // Navegacao, Inclusao, Edicao
-   paciente : TPaciente;
+   objCadPaciente : TPaciente;
 
 implementation
 
-uses
-   customdrawn_common, uLocalizarPaciente;
+//uses
+//   customdrawn_common;
+
+
 
 {$R *.lfm}
 
@@ -382,6 +384,7 @@ begin
    try
       frmLocalizaPaciente := TfrmLocalizaPaciente.Create(self);
       frmLocalizaPaciente.ShowModal;
+      frmLocalizaPaciente.QuemChamou(frmCadPaciente);
    finally
       FreeAndNil(frmLocalizaPaciente);
    end;
@@ -389,18 +392,18 @@ end;
 
 procedure TfrmCadPaciente.FormCreate(Sender: TObject);
 begin
-   paciente := TPaciente.Create;
+   objCadPaciente := TPaciente.Create;
 end;
 
 procedure TfrmCadPaciente.FormDestroy(Sender: TObject);
 begin
-   FreeAndNil(paciente);
+   FreeAndNil(objCadPaciente);
 end;
 
 procedure TfrmCadPaciente.FormShow(Sender: TObject);
 begin
    pcCadPaciente.TabIndex := 0;
-   if paciente.TabelaVazia = true then
+   if objCadpaciente.TabelaVazia = true then
    begin
       btnProcuraPaciente.Enabled := false;
       btnAlteraCadastro.Enabled := false;
@@ -448,8 +451,6 @@ begin
 end;
 
 procedure TfrmCadPaciente.HabilitaControles(controle: TWinControl);
-var
-   i : integer;
 begin
     if controle is TTabSheet then
       HabilitaControles(TWinControl(controle.Controls[0]))      {*******************************************************************}
@@ -462,8 +463,6 @@ begin
 end;
 
 procedure TfrmCadPaciente.DesabilitaControles(controle: TWinControl);
-var
-   i : integer;
 begin
    if controle is TTabSheet then
       HabilitaControles(TWinControl(controle.Controls[0]))      {*******************************************************************}
@@ -497,6 +496,25 @@ begin
       btnProcuraPaciente.Enabled := true;
    end;
 
+end;
+
+procedure TfrmCadPaciente.PreencheDadosBasicos;
+begin
+   edtCodPaciente.Text := IntToStr(objCadpaciente.idPaciente);
+   edtNomePaciente.Text := objCadpaciente.nomePaciente;
+   edtNomePai.Text := objCadpaciente.nomePai;
+   edtNomeMae.Text := objCadpaciente.nomeMae;
+   cboxEstCivil.Text := objCadpaciente.estadoCivil;
+   edtNomeConjuge.Text := objCadpaciente.nomeConjuge;
+   if objCadpaciente.sexo = 'F' then
+      rbtnFeminino.Checked := true
+   else
+   if objCadpaciente.sexo = 'M' then
+      rbtnMasculino.Checked := true;
+   dtpkNascimento.Date := objCadpaciente.dataNascimento;
+   edtNaturalidade.Text := objCadpaciente.naturalidade;
+   cboxUFNascimento.Text := objCadpaciente.ufNascimento;
+   edtNacionalidade.Text := objCadpaciente.nacionalidade;
 end;
 
 

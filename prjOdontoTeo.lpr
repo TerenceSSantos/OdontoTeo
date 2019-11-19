@@ -8,8 +8,8 @@ uses
    {$ENDIF}{$ENDIF}
    Interfaces, // this includes the LCL widgetset
    Forms, notlcldesigner, datetimectrls, zcomponent, rxnew, uPrincipal,
-   uDMConexao, uCadPacientes, uLocalizarPaciente, uDMCadPaciente, uClassPaciente
-   { you can add units after this };
+   uDMConexao, uCadPacientes, uLocalizarPaciente, uDMCadPaciente,
+   uClassPaciente;
 
 {$R *.res}
 

@@ -47,7 +47,8 @@ var
 
 implementation
 
-uses uCadPacientes;
+uses
+   uCadPacientes;
 
 {$R *.lfm}
 

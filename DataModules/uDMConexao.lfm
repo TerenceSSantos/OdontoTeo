@@ -7,12 +7,13 @@ object dmConexao: TdmConexao
   PPI = 96
   object zConexao: TZConnection
     ControlsCodePage = cCP_UTF8
-    AutoEncodeStrings = True
     ClientCodepage = 'UTF8'
     Properties.Strings = (
       'codepage=UTF8'
       'controls_cp=CP_UTF8'
+      'AutoEncodeStrings=ON'
     )
+    Connected = True
     BeforeConnect = zConexaoBeforeConnect
     OnLogin = zConexaoLogin
     Port = 0
@@ -20,6 +21,7 @@ object dmConexao: TdmConexao
     User = 'SYSDBA'
     Password = 'masterkey'
     Protocol = 'firebird-3.0'
+    LibraryLocation = 'D:\Projetos\Lazarus\OdontoTeo\fbclient.dll'
     left = 57
     top = 49
   end
