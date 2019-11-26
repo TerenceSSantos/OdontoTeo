@@ -7,9 +7,6 @@ object frmLocalizaPaciente: TfrmLocalizaPaciente
   Caption = 'frmLocalizaPaciente'
   ClientHeight = 529
   ClientWidth = 400
-  OnClose = FormClose
-  OnCreate = FormCreate
-  OnShow = FormShow
   LCLVersion = '2.0.4.0'
   object pnlTitulo: TBCPanel
     Left = 0
@@ -494,7 +491,6 @@ object frmLocalizaPaciente: TfrmLocalizaPaciente
           Width = 279
           FieldName = 'NOME_PACIENTE'
         end>
-      DataSource = dmCadPaciente.dsTblPaciente
       Options = [dgTitles, dgIndicator, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit]
       TabOrder = 1
     end

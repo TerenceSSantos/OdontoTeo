@@ -23,17 +23,14 @@ type
       pnlTitulo: TBCPanel;
       procedure btnFecharClick(Sender: TObject);
       procedure btnLocalizarPacienteClick(Sender: TObject);
-      procedure edtLocalizarPacienteChange(Sender: TObject);
-      procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
-      procedure FormCreate(Sender: TObject);
-      procedure FormShow(Sender: TObject);
+      function edtLocalizarPacienteChange(Sender: TObject) : string;
       procedure pnlTituloMouseDown(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
       procedure pnlTituloMouseMove(Sender: TObject; Shift: TShiftState; X, Y: Integer);
       procedure pnlTituloMouseUp(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
    private
 
    public
-      procedure QuemChamou(nomeForm: TForm);
+      procedure RecebeDataSource(nomeDataSource: TDataSource);
    end;
 
 var
@@ -65,31 +62,19 @@ var
    dados : TDataSet;
 begin
    dados := dmCadPaciente.Pacientes(dbgridLocalizarPaciente.DataSource.DataSet.FieldByName('id_paciente').AsInteger);
-   objFrmLocalizaPac.PreencheDadosPaciente(dados, formulario);
+//   objFrmLocalizaPac.PreencheDadosPaciente(dados, formulario);
    frmLocalizaPaciente.Close;
 end;
 
-procedure TfrmLocalizaPaciente.edtLocalizarPacienteChange(Sender: TObject);
+function TfrmLocalizaPaciente.edtLocalizarPacienteChange(Sender: TObject): string;
+var
+   nomePaciente : string;
 begin
    if Trim(edtLocalizarPaciente.Text) = EmptyStr then
-      dmCadPaciente.Pacientes
+      nomePaciente := EmptyStr
    else
-      dmCadPaciente.Pacientes(edtLocalizarPaciente.Text);
-end;
-
-procedure TfrmLocalizaPaciente.FormClose(Sender: TObject; var CloseAction: TCloseAction);
-begin
-   FreeAndNil(objFrmLocalizaPac);
-end;
-
-procedure TfrmLocalizaPaciente.FormCreate(Sender: TObject);
-begin
-   objFrmLocalizaPac := TPaciente.Create;
-end;
-
-procedure TfrmLocalizaPaciente.FormShow(Sender: TObject);
-begin
-   dmCadPaciente.Pacientes;
+      nomePaciente := edtLocalizarPaciente.Text;
+   result := nomePaciente;
 end;
 
 procedure TfrmLocalizaPaciente.pnlTituloMouseDown(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
@@ -116,10 +101,14 @@ begin
    capitura := false;
 end;
 
-procedure TfrmLocalizaPaciente.QuemChamou(nomeForm: TForm);
+procedure TfrmLocalizaPaciente.RecebeDataSource(nomeDataSource: TDataSource);
 begin
-   formulario := nomeForm;
+   dbgridLocalizarPaciente.DataSource := nomeDataSource;
 end;
+
+
+
+
 
 end.
 

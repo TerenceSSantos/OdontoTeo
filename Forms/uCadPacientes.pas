@@ -6,7 +6,7 @@ interface
 
 uses
    Classes, SysUtils, Forms, Controls, Graphics, Dialogs, ExtCtrls, Buttons, StdCtrls, ComCtrls, MaskEdit, {CustomDrawnControls,}
-   DateTimePicker, BCPanel, BCButton, uClassPaciente, uLocalizarPaciente;
+   DateTimePicker, BCPanel, BCButton, uClassPaciente;
 
 type
 
@@ -334,8 +334,8 @@ var
 
 implementation
 
-//uses
-//   customdrawn_common;
+uses
+   uClassControlePaciente, uLocalizarPaciente; //   customdrawn_common;
 
 
 
@@ -380,14 +380,25 @@ begin
 end;
 
 procedure TfrmCadPaciente.btnProcuraPacienteClick(Sender: TObject);
+var
+   controle : TControlePaciente;
 begin
    try
-      frmLocalizaPaciente := TfrmLocalizaPaciente.Create(self);
-      frmLocalizaPaciente.ShowModal;
-      frmLocalizaPaciente.QuemChamou(frmCadPaciente);
+      controle := TControlePaciente.Create;
+      controle.QualFormRetornar(frmCadPaciente);
+      controle.ChamaLocalizar(frmLocalizaPaciente);
    finally
-      FreeAndNil(frmLocalizaPaciente);
+      FreeAndNil(controle);
    end;
+
+
+   //try
+   //   frmLocalizaPaciente := TfrmLocalizaPaciente.Create(self);
+   //   frmLocalizaPaciente.ShowModal;
+   //   frmLocalizaPaciente.QuemChamou(frmCadPaciente);
+   //finally
+   //   FreeAndNil(frmLocalizaPaciente);
+   //end;
 end;
 
 procedure TfrmCadPaciente.FormCreate(Sender: TObject);
