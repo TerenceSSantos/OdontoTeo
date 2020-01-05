@@ -15,6 +15,7 @@ type
       btnFechar: TBCButton;
       btnLocalizarPaciente: TSpeedButton;
       dbgridLocalizarPaciente: TDBGrid;
+      dsFrmLocalizaPacientes: TDataSource;
       edtLocalizarPaciente: TEdit;
       gbLocalizarPaciente: TGroupBox;
       imgLogoTitulo: TImage;
@@ -23,14 +24,16 @@ type
       pnlTitulo: TBCPanel;
       procedure btnFecharClick(Sender: TObject);
       procedure btnLocalizarPacienteClick(Sender: TObject);
-      function edtLocalizarPacienteChange(Sender: TObject) : string;
+      procedure edtLocalizarPacienteChange(Sender: TObject);
+      procedure FormShow(Sender: TObject);
       procedure pnlTituloMouseDown(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
       procedure pnlTituloMouseMove(Sender: TObject; Shift: TShiftState; X, Y: Integer);
       procedure pnlTituloMouseUp(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
    private
+      tblDataSet : TDataSet;
 
    public
-      procedure RecebeDataSource(nomeDataSource: TDataSource);
+      procedure RecebeDataSet(nomeDataSet: TDataSet);
    end;
 
 var
@@ -61,20 +64,33 @@ procedure TfrmLocalizaPaciente.btnLocalizarPacienteClick(Sender: TObject);
 var
    dados : TDataSet;
 begin
-   dados := dmCadPaciente.Pacientes(dbgridLocalizarPaciente.DataSource.DataSet.FieldByName('id_paciente').AsInteger);
-//   objFrmLocalizaPac.PreencheDadosPaciente(dados, formulario);
+      { TODO : Continuar o procedimento do que fazer depois de selecionado o paciente. }
    frmLocalizaPaciente.Close;
 end;
 
-function TfrmLocalizaPaciente.edtLocalizarPacienteChange(Sender: TObject): string;
+procedure TfrmLocalizaPaciente.edtLocalizarPacienteChange(Sender: TObject);
 var
    nomePaciente : string;
 begin
    if Trim(edtLocalizarPaciente.Text) = EmptyStr then
-      nomePaciente := EmptyStr
+   begin
+      nomePaciente := EmptyStr;
+      dmCadPaciente.Pacientes;
+   end
    else
+   begin
       nomePaciente := edtLocalizarPaciente.Text;
-   result := nomePaciente;
+      dmCadPaciente.Pacientes(nomePaciente);
+      if dmCadPaciente.qryTblPaciente.IsEmpty then
+         btnLocalizarPaciente.Enabled := false
+      else
+         btnLocalizarPaciente.Enabled := true;
+   end;
+end;
+
+procedure TfrmLocalizaPaciente.FormShow(Sender: TObject);
+begin
+//   RecebeDataSet();
 end;
 
 procedure TfrmLocalizaPaciente.pnlTituloMouseDown(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
@@ -101,13 +117,11 @@ begin
    capitura := false;
 end;
 
-procedure TfrmLocalizaPaciente.RecebeDataSource(nomeDataSource: TDataSource);
+procedure TfrmLocalizaPaciente.RecebeDataSet(nomeDataSet: TDataSet);
 begin
-   dbgridLocalizarPaciente.DataSource := nomeDataSource;
+    dsFrmLocalizaPacientes.DataSet := nomeDataSet;
+    tblDataSet := nomeDataSet;
 end;
-
-
-
 
 
 end.

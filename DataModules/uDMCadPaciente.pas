@@ -12,15 +12,14 @@ type
    { TdmCadPaciente }
 
    TdmCadPaciente = class(TDataModule)
-      dsTblPaciente: TDataSource;
       qryTblPaciente: TZQuery;
    private
 
    public
       function TblPacienteVazia : boolean;
-      function Pacientes : TDataSource;
+      procedure Pacientes;
       procedure Pacientes(nomePaciente : string);
-      function Pacientes(idPaciente : integer) : TDataSet;
+      procedure Pacientes(idPaciente: integer);
    end;
 
 var
@@ -47,13 +46,12 @@ begin
       result := false;
 end;
 
-function TdmCadPaciente.Pacientes: TDataSource;
+procedure TdmCadPaciente.Pacientes;
 begin
    qryTblPaciente.SQL.Clear;
    qryTblPaciente.Close;
    qryTblPaciente.SQL.Add('select * from tbl_paciente order by nome_paciente');
    qryTblPaciente.Open;
-   result := dsTblPaciente;
 end;
 
 procedure TdmCadPaciente.Pacientes(nomePaciente: string);
@@ -65,13 +63,12 @@ begin
    qryTblPaciente.Open;
 end;
 
-function TdmCadPaciente.Pacientes(idPaciente: integer): TDataSet;
+procedure TdmCadPaciente.Pacientes(idPaciente: integer);
 begin
    qryTblPaciente.SQL.Clear;
    qryTblPaciente.Close;
    qryTblPaciente.SQL.Add('select * from tbl_paciente where id_paciente = '+ IntToStr(idPaciente));
    qryTblPaciente.Open;
-   result := qryTblPaciente;
 end;
 
 end.

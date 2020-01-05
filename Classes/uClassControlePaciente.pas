@@ -17,8 +17,8 @@ type
      public
         procedure QualFormRetornar(tipoForm: TForm);
         procedure ChamaLocalizar(frmLocalizaPaciente: TfrmLocalizaPaciente);
-        procedure ReceberDataSet;
-        procedure SelectTodos;
+        class procedure SelectTodos;
+
 
         //constructor Create;
         //destructor Destroy; override;
@@ -40,23 +40,19 @@ procedure TControlePaciente.ChamaLocalizar(frmLocalizaPaciente: TfrmLocalizaPaci
 begin                                                {** CHAMAR A TELA DE PESQUISA DE PACIENTES **}
    try
       frmLocalizaPaciente := TfrmLocalizaPaciente.Create(nil);
-      controlePaciente.SelectTodos;
+//      controlePaciente.SelectTodos;
+
+      dmCadPaciente.Pacientes;
+      frmLocalizaPaciente.RecebeDataSet(dmCadPaciente.qryTblPaciente);
       frmLocalizaPaciente.ShowModal;
    finally
 //      FreeAndNil(frmLocalizaPaciente);
    end;
 end;
 
-procedure TControlePaciente.ReceberDataSet;
-var
-   dados : TDataSet;
+class procedure TControlePaciente.SelectTodos;
 begin
-//   dados := dmCadPaciente.Pacientes; ShowMessage(dados.FieldByName('nome_paciente').AsString);
-end;
-
-procedure TControlePaciente.SelectTodos;
-begin
-   frmLocalizaPaciente.RecebeDataSource(dmCadPaciente.Pacientes);
+   frmLocalizaPaciente.RecebeDataSet(dmCadPaciente.qryTblPaciente);
 end;
 
 end.

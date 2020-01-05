@@ -5,11 +5,6 @@ object dmCadPaciente: TdmCadPaciente
   VerticalOffset = 121
   Width = 388
   PPI = 96
-  object dsTblPaciente: TDataSource
-    DataSet = qryTblPaciente
-    left = 176
-    top = 32
-  end
   object qryTblPaciente: TZQuery
     Connection = dmConexao.zConexao
     SQL.Strings = (
