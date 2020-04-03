@@ -68,6 +68,7 @@ type
       CheckBox7: TCheckBox;
       CheckBox8: TCheckBox;
       CheckBox9: TCheckBox;
+      chkboxAtivo: TCheckBox;
       edtHabitosViciosos: TEdit;
       edtBairroEmpresa: TEdit;
       edtCidadeEmpresa: TEdit;
@@ -319,6 +320,8 @@ type
       procedure HabilitaControles(controle: TWinControl);
       procedure DesabilitaControles(controle: TWinControl);
       procedure EstadoBotoes;
+      function CarregaObjDadosBasicos(objPaciente: TPaciente): TPaciente;
+      procedure LimpaControles(controle: TWinControl);
    public
       procedure PreencheDadosBasicos;
    end;
@@ -330,7 +333,7 @@ var
    capitura : boolean = false;
    px, py : integer;
    estado : TEstado = Navegacao;    // Navegacao, Inclusao, Edicao
-   objCadPaciente : TPaciente;
+//   objCadPaciente : TPaciente;
 
 implementation
 
@@ -352,9 +355,37 @@ begin
 end;
 
 procedure TfrmCadPaciente.btnGravaCadastroClick(Sender: TObject);
+var
+   objPaciente : TPaciente;
+   objControlePaciente : TControlePaciente;
+   codigo : integer;
 begin
-   estado := Navegacao;
-   EstadoBotoes;
+   if Trim(edtNomePaciente.Text) = '' then
+   begin
+      ShowMessage('O nome do paciente deve ser preenchido!');
+      edtNomePaciente.SetFocus;
+      exit;
+   end;
+   try
+      objPaciente := TPaciente.Create;
+      objControlePaciente := TControlePaciente.Create;
+      objPaciente := CarregaObjDadosBasicos(objPaciente);
+      codigo := objControlePaciente.GravarDadosBasicos(objPaciente);
+      if codigo > 0 then
+      begin
+         lblCodPaciente.Caption := 'Código: ' + IntToStr(codigo);
+         lblNomePaciente.Caption := 'Nome do Paciente: ' + edtNomePaciente.Text;
+         edtCodPaciente.Text := IntToStr(codigo);
+         DesabilitaControles(pcCadPaciente.ActivePage);
+         estado := Navegacao;
+         EstadoBotoes;
+      end
+      else
+         lblCodPaciente.Caption := 'Código: ';
+   finally
+      FreeAndNil(objControlePaciente);
+      FreeAndNil(objPaciente);
+   end;                             { TODO -oTerence : Realizado aqui a gravação dos dados Básicos, continuar }
 end;
 
 procedure TfrmCadPaciente.btnCancelaCadastroClick(Sender: TObject);
@@ -377,6 +408,11 @@ begin
    estado := Inclusao;
    HabilitaControles(pcCadPaciente.ActivePage);
    EstadoBotoes;
+   if pcCadPaciente.PageIndex = 0 then
+   begin
+      chkboxAtivo.Checked := true;
+      edtNomePaciente.SetFocus;
+   end;
 end;
 
 procedure TfrmCadPaciente.btnProcuraPacienteClick(Sender: TObject);
@@ -403,29 +439,29 @@ end;
 
 procedure TfrmCadPaciente.FormCreate(Sender: TObject);
 begin
-   objCadPaciente := TPaciente.Create;
+//   objCadPaciente := TPaciente.Create;
 end;
 
 procedure TfrmCadPaciente.FormDestroy(Sender: TObject);
 begin
-   FreeAndNil(objCadPaciente);
+//   FreeAndNil(objCadPaciente);
 end;
 
 procedure TfrmCadPaciente.FormShow(Sender: TObject);
 begin
    pcCadPaciente.TabIndex := 0;
-   if objCadpaciente.TabelaVazia = true then
-   begin
-      btnProcuraPaciente.Enabled := false;
-      btnAlteraCadastro.Enabled := false;
-      btnApagaCadastro.Enabled := false;
-   end
-   else
-   begin
-      btnProcuraPaciente.Enabled := true;
-      btnAlteraCadastro.Enabled := true;
-      btnApagaCadastro.Enabled := true;
-   end;
+   //if objCadpaciente.TabelaVazia = true then
+   //begin
+   //   btnProcuraPaciente.Enabled := false;
+   //   btnAlteraCadastro.Enabled := false;
+   //   btnApagaCadastro.Enabled := false;
+   //end
+   //else
+   //begin
+   //   btnProcuraPaciente.Enabled := true;
+   //   btnAlteraCadastro.Enabled := true;
+   //   btnApagaCadastro.Enabled := true;
+   //end;
 end;
 
 procedure TfrmCadPaciente.pcCadPacienteChanging(Sender: TObject; var AllowChange: Boolean);
@@ -476,10 +512,10 @@ end;
 procedure TfrmCadPaciente.DesabilitaControles(controle: TWinControl);
 begin
    if controle is TTabSheet then
-      HabilitaControles(TWinControl(controle.Controls[0]))      {*******************************************************************}
-   else                                                         {**   Identificar qual o TabSheet, seus controles internos, para  **}
-   if controle is TScrollBox then                               {**                então desabilitar o Panel                      **}
-      HabilitaControles(TWinControl(controle.Controls[0]))      {*******************************************************************}
+      DesabilitaControles(TWinControl(controle.Controls[0]))      {*******************************************************************}
+   else                                                           {**   Identificar qual o TabSheet, seus controles internos, para  **}
+   if controle is TScrollBox then                                 {**                então desabilitar o Panel                      **}
+      DesabilitaControles(TWinControl(controle.Controls[0]))      {*******************************************************************}
    else
    if controle is TBCPanel then
       TBCPanel(controle).Enabled := false;
@@ -509,23 +545,67 @@ begin
 
 end;
 
+function TfrmCadPaciente.CarregaObjDadosBasicos(objPaciente : TPaciente) : TPaciente;
+begin
+   with objPaciente do
+   begin
+      if chkboxAtivo.Checked then
+         ativo := 'S'
+      else
+         ativo := 'N';
+      nomePaciente := edtNomePaciente.Text;
+      nomePai := edtNomePai.Text;
+      nomeMae := edtNomeMae.Text;
+      estadoCivil := cboxEstCivil.Text;
+      nomeConjuge := edtNomeConjuge.Text;
+      if rbtnFeminino.Checked then
+         sexo := 'F'
+      else if rbtnMasculino.Checked then
+         sexo := 'M';
+      if not(IsNullDate(dtpkNascimento.Date)) then
+         dataNascimento := dtpkNascimento.Date;
+      naturalidade := edtNaturalidade.Text;
+      ufNascimento := cboxUFNascimento.Text;
+      nacionalidade := edtNacionalidade.Text;
+   end;
+   result := objPaciente;
+end;
+
+procedure TfrmCadPaciente.LimpaControles(controle: TWinControl);
+var
+   i : integer;
+begin
+   for i := 0 to controle.ControlCount -1 do
+   begin
+      if controle.Controls[i] is TEdit then
+         (controle.Controls[i] as TCustomEdit).Clear;
+      if controle.Controls[i] is TComboBox then
+         (controle.Controls[i] as TComboBox).Clear;
+      if controle.Controls[i] is TRadioButton then
+         (controle.Controls[i] as TRadioButton).Checked := false;
+      if controle.Controls[i] is TDateTimePicker then
+         (controle.Controls[i] as TDateTimePicker).Date := NullDate;
+
+   end;
+end;
+
 procedure TfrmCadPaciente.PreencheDadosBasicos;
 begin
-   edtCodPaciente.Text := IntToStr(objCadpaciente.idPaciente);
-   edtNomePaciente.Text := objCadpaciente.nomePaciente;
-   edtNomePai.Text := objCadpaciente.nomePai;
-   edtNomeMae.Text := objCadpaciente.nomeMae;
-   cboxEstCivil.Text := objCadpaciente.estadoCivil;
-   edtNomeConjuge.Text := objCadpaciente.nomeConjuge;
-   if objCadpaciente.sexo = 'F' then
-      rbtnFeminino.Checked := true
-   else
-   if objCadpaciente.sexo = 'M' then
-      rbtnMasculino.Checked := true;
-   dtpkNascimento.Date := objCadpaciente.dataNascimento;
-   edtNaturalidade.Text := objCadpaciente.naturalidade;
-   cboxUFNascimento.Text := objCadpaciente.ufNascimento;
-   edtNacionalidade.Text := objCadpaciente.nacionalidade;
+   //edtCodPaciente.Text := IntToStr(objCadpaciente.idPaciente);
+   //edtNomePaciente.Text := objCadpaciente.nomePaciente;
+   //edtNomePai.Text := objCadpaciente.nomePai;
+   //edtNomeMae.Text := objCadpaciente.nomeMae;
+   //cboxEstCivil.Text := objCadpaciente.estadoCivil;
+   //edtNomeConjuge.Text := objCadpaciente.nomeConjuge;
+   //if objCadpaciente.sexo = 'F' then
+   //   rbtnFeminino.Checked := true
+   //else
+   //if objCadpaciente.sexo = 'M' then
+   //   rbtnMasculino.Checked := true;
+   //dtpkNascimento.Date := objCadpaciente.dataNascimento;
+   //edtNaturalidade.Text := objCadpaciente.naturalidade;
+   //cboxUFNascimento.Text := objCadpaciente.ufNascimento;
+   //edtNacionalidade.Text := objCadpaciente.nacionalidade;
 end;
 
 

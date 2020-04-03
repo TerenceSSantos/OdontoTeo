@@ -18,7 +18,9 @@ type
         procedure QualFormRetornar(tipoForm: TForm);
         procedure ChamaLocalizar(frmLocalizaPaciente: TfrmLocalizaPaciente);
         class procedure SelectTodos;
-
+        class procedure DadosBasicosPaciente;
+        class procedure RecebeDados(objDadosBasicos: TPaciente);
+        function GravarDadosBasicos(objPaciente: TPaciente): integer;
 
         //constructor Create;
         //destructor Destroy; override;
@@ -26,6 +28,7 @@ type
 
 var
    controlePaciente : TControlePaciente;
+   frmRetorno : TForm;
 
 implementation
 
@@ -33,7 +36,9 @@ implementation
 
 procedure TControlePaciente.QualFormRetornar(tipoForm: TForm);  {** PARA QUAL FORMULARIO RETORNAR O RESULTADO **}
 begin
-//   ShowMessage(tipoForm.Name);
+   ShowMessage(tipoForm.Name);
+   frmRetorno := TForm.Create(nil);
+   frmRetorno := tipoForm;
 end;
 
 procedure TControlePaciente.ChamaLocalizar(frmLocalizaPaciente: TfrmLocalizaPaciente);
@@ -53,6 +58,24 @@ end;
 class procedure TControlePaciente.SelectTodos;
 begin
    frmLocalizaPaciente.RecebeDataSet(dmCadPaciente.qryTblPaciente);
+end;
+
+class procedure TControlePaciente.DadosBasicosPaciente;
+var
+   objPaciente : TPaciente;
+begin
+   objPaciente := TPaciente.Create;
+   objPaciente.ConectaDadosBasicos;
+end;
+
+class procedure TControlePaciente.RecebeDados(objDadosBasicos: TPaciente);
+begin
+//   frmRetorno.PreencheDadosBasicos;
+end;
+
+function TControlePaciente.GravarDadosBasicos(objPaciente: TPaciente): integer;
+begin
+   result :=  dmCadPaciente.GravarDadosBasicos(objPaciente);
 end;
 
 end.

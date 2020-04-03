@@ -489,7 +489,7 @@ object frmCadPaciente: TfrmCadPaciente
       TabOrder = 2
     end
     object btnGravaCadastro: TBitBtn
-      Left = 575
+      Left = 576
       Height = 80
       Top = 2
       Width = 125
@@ -800,7 +800,7 @@ object frmCadPaciente: TfrmCadPaciente
         object lblPaciente: TLabel
           Left = 223
           Height = 15
-          Top = 41
+          Top = 40
           Width = 98
           Caption = 'Nome do Paciente'
           Font.CharSet = ANSI_CHARSET
@@ -848,6 +848,7 @@ object frmCadPaciente: TfrmCadPaciente
           Font.Style = [fsBold]
           ParentFont = False
           TabOrder = 1
+          TextHint = 'NOME DO PACIENTE'
         end
         object lblPai: TLabel
           Left = 72
@@ -1146,8 +1147,8 @@ object frmCadPaciente: TfrmCadPaciente
           TimeFormat = tf24
           TimeDisplay = tdHMS
           DateMode = dmComboBox
-          Date = 43632
-          Time = 0.846406261574884
+          Date = 1.7E308
+          Time = 1.7E308
           UseDefaultSeparators = True
           HideDateTimeParts = []
           MonthNames = 'Long'
@@ -1173,6 +1174,7 @@ object frmCadPaciente: TfrmCadPaciente
           Height = 23
           Top = 233
           Width = 70
+          CharCase = ecUppercase
           Color = clInfoBk
           Font.CharSet = ANSI_CHARSET
           Font.Color = 65664
@@ -1232,6 +1234,23 @@ object frmCadPaciente: TfrmCadPaciente
           ParentColor = False
           ParentFont = False
           WordWrap = True
+        end
+        object chkboxAtivo: TCheckBox
+          Left = 635
+          Height = 22
+          Top = 40
+          Width = 62
+          Caption = 'Ativo'
+          Color = 16247261
+          Font.CharSet = ANSI_CHARSET
+          Font.Color = 98304
+          Font.Height = -16
+          Font.Name = 'Verdana'
+          Font.Pitch = fpVariable
+          Font.Quality = fqDraft
+          ParentColor = False
+          ParentFont = False
+          TabOrder = 12
         end
       end
     end

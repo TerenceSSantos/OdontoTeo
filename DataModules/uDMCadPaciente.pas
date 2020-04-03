@@ -5,7 +5,7 @@ unit uDMCadPaciente;
 interface
 
 uses
-   Classes, SysUtils, db, ZDataset, dialogs;
+   Classes, SysUtils, db, ZDataset, dialogs, uClassPaciente, ZStoredProcedure;
 
 type
 
@@ -13,6 +13,7 @@ type
 
    TdmCadPaciente = class(TDataModule)
       qryTblPaciente: TZQuery;
+      strprocGravarDadosBasicos: TZStoredProc;
    private
 
    public
@@ -20,6 +21,7 @@ type
       procedure Pacientes;
       procedure Pacientes(nomePaciente : string);
       procedure Pacientes(idPaciente: integer);
+      function GravarDadosBasicos(objPaciente: TPaciente): integer;
    end;
 
 var
@@ -69,6 +71,34 @@ begin
    qryTblPaciente.Close;
    qryTblPaciente.SQL.Add('select * from tbl_paciente where id_paciente = '+ IntToStr(idPaciente));
    qryTblPaciente.Open;
+end;
+
+function TdmCadPaciente.GravarDadosBasicos(objPaciente: TPaciente): integer;
+begin
+   with strprocGravarDadosBasicos do
+   begin
+      Params[0].AsString := objPaciente.nomePaciente;
+      Params[1].AsString := objPaciente.nomePai;
+      Params[2].AsString := objPaciente.nomeMae;
+      Params[3].AsString := objPaciente.estadoCivil;
+      Params[4].AsString := objPaciente.nomeConjuge;
+      Params[5].AsString := objPaciente.sexo;
+      if not(objPaciente.dataNascimento = StrToDate('30/12/1899')) then
+         Params[6].AsDate := objPaciente.dataNascimento;
+      Params[7].AsString := objPaciente.naturalidade;
+      Params[8].AsString := objPaciente.ufNascimento;
+      Params[9].AsString := objPaciente.nacionalidade;
+      Params[10].AsString := objPaciente.ativo;
+   end;
+   try
+      strprocGravarDadosBasicos.ExecProc;
+      result := strprocGravarDadosBasicos.Params[12].AsInteger;
+   except on E: Exception do
+   begin
+      ShowMessage('Erro ao tentar gravar o registro, com a seguinte mensagem de erro:' + LineEnding + E.Message);
+      result := 0;
+   end;
+   end;
 end;
 
 end.

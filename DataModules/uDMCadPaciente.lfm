@@ -1,8 +1,8 @@
 object dmCadPaciente: TdmCadPaciente
   OldCreateOrder = False
   Height = 220
-  HorizontalOffset = 618
-  VerticalOffset = 121
+  HorizontalOffset = 941
+  VerticalOffset = 170
   Width = 388
   PPI = 96
   object qryTblPaciente: TZQuery
@@ -11,7 +11,145 @@ object dmCadPaciente: TdmCadPaciente
       'select first 2 * from tbl_paciente'
     )
     Params = <>
-    left = 48
+    left = 80
     top = 32
+  end
+  object strprocGravarDadosBasicos: TZStoredProc
+    Connection = dmConexao.zConexao
+    Params = <    
+      item
+        DataType = ftString
+        Name = 'NOME_PACIENTE'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'NOME_PAI'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'NOME_MAE'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'ESTADO_CIVIL'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'NOME_CONJUGE'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'SEXO'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftDate
+        Name = 'DATA_NASCIMENTO'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'NATURALIDADE'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'UF_NASCIMENTO'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'NACIONALIDADE'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'ATIVO'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftInteger
+        Name = 'ID_PACIENTE'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftInteger
+        Name = 'COD_PACIENTE'
+        ParamType = ptOutput
+      end>
+    StoredProcName = 'PROC_CAD_TBLPACIENTE'
+    left = 80
+    top = 100
+    ParamData = <    
+      item
+        DataType = ftString
+        Name = 'NOME_PACIENTE'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'NOME_PAI'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'NOME_MAE'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'ESTADO_CIVIL'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'NOME_CONJUGE'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'SEXO'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftDate
+        Name = 'DATA_NASCIMENTO'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'NATURALIDADE'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'UF_NASCIMENTO'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'NACIONALIDADE'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'ATIVO'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftInteger
+        Name = 'ID_PACIENTE'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftInteger
+        Name = 'COD_PACIENTE'
+        ParamType = ptOutput
+      end>
   end
 end
