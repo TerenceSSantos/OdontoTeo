@@ -7,6 +7,7 @@ object dmConexao: TdmConexao
   PPI = 96
   object zConexao: TZConnection
     ControlsCodePage = cCP_UTF8
+    AutoEncodeStrings = True
     ClientCodepage = 'UTF8'
     Properties.Strings = (
       'codepage=UTF8'

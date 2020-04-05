@@ -5,7 +5,7 @@ unit uClassControlePaciente;
 interface
 
 uses
-   Classes, SysUtils, db, uClassPaciente, uDMCadPaciente, Forms, uLocalizarPaciente, dialogs;
+   Classes, SysUtils, uClassPaciente, uDMCadPaciente, Forms, uLocalizarPaciente, dialogs;
 
 type
 
@@ -17,10 +17,9 @@ type
      public
         procedure QualFormRetornar(tipoForm: TForm);
         procedure ChamaLocalizar(frmLocalizaPaciente: TfrmLocalizaPaciente);
-        class procedure SelectTodos;
-        class procedure DadosBasicosPaciente;
-        class procedure RecebeDados(objDadosBasicos: TPaciente);
+
         function GravarDadosBasicos(objPaciente: TPaciente): integer;
+        function TblPacienteVazia : boolean;
 
         //constructor Create;
         //destructor Destroy; override;
@@ -36,7 +35,7 @@ implementation
 
 procedure TControlePaciente.QualFormRetornar(tipoForm: TForm);  {** PARA QUAL FORMULARIO RETORNAR O RESULTADO **}
 begin
-   ShowMessage(tipoForm.Name);
+//   ShowMessage(tipoForm.Name);
    frmRetorno := TForm.Create(nil);
    frmRetorno := tipoForm;
 end;
@@ -45,37 +44,22 @@ procedure TControlePaciente.ChamaLocalizar(frmLocalizaPaciente: TfrmLocalizaPaci
 begin                                                {** CHAMAR A TELA DE PESQUISA DE PACIENTES **}
    try
       frmLocalizaPaciente := TfrmLocalizaPaciente.Create(nil);
-//      controlePaciente.SelectTodos;
-
-      dmCadPaciente.Pacientes;
-      frmLocalizaPaciente.RecebeDataSet(dmCadPaciente.qryTblPaciente);
       frmLocalizaPaciente.ShowModal;
    finally
-//      FreeAndNil(frmLocalizaPaciente);
+      FreeAndNil(frmLocalizaPaciente);
    end;
 end;
 
-class procedure TControlePaciente.SelectTodos;
-begin
-   frmLocalizaPaciente.RecebeDataSet(dmCadPaciente.qryTblPaciente);
-end;
 
-class procedure TControlePaciente.DadosBasicosPaciente;
-var
-   objPaciente : TPaciente;
-begin
-   objPaciente := TPaciente.Create;
-   objPaciente.ConectaDadosBasicos;
-end;
-
-class procedure TControlePaciente.RecebeDados(objDadosBasicos: TPaciente);
-begin
-//   frmRetorno.PreencheDadosBasicos;
-end;
 
 function TControlePaciente.GravarDadosBasicos(objPaciente: TPaciente): integer;
 begin
    result :=  dmCadPaciente.GravarDadosBasicos(objPaciente);
+end;
+
+function TControlePaciente.TblPacienteVazia: boolean;
+begin
+   result := dmCadPaciente.TblPacienteVazia;
 end;
 
 end.

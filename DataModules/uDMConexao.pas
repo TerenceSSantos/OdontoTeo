@@ -14,8 +14,7 @@ type
    TdmConexao = class(TDataModule)
       zConexao: TZConnection;
       procedure zConexaoBeforeConnect(Sender: TObject);
-      procedure zConexaoLogin(Sender: TObject; var Username: string;
-         var Password: string);
+      procedure zConexaoLogin(Sender: TObject; var Username: string; var Password: string);
    private
 
    public

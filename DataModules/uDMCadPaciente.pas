@@ -18,10 +18,12 @@ type
 
    public
       function TblPacienteVazia : boolean;
-      procedure Pacientes;
-      procedure Pacientes(nomePaciente : string);
-      procedure Pacientes(idPaciente: integer);
       function GravarDadosBasicos(objPaciente: TPaciente): integer;
+
+      var ativo : string;
+      var nome : string;
+
+      procedure MontaSelect;
    end;
 
 var
@@ -36,7 +38,7 @@ uses
 
 { TdmCadPaciente }
 
-function TdmCadPaciente.TblPacienteVazia: boolean;
+function TdmCadPaciente.TblPacienteVazia: boolean;    //**** PARA VERIFICAR SE A TABELA ESTÁ VAZIA
 begin
    qryTblPaciente.SQL.Clear;
    qryTblPaciente.Close;
@@ -46,31 +48,6 @@ begin
       result := true
    else
       result := false;
-end;
-
-procedure TdmCadPaciente.Pacientes;
-begin
-   qryTblPaciente.SQL.Clear;
-   qryTblPaciente.Close;
-   qryTblPaciente.SQL.Add('select * from tbl_paciente order by nome_paciente');
-   qryTblPaciente.Open;
-end;
-
-procedure TdmCadPaciente.Pacientes(nomePaciente: string);
-begin
-   qryTblPaciente.SQL.Clear;
-   qryTblPaciente.Close;
-   qryTblPaciente.SQL.Add('select * from tbl_paciente where nome_paciente containing '  +
-                           QuotedStr(nomePaciente) + ' order by nome_paciente');
-   qryTblPaciente.Open;
-end;
-
-procedure TdmCadPaciente.Pacientes(idPaciente: integer);
-begin
-   qryTblPaciente.SQL.Clear;
-   qryTblPaciente.Close;
-   qryTblPaciente.SQL.Add('select * from tbl_paciente where id_paciente = '+ IntToStr(idPaciente));
-   qryTblPaciente.Open;
 end;
 
 function TdmCadPaciente.GravarDadosBasicos(objPaciente: TPaciente): integer;
@@ -99,6 +76,25 @@ begin
       result := 0;
    end;
    end;
+end;
+
+procedure TdmCadPaciente.MontaSelect;
+begin
+   qryTblPaciente.SQL.Clear;
+   qryTblPaciente.Close;
+
+   if (ativo = 'T') and (nome.Length < 3) then
+      qryTblPaciente.SQL.Add('select * from tbl_paciente order by nome_paciente')
+   else if (ativo = 'T') and (nome.Length > 2) then
+      qryTblPaciente.SQL.Add('select * from tbl_paciente where nome_paciente containing ' + QuotedStr(nome) + ' order by nome_paciente');;
+
+   if (ativo <> 'T') and (nome.Length < 3) then
+      qryTblPaciente.SQL.Add('select * from tbl_paciente where ativo = ' + QuotedStr(ativo) + ' order by nome_paciente')
+   else if (ativo <> 'T') and (nome.Length > 2) then
+      qryTblPaciente.SQL.Add('select * from tbl_paciente where nome_paciente containing ' + QuotedStr(nome) + ' and Ativo = ' +
+                              QuotedStr(ativo) + ' order by nome_paciente');
+
+   qryTblPaciente.Open;
 end;
 
 end.

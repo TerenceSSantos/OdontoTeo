@@ -309,9 +309,8 @@ type
       procedure btnGravaCadastroClick(Sender: TObject);
       procedure btnNovoCadastroClick(Sender: TObject);
       procedure btnProcuraPacienteClick(Sender: TObject);
-      procedure FormCreate(Sender: TObject);
-      procedure FormDestroy(Sender: TObject);
       procedure FormShow(Sender: TObject);
+      procedure pcCadPacienteChange(Sender: TObject);
       procedure pcCadPacienteChanging(Sender: TObject; var AllowChange: Boolean);
       procedure pnlTituloMouseDown(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
       procedure pnlTituloMouseMove(Sender: TObject; Shift: TShiftState; X, Y: Integer);
@@ -385,7 +384,7 @@ begin
    finally
       FreeAndNil(objControlePaciente);
       FreeAndNil(objPaciente);
-   end;                             { TODO -oTerence : Realizado aqui a gravação dos dados Básicos, continuar }
+   end;
 end;
 
 procedure TfrmCadPaciente.btnCancelaCadastroClick(Sender: TObject);
@@ -402,8 +401,6 @@ begin
 end;
 
 procedure TfrmCadPaciente.btnNovoCadastroClick(Sender: TObject);
-var
-   i : integer;
 begin
    estado := Inclusao;
    HabilitaControles(pcCadPaciente.ActivePage);
@@ -417,14 +414,14 @@ end;
 
 procedure TfrmCadPaciente.btnProcuraPacienteClick(Sender: TObject);
 var
-   controle : TControlePaciente;
+   objControlePaciente : TControlePaciente;
 begin
    try
-      controle := TControlePaciente.Create;
-      controle.QualFormRetornar(frmCadPaciente);
-      controle.ChamaLocalizar(frmLocalizaPaciente);
+      objControlePaciente := TControlePaciente.Create;
+      objControlePaciente.QualFormRetornar(frmCadPaciente);
+      objControlePaciente.ChamaLocalizar(frmLocalizaPaciente);
    finally
-      FreeAndNil(controle);
+      FreeAndNil(objControlePaciente);
    end;
 
 
@@ -437,31 +434,41 @@ begin
    //end;
 end;
 
-procedure TfrmCadPaciente.FormCreate(Sender: TObject);
-begin
-//   objCadPaciente := TPaciente.Create;
-end;
-
-procedure TfrmCadPaciente.FormDestroy(Sender: TObject);
-begin
-//   FreeAndNil(objCadPaciente);
-end;
-
 procedure TfrmCadPaciente.FormShow(Sender: TObject);
+var
+   objControlePaciente : TControlePaciente;
 begin
    pcCadPaciente.TabIndex := 0;
-   //if objCadpaciente.TabelaVazia = true then
-   //begin
-   //   btnProcuraPaciente.Enabled := false;
-   //   btnAlteraCadastro.Enabled := false;
-   //   btnApagaCadastro.Enabled := false;
-   //end
-   //else
-   //begin
-   //   btnProcuraPaciente.Enabled := true;
-   //   btnAlteraCadastro.Enabled := true;
-   //   btnApagaCadastro.Enabled := true;
-   //end;
+   try
+      objControlePaciente := TControlePaciente.Create;
+      if objControlePaciente.TblPacienteVazia = true then
+      begin
+         btnProcuraPaciente.Enabled := false;
+         btnAlteraCadastro.Enabled := false;
+         btnApagaCadastro.Enabled := false;
+      end;
+      //else
+      //begin
+      //   btnProcuraPaciente.Enabled := true;
+      //   btnAlteraCadastro.Enabled := true;
+      //   btnApagaCadastro.Enabled := true;
+      //end;
+   finally
+      FreeAndNil(objControlePaciente);
+   end;
+end;
+
+procedure TfrmCadPaciente.pcCadPacienteChange(Sender: TObject);
+begin
+   if pcCadPaciente.ActivePage = tabAnamnese then
+   begin
+      frmCadPaciente.Height := Screen.WorkAreaHeight;     frmCadPaciente.Top := 0;
+   end
+   else
+   begin
+       frmCadPaciente.Height := 547;
+       frmCadPaciente.Top := Screen.WorkAreaHeight div 2 - frmCadPaciente.Height div 2;
+   end;
 end;
 
 procedure TfrmCadPaciente.pcCadPacienteChanging(Sender: TObject; var AllowChange: Boolean);
@@ -547,12 +554,12 @@ end;
 
 function TfrmCadPaciente.CarregaObjDadosBasicos(objPaciente : TPaciente) : TPaciente;
 begin
-   with objPaciente do
+   with objPaciente do               {** PREENCHER O OBJETO PACIENTE COM OS SEUS DADOS BASÍCOS QUE ESTÃO NO FORM **}
    begin
       if chkboxAtivo.Checked then
-         ativo := 'S'
+         ativo := 'A'
       else
-         ativo := 'N';
+         ativo := 'I';
       nomePaciente := edtNomePaciente.Text;
       nomePai := edtNomePai.Text;
       nomeMae := edtNomeMae.Text;

@@ -22,20 +22,20 @@ type
       lblLocalizarPaciente: TLabel;
       pnlLocalizarPaciente: TBCPanel;
       pnlTitulo: TBCPanel;
+      rgAtivosInativos: TRadioGroup;
       procedure btnFecharClick(Sender: TObject);
-      procedure btnLocalizarPacienteClick(Sender: TObject);
       procedure edtLocalizarPacienteChange(Sender: TObject);
       procedure FormShow(Sender: TObject);
       procedure pnlTituloMouseDown(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
       procedure pnlTituloMouseMove(Sender: TObject; Shift: TShiftState; X, Y: Integer);
       procedure pnlTituloMouseUp(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
+      procedure rgAtivosInativosSelectionChanged(Sender: TObject);
    private
-
-
+      procedure LocalizarPaciente;
+      function AtivosInativos : string;
    public
-      tblDataSetDBasico : TDataSet;
 
-      procedure RecebeDataSet(nomeDataSet: TDataSet);
+
    end;
 
 var
@@ -48,10 +48,8 @@ var
 implementation
 
 uses
-   uDMCadPaciente, uClassPaciente;
+   uDMCadPaciente;
 
-var
-   objFrmLocalizaPac : TPaciente;
 
 {$R *.lfm}
 
@@ -62,51 +60,15 @@ begin
    Close;
 end;
 
-procedure TfrmLocalizaPaciente.btnLocalizarPacienteClick(Sender: TObject);
-//var
-//   dados : TDataSet;
-begin
-      { TODO : Continuar o procedimento do que fazer depois de selecionado o paciente. }
-   objFrmLocalizaPac := TPaciente.Create;
-   with dsFrmLocalizaPacientes.DataSet do
-   begin
-//      objFrmLocalizaPac.idPaciente := FieldByName('ID_PACIENTE').AsInteger;
-      objFrmLocalizaPac.nomePaciente := FieldByName('NOME_PACIENTE').AsString;
-      objFrmLocalizaPac.nomePai := FieldByName('NOME_PAI').AsString;
-      objFrmLocalizaPac.nomeMae := FieldByName('NOME_MAE').AsString;
-      objFrmLocalizaPac.estadoCivil := FieldByName('ESTADO_CIVIL').AsString;
-      objFrmLocalizaPac.nomeConjuge := FieldByName('NOME_CONJUGE').AsString;
-      objFrmLocalizaPac.sexo := FieldByName('SEXO').AsString;
-      objFrmLocalizaPac.dataNascimento := FieldByName('DATA_NASCIMENTO').AsDateTime;
-      objFrmLocalizaPac.naturalidade := FieldByName('NATURALIDADE').AsString;
-      objFrmLocalizaPac.ufNascimento := FieldByName('UF_NASCIMENTO').AsString;
-      objFrmLocalizaPac.nacionalidade := FieldByName('NACIONALIDADE').AsString;
-   end;
-   ShowMessage(objFrmLocalizaPac.nomePaciente);
-
-   frmLocalizaPaciente.Close;
-end;
-
 procedure TfrmLocalizaPaciente.edtLocalizarPacienteChange(Sender: TObject);
-var
-   nomePaciente : string;
 begin
-   nomePaciente := Trim(edtLocalizarPaciente.Text);
-   if nomePaciente.Length < 3 then
-      dmCadPaciente.Pacientes
-   else
-      dmCadPaciente.Pacientes(nomePaciente);
-
-   if dmCadPaciente.qryTblPaciente.IsEmpty then
-      btnLocalizarPaciente.Enabled := false
-   else
-      btnLocalizarPaciente.Enabled := true;
-
+   LocalizarPaciente;
 end;
 
 procedure TfrmLocalizaPaciente.FormShow(Sender: TObject);
 begin
-//   RecebeDataSet();
+   edtLocalizarPaciente.SetFocus;
+   LocalizarPaciente;
 end;
 
 procedure TfrmLocalizaPaciente.pnlTituloMouseDown(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
@@ -133,11 +95,34 @@ begin
    capitura := false;
 end;
 
-procedure TfrmLocalizaPaciente.RecebeDataSet(nomeDataSet: TDataSet);
+procedure TfrmLocalizaPaciente.rgAtivosInativosSelectionChanged(Sender: TObject);
 begin
-    dsFrmLocalizaPacientes.DataSet := nomeDataSet;
-    tblDataSetDBasico := nomeDataSet;
+   LocalizarPaciente;
 end;
+
+procedure TfrmLocalizaPaciente.LocalizarPaciente;
+begin
+   dmCadPaciente.ativo := AtivosInativos;     //** FUNÇÃO RETORNANDO SE TRAZ OS ATIVOS, INATIVOS OU TODOS
+   dmCadPaciente.nome := edtLocalizarPaciente.Text;
+
+   dmCadPaciente.MontaSelect;
+
+   if dmCadPaciente.qryTblPaciente.IsEmpty then   //** DESABILITAR O BOTÃO EM CASO DE DATASET VAZIO OU HABILITAR EM CASO DE DADOS
+      btnLocalizarPaciente.Enabled := false
+   else
+      btnLocalizarPaciente.Enabled := true;
+end;
+
+function TfrmLocalizaPaciente.AtivosInativos: string;
+begin
+      case rgAtivosInativos.ItemIndex of
+      0 : result := 'A';
+      1 : result := 'I';           {* RETORNA A=ATIVOS I=INATIVOS T=TODOS *}
+      else
+        result := 'T';
+   end;
+end;
+
 
 
 end.

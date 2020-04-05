@@ -8,7 +8,7 @@ unit uClassPaciente;
 interface
 
 uses
-   Classes, SysUtils, db, dialogs;
+   Classes, SysUtils;
 
 type
    { Classe Paciente }
@@ -44,9 +44,8 @@ type
       property ativo : string read Fativo write Fativo;
 
       function TabelaVazia : boolean;
-      procedure ConectaDadosBasicos;
 
-      procedure PreencheDBasicoPaciente (dados: TDataSet);
+
 
       //constructor Create;
       //destructor Destroy; override;
@@ -55,40 +54,16 @@ type
 implementation
 
 uses
-   uDMCadPaciente, uLocalizarPaciente;
+   uDMCadPaciente;
 
 { TPaciente }
 
-var
-  objPaciente : TPaciente;
 
 function TPaciente.TabelaVazia : boolean;
 begin
    result := dmCadPaciente.TblPacienteVazia;
 end;
 
-procedure TPaciente.ConectaDadosBasicos;
-begin
-   PreencheDBasicoPaciente(frmLocalizaPaciente.tblDataSetDBasico);
-end;
-
-procedure TPaciente.PreencheDBasicoPaciente(dados: TDataSet);
-begin
-   objPaciente := TPaciente.Create;
-//   objPaciente.idPaciente := dados.FieldByName('id_paciente').AsInteger;
-   objPaciente.nomePaciente := dados.FieldByName('nome_paciente').AsString;
-   objPaciente.nomePai := dados.FieldByName('nome_pai').AsString;
-   objPaciente.nomeMae := dados.FieldByName('nome_mae').AsString;
-   objPaciente.nomeConjuge := dados.FieldByName('nome_conjuge').AsString;
-   objPaciente.estadoCivil := dados.FieldByName('estado_civil').AsString;      { TODO : Continuar daqui, criar classe controle };
-   objPaciente.sexo := dados.FieldByName('sexo').AsString;
-   objPaciente.dataNascimento := dados.FieldByName('data_nascimento').AsDateTime;
-   objPaciente.naturalidade := dados.FieldByName('naturalidade').AsString;
-   objPaciente.ufNascimento := dados.FieldByName('uf_nascimento').AsString;
-   objPaciente.nacionalidade := dados.FieldByName('nacionalidade').AsString;  ShowMessage(objPaciente.nomePaciente);
-
-   FreeAndNil(objPaciente);
-end;
 
 end.
 
