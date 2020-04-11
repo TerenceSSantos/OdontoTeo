@@ -5,7 +5,7 @@ unit uLocalizarPaciente;
 interface
 
 uses
-   Classes, SysUtils, db, Forms, Controls, Graphics, Dialogs, ExtCtrls, StdCtrls, DBGrids, Buttons, BCPanel, BCButton;
+   Classes, SysUtils, db, Forms, Controls, Graphics, Dialogs, ExtCtrls, StdCtrls, DBGrids, Buttons, BCPanel, BCButton, uClassPaciente;
 
 type
 
@@ -24,6 +24,7 @@ type
       pnlTitulo: TBCPanel;
       rgAtivosInativos: TRadioGroup;
       procedure btnFecharClick(Sender: TObject);
+      procedure btnLocalizarPacienteClick(Sender: TObject);
       procedure edtLocalizarPacienteChange(Sender: TObject);
       procedure FormShow(Sender: TObject);
       procedure pnlTituloMouseDown(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
@@ -35,20 +36,19 @@ type
       function AtivosInativos : string;
    public
 
-
    end;
 
 var
    frmLocalizaPaciente: TfrmLocalizaPaciente;
    capitura : boolean = false;
    px, py : integer;
-   formulario : TForm;
+//   formulario : TForm;
 
 
 implementation
 
 uses
-   uDMCadPaciente;
+   uDMCadPaciente, uClassControlePaciente;
 
 
 {$R *.lfm}
@@ -58,6 +58,28 @@ uses
 procedure TfrmLocalizaPaciente.btnFecharClick(Sender: TObject);
 begin
    Close;
+end;
+
+procedure TfrmLocalizaPaciente.btnLocalizarPacienteClick(Sender: TObject);
+var
+   objLocPaciente : TPaciente;
+begin                                    { TODO -oTerence : IMPLEMENTAR O RETORNO DOS DADOS DO PACIENTE SELECIONADO }
+   try                                                                    //mrNone = 0;
+      objLocPaciente := TPaciente.Create;                                 //mrOK = mrNone + 1;
+      objLocPaciente := dmCadPaciente.EnviaDadosBasicos(objLocPaciente);  //mrCancel = mrNone + 2;
+      TControlePaciente.EnviaDadosBasicos(objLocPaciente);                //mrAbort = mrNone + 3;
+   finally                                                                //mrRetry = mrNone + 4;
+      FreeAndNil(objLocPaciente);                                         //mrIgnore = mrNone + 5;
+   end;                                                                   //mrYes = mrNone + 6;
+                                                                          //mrNo = mrNone + 7;
+                                                                          //mrAll = mrNone + 8;
+                                                                          //mrNoToAll = mrNone + 9;
+                                                                          //mrYesToAll = mrNone + 10;
+                                                                          //mrClose = mrNone + 11;
+                                                                          //mrLast = mrClose;
+
+
+
 end;
 
 procedure TfrmLocalizaPaciente.edtLocalizarPacienteChange(Sender: TObject);
@@ -102,7 +124,7 @@ end;
 
 procedure TfrmLocalizaPaciente.LocalizarPaciente;
 begin
-   dmCadPaciente.ativo := AtivosInativos;     //** FUNÇÃO RETORNANDO SE TRAZ OS ATIVOS, INATIVOS OU TODOS
+   dmCadPaciente.ativo := AtivosInativos;     //** FUNÇÃO RETORNANDO SE TRAZ OS ATIVOS, INATIVOS OU TODOS PARA VARIAVEL DE dmCadPaciente.
    dmCadPaciente.nome := edtLocalizarPaciente.Text;
 
    dmCadPaciente.MontaSelect;
@@ -111,15 +133,16 @@ begin
       btnLocalizarPaciente.Enabled := false
    else
       btnLocalizarPaciente.Enabled := true;
+
 end;
 
 function TfrmLocalizaPaciente.AtivosInativos: string;
 begin
-      case rgAtivosInativos.ItemIndex of
+   case rgAtivosInativos.ItemIndex of
       0 : result := 'A';
       1 : result := 'I';           {* RETORNA A=ATIVOS I=INATIVOS T=TODOS *}
       else
-        result := 'T';
+         result := 'T';
    end;
 end;
 

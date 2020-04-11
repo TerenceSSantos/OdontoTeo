@@ -19,6 +19,7 @@ type
    public
       function TblPacienteVazia : boolean;
       function GravarDadosBasicos(objPaciente: TPaciente): integer;
+      function EnviaDadosBasicos(objPaciente: TPaciente) : TPaciente;
 
       var ativo : string;
       var nome : string;
@@ -52,7 +53,7 @@ end;
 
 function TdmCadPaciente.GravarDadosBasicos(objPaciente: TPaciente): integer;
 begin
-   with strprocGravarDadosBasicos do
+   with strprocGravarDadosBasicos do     //** UTILIZAÇÃO DA STORED PROCEDURE PARA SALVAR OS DADOS BÁSICOS NO BANCO DE DADOS *****
    begin
       Params[0].AsString := objPaciente.nomePaciente;
       Params[1].AsString := objPaciente.nomePai;
@@ -78,7 +79,24 @@ begin
    end;
 end;
 
-procedure TdmCadPaciente.MontaSelect;
+function TdmCadPaciente.EnviaDadosBasicos(objPaciente: TPaciente): TPaciente;
+begin
+      objPaciente.nomePaciente := qryTblPaciente.FieldByName('NOME_PACIENTE').AsString;
+      objPaciente.idPaciente := qryTblPaciente.FieldByName('ID_PACIENTE').AsInteger;
+      objPaciente.nomePai := qryTblPaciente.FieldByName('NOME_PAI').AsString;
+      objPaciente.nomeMae := qryTblPaciente.FieldByName('NOME_MAE').AsString;
+      objPaciente.estadoCivil := qryTblPaciente.FieldByName('ESTADO_CIVIL').AsString;
+      objPaciente.nomeConjuge := qryTblPaciente.FieldByName('NOME_CONJUGE').AsString;
+      objPaciente.sexo := qryTblPaciente.FieldByName('SEXO').AsString;
+      objPaciente.dataNascimento := qryTblPaciente.FieldByName('DATA_NASCIMENTO').AsDateTime;
+      objPaciente.naturalidade := qryTblPaciente.FieldByName('NATURALIDADE').AsString;
+      objPaciente.ufNascimento := qryTblPaciente.FieldByName('UF_NASCIMENTO').AsString;
+      objPaciente.nacionalidade := qryTblPaciente.FieldByName('NACIONALIDADE').AsString;
+      objPaciente.ativo := qryTblPaciente.FieldByName('ATIVO').AsString;
+      result := objPaciente;
+end;
+
+procedure TdmCadPaciente.MontaSelect;    //** ESCOLHA DOS SELECTS USADOS NO "LOCALIZAR PACIENTES"
 begin
    qryTblPaciente.SQL.Clear;
    qryTblPaciente.Close;

@@ -322,7 +322,8 @@ type
       function CarregaObjDadosBasicos(objPaciente: TPaciente): TPaciente;
       procedure LimpaControles(controle: TWinControl);
    public
-      procedure PreencheDadosBasicos;
+      procedure PreencheDadosBasicos(objCadPaciente: TPaciente);
+
    end;
 
    TEstado = (Navegacao, Inclusao, Edicao);
@@ -337,7 +338,7 @@ var
 implementation
 
 uses
-   uClassControlePaciente, uLocalizarPaciente; //   customdrawn_common;
+   uClassControlePaciente; //   customdrawn_common;
 
 
 
@@ -417,9 +418,10 @@ var
    objControlePaciente : TControlePaciente;
 begin
    try
-      objControlePaciente := TControlePaciente.Create;
-      objControlePaciente.QualFormRetornar(frmCadPaciente);
-      objControlePaciente.ChamaLocalizar(frmLocalizaPaciente);
+//      objControlePaciente := TControlePaciente.Create(frmCadPaciente);
+      objControlePaciente := TControlePaciente.Create;//(Self); // É igual a linha acima
+//      objControlePaciente.QualFormRetornar(frmCadPaciente);
+      objControlePaciente.ChamaLocalizar;
    finally
       FreeAndNil(objControlePaciente);
    end;
@@ -462,7 +464,8 @@ procedure TfrmCadPaciente.pcCadPacienteChange(Sender: TObject);
 begin
    if pcCadPaciente.ActivePage = tabAnamnese then
    begin
-      frmCadPaciente.Height := Screen.WorkAreaHeight;     frmCadPaciente.Top := 0;
+      frmCadPaciente.Height := Screen.WorkAreaHeight;
+      frmCadPaciente.Top := 0;
    end
    else
    begin
@@ -596,23 +599,27 @@ begin
    end;
 end;
 
-procedure TfrmCadPaciente.PreencheDadosBasicos;
+procedure TfrmCadPaciente.PreencheDadosBasicos(objCadPaciente: TPaciente);
 begin
-   //edtCodPaciente.Text := IntToStr(objCadpaciente.idPaciente);
-   //edtNomePaciente.Text := objCadpaciente.nomePaciente;
-   //edtNomePai.Text := objCadpaciente.nomePai;
-   //edtNomeMae.Text := objCadpaciente.nomeMae;
-   //cboxEstCivil.Text := objCadpaciente.estadoCivil;
-   //edtNomeConjuge.Text := objCadpaciente.nomeConjuge;
-   //if objCadpaciente.sexo = 'F' then
-   //   rbtnFeminino.Checked := true
-   //else
-   //if objCadpaciente.sexo = 'M' then
-   //   rbtnMasculino.Checked := true;
-   //dtpkNascimento.Date := objCadpaciente.dataNascimento;
-   //edtNaturalidade.Text := objCadpaciente.naturalidade;
-   //cboxUFNascimento.Text := objCadpaciente.ufNascimento;
-   //edtNacionalidade.Text := objCadpaciente.nacionalidade;
+   edtCodPaciente.Text := IntToStr(objCadpaciente.idPaciente);
+   edtNomePaciente.Text := objCadpaciente.nomePaciente;
+   edtNomePai.Text := objCadpaciente.nomePai;
+   edtNomeMae.Text := objCadpaciente.nomeMae;
+   cboxEstCivil.Text := objCadpaciente.estadoCivil;
+   edtNomeConjuge.Text := objCadpaciente.nomeConjuge;
+   if objCadpaciente.sexo = 'F' then
+      rbtnFeminino.Checked := true
+   else
+   if objCadpaciente.sexo = 'M' then
+      rbtnMasculino.Checked := true;
+
+   if objCadPaciente.dataNascimento = StrToDate('30/12/1899') then
+      dtpkNascimento.Date :=  NullDate
+   else
+      dtpkNascimento.Date := objCadpaciente.dataNascimento;
+   edtNaturalidade.Text := objCadpaciente.naturalidade;
+   cboxUFNascimento.Text := objCadpaciente.ufNascimento;
+   edtNacionalidade.Text := objCadpaciente.nacionalidade;
 end;
 
 

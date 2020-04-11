@@ -675,6 +675,7 @@ object frmLocalizaPaciente: TfrmLocalizaPaciente
         92EB3FBE7ACC38BB759B4BC182596ECC9A0F0000000000000000000000000000
         0000000000000000000000000000000000000000000000000000
       }
+      OnClick = btnLocalizarPacienteClick
       ParentFont = False
     end
   end

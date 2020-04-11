@@ -30,7 +30,7 @@ type
       Fsexo: string;
       FufNascimento: string;
    public
-      property idPaciente : integer read FidPaciente {write FidPaciente};
+      property idPaciente : integer read FidPaciente write FidPaciente;
       property nomePaciente : string read FnomePaciente write FnomePaciente;
       property nomePai : string read FnomePai write FnomePai;
       property nomeMae : string read FnomeMae write FnomeMae;
@@ -43,9 +43,6 @@ type
       property nacionalidade : string read Fnacionalidade write Fnacionalidade;
       property ativo : string read Fativo write Fativo;
 
-      function TabelaVazia : boolean;
-
-
 
       //constructor Create;
       //destructor Destroy; override;
@@ -53,16 +50,9 @@ type
 
 implementation
 
-uses
-   uDMCadPaciente;
-
 { TPaciente }
 
 
-function TPaciente.TabelaVazia : boolean;
-begin
-   result := dmCadPaciente.TblPacienteVazia;
-end;
 
 
 end.
