@@ -34,6 +34,7 @@ type
    private
       procedure LocalizarPaciente;
       function AtivosInativos : string;
+
    public
 
    end;
@@ -63,23 +64,15 @@ end;
 procedure TfrmLocalizaPaciente.btnLocalizarPacienteClick(Sender: TObject);
 var
    objLocPaciente : TPaciente;
-begin                                    { TODO -oTerence : IMPLEMENTAR O RETORNO DOS DADOS DO PACIENTE SELECIONADO }
-   try                                                                    //mrNone = 0;
-      objLocPaciente := TPaciente.Create;                                 //mrOK = mrNone + 1;
-      objLocPaciente := dmCadPaciente.EnviaDadosBasicos(objLocPaciente);  //mrCancel = mrNone + 2;
-      TControlePaciente.EnviaDadosBasicos(objLocPaciente);                //mrAbort = mrNone + 3;
-   finally                                                                //mrRetry = mrNone + 4;
-      FreeAndNil(objLocPaciente);                                         //mrIgnore = mrNone + 5;
-   end;                                                                   //mrYes = mrNone + 6;
-                                                                          //mrNo = mrNone + 7;
-                                                                          //mrAll = mrNone + 8;
-                                                                          //mrNoToAll = mrNone + 9;
-                                                                          //mrYesToAll = mrNone + 10;
-                                                                          //mrClose = mrNone + 11;
-                                                                          //mrLast = mrClose;
-
-
-
+begin
+   try
+      objLocPaciente := TPaciente.Create;
+      objLocPaciente := dmCadPaciente.EnviaDadosBasicos(objLocPaciente);
+      TControlePaciente.EnviaDadosBasicos(objLocPaciente);
+   finally
+      FreeAndNil(objLocPaciente);
+   end;
+   Close;
 end;
 
 procedure TfrmLocalizaPaciente.edtLocalizarPacienteChange(Sender: TObject);

@@ -6495,15 +6495,15 @@ object frmPrincipal: TfrmPrincipal
       }
     end
     object lblDataHora: TLabel
-      Left = 808
-      Height = 21
-      Top = 536
-      Width = 89
+      Left = 789
+      Height = 25
+      Top = 532
+      Width = 108
       Anchors = [akRight, akBottom]
       Caption = 'Data e Hora'
       Font.CharSet = ANSI_CHARSET
       Font.Color = clBlue
-      Font.Height = -16
+      Font.Height = -19
       Font.Name = 'Segoe UI'
       Font.Pitch = fpVariable
       Font.Quality = fqDraft

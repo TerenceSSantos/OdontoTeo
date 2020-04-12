@@ -635,13 +635,13 @@ object frmCadPaciente: TfrmCadPaciente
       ParentFont = False
     end
     object lblIdade: TLabel
-      Left = 736
+      Left = 698
       Height = 21
       Top = 24
       Width = 97
       Caption = 'Idade: 0 anos'
       Font.CharSet = ANSI_CHARSET
-      Font.Color = clBlack
+      Font.Color = 65664
       Font.Height = -16
       Font.Name = 'Segoe UI Semibold'
       Font.Pitch = fpVariable
@@ -657,7 +657,7 @@ object frmCadPaciente: TfrmCadPaciente
       Width = 62
       Caption = 'Código: '
       Font.CharSet = ANSI_CHARSET
-      Font.Color = clBlack
+      Font.Color = 65664
       Font.Height = -16
       Font.Name = 'Segoe UI Semibold'
       Font.Pitch = fpVariable
@@ -667,13 +667,14 @@ object frmCadPaciente: TfrmCadPaciente
       ParentFont = False
     end
     object lblNomePaciente: TLabel
-      Left = 169
+      Left = 165
       Height = 21
       Top = 24
-      Width = 139
+      Width = 520
       Caption = 'Nome do Paciente:'
+      Constraints.MinWidth = 520
       Font.CharSet = ANSI_CHARSET
-      Font.Color = clBlack
+      Font.Color = 65664
       Font.Height = -16
       Font.Name = 'Segoe UI Semibold'
       Font.Pitch = fpVariable
@@ -827,6 +828,7 @@ object frmCadPaciente: TfrmCadPaciente
           Font.Quality = fqDraft
           Font.Style = [fsBold]
           NumbersOnly = True
+          OnChange = edtCodPacienteChange
           ParentFont = False
           ReadOnly = True
           TabStop = False

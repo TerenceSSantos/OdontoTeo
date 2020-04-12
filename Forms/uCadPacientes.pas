@@ -309,6 +309,7 @@ type
       procedure btnGravaCadastroClick(Sender: TObject);
       procedure btnNovoCadastroClick(Sender: TObject);
       procedure btnProcuraPacienteClick(Sender: TObject);
+      procedure edtCodPacienteChange(Sender: TObject);
       procedure FormShow(Sender: TObject);
       procedure pcCadPacienteChange(Sender: TObject);
       procedure pcCadPacienteChanging(Sender: TObject; var AllowChange: Boolean);
@@ -418,22 +419,19 @@ var
    objControlePaciente : TControlePaciente;
 begin
    try
-//      objControlePaciente := TControlePaciente.Create(frmCadPaciente);
-      objControlePaciente := TControlePaciente.Create;//(Self); // É igual a linha acima
-//      objControlePaciente.QualFormRetornar(frmCadPaciente);
+      objControlePaciente := TControlePaciente.Create;
       objControlePaciente.ChamaLocalizar;
    finally
       FreeAndNil(objControlePaciente);
    end;
+end;
 
-
-   //try
-   //   frmLocalizaPaciente := TfrmLocalizaPaciente.Create(self);
-   //   frmLocalizaPaciente.ShowModal;
-   //   frmLocalizaPaciente.QuemChamou(frmCadPaciente);
-   //finally
-   //   FreeAndNil(frmLocalizaPaciente);
-   //end;
+procedure TfrmCadPaciente.edtCodPacienteChange(Sender: TObject);
+begin
+   if edtCodPaciente.GetTextLen > 6 then
+      exit
+   else
+      edtCodPaciente.Text := LeftStr('0', 1) + edtCodPaciente.Text; ;
 end;
 
 procedure TfrmCadPaciente.FormShow(Sender: TObject);
@@ -522,10 +520,10 @@ end;
 procedure TfrmCadPaciente.DesabilitaControles(controle: TWinControl);
 begin
    if controle is TTabSheet then
-      DesabilitaControles(TWinControl(controle.Controls[0]))      {*******************************************************************}
-   else                                                           {**   Identificar qual o TabSheet, seus controles internos, para  **}
-   if controle is TScrollBox then                                 {**                então desabilitar o Panel                      **}
-      DesabilitaControles(TWinControl(controle.Controls[0]))      {*******************************************************************}
+      DesabilitaControles(TWinControl(controle.Controls[0]))   {*******************************************************************}
+   else                                                        {**   Identificar qual o TabSheet, seus controles internos, para  **}
+   if controle is TScrollBox then                              {**                então desabilitar o Panel                      **}
+      DesabilitaControles(TWinControl(controle.Controls[0]))   {*******************************************************************}
    else
    if controle is TBCPanel then
       TBCPanel(controle).Enabled := false;
@@ -603,6 +601,11 @@ procedure TfrmCadPaciente.PreencheDadosBasicos(objCadPaciente: TPaciente);
 begin
    edtCodPaciente.Text := IntToStr(objCadpaciente.idPaciente);
    edtNomePaciente.Text := objCadpaciente.nomePaciente;
+   if objCadPaciente.ativo = 'A' then
+      chkboxAtivo.Checked := true
+   else
+      chkboxAtivo.Checked := false;
+
    edtNomePai.Text := objCadpaciente.nomePai;
    edtNomeMae.Text := objCadpaciente.nomeMae;
    cboxEstCivil.Text := objCadpaciente.estadoCivil;
@@ -614,12 +617,25 @@ begin
       rbtnMasculino.Checked := true;
 
    if objCadPaciente.dataNascimento = StrToDate('30/12/1899') then
-      dtpkNascimento.Date :=  NullDate
+   begin
+      dtpkNascimento.Date :=  NullDate;
+      lblIdade.Caption := 'Idade: 0 anos'
+   end
    else
+   begin
       dtpkNascimento.Date := objCadpaciente.dataNascimento;
+      objCadPaciente.CalculaIdade;
+      lblIdade.Caption := 'Idade: ' + IntToStr(objCadPaciente.idade) + ' anos ';
+      if objCadPaciente.MesesIdade > 0 then
+         lblIdade.Caption := lblIdade.Caption + IntToStr(objCadPaciente.MesesIdade) + ' meses';
+   end;
    edtNaturalidade.Text := objCadpaciente.naturalidade;
    cboxUFNascimento.Text := objCadpaciente.ufNascimento;
    edtNacionalidade.Text := objCadpaciente.nacionalidade;
+
+   lblCodPaciente.Caption := 'Código: ' + edtCodPaciente.Text;
+   lblNomePaciente.Caption := 'Nome do Paciente: ' + edtNomePaciente.Text;
+
 end;
 
 
