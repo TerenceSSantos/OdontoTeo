@@ -1,9 +1,9 @@
 object dmCadPaciente: TdmCadPaciente
   OldCreateOrder = False
-  Height = 220
+  Height = 353
   HorizontalOffset = 699
   VerticalOffset = 96
-  Width = 388
+  Width = 424
   PPI = 96
   object qryTblPaciente: TZQuery
     Connection = dmConexao.zConexao
@@ -150,6 +150,124 @@ object dmCadPaciente: TdmCadPaciente
         DataType = ftInteger
         Name = 'COD_PACIENTE'
         ParamType = ptOutput
+      end>
+  end
+  object strprocEditarDadosBasicos: TZStoredProc
+    Connection = dmConexao.zConexao
+    Params = <    
+      item
+        DataType = ftInteger
+        Name = 'ID_PACIENTE'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'NOME_PACIENTE'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'NOME_PAI'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'NOME_MAE'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'ESTADO_CIVIL'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'NOME_CONJUGE'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'SEXO'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftDate
+        Name = 'DATA_NASCIMENTO'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'NATURALIDADE'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'NACIONALIDADE'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'ATIVO'
+        ParamType = ptInput
+      end>
+    StoredProcName = 'PROC_EDIT_TBLPACIENTE'
+    left = 80
+    top = 184
+    ParamData = <    
+      item
+        DataType = ftInteger
+        Name = 'ID_PACIENTE'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'NOME_PACIENTE'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'NOME_PAI'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'NOME_MAE'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'ESTADO_CIVIL'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'NOME_CONJUGE'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'SEXO'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftDate
+        Name = 'DATA_NASCIMENTO'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'NATURALIDADE'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'NACIONALIDADE'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'ATIVO'
+        ParamType = ptInput
       end>
   end
 end

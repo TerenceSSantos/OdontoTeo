@@ -75,14 +75,14 @@ begin
    dataAniversario := IncYear(dataNascimento, idade);
    while confData do
    begin
-      if now < dataAniversario then
+      if now < dataAniversario then  // CASO A DATA DE ANIVERSÁRIO TENHA SIDO ULTRAPASSADA, SAI DO LOOP E TIRA 1 MÊS DO CONTADOR.
       begin
         confData := false;
         meses := meses -1;
       end
       else
       begin
-         dataAniversario := IncMonth(dataAniversario, 1);
+         dataAniversario := IncMonth(dataAniversario, 1);  // VAI ACRESCENTANDO 1 MÊS NO DIA DO ANIVERSÁRIO ATUAL
          Inc(meses);
       end;
    end;
@@ -90,8 +90,27 @@ begin
 end;
 
 function TPaciente.DiasIdade: integer;
+var
+   dias, meses : integer;
+   dataAniversario, dataAtual : TDate;
+   confData : boolean = true;
 begin
-    //
+    dataAniversario := IncYear(dataNascimento, idade);
+    dataAtual := now;
+    while confData do
+    begin
+       if now < dataAniversario then  // CASO A DATA DE ANIVERSÁRIO TENHA SIDO ULTRAPASSADA, SAI DO LOOP E TIRA 1 MÊS DO CONTADOR.
+      begin
+        confData := false;
+        dias := DaysBetween(IncMonth(dataAniversario, -1), now);
+      end
+      else
+      begin
+         dataAniversario := IncMonth(dataAniversario, 1);  // VAI ACRESCENTANDO 1 MÊS NO DIA DO ANIVERSÁRIO ATUAL
+         Inc(meses);
+      end;
+    end;
+    result := dias;
 end;
 
 end.

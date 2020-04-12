@@ -617,7 +617,7 @@ object frmCadPaciente: TfrmCadPaciente
     Rounding.RoundOptions = [rrTopLeftSquare, rrTopRightSquare, rrBottomRightSquare, rrBottomLeftSquare]
     TabOrder = 2
     object btnProcuraPaciente: TSpeedButton
-      Left = 880
+      Left = 900
       Height = 46
       Top = 8
       Width = 183
@@ -635,11 +635,14 @@ object frmCadPaciente: TfrmCadPaciente
       ParentFont = False
     end
     object lblIdade: TLabel
-      Left = 698
+      AnchorSideRight.Control = btnProcuraPaciente
+      Left = 665
       Height = 21
       Top = 24
-      Width = 97
-      Caption = 'Idade: 0 anos'
+      Width = 50
+      BorderSpacing.Right = 12
+      Caption = 'Idade: '
+      Constraints.MaxWidth = 240
       Font.CharSet = ANSI_CHARSET
       Font.Color = 65664
       Font.Height = -16
@@ -647,15 +650,17 @@ object frmCadPaciente: TfrmCadPaciente
       Font.Pitch = fpVariable
       Font.Quality = fqDraft
       Font.Style = [fsBold]
+      ParentBidiMode = False
       ParentColor = False
       ParentFont = False
     end
     object lblCodPaciente: TLabel
-      Left = 16
+      Left = 8
       Height = 21
       Top = 24
       Width = 62
       Caption = 'Código: '
+      Constraints.MaxWidth = 117
       Font.CharSet = ANSI_CHARSET
       Font.Color = 65664
       Font.Height = -16
@@ -667,12 +672,14 @@ object frmCadPaciente: TfrmCadPaciente
       ParentFont = False
     end
     object lblNomePaciente: TLabel
-      Left = 165
+      AnchorSideRight.Control = lblIdade
+      Left = 142
       Height = 21
       Top = 24
-      Width = 520
-      Caption = 'Nome do Paciente:'
-      Constraints.MinWidth = 520
+      Width = 143
+      BorderSpacing.Right = 14
+      Caption = 'Nome do Paciente: '
+      Constraints.MaxWidth = 515
       Font.CharSet = ANSI_CHARSET
       Font.Color = 65664
       Font.Height = -16
@@ -833,6 +840,7 @@ object frmCadPaciente: TfrmCadPaciente
           ReadOnly = True
           TabStop = False
           TabOrder = 0
+          TextHint = '000000'
         end
         object edtNomePaciente: TEdit
           Left = 224

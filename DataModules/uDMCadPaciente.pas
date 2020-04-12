@@ -13,6 +13,7 @@ type
 
    TdmCadPaciente = class(TDataModule)
       qryTblPaciente: TZQuery;
+      strprocEditarDadosBasicos: TZStoredProc;
       strprocGravarDadosBasicos: TZStoredProc;
    private
 
