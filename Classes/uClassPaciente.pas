@@ -47,8 +47,9 @@ type
       property idade: integer read Fidade write Fidade;
 
       procedure CalculaIdade;
-      function MesesIdade: integer;
-      function DiasIdade : integer;
+      function IdadeEmMeses: integer;
+      function IdadeEmDias : integer;
+      function RetornoIdadeCompleta : string;
 
       //constructor Create;
       //destructor Destroy; override;
@@ -66,7 +67,7 @@ begin
       Fidade := trunc((now - dataNascimento) / 365.25);
 end;
 
-function TPaciente.MesesIdade: integer;
+function TPaciente.IdadeEmMeses: integer;
 var
    meses : integer = 0;
    confData : boolean = true;
@@ -89,7 +90,7 @@ begin
    result := meses;
 end;
 
-function TPaciente.DiasIdade: integer;
+function TPaciente.IdadeEmDias: integer;
 var
    dias, meses : integer;
    dataAniversario, dataAtual : TDate;
@@ -99,7 +100,7 @@ begin
     dataAtual := now;
     while confData do
     begin
-       if now < dataAniversario then  // CASO A DATA DE ANIVERSÁRIO TENHA SIDO ULTRAPASSADA, SAI DO LOOP E TIRA 1 MÊS DO CONTADOR.
+       if now < dataAniversario then  // CASO A DATA DE ANIVERSÁRIO_ATUAL TENHA SIDO ULTRAPASSADA, SAI DO LOOP E TIRA 1 MÊS DO CONTADOR.
       begin
         confData := false;
         dias := DaysBetween(IncMonth(dataAniversario, -1), now);
@@ -111,6 +112,35 @@ begin
       end;
     end;
     result := dias;
+end;
+
+function TPaciente.RetornoIdadeCompleta: string;
+var
+   idadeCompleta: string;
+begin
+   CalculaIdade;
+
+      if idade > 0 then            // IDADE EM ANOS
+         if idade = 1 then
+            idadeCompleta := 'Idade: 1 ano'
+         else
+            idadeCompleta := 'Idade: ' + IntToStr(idade) + ' anos '
+      else
+         idadeCompleta := 'Idade: ';
+
+      if IdadeEmMeses > 0 then       // IDADE EM MESES
+         if IdadeEmMeses = 1 then
+            idadeCompleta := idadeCompleta + IntToStr(IdadeEmMeses) + ' mês '
+         else
+            idadeCompleta := idadeCompleta + IntToStr(IdadeEmMeses) + ' meses ';
+
+      if IdadeEmDias > 0 then        // IDADE EM DIAS
+         if IdadeEmDias = 1 then
+            idadeCompleta := idadeCompleta + IntToStr(IdadeEmDias) + ' dia'
+         else
+            idadeCompleta := idadeCompleta + IntToStr(IdadeEmDias) + ' dias';
+
+      result := idadeCompleta;
 end;
 
 end.

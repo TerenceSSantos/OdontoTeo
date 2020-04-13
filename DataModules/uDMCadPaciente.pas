@@ -19,7 +19,7 @@ type
 
    public
       function TblPacienteVazia : boolean;
-      function GravarDadosBasicos(objPaciente: TPaciente): integer;
+      function GravarDadosBasicos(objPaciente: TPaciente; tipoOperacao: integer): integer;
       function EnviaDadosBasicos(objPaciente: TPaciente) : TPaciente;
 
       var ativo : string;
@@ -52,32 +52,60 @@ begin
       result := false;
 end;
 
-function TdmCadPaciente.GravarDadosBasicos(objPaciente: TPaciente): integer;
+function TdmCadPaciente.GravarDadosBasicos(objPaciente: TPaciente; tipoOperacao: integer): integer;
 begin
-   with strprocGravarDadosBasicos do     //** UTILIZAÇÃO DA STORED PROCEDURE PARA SALVAR OS DADOS BÁSICOS NO BANCO DE DADOS *****
-   begin
-      Params[0].AsString := objPaciente.nomePaciente;
-      Params[1].AsString := objPaciente.nomePai;
-      Params[2].AsString := objPaciente.nomeMae;
-      Params[3].AsString := objPaciente.estadoCivil;
-      Params[4].AsString := objPaciente.nomeConjuge;
-      Params[5].AsString := objPaciente.sexo;
-      if not(objPaciente.dataNascimento = StrToDate('30/12/1899')) then
-         Params[6].AsDate := objPaciente.dataNascimento;
-      Params[7].AsString := objPaciente.naturalidade;
-      Params[8].AsString := objPaciente.ufNascimento;
-      Params[9].AsString := objPaciente.nacionalidade;
-      Params[10].AsString := objPaciente.ativo;
+   // tipoOperação = 0 = INCLUSÃO
+   // tipoOperação = 1 = EDIÇÃO
+   case tipoOperacao of
+      0 : begin
+             with strprocGravarDadosBasicos do     //** UTILIZAÇÃO DA STORED PROCEDURE PARA SALVAR OS DADOS BÁSICOS NO BANCO DE DADOS *****
+             begin
+                Params[0].AsString := objPaciente.nomePaciente;
+                Params[1].AsString := objPaciente.nomePai;
+                Params[2].AsString := objPaciente.nomeMae;
+                Params[3].AsString := objPaciente.estadoCivil;
+                Params[4].AsString := objPaciente.nomeConjuge;
+                Params[5].AsString := objPaciente.sexo;
+                if not(objPaciente.dataNascimento = StrToDate('30/12/1899')) then
+                   Params[6].AsDate := objPaciente.dataNascimento;
+                Params[7].AsString := objPaciente.naturalidade;
+                Params[8].AsString := objPaciente.ufNascimento;
+                Params[9].AsString := objPaciente.nacionalidade;
+                Params[10].AsString := objPaciente.ativo;
+             end;
+             try
+                strprocGravarDadosBasicos.ExecProc;
+                result := strprocGravarDadosBasicos.Params[12].AsInteger;
+             except on E: Exception do
+             begin
+                ShowMessage('Erro ao tentar gravar o registro, com a seguinte mensagem de erro:' + LineEnding + E.Message);
+                result := 0;
+             end;
+             end;
+          end;
+
+      1 : begin
+             with strprocEditarDadosBasicos do
+             begin
+                Params[0].AsInteger := objPaciente.idPaciente;       { TODO -oTerence : Continuar com a Alteração do cadastro. }
+                Params[1].AsString := objPaciente.nomePaciente;
+                Params[2].AsString := objPaciente.nomePai;
+                Params[3].AsString := objPaciente.nomeMae;
+                Params[4].AsString := objPaciente.estadoCivil;
+                Params[5].AsString := objPaciente.nomeConjuge;
+                Params[6].AsString := objPaciente.sexo;
+                if not(objPaciente.dataNascimento = StrToDate('30/12/1899')) then
+                   Params[7].AsDate := objPaciente.dataNascimento;
+                Params[8].AsString := objPaciente.naturalidade;
+                Params[9].AsString := objPaciente.nacionalidade;
+                Params[10].AsString := objPaciente.ativo;
+             end;
+          end;
    end;
-   try
-      strprocGravarDadosBasicos.ExecProc;
-      result := strprocGravarDadosBasicos.Params[12].AsInteger;
-   except on E: Exception do
-   begin
-      ShowMessage('Erro ao tentar gravar o registro, com a seguinte mensagem de erro:' + LineEnding + E.Message);
-      result := 0;
-   end;
-   end;
+
+
+
+
 end;
 
 function TdmCadPaciente.EnviaDadosBasicos(objPaciente: TPaciente): TPaciente;

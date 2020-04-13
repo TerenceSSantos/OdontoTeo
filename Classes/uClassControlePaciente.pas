@@ -22,7 +22,7 @@ type
 //        procedure QualFormRetornar(tipoForm: TForm);
         procedure ChamaLocalizar; //(frmLocalizaPaciente: TfrmLocalizaPaciente);
 
-        function GravarDadosBasicos(objPaciente: TPaciente): integer;
+        function GravarDadosBasicos(objPaciente: TPaciente; tipoOperacao: integer): integer;
         function TblPacienteVazia : boolean;
         class procedure EnviaDadosBasicos(objPaciente: TPaciente);
 
@@ -62,9 +62,9 @@ begin                                                {** CHAMAR A TELA DE PESQUI
    end;
 end;
 
-function TControlePaciente.GravarDadosBasicos(objPaciente: TPaciente): integer;
+function TControlePaciente.GravarDadosBasicos(objPaciente: TPaciente; tipoOperacao: integer): integer;
 begin
-   result :=  dmCadPaciente.GravarDadosBasicos(objPaciente);
+   result :=  dmCadPaciente.GravarDadosBasicos(objPaciente, tipoOperacao);
 end;
 
 function TControlePaciente.TblPacienteVazia: boolean;

@@ -322,6 +322,7 @@ type
       procedure EstadoBotoes;
       function CarregaObjDadosBasicos(objPaciente: TPaciente): TPaciente;
       procedure LimpaControles(controle: TWinControl);
+
    public
       procedure PreencheDadosBasicos(objCadPaciente: TPaciente);
 
@@ -372,12 +373,13 @@ begin
                         objPaciente := TPaciente.Create;
                         objControlePaciente := TControlePaciente.Create;
                         objPaciente := CarregaObjDadosBasicos(objPaciente);
-                        codigo := objControlePaciente.GravarDadosBasicos(objPaciente);
+                        codigo := objControlePaciente.GravarDadosBasicos(objPaciente, 0);
                         if codigo > 0 then
                         begin
                            ShowMessage('Paciente cadastrado com sucesso!');
                            lblCodPaciente.Caption := 'Código: ' + IntToStr(codigo);
                            lblNomePaciente.Caption := 'Nome do Paciente: ' + edtNomePaciente.Text;
+                           lblIdade.Caption := objPaciente.RetornoIdadeCompleta;
                            edtCodPaciente.Text := IntToStr(codigo);
                            DesabilitaControles(pcCadPaciente.ActivePage);
                            estado := teNavegacao;
@@ -396,17 +398,22 @@ begin
                      begin
                         ShowMessage('O nome do paciente deve ser preenchido!');
                         edtNomePaciente.SetFocus;
-                        exit;                                      { TODO -oTerence : Continuar com a Alteração do cadastro. }
+                        exit;
                      end;
                      try
                         objPaciente := TPaciente.Create;
                         objControlePaciente := TControlePaciente.Create;
                         objPaciente := CarregaObjDadosBasicos(objPaciente);
 
-                        codigo := objControlePaciente.GravarDadosBasicos(objPaciente);
-             {           if codigo > 0 then
+                        codigo := objControlePaciente.GravarDadosBasicos(objPaciente, 1);
+                        if codigo > 0 then
                         begin
-                           lblCodPaciente.Caption := 'Código: ' + IntToStr(codigo);
+                           lblIdade.Caption := objPaciente.RetornoIdadeCompleta;
+                           DesabilitaControles(pcCadPaciente.ActivePage);
+                           estado := teNavegacao;
+                           EstadoBotoes;
+                        end;
+              {             lblCodPaciente.Caption := 'Código: ' + IntToStr(codigo);
                            lblNomePaciente.Caption := 'Nome do Paciente: ' + edtNomePaciente.Text;
                            edtCodPaciente.Text := IntToStr(codigo);
                            DesabilitaControles(pcCadPaciente.ActivePage);
@@ -687,39 +694,15 @@ begin
       lblIdade.Caption := 'Idade: '
    end
    else
-   begin
       dtpkNascimento.Date := objCadpaciente.dataNascimento;
 
-      objCadPaciente.CalculaIdade;
-
-      if objCadPaciente.idade > 0 then            // IDADE EM ANOS
-         if objCadPaciente.idade = 1 then
-            lblIdade.Caption := 'Idade: 1 ano'
-         else
-            lblIdade.Caption := 'Idade: ' + IntToStr(objCadPaciente.idade) + ' anos '
-      else
-         lblIdade.Caption := 'Idade: ';
-
-      if objCadPaciente.MesesIdade > 0 then       // IDADE EM MESES
-         if objCadPaciente.MesesIdade = 1 then
-            lblIdade.Caption := lblIdade.Caption + IntToStr(objCadPaciente.MesesIdade) + ' mês '
-         else
-            lblIdade.Caption := lblIdade.Caption + IntToStr(objCadPaciente.MesesIdade) + ' meses ';
-
-      if objCadPaciente.DiasIdade > 0 then        // IDADE EM DIAS
-         if objCadPaciente.DiasIdade = 1 then
-            lblIdade.Caption := lblIdade.Caption + IntToStr(objCadPaciente.DiasIdade) + ' dia'
-         else
-            lblIdade.Caption := lblIdade.Caption + IntToStr(objCadPaciente.DiasIdade) + ' dias';
-
-   end;
    edtNaturalidade.Text := objCadpaciente.naturalidade;
    cboxUFNascimento.Text := objCadpaciente.ufNascimento;
    edtNacionalidade.Text := objCadpaciente.nacionalidade;
 
    lblCodPaciente.Caption := 'Código: ' + edtCodPaciente.Text;
    lblNomePaciente.Caption := 'Nome do Paciente: ' + edtNomePaciente.Text;
-
+   lblIdade.Caption := objCadPaciente.RetornoIdadeCompleta;
 end;
 
 
