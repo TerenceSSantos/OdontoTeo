@@ -855,6 +855,7 @@ object frmCadPaciente: TfrmCadPaciente
           Font.Pitch = fpVariable
           Font.Quality = fqDraft
           Font.Style = [fsBold]
+          OnChange = edtNomePacienteChange
           ParentFont = False
           TabOrder = 1
           TextHint = 'NOME DO PACIENTE'
