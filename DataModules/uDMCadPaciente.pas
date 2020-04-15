@@ -22,6 +22,7 @@ type
       function InclusaoDadosBasicos(objPaciente: TPaciente): integer;
       function EdicaoDadosBasicos(objPaciente: TPaciente): boolean;
       function EnviaDadosBasicos(objPaciente: TPaciente) : TPaciente;
+      function ApagarCadastro(codigo: integer): boolean;
 
       var ativo : string;
       var nome : string;
@@ -102,10 +103,10 @@ begin
       strprocEditarDadosBasicos.ExecProc;
       result := true;
    except on E: Exception do
-   begin
-      ShowMessage('Erro ao tentar gravar a alteração do registro, com a seguinte mensagem de erro:' + LineEnding + E.Message);
-      result := false;
-   end;
+    begin
+       ShowMessage('Erro ao tentar gravar a alteração do registro, com a seguinte mensagem de erro:' + LineEnding + E.Message);
+       result := false;
+    end;
    end;
 
 end;
@@ -127,6 +128,22 @@ begin
       objPaciente.nacionalidade := qryTblPaciente.FieldByName('NACIONALIDADE').AsString;
       objPaciente.ativo := qryTblPaciente.FieldByName('ATIVO').AsString;
       result := objPaciente;
+end;
+
+function TdmCadPaciente.ApagarCadastro(codigo: integer): boolean;
+begin
+   qryTblPaciente.SQL.Clear;
+   qryTblPaciente.Close;
+   try
+      qryTblPaciente.SQL.Add('delete from tbl_paciente where id_paciente = ' + IntToStr(codigo));
+      qryTblPaciente.ExecSQL;
+      result := true;
+   except on E: Exception do
+    begin
+       ShowMessage('Erro ao tentar apagar o registro, com a seguinte mensagem de erro:' + LineEnding + E.Message);
+       result := false;
+    end;
+   end;
 end;
 
 procedure TdmCadPaciente.MontaSelect;    //** ESCOLHA DOS SELECTS USADOS NO "LOCALIZAR PACIENTES"

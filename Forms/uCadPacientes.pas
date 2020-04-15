@@ -304,6 +304,7 @@ type
       UpDown1: TUpDown;
       UpDown2: TUpDown;
       procedure btnAlteraCadastroClick(Sender: TObject);
+      procedure btnApagaCadastroClick(Sender: TObject);
       procedure btnCancelaCadastroClick(Sender: TObject);
       procedure btnFecharClick(Sender: TObject);
       procedure btnGravaCadastroClick(Sender: TObject);
@@ -375,25 +376,43 @@ begin
       end;
 
    end;
-
-   //DesabilitaControles(pcCadPaciente.ActivePage);
-   //estado := teNavegacao;
-   //EstadoBotoes;
 end;
 
 procedure TfrmCadPaciente.btnCancelaCadastroClick(Sender: TObject);
 begin
-   estado := teNavegacao;                   { TODO -oTerence : Coisas a serem acertadas também. }
-   EstadoBotoes;
+   estado := teNavegacao;
    LimpaControles(pcCadPaciente.ActivePage);
+   EstadoBotoes;
    DesabilitaControles(pcCadPaciente.ActivePage);
 end;
 
 procedure TfrmCadPaciente.btnAlteraCadastroClick(Sender: TObject);
 begin
-   estado := teEdicao;                        { TODO -oTerence : Continuar com a Alteração do cadastro e vários acertos. }
+   estado := teEdicao;   { TODO -oTerence : Tem que implementar não apagar os dados, caso cancele a alteração. }
    EstadoBotoes;
    HabilitaControles(pcCadPaciente.ActivePage);
+end;
+
+procedure TfrmCadPaciente.btnApagaCadastroClick(Sender: TObject);
+var
+   objControlePaciente : TControlePaciente;
+begin
+   if MessageDlg('A V I S O !', 'Tem certeza que você deseja apagar o cadastro de:' + LineEnding +
+                  edtNomePaciente.Text, mtConfirmation, [mbOK, mbCancel],0) = mrOK then
+    begin
+       objControlePaciente := TControlePaciente.Create;
+       try
+          if objControlePaciente.ApagarCadastro(StrToInt(edtCodPaciente.Text)) then
+           begin
+             ShowMessage('O Cadastro foi apagado com sucesso.');
+             LimpaControles(pcCadPaciente.ActivePage);
+             EstadoBotoes;
+             DesabilitaControles(pcCadPaciente.ActivePage);
+           end;
+       finally
+          FreeAndNil(objControlePaciente);
+       end;
+    end;
 
 end;
 
@@ -448,11 +467,6 @@ end;
 procedure TfrmCadPaciente.edtNomePacienteChange(Sender: TObject);
 begin
    lblNomePaciente.Caption := 'Nome do Paciente: ' + edtNomePaciente.Text;
-   if (edtNomePaciente.Text = EmptyStr) or (edtNomePaciente.Text = 'NOME DO PACIENTE') then
-   begin
-      btnAlteraCadastro.Enabled := false;
-      btnApagaCadastro.Enabled := false;
-   end;
 end;
 
 procedure TfrmCadPaciente.FormShow(Sender: TObject);
@@ -468,12 +482,6 @@ begin
          btnAlteraCadastro.Enabled := false;
          btnApagaCadastro.Enabled := false;
       end;
-      //else
-      //begin
-      //   btnProcuraPaciente.Enabled := true;
-      //   btnAlteraCadastro.Enabled := true;
-      //   btnApagaCadastro.Enabled := true;
-      //end;
    finally
       FreeAndNil(objControlePaciente);
    end;
@@ -489,7 +497,7 @@ begin
    else
    begin
        frmCadPaciente.Height := 547;
-       frmCadPaciente.Top := Screen.WorkAreaHeight div 2 - frmCadPaciente.Height div 2;
+       frmCadPaciente.Top := (Screen.WorkAreaHeight div 2 - frmCadPaciente.Height div 2) + 2;
    end;
 end;
 
@@ -565,8 +573,16 @@ begin
    if estado = teNavegacao then
    begin
       btnNovoCadastro.Enabled := true;
-      btnAlteraCadastro.Enabled := true;
-      btnApagaCadastro.Enabled := true;
+      if edtNomePaciente.Text <> EmptyStr then
+      begin
+         btnAlteraCadastro.Enabled := true;
+         btnApagaCadastro.Enabled := true;
+      end
+      else
+      begin
+         btnAlteraCadastro.Enabled := false;
+         btnApagaCadastro.Enabled := false;
+      end;
       btnGravaCadastro.Enabled := false;
       btnCancelaCadastro.Enabled := false;
       btnProcuraPaciente.Enabled := true;

@@ -24,6 +24,7 @@ type
 
         function InclusaoDadosBasicos(objPaciente: TPaciente): integer;
         function EdicaoDadosBasicos(objPaciente: TPaciente): boolean;
+        function ApagarCadastro(codigo: integer): boolean;
         function TblPacienteVazia : boolean;
         class procedure EnviaDadosBasicos(objPaciente: TPaciente);
 
@@ -71,6 +72,11 @@ end;
 function TControlePaciente.EdicaoDadosBasicos(objPaciente: TPaciente): boolean;
 begin
    result := dmCadPaciente.EdicaoDadosBasicos(objPaciente);
+end;
+
+function TControlePaciente.ApagarCadastro(codigo: integer): boolean;
+begin
+   result := dmCadPaciente.ApagarCadastro(codigo);
 end;
 
 function TControlePaciente.TblPacienteVazia: boolean;

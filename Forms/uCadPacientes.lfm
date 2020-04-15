@@ -483,6 +483,7 @@ object frmCadPaciente: TfrmCadPaciente
       Layout = blGlyphTop
       Images = miglstCadPaciente
       ImageIndex = 8
+      OnClick = btnApagaCadastroClick
       ParentFont = False
       TabOrder = 2
     end
