@@ -38,6 +38,7 @@ begin
      {$ENDIF}
      {$IFDEF WINDOWS}
      zConexao.Database := Application.Location + '\Banco\OdontoTeo.fdb';
+     zConexao.LibraryLocation := Application.Location + 'fbclient.dll';
      {$ENDIF}
    except on E: Exception do
      raise exception.Create('Não foi possível conectar ao Banco de Dados, erro:' + LineEnding + E.Message);

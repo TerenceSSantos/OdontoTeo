@@ -5,7 +5,7 @@ unit uDMCadPaciente;
 interface
 
 uses
-   Classes, SysUtils, db, ZDataset, dialogs, uClassPaciente, ZStoredProcedure;
+   Classes, SysUtils, db, ZDataset, dialogs, uClassPaciente, ZStoredProcedure, uClassResponsavelPaciente;
 
 type
 
@@ -15,6 +15,7 @@ type
       qryTblPaciente: TZQuery;
       strprocEditarDadosBasicos: TZStoredProc;
       strprocGravarDadosBasicos: TZStoredProc;
+      strprocGravarResponsavel: TZStoredProc;
    private
 
    public
@@ -22,7 +23,9 @@ type
       function InclusaoDadosBasicos(objPaciente: TPaciente): integer;
       function EdicaoDadosBasicos(objPaciente: TPaciente): boolean;
       function EnviaDadosBasicos(objPaciente: TPaciente) : TPaciente;
-      function ApagarCadastro(codigo: integer): boolean;
+      function ApagarCadastroBasico(codigo: integer): boolean;
+
+      function InclusaoResponsavel(objResponsavel: TResponsavel): boolean;
 
       var ativo : string;
       var nome : string;
@@ -130,7 +133,7 @@ begin
       result := objPaciente;
 end;
 
-function TdmCadPaciente.ApagarCadastro(codigo: integer): boolean;
+function TdmCadPaciente.ApagarCadastroBasico(codigo: integer): boolean;
 begin
    qryTblPaciente.SQL.Clear;
    qryTblPaciente.Close;
@@ -144,6 +147,12 @@ begin
        result := false;
     end;
    end;
+end;
+
+function TdmCadPaciente.InclusaoResponsavel(objResponsavel: TResponsavelPaciente): boolean;
+begin                                { TODO : Continuar o processo do CADASTRO DE RESPONSÁVEL }
+   strprocGravarResponsavel.Params[0].AsString := objResponsavel.nomeResponsavel;
+   strprocGravarResponsavel.Params[1].AsString := objResponsavel.parentesco;
 end;
 
 procedure TdmCadPaciente.MontaSelect;    //** ESCOLHA DOS SELECTS USADOS NO "LOCALIZAR PACIENTES"

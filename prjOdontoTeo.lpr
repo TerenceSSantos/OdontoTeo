@@ -9,7 +9,7 @@ uses
    Interfaces, // this includes the LCL widgetset
    Forms, notlcldesigner, datetimectrls, zcomponent, rxnew, uPrincipal,
    uDMConexao, uCadPacientes, uLocalizarPaciente, uDMCadPaciente,
-   uClassPaciente, uClassControlePaciente;
+   uClassPaciente, uClassControlePaciente, uClassResponsavelPaciente;
 
 {$R *.res}
 

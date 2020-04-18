@@ -13,23 +13,17 @@ type
 
    TControlePaciente = class
      private
-        //FQualForm: TfrmCadPaciente;
-        //procedure SetQualForm(AValue: TfrmCadPaciente);
 
      public
-        //property QualForm : TfrmCadPaciente read FQualForm write SetQualForm;
-
-//        procedure QualFormRetornar(tipoForm: TForm);
         procedure ChamaLocalizar; //(frmLocalizaPaciente: TfrmLocalizaPaciente);
 
         function InclusaoDadosBasicos(objPaciente: TPaciente): integer;
         function EdicaoDadosBasicos(objPaciente: TPaciente): boolean;
-        function ApagarCadastro(codigo: integer): boolean;
+        function ApagarCadastroBasico(codigo: integer): boolean;
         function TblPacienteVazia : boolean;
         class procedure EnviaDadosBasicos(objPaciente: TPaciente);
 
         constructor Create;
-        //constructor Create(formulario: TfrmCadPaciente);
         destructor Destroy; override;
      end;
 
@@ -42,15 +36,6 @@ uses
    uCadPacientes;
 
 { TControlePaciente }
-
-
-
-//procedure TControlePaciente.QualFormRetornar(tipoForm: TForm);  {** PARA QUAL FORMULARIO RETORNAR O RESULTADO **}
-//begin
-////   ShowMessage(tipoForm.Name);
-//   frmRetorno := TForm.Create(nil);
-//   frmRetorno := tipoForm;
-//end;
 
 procedure TControlePaciente.ChamaLocalizar;
 var
@@ -74,9 +59,9 @@ begin
    result := dmCadPaciente.EdicaoDadosBasicos(objPaciente);
 end;
 
-function TControlePaciente.ApagarCadastro(codigo: integer): boolean;
+function TControlePaciente.ApagarCadastroBasico(codigo: integer): boolean;
 begin
-   result := dmCadPaciente.ApagarCadastro(codigo);
+   result := dmCadPaciente.ApagarCadastroBasico(codigo);
 end;
 
 function TControlePaciente.TblPacienteVazia: boolean;
@@ -86,19 +71,13 @@ end;
 
 class procedure TControlePaciente.EnviaDadosBasicos(objPaciente: TPaciente);
 begin
-   frmCadPaciente.PreencheDadosBasicos(objPaciente);
+   frmCadPaciente.PreencheFormDadosBasicos(objPaciente);
 end;
 
 constructor TControlePaciente.Create;
 begin
    inherited;
 end;
-
-//constructor TControlePaciente.Create(formulario: TfrmCadPaciente);
-//begin
-////   inherited;
-//   //QualForm := formulario;
-//end;
 
 destructor TControlePaciente.Destroy;
 begin

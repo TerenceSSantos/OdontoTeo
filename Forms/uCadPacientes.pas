@@ -243,7 +243,6 @@ type
       lblPai: TLabel;
       lblMae: TLabel;
       miglstCadPaciente: TImageList;
-//      pcCadPacientes: TPageControl;
       pnlBotoes: TBCPanel;
       btnNovoCadastro: TBitBtn;
       btnFechar: TBCButton;
@@ -312,6 +311,8 @@ type
       procedure btnProcuraPacienteClick(Sender: TObject);
       procedure edtCodPacienteChange(Sender: TObject);
       procedure edtNomePacienteChange(Sender: TObject);
+      procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
+      procedure FormCreate(Sender: TObject);
       procedure FormShow(Sender: TObject);
       procedure pcCadPacienteChange(Sender: TObject);
       procedure pcCadPacienteChanging(Sender: TObject; var AllowChange: Boolean);
@@ -322,13 +323,13 @@ type
       procedure HabilitaControles(controle: TWinControl);
       procedure DesabilitaControles(controle: TWinControl);
       procedure EstadoBotoes;
-      function CarregaObjDadosBasicos(objPaciente: TPaciente): TPaciente;
+      function CarregaObjDadosBasicos(objDados: TPaciente): TPaciente;
       procedure LimpaControles(controle: TWinControl);
       procedure InclusaoDadosBasicos;
       procedure EdicaoDadosBasicos(objPaciente: TPaciente);
 
    public
-      procedure PreencheDadosBasicos(objCadPaciente: TPaciente);
+      procedure PreencheFormDadosBasicos(objDados: TPaciente);
 
    end;
 
@@ -339,12 +340,13 @@ var
    capitura : boolean = false;
    px, py : integer;
    estado : TipoEstado = teNavegacao;    // teNavegacao, teInclusao, teEdicao
+   objDadosBasicos : TPaciente;
+   objDadosBasicosAntesAlteracao : TPaciente;
 
 implementation
 
 uses
-   uClassControlePaciente; //   customdrawn_common;
-
+   uClassControlePaciente, uClassResponsavelPaciente;
 
 
 {$R *.lfm}
@@ -360,37 +362,38 @@ begin
 end;
 
 procedure TfrmCadPaciente.btnGravaCadastroClick(Sender: TObject);
-var
-   objPaciente : TPaciente;
 begin
    if estado in [teInclusao] then
       InclusaoDadosBasicos
    else if estado in [teEdicao] then
-   begin
-      objPaciente := TPaciente.Create;
-      try
-         objPaciente := CarregaObjDadosBasicos(objPaciente);
-         EdicaoDadosBasicos(objPaciente);
-      finally
-         FreeAndNil(objPaciente);
-      end;
-
-   end;
+    begin
+       objDadosBasicos := CarregaObjDadosBasicos(objDadosBasicos);
+       EdicaoDadosBasicos(objDadosBasicos);
+    end;
 end;
 
 procedure TfrmCadPaciente.btnCancelaCadastroClick(Sender: TObject);
 begin
+   if estado in [teEdicao] then
+    begin
+      PreencheFormDadosBasicos(objDadosBasicosAntesAlteracao);
+      FreeAndNil(objDadosBasicosAntesAlteracao);
+    end
+   else
+      LimpaControles(pcCadPaciente.ActivePage);
+
    estado := teNavegacao;
-   LimpaControles(pcCadPaciente.ActivePage);
    EstadoBotoes;
    DesabilitaControles(pcCadPaciente.ActivePage);
 end;
 
 procedure TfrmCadPaciente.btnAlteraCadastroClick(Sender: TObject);
 begin
-   estado := teEdicao;   { TODO -oTerence : Tem que implementar não apagar os dados, caso cancele a alteração. }
+   estado := teEdicao;
    EstadoBotoes;
    HabilitaControles(pcCadPaciente.ActivePage);
+   objDadosBasicosAntesAlteracao := TPaciente.Create;
+   objDadosBasicosAntesAlteracao := CarregaObjDadosBasicos(objDadosBasicosAntesAlteracao);
 end;
 
 procedure TfrmCadPaciente.btnApagaCadastroClick(Sender: TObject);
@@ -402,7 +405,7 @@ begin
     begin
        objControlePaciente := TControlePaciente.Create;
        try
-          if objControlePaciente.ApagarCadastro(StrToInt(edtCodPaciente.Text)) then
+          if objControlePaciente.ApagarCadastroBasico(StrToInt(edtCodPaciente.Text)) then
            begin
              ShowMessage('O Cadastro foi apagado com sucesso.');
              LimpaControles(pcCadPaciente.ActivePage);
@@ -413,7 +416,6 @@ begin
           FreeAndNil(objControlePaciente);
        end;
     end;
-
 end;
 
 procedure TfrmCadPaciente.btnNovoCadastroClick(Sender: TObject);
@@ -422,14 +424,18 @@ begin
    HabilitaControles(pcCadPaciente.ActivePage);
    EstadoBotoes;
    LimpaControles(pcCadPaciente.ActivePage);
-   lblCodPaciente.Caption := 'Código: ';
-   lblNomePaciente.Caption := 'Nome do Paciente: ';
-   lblIdade.Caption := 'Idade: ';
    if pcCadPaciente.PageIndex = 0 then
    begin
-      chkboxAtivo.Checked := true;
-      edtNomePaciente.SetFocus;
+      lblCodPaciente.Caption := 'Código: ';
+      lblNomePaciente.Caption := 'Nome do Paciente: ';
+      lblIdade.Caption := 'Idade: ';
+      if pcCadPaciente.PageIndex = 0 then
+      begin
+         chkboxAtivo.Checked := true;
+         edtNomePaciente.SetFocus;
+      end;
    end;
+
 end;
 
 procedure TfrmCadPaciente.btnProcuraPacienteClick(Sender: TObject);
@@ -447,10 +453,10 @@ end;
 procedure TfrmCadPaciente.edtCodPacienteChange(Sender: TObject);
 begin
    if edtCodPaciente.GetTextLen > 5 then
-      exit                                   // A IDÉIA É PREENCHER COM ZEROS A ESQUERDA O CÓDIGO DO PACIENTE.
+      exit
    else
    begin
-      edtCodPaciente.Text := LeftStr('0', 1) + edtCodPaciente.Text;
+      edtCodPaciente.Text := LeftStr('0', 1) + edtCodPaciente.Text; // A IDÉIA É PREENCHER COM ZEROS A ESQUERDA O CÓDIGO DO PACIENTE.
       if edtCodPaciente.Text = EmptyStr then
       begin
          btnAlteraCadastro.Enabled := false;
@@ -467,6 +473,16 @@ end;
 procedure TfrmCadPaciente.edtNomePacienteChange(Sender: TObject);
 begin
    lblNomePaciente.Caption := 'Nome do Paciente: ' + edtNomePaciente.Text;
+end;
+
+procedure TfrmCadPaciente.FormClose(Sender: TObject; var CloseAction: TCloseAction);
+begin
+   FreeAndNil(objDadosBasicos);
+end;
+
+procedure TfrmCadPaciente.FormCreate(Sender: TObject);
+begin
+   objDadosBasicos := TPaciente.Create;
 end;
 
 procedure TfrmCadPaciente.FormShow(Sender: TObject);
@@ -499,6 +515,7 @@ begin
        frmCadPaciente.Height := 547;
        frmCadPaciente.Top := (Screen.WorkAreaHeight div 2 - frmCadPaciente.Height div 2) + 2;
    end;
+   EstadoBotoes;
 end;
 
 procedure TfrmCadPaciente.pcCadPacienteChanging(Sender: TObject; var AllowChange: Boolean);
@@ -571,28 +588,46 @@ begin
    end
    else
    if estado = teNavegacao then
-   begin
-      btnNovoCadastro.Enabled := true;
-      if edtNomePaciente.Text <> EmptyStr then
+      if pcCadPaciente.PageIndex = 0 then
       begin
-         btnAlteraCadastro.Enabled := true;
-         btnApagaCadastro.Enabled := true;
+         btnNovoCadastro.Enabled := true;
+         if edtNomePaciente.Text <> EmptyStr then
+         begin
+            btnAlteraCadastro.Enabled := true;
+            btnApagaCadastro.Enabled := true;
+         end
+         else
+         begin
+            btnAlteraCadastro.Enabled := false;
+            btnApagaCadastro.Enabled := false;
+         end;
+         btnGravaCadastro.Enabled := false;
+         btnCancelaCadastro.Enabled := false;
+         btnProcuraPaciente.Enabled := true;
       end
-      else
-      begin
-         btnAlteraCadastro.Enabled := false;
-         btnApagaCadastro.Enabled := false;
-      end;
-      btnGravaCadastro.Enabled := false;
-      btnCancelaCadastro.Enabled := false;
-      btnProcuraPaciente.Enabled := true;
-   end;
+      else if pcCadPaciente.PageIndex <> 0 then
+       begin
+          if edtNomePaciente.Text = EmptyStr then  { TODO : Incluir verificação de ID para saber se já existe cadastro ou não }
+           begin
+              btnNovoCadastro.Enabled := false;
+              btnAlteraCadastro.Enabled := false;
+              btnApagaCadastro.Enabled := false;
+           end
+          else if edtNomePaciente.Text <> EmptyStr then
+           begin
+              btnNovoCadastro.Enabled := true;
+              btnAlteraCadastro.Enabled := true;
+              btnApagaCadastro.Enabled := true;
+           end;
+       end;
+
+
 
 end;
 
-function TfrmCadPaciente.CarregaObjDadosBasicos(objPaciente : TPaciente) : TPaciente;
+function TfrmCadPaciente.CarregaObjDadosBasicos(objDados: TPaciente): TPaciente;
 begin
-   with objPaciente do               {** PREENCHER O OBJETO PACIENTE COM OS SEUS DADOS BASÍCOS QUE ESTÃO NO FORM **}
+   with objDados do               {** PREENCHER O OBJETO PACIENTE COM OS SEUS DADOS BASÍCOS QUE ESTÃO NO FORM **}
    begin
       if chkboxAtivo.Checked then
          ativo := 'A'
@@ -614,7 +649,7 @@ begin
       ufNascimento := cboxUFNascimento.Text;
       nacionalidade := edtNacionalidade.Text;
    end;
-   result := objPaciente;
+   result := objDados;
 end;
 
 procedure TfrmCadPaciente.LimpaControles(controle: TWinControl);
@@ -646,7 +681,6 @@ end;
 
 procedure TfrmCadPaciente.InclusaoDadosBasicos;
 var
-   objPaciente : TPaciente;
    objControlePaciente : TControlePaciente;
    codigo : integer;
 begin
@@ -657,17 +691,16 @@ begin
       exit;
    end;
    try
-      objPaciente := TPaciente.Create;
       objControlePaciente := TControlePaciente.Create;
-      objPaciente := CarregaObjDadosBasicos(objPaciente);
-      codigo := objControlePaciente.InclusaoDadosBasicos(objPaciente);
+      objDadosBasicos := CarregaObjDadosBasicos(objDadosBasicos);
+      codigo := objControlePaciente.InclusaoDadosBasicos(objDadosBasicos);
       if codigo > 0 then
       begin
          ShowMessage('Paciente cadastrado com sucesso!');
          lblCodPaciente.Caption := 'Código: ' + IntToStr(codigo);
          lblNomePaciente.Caption := 'Nome do Paciente: ' + edtNomePaciente.Text;
-         if objPaciente.dataNascimento <> StrToDate('30/12/1899')then
-            lblIdade.Caption := objPaciente.RetornoIdadeCompleta;
+         if objDadosBasicos.dataNascimento <> StrToDate('30/12/1899')then
+            lblIdade.Caption := objDadosBasicos.RetornoIdadeCompleta;
          edtCodPaciente.Text := IntToStr(codigo);
 
          DesabilitaControles(pcCadPaciente.ActivePage);
@@ -678,7 +711,6 @@ begin
          lblCodPaciente.Caption := 'Código: ';
    finally
       FreeAndNil(objControlePaciente);
-      FreeAndNil(objPaciente);
    end;
 end;
 
@@ -686,7 +718,6 @@ procedure TfrmCadPaciente.EdicaoDadosBasicos(objPaciente: TPaciente);
 var
    objControlePaciente : TControlePaciente;
 begin
-   begin
    if Trim(edtNomePaciente.Text) = '' then
     begin
        ShowMessage('O nome do paciente deve ser preenchido!');
@@ -695,7 +726,7 @@ begin
     end;
    try
       objControlePaciente := TControlePaciente.Create;
-      if objControlePaciente.EdicaoDadosBasicos(objPaciente) then
+      if objControlePaciente.EdicaoDadosBasicos(objDadosBasicos) then
          ShowMessage('Cadastro Alterado com Sucesso');
 
       DesabilitaControles(pcCadPaciente.ActivePage);
@@ -704,42 +735,40 @@ begin
    finally
       FreeAndNil(objControlePaciente);
    end;
-   end;
 end;
 
-procedure TfrmCadPaciente.PreencheDadosBasicos(objCadPaciente: TPaciente);
+procedure TfrmCadPaciente.PreencheFormDadosBasicos(objDados: TPaciente);
 begin
-   edtCodPaciente.Text := IntToStr(objCadpaciente.idPaciente);
-   edtNomePaciente.Text := objCadpaciente.nomePaciente;
-   if objCadPaciente.ativo = 'A' then
+   edtCodPaciente.Text := IntToStr(objDados.idPaciente);
+   edtNomePaciente.Text := objDados.nomePaciente;
+   if objDados.ativo = 'A' then
       chkboxAtivo.Checked := true
    else
       chkboxAtivo.Checked := false;
 
-   edtNomePai.Text := objCadpaciente.nomePai;
-   edtNomeMae.Text := objCadpaciente.nomeMae;
-   cboxEstCivil.Text := objCadpaciente.estadoCivil;
-   edtNomeConjuge.Text := objCadpaciente.nomeConjuge;
-   if objCadpaciente.sexo = 'F' then
+   edtNomePai.Text := objDados.nomePai;
+   edtNomeMae.Text := objDados.nomeMae;
+   cboxEstCivil.Text := objDados.estadoCivil;
+   edtNomeConjuge.Text := objDados.nomeConjuge;
+   if objDados.sexo = 'F' then
       rbtnFeminino.Checked := true
-   else
-   if objCadpaciente.sexo = 'M' then
+   else if objDados.sexo = 'M' then
       rbtnMasculino.Checked := true;
 
-   if objCadPaciente.dataNascimento = StrToDate('30/12/1899') then
-   begin
-      dtpkNascimento.Date :=  NullDate;
-      lblIdade.Caption := 'Idade: '
-   end
+   if objDados.dataNascimento = StrToDate('30/12/1899') then
+    begin
+       dtpkNascimento.Date :=  NullDate;
+       lblIdade.Caption := 'Idade: '
+    end
    else
-   begin
-      dtpkNascimento.Date := objCadpaciente.dataNascimento;
-      lblIdade.Caption := objCadPaciente.RetornoIdadeCompleta;
-   end;
+    begin
+       dtpkNascimento.Date := objDados.dataNascimento;
+       lblIdade.Caption := objDados.RetornoIdadeCompleta;
+    end;
 
-   edtNaturalidade.Text := objCadpaciente.naturalidade;
-   cboxUFNascimento.Text := objCadpaciente.ufNascimento;
-   edtNacionalidade.Text := objCadpaciente.nacionalidade;
+   edtNaturalidade.Text := objDados.naturalidade;
+   cboxUFNascimento.Text := objDados.ufNascimento;
+   edtNacionalidade.Text := objDados.nacionalidade;
 
    lblCodPaciente.Caption := 'Código: ' + edtCodPaciente.Text;
    lblNomePaciente.Caption := 'Nome do Paciente: ' + edtNomePaciente.Text;
