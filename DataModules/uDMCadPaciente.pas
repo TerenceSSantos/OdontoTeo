@@ -5,15 +5,22 @@ unit uDMCadPaciente;
 interface
 
 uses
-   Classes, SysUtils, db, ZDataset, dialogs, uClassPaciente, ZStoredProcedure, uClassResponsavelPaciente;
+   Classes, SysUtils, db, ZDataset, dialogs, uClassPaciente, ZStoredProcedure, uClassResponsavelPaciente, uClassDocumentos;
 
 type
 
    { TdmCadPaciente }
 
    TdmCadPaciente = class(TDataModule)
+      qryDocumentos: TZQuery;
+      qryTblDocumentos: TZQuery;
       qryTblPaciente: TZQuery;
+      qryTblResponsavel: TZQuery;
+      qryTblResponsavelID_RESPONSAVEL: TLongintField;
+      qryTblResponsavelNOME_RESPONSAVEL: TStringField;
+      qryTblResponsavelPARENTESCO: TStringField;
       strprocEditarDadosBasicos: TZStoredProc;
+      strprocGravarDocumentos: TZStoredProc;
       strprocGravarDadosBasicos: TZStoredProc;
       strprocGravarResponsavel: TZStoredProc;
    private
@@ -25,7 +32,12 @@ type
       function EnviaDadosBasicos(objPaciente: TPaciente) : TPaciente;
       function ApagarCadastroBasico(codigo: integer): boolean;
 
-      function InclusaoResponsavel(objResponsavel: TResponsavel): boolean;
+      function InclusaoResponsavel(objResponsavel: TResponsavelPaciente): boolean;
+      function SelectResponsavel(idTblPaciente: integer; objResponsavel: TResponsavelPaciente): TResponsavelPaciente;
+
+      { TODO 1 -oTerence -cCadastro : AQUI DEVERÁ CRIAR O INSERT DE DOCUMENTOS. PORÉM ANTES DE INCLUIR O DOCUMENTO DO RESPONSÁVEL,
+      DEVEMOS VERIFICAR SE JÁ EXISTE UM RESPONSÁVEL CADASTRADO. }
+      function SelectDocumentos(id: integer): TDocumento;
 
       var ativo : string;
       var nome : string;
@@ -150,9 +162,37 @@ begin
 end;
 
 function TdmCadPaciente.InclusaoResponsavel(objResponsavel: TResponsavelPaciente): boolean;
-begin                                { TODO : Continuar o processo do CADASTRO DE RESPONSÁVEL }
+begin                                { TODO 0 -oTerence -cDMCadPaciente : Continuar o processo do CADASTRO DE RESPONSÁVEL }
    strprocGravarResponsavel.Params[0].AsString := objResponsavel.nomeResponsavel;
    strprocGravarResponsavel.Params[1].AsString := objResponsavel.parentesco;
+   strprocGravarResponsavel.Params[2].AsInteger := objResponsavel.idPaciente;
+   try
+      strprocGravarResponsavel.ExecProc;
+      result := true;
+   except on E: Exception do
+    begin
+       ShowMessage('Erro ao tentar gravar a inclusão do registro, com a seguinte mensagem de erro:' + LineEnding + E.Message);
+       result := false;
+    end;
+   end;
+end;
+
+function TdmCadPaciente.SelectResponsavel(idTblPaciente: integer; objResponsavel: TResponsavelPaciente): TResponsavelPaciente;
+begin
+   qryTblResponsavel.Close;
+   qryTblResponsavel.SQL.Clear;
+   qryTblResponsavel.SQL.Add('select * from tbl_responsavel where id_tblPaciente = ' + IntToStr(idTblPaciente));
+   qryTblResponsavel.Open;
+   objResponsavel.idResponsavel := qryTblResponsavelID_RESPONSAVEL.AsInteger;
+   objResponsavel.nomeResponsavel := qryTblResponsavelNOME_RESPONSAVEL.AsString;
+   objResponsavel.parentesco := qryTblResponsavelPARENTESCO.AsString;
+   result := objResponsavel;
+end;
+
+function TdmCadPaciente.SelectDocumentos(id: integer): TDocumento;
+begin
+   qryDocumentos.Close;
+   qryDocumentos.SQL.Clear;
 end;
 
 procedure TdmCadPaciente.MontaSelect;    //** ESCOLHA DOS SELECTS USADOS NO "LOCALIZAR PACIENTES"

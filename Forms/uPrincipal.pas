@@ -26,6 +26,7 @@ type
       spkbtnCadDentistas: TSpkLargeButton;
       spkpaneRelatorios: TSpkPane;
       spkpaneCadastros: TSpkPane;
+      spktabSobre: TSpkTab;
       spktabCadastros: TSpkTab;
       spktabRelatorios: TSpkTab;
       spkbarPrincipal: TSpkToolbar;
@@ -34,10 +35,12 @@ type
       procedure btnFecharClick(Sender: TObject);
       procedure FormCreate(Sender: TObject);
       procedure FormShow(Sender: TObject);
+      procedure spkbarPrincipalTabChanging(Sender: TObject; OldIndex, NewIndex: integer; var Allowed: boolean);
       procedure spkbtnCadPacientesClick(Sender: TObject);
+      procedure spktabSobreClick(Sender: TObject);
       procedure Timer1Timer(Sender: TObject);
    private
-
+       var oldTab: integer;
    public
 
    end;
@@ -48,7 +51,7 @@ var
 implementation
 
 uses
-   uCadPacientes;
+   uCadPacientes, uSobre;
 
 {$R *.lfm}
 
@@ -80,6 +83,20 @@ begin
    imgLogoOdonto.Top := (pnlCorpoPrincipal.Height div 2) - (imgLogoOdonto.Height div 2);
 end;
 
+procedure TfrmPrincipal.spkbarPrincipalTabChanging(Sender: TObject; OldIndex, NewIndex: integer; var Allowed: boolean);
+begin
+   if NewIndex = 2 then
+    begin
+       try
+          frmSobre := TfrmSobre.Create(nil);
+          frmSobre.ShowModal;
+       finally
+          FreeAndNil(frmSobre);
+       end;
+       Allowed := false;
+    end;
+end;
+
 procedure TfrmPrincipal.spkbtnCadPacientesClick(Sender: TObject);
 begin
    try
@@ -88,6 +105,16 @@ begin
    finally
       FreeAndNil(frmCadPaciente);
    end;
+end;
+
+procedure TfrmPrincipal.spktabSobreClick(Sender: TObject);
+begin
+   //try
+   //   frmSobre := TfrmSobre.Create(nil);
+   //   frmSobre.ShowModal;
+   //finally
+   //   FreeAndNil(frmSobre);
+   //end;
 end;
 
 procedure TfrmPrincipal.Timer1Timer(Sender: TObject);

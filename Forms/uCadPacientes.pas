@@ -6,7 +6,7 @@ interface
 
 uses
    Classes, SysUtils, Forms, Controls, Graphics, Dialogs, ExtCtrls, Buttons, StdCtrls, ComCtrls, MaskEdit, {CustomDrawnControls,}
-   DateTimePicker, BCPanel, BCButton, uClassPaciente;
+   DateTimePicker, BCPanel, BCButton, uClassPaciente, uClassResponsavelPaciente, uClassDocumentos;
 
 type
 
@@ -328,9 +328,13 @@ type
       procedure InclusaoDadosBasicos;
       procedure EdicaoDadosBasicos(objPaciente: TPaciente);
 
+      function CarregaObjResponsavel(objResponsavel: TResponsavelPaciente): TResponsavelPaciente;
+      procedure InclusaoResponsavel;
+
    public
       procedure PreencheFormDadosBasicos(objDados: TPaciente);
-
+      procedure PreencheFormResponsavel(idPaciente: integer);
+      procedure PreencheFormDocumentos(id: integer);
    end;
 
    TipoEstado = (teNavegacao, teInclusao, teEdicao);
@@ -346,7 +350,7 @@ var
 implementation
 
 uses
-   uClassControlePaciente, uClassResponsavelPaciente;
+   uClassControlePaciente;
 
 
 {$R *.lfm}
@@ -363,13 +367,24 @@ end;
 
 procedure TfrmCadPaciente.btnGravaCadastroClick(Sender: TObject);
 begin
-   if estado in [teInclusao] then
-      InclusaoDadosBasicos
-   else if estado in [teEdicao] then
-    begin
-       objDadosBasicos := CarregaObjDadosBasicos(objDadosBasicos);
-       EdicaoDadosBasicos(objDadosBasicos);
-    end;
+   case pcCadPaciente.ActivePageIndex of
+      0 : begin
+             if estado in [teInclusao] then
+                InclusaoDadosBasicos
+             else if estado in [teEdicao] then
+             begin
+                objDadosBasicos := CarregaObjDadosBasicos(objDadosBasicos);
+                EdicaoDadosBasicos(objDadosBasicos);
+             end;
+          end;
+      1 : begin
+             if estado in [teInclusao] then
+                InclusaoResponsavel;
+          end;
+   end;
+
+
+
 end;
 
 procedure TfrmCadPaciente.btnCancelaCadastroClick(Sender: TObject);
@@ -513,7 +528,7 @@ begin
    else
    begin
        frmCadPaciente.Height := 547;
-       frmCadPaciente.Top := (Screen.WorkAreaHeight div 2 - frmCadPaciente.Height div 2) + 2;
+       frmCadPaciente.Top := (Screen.WorkAreaHeight div 2 - frmCadPaciente.Height div 2) + 14;
    end;
    EstadoBotoes;
 end;
@@ -606,8 +621,8 @@ begin
          btnProcuraPaciente.Enabled := true;
       end
       else if pcCadPaciente.PageIndex <> 0 then
-       begin
-          if edtNomePaciente.Text = EmptyStr then  { TODO : Incluir verificação de ID para saber se já existe cadastro ou não }
+       begin           { TODO 1 -oTerence -cCadastro de Paciente : Incluir verificação de ID para saber se já existe cadastro ou não }
+          if edtNomePaciente.Text = EmptyStr then
            begin
               btnNovoCadastro.Enabled := false;
               btnAlteraCadastro.Enabled := false;
@@ -737,6 +752,35 @@ begin
    end;
 end;
 
+function TfrmCadPaciente.CarregaObjResponsavel(objResponsavel: TResponsavelPaciente): TResponsavelPaciente;
+begin
+   objResponsavel.idPaciente := StrToInt(edtCodPaciente.Text);
+   objResponsavel.nomeResponsavel := edtNomeResp.Text;
+   objResponsavel.parentesco := edtParentesco.Text;
+   result := objResponsavel;
+end;
+
+procedure TfrmCadPaciente.InclusaoResponsavel;
+var
+   objResponsavel : TResponsavelPaciente;
+   objControlePaciente : TControlePaciente;
+begin
+   try
+      objResponsavel := TResponsavelPaciente.Create;
+      objControlePaciente := TControlePaciente.Create;
+      if objControlePaciente.InclusaoResponsavel(CarregaObjResponsavel(objResponsavel))then
+         ShowMessage('Cadastro do Responsável realizado com sucesso!');
+
+      DesabilitaControles(pcCadPaciente.ActivePage);
+      estado := teNavegacao;
+      EstadoBotoes;
+   finally
+      FreeAndNil(objControlePaciente);
+      FreeAndNil(objResponsavel);
+   end;
+
+end;
+
 procedure TfrmCadPaciente.PreencheFormDadosBasicos(objDados: TPaciente);
 begin
    edtCodPaciente.Text := IntToStr(objDados.idPaciente);
@@ -772,6 +816,34 @@ begin
 
    lblCodPaciente.Caption := 'Código: ' + edtCodPaciente.Text;
    lblNomePaciente.Caption := 'Nome do Paciente: ' + edtNomePaciente.Text;
+
+ {--------------------------------------------CHAMAR SELECT DO RESPONSAVEL-----------------------------------------------------------}
+   PreencheFormResponsavel(objDados.idPaciente);
+end;
+
+procedure TfrmCadPaciente.PreencheFormResponsavel(idPaciente: integer);
+var
+   objResponsavel : TResponsavelPaciente;
+   objControlePaciente : TControlePaciente;
+begin
+   objResponsavel := TResponsavelPaciente.Create;
+   objControlePaciente := TControlePaciente.Create;
+   try
+      objResponsavel := objControlePaciente.SelectResponsavel(idPaciente, objResponsavel);
+      objDadosBasicos.idResponsavel := objResponsavel.idResponsavel;
+      edtNomeResp.Text := objResponsavel.nomeResponsavel;
+      edtParentesco.Text := objResponsavel.parentesco;
+   finally
+      FreeAndNil(objResponsavel);
+   end;
+end;
+
+procedure TfrmCadPaciente.PreencheFormDocumentos(id: integer);
+var
+   objDocumento : TDocumento;
+   objControlePaciente: TControlePaciente;
+begin
+   objDocumento := TDocumento.Create;
 end;
 
 

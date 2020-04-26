@@ -22,6 +22,7 @@ type
       FestadoCivil: string;
       Fidade: integer;
       FidPaciente: integer;
+      FidResponsavel: integer;
       Fnacionalidade: string;
       Fnaturalidade: string;
       FnomeConjuge: string;
@@ -45,6 +46,7 @@ type
       property nacionalidade : string read Fnacionalidade write Fnacionalidade;
       property ativo : string read Fativo write Fativo;
       property idade: integer read Fidade write Fidade;
+      property idResponsavel: integer read FidResponsavel write FidResponsavel;
 
       procedure CalculaIdade;
       function IdadeEmMeses: integer;

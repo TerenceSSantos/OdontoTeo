@@ -1,0 +1,564 @@
+object frmSobre: TfrmSobre
+  Left = 419
+  Height = 284
+  Top = 128
+  Width = 550
+  BorderStyle = bsNone
+  Caption = 'Sobre'
+  ClientHeight = 284
+  ClientWidth = 550
+  OnShow = FormShow
+  LCLVersion = '2.0.4.0'
+  object pnlTitulo: TBCPanel
+    Left = 0
+    Height = 32
+    Top = 0
+    Width = 550
+    Align = alTop
+    Background.Color = clBtnFace
+    Background.ColorOpacity = 255
+    Background.Gradient1.StartColor = 16775925
+    Background.Gradient1.StartColorOpacity = 255
+    Background.Gradient1.DrawMode = dmSet
+    Background.Gradient1.EndColor = 16445670
+    Background.Gradient1.EndColorOpacity = 255
+    Background.Gradient1.ColorCorrection = True
+    Background.Gradient1.GradientType = gtLinear
+    Background.Gradient1.Point1XPercent = 0
+    Background.Gradient1.Point1YPercent = 0
+    Background.Gradient1.Point2XPercent = 0
+    Background.Gradient1.Point2YPercent = 100
+    Background.Gradient1.Sinus = False
+    Background.Gradient2.StartColor = 16049884
+    Background.Gradient2.StartColorOpacity = 255
+    Background.Gradient2.DrawMode = dmSet
+    Background.Gradient2.EndColor = 16247261
+    Background.Gradient2.EndColorOpacity = 255
+    Background.Gradient2.ColorCorrection = True
+    Background.Gradient2.GradientType = gtLinear
+    Background.Gradient2.Point1XPercent = 0
+    Background.Gradient2.Point1YPercent = 0
+    Background.Gradient2.Point2XPercent = 0
+    Background.Gradient2.Point2YPercent = 100
+    Background.Gradient2.Sinus = False
+    Background.Gradient1EndPercent = 50
+    Background.Style = bbsGradient
+    BevelInner = bvNone
+    BevelOuter = bvRaised
+    BevelWidth = 1
+    Border.Color = 12824480
+    Border.ColorOpacity = 200
+    Border.LightColor = clWhite
+    Border.LightOpacity = 200
+    Border.LightWidth = 1
+    Border.Style = bboSolid
+    Border.Width = 1
+    BorderBCStyle = bpsBorder
+    Caption = 'Sobre o OdontoTeo'
+    FontEx.Color = 16646144
+    FontEx.EndEllipsis = False
+    FontEx.FontQuality = fqSystemClearType
+    FontEx.Height = 20
+    FontEx.SingleLine = True
+    FontEx.Shadow = True
+    FontEx.ShadowColor = 16711424
+    FontEx.ShadowColorOpacity = 255
+    FontEx.ShadowRadius = 3
+    FontEx.ShadowOffsetX = 3
+    FontEx.ShadowOffsetY = 3
+    FontEx.Style = [fsBold]
+    FontEx.TextAlignment = bcaCenterTop
+    FontEx.WordBreak = False
+    Rounding.RoundX = 10
+    Rounding.RoundY = 10
+    Rounding.RoundOptions = [rrBottomRightSquare, rrBottomLeftSquare, rrDefault]
+    TabOrder = 0
+    OnMouseDown = pnlTituloMouseDown
+    OnMouseMove = pnlTituloMouseMove
+    OnMouseUp = pnlTituloMouseUp
+    object btnFechar: TBCButton
+      Left = 511
+      Height = 24
+      Hint = 'Fechar o Cadastro de Pacientes'
+      Top = 4
+      Width = 31
+      Anchors = [akTop, akRight]
+      StateClicked.Background.Color = clBlack
+      StateClicked.Background.ColorOpacity = 255
+      StateClicked.Background.Gradient1.StartColor = clRed
+      StateClicked.Background.Gradient1.StartColorOpacity = 255
+      StateClicked.Background.Gradient1.DrawMode = dmSet
+      StateClicked.Background.Gradient1.EndColor = 4194304
+      StateClicked.Background.Gradient1.EndColorOpacity = 255
+      StateClicked.Background.Gradient1.ColorCorrection = True
+      StateClicked.Background.Gradient1.GradientType = gtRadial
+      StateClicked.Background.Gradient1.Point1XPercent = 50
+      StateClicked.Background.Gradient1.Point1YPercent = 100
+      StateClicked.Background.Gradient1.Point2XPercent = 0
+      StateClicked.Background.Gradient1.Point2YPercent = 0
+      StateClicked.Background.Gradient1.Sinus = False
+      StateClicked.Background.Gradient2.StartColor = 13137169
+      StateClicked.Background.Gradient2.StartColorOpacity = 255
+      StateClicked.Background.Gradient2.DrawMode = dmSet
+      StateClicked.Background.Gradient2.EndColor = 15722194
+      StateClicked.Background.Gradient2.EndColorOpacity = 255
+      StateClicked.Background.Gradient2.ColorCorrection = True
+      StateClicked.Background.Gradient2.GradientType = gtLinear
+      StateClicked.Background.Gradient2.Point1XPercent = 0
+      StateClicked.Background.Gradient2.Point1YPercent = 0
+      StateClicked.Background.Gradient2.Point2XPercent = 0
+      StateClicked.Background.Gradient2.Point2YPercent = 100
+      StateClicked.Background.Gradient2.Sinus = False
+      StateClicked.Background.Gradient1EndPercent = 100
+      StateClicked.Background.Style = bbsGradient
+      StateClicked.Border.Color = 11235643
+      StateClicked.Border.ColorOpacity = 255
+      StateClicked.Border.LightColor = clWhite
+      StateClicked.Border.LightOpacity = 255
+      StateClicked.Border.LightWidth = 0
+      StateClicked.Border.Style = bboNone
+      StateClicked.Border.Width = 1
+      StateClicked.FontEx.Color = 16770790
+      StateClicked.FontEx.EndEllipsis = False
+      StateClicked.FontEx.FontQuality = fqSystemClearType
+      StateClicked.FontEx.Height = 0
+      StateClicked.FontEx.SingleLine = True
+      StateClicked.FontEx.Shadow = True
+      StateClicked.FontEx.ShadowColor = clBlack
+      StateClicked.FontEx.ShadowColorOpacity = 255
+      StateClicked.FontEx.ShadowRadius = 2
+      StateClicked.FontEx.ShadowOffsetX = 1
+      StateClicked.FontEx.ShadowOffsetY = 1
+      StateClicked.FontEx.Style = [fsBold]
+      StateClicked.FontEx.TextAlignment = bcaCenter
+      StateClicked.FontEx.WordBreak = False
+      StateHover.Background.Color = clBlack
+      StateHover.Background.ColorOpacity = 255
+      StateHover.Background.Gradient1.StartColor = 65791
+      StateHover.Background.Gradient1.StartColorOpacity = 255
+      StateHover.Background.Gradient1.DrawMode = dmSet
+      StateHover.Background.Gradient1.EndColor = 8404992
+      StateHover.Background.Gradient1.EndColorOpacity = 255
+      StateHover.Background.Gradient1.ColorCorrection = True
+      StateHover.Background.Gradient1.GradientType = gtRadial
+      StateHover.Background.Gradient1.Point1XPercent = 50
+      StateHover.Background.Gradient1.Point1YPercent = 100
+      StateHover.Background.Gradient1.Point2XPercent = 0
+      StateHover.Background.Gradient1.Point2YPercent = 0
+      StateHover.Background.Gradient1.Sinus = False
+      StateHover.Background.Gradient2.StartColor = 13137169
+      StateHover.Background.Gradient2.StartColorOpacity = 255
+      StateHover.Background.Gradient2.DrawMode = dmSet
+      StateHover.Background.Gradient2.EndColor = 15722194
+      StateHover.Background.Gradient2.EndColorOpacity = 255
+      StateHover.Background.Gradient2.ColorCorrection = True
+      StateHover.Background.Gradient2.GradientType = gtLinear
+      StateHover.Background.Gradient2.Point1XPercent = 0
+      StateHover.Background.Gradient2.Point1YPercent = 0
+      StateHover.Background.Gradient2.Point2XPercent = 0
+      StateHover.Background.Gradient2.Point2YPercent = 100
+      StateHover.Background.Gradient2.Sinus = False
+      StateHover.Background.Gradient1EndPercent = 100
+      StateHover.Background.Style = bbsGradient
+      StateHover.Border.Color = 65791
+      StateHover.Border.ColorOpacity = 255
+      StateHover.Border.LightColor = clWhite
+      StateHover.Border.LightOpacity = 255
+      StateHover.Border.LightWidth = 0
+      StateHover.Border.Style = bboNone
+      StateHover.Border.Width = 1
+      StateHover.FontEx.Color = clWhite
+      StateHover.FontEx.EndEllipsis = False
+      StateHover.FontEx.FontQuality = fqSystemClearType
+      StateHover.FontEx.Height = 0
+      StateHover.FontEx.SingleLine = True
+      StateHover.FontEx.Shadow = True
+      StateHover.FontEx.ShadowColor = clBlack
+      StateHover.FontEx.ShadowColorOpacity = 255
+      StateHover.FontEx.ShadowRadius = 2
+      StateHover.FontEx.ShadowOffsetX = 1
+      StateHover.FontEx.ShadowOffsetY = 1
+      StateHover.FontEx.Style = [fsBold]
+      StateHover.FontEx.TextAlignment = bcaCenter
+      StateHover.FontEx.WordBreak = False
+      StateNormal.Background.Color = clBlack
+      StateNormal.Background.ColorOpacity = 255
+      StateNormal.Background.Gradient1.StartColor = 4194304
+      StateNormal.Background.Gradient1.StartColorOpacity = 255
+      StateNormal.Background.Gradient1.DrawMode = dmSet
+      StateNormal.Background.Gradient1.EndColor = 8405056
+      StateNormal.Background.Gradient1.EndColorOpacity = 255
+      StateNormal.Background.Gradient1.ColorCorrection = True
+      StateNormal.Background.Gradient1.GradientType = gtLinear
+      StateNormal.Background.Gradient1.Point1XPercent = 0
+      StateNormal.Background.Gradient1.Point1YPercent = 0
+      StateNormal.Background.Gradient1.Point2XPercent = 0
+      StateNormal.Background.Gradient1.Point2YPercent = 100
+      StateNormal.Background.Gradient1.Sinus = False
+      StateNormal.Background.Gradient2.StartColor = 8405056
+      StateNormal.Background.Gradient2.StartColorOpacity = 255
+      StateNormal.Background.Gradient2.DrawMode = dmSet
+      StateNormal.Background.Gradient2.EndColor = 4194304
+      StateNormal.Background.Gradient2.EndColorOpacity = 255
+      StateNormal.Background.Gradient2.ColorCorrection = True
+      StateNormal.Background.Gradient2.GradientType = gtRadial
+      StateNormal.Background.Gradient2.Point1XPercent = 50
+      StateNormal.Background.Gradient2.Point1YPercent = 100
+      StateNormal.Background.Gradient2.Point2XPercent = 0
+      StateNormal.Background.Gradient2.Point2YPercent = 0
+      StateNormal.Background.Gradient2.Sinus = False
+      StateNormal.Background.Gradient1EndPercent = 60
+      StateNormal.Background.Style = bbsGradient
+      StateNormal.Border.Color = 11235643
+      StateNormal.Border.ColorOpacity = 255
+      StateNormal.Border.LightColor = clWhite
+      StateNormal.Border.LightOpacity = 255
+      StateNormal.Border.LightWidth = 0
+      StateNormal.Border.Style = bboNone
+      StateNormal.Border.Width = 1
+      StateNormal.FontEx.Color = 16770790
+      StateNormal.FontEx.EndEllipsis = False
+      StateNormal.FontEx.FontQuality = fqSystemClearType
+      StateNormal.FontEx.Height = 0
+      StateNormal.FontEx.SingleLine = True
+      StateNormal.FontEx.Shadow = True
+      StateNormal.FontEx.ShadowColor = clBlack
+      StateNormal.FontEx.ShadowColorOpacity = 255
+      StateNormal.FontEx.ShadowRadius = 2
+      StateNormal.FontEx.ShadowOffsetX = 1
+      StateNormal.FontEx.ShadowOffsetY = 1
+      StateNormal.FontEx.Style = [fsBold]
+      StateNormal.FontEx.TextAlignment = bcaCenter
+      StateNormal.FontEx.WordBreak = False
+      Caption = 'X'
+      Color = clNone
+      DropDownWidth = 16
+      DropDownArrowSize = 8
+      GlobalOpacity = 255
+      InnerMargin = 0
+      OnClick = btnFecharClick
+      ParentColor = False
+      Rounding.RoundX = 12
+      Rounding.RoundY = 12
+      Rounding.RoundOptions = []
+      RoundingDropDown.RoundX = 1
+      RoundingDropDown.RoundY = 1
+      RoundingDropDown.RoundOptions = []
+      ShowHint = True
+      TextApplyGlobalOpacity = False
+      MemoryUsage = bmuHigh
+    end
+    object imgLogoTitulo: TImage
+      Left = 8
+      Height = 24
+      Top = 4
+      Width = 27
+      Picture.Data = {
+        1754506F727461626C654E6574776F726B47726170686963B30C000089504E47
+        0D0A1A0A0000000D4948445200000020000000200806000000737A7AF4000000
+        097048597300002E2300002E230178A53F7600000C654944415458857D576B78
+        55D5997ED7DAFB9CBDCF35E79C9C704EAE27F7045004B904AA283A198A013A36
+        43A1B42ACE8015C73A9D67607C66C6473AA6C5426BB582584BD30AC28C1DAD22
+        65B02A62A9E12A2097400C24E41E429293733F67EFB32F6BCD0F240243E77B9E
+        FD6BEFFDBDEF7ABF6FBDEB5BE09CE3FF7BBEBF7215EC54C4974100B824424339
+        82E54EBF28DDED13AD773BA83855002901E004400800911000403018447B7BFB
+        5FCC2F0240341AC5E9D3A7C1180300F82D322A6C2EA44C1D9E58063982C5E110
+        2D1327D973EE996CF7D4852467A5CF62CD9588203170A44D4319D694708792B8
+        782E1D3DDAADA60E66987911408600A08280BF142200B4B6B6A2B1B111AAAA02
+        0016FA8AB0D85F82D7AF7448834A6AF682BC9215F7E504E6872447815D100925
+        149C00FCCB24140038CA4CC666C60D6D795B3ADAFB5164F08F2D89911D8AA27C
+        7EF6BDBD9AA7B41A1A6368895F41829B58B468110A0A0A4038E73870E0001A1A
+        1AA0280A00A048B283125A30D1E15DFDDD40F9CA2AD95520528A3438EBD53323
+        97D464EF6036339032F5042584782DB237647316574ACE50BE20E54A8C43310C
+        9C4E8E75EF18BEF45A7F36BD6D5541CDC8DD3913F08F1D47718965F1D1071F60
+        DEBC7910AF9783E0EAAAE2A631F19160E5FA6FE6162F760956314698F66972E8
+        F30F867BFFE7929A3C14CFAA7D0288CD46855CC6194F33332A509ACD93ED6553
+        73F2EE5B1C285B34D5EA9A54E7995056617737EDBCD23969CBE0173F1AD6952E
+        0670F2657F8C97609C0021C8112C139FC8AFD9D4E02BAAA78280E37AA2FB3703
+        EDCDDD4CFDFDFD7F5DDF3BD5E3CDEED9F15FD31ECFAF7EB15A76D5E89CF30E25
+        7171FB68D7B31533A7EF13DCEE4F9B5A0EBE79774EE0E14782952B0290F3BE57
+        50FBB04FB43A778C743FAD30B38B4AD6FF4B8003B080E43FE5AF58BFC25352AF
+        128AB752C3C7B6F4B636954F9D72E08D679EC9CC9F3F1F2F6D7A994EB2381A17
+        7A0AE7114A60211477BAFD05C356F25D2D143AD9BC75ABF2FEFBEF9F5DFF93E7
+        9B7ED873EAD43F954EF98F2A4EABFE36AFEC9B19F0F8B62B9DFF6A01466F20E0
+        1644D88820DDEB0CACFE81B77CB18B58F1ABF4D0B15FF49E5DDBD0F8E0D18D1B
+        371A2525250080543A2D04A8D51382052ABBDA862A637070E269BD7041DCBA75
+        2B00604EDDECE4EBEDDBDF5EDF7932B1AE62FA2FCA0C542CC92B5DDE69645ACF
+        6462AF3A0551030071E5A38FC2164DC1C951B72C37B4CAA444FC508BF6FCA8F7
+        4CD3038D0F1E7DE595578CDCDCDC71C9EC361B3399A978740E591091E1060815
+        61653CD3D7DF6FAE5DBB169AA65D2BA9DEC1931F6E91DA7EBC3178DB8BF95978
+        5705AA9E78A6FF744BF3CF5E3AB9A5B919E26FB76F8705B02FF0163DEAB7D90B
+        4E11556B1A3ADF1C9A7AFB819FFDF4A7378073CE914EA5798C9B99237E828453
+        00CD02A12CC558444B67D2297ACD4BAE7D4F29D54F4747DEDD2B0FD63D6D2B7E
+        3C8F5AAB16E4167FBB79CFBB6D26A0880060A5E2A47BDC13E6534AB12F133EDD
+        C1B36FEF7CF6D94C7171F10DA6B17FFF7EECD8BEAD68C6AC8A699F4CF121D233
+        8A8A6816092A63C4692932C7F452C330DA008CB3902409DF5ABA34B17BEF07AF
+        2F11731FB8833942DFC9295AF896ADF3F59892691301D072D939B74A72E56709
+        CCFD63837BEEABAFEFADAFAFBF013C9BCD62F3E6CDF6A2FC9C355367DFB670AC
+        2F0CA41518A200BBC65838123DA1EB7A2F218471CEC7FFE39CE36FBEF10D8C8C
+        8E9CDB7EF4C2BEB5819A5525B096DFEEC99BD5A2F4B68B00EC1365779D57B0D0
+        2E531BEE37D483FFB26C6956966570CE716DCF46A331F4F7F5147D6D66CDC291
+        AE6161727B029344271C9C224118CB32C3E41C1A6E0AC6185C2E17962C599279
+        E9C09A4F1618E9870206E45AA777460B7ADF1229486EB9E4AC9428459F9AEE73
+        06F27AA6DF391D866180730E8BC50200304D0300B7AA9A2E19E138425C82C300
+        D2661611998893674E5ED57DF0D8E14422D97233095DD7316BE62CA81E475B47
+        36356AB74AC54151AEA694BA452BA5DE3C8BE40308AE68CA60615951DCE57421
+        9D4E43100488A20842081C0E072C16F9CAA5AECBC72779730BC430A8611530EA
+        97D15F28C12F18151EB7F3F6442279105F1D130080743A8D1CB71BDE60203C70
+        393D32997B8B5D54C8B352214714097548549075C29130F5B8CBEDD6334A0619
+        25035996E1743A01006EB71B7F555F1FD9BC79D33A5E566ADC5652D3980D7985
+        648E0591641CFD3D233DD158E2FCCDE000904C2691C96460773AD531239A52C1
+        010E9B40A92C128067C1791A0C9C529ACDAA181DBD6A54B22C4310041042C039
+        475D5D1DDBB6CD1577174DC8EDAEF25143C940BC14861E4E8E1C3A7DE6B9642A
+        7DE26670CE39E2F138C2E130344D233A38C98021C30C30CE20EA9CA5E3CC50D2
+        9CC16EB17A474746AD4343439024090070F9F2650000A5147D7D7D90254B6D7E
+        C033CBE8182079A35994E80206AC54B2396C13483486EB77C0F525181E1E4634
+        12B1C9A225470147D4D0D2BAC91451E72C1236B3A359F08A3C9BA3786CA4D73B
+        383818090683B8DE5428A5300C038A928D0DF65E4ED6A56467715684C94DC06F
+        CF995B36EDFBBBF644F7A7D3CAE7372BA0691AFA0706101F1D0BE6BA0B032605
+        863575D860664234398F0C69CA454E30BBD06A2FA1AA5675BEEDFC25BFDF0FD3
+        34C7131142E076BB91E3F1B69FFDA2EBB5DA60D5D311A7E418764BC804EDC8C6
+        A2063399895B04630CE7CE9D23B2A2DD913FC1910B4230A0A62E00488800323D
+        6AEAA8CEF977BC103D354EEFFD870E1F393073C64CD56AB58EAF8210029BCD86
+        50A83475E2B3A173F1728FD6EDF73854238B642C113971AAFDD78AAA75DD0C4E
+        08413299C4D123475CB7D93DF3F3AC364B1466A63B1D3F0E401501F02E357568
+        C8507BCB04B162AE37B878D3A5D6FF3C75EAD4993973E6DCA082AEEB181919CE
+        993563CA4A4F7EAE970DC75118D170A67FF07877EFC01B0092B72270ECB3CF10
+        EBE99F75577EED3CAB20A0331DBB30ACA44E00602205816A1A1D47D2637B4B6D
+        AEA72A895C5DE7F23FFADEEEDDEBCACACA92F9F9F9E3BD400801638C18CCA472
+        4F0445432A3C9CE2BCC11200D2B7925FD7759C3A71C2DFE82B79A2D4EECA53C0
+        CD96C8E53F108E3E0240A400A63B7395E3D1E19D73FD850D15DC5AF9A0AFE891
+        EEAE33A7DED8B9F3CD7F58BD5AF7F97C304D13168B05959595893F7DF2F1A6AA
+        FCCADA0AC15DAA12066E119C54A01238C6AD9B520AD334C11893A7DBBD8F2DF0
+        1737D80411C7D2E1B39DF1B177A63A7DEAC9641862A0201F4C72C08C1967DE0B
+        F7BEFACFF913D79780FA9E2CA8FDE10BE75A13AF6DDDBAF77B8F3DA6874A4AC0
+        18436363A3D9D6D67654198B5FF4E7FB4B0D028CC5131DE51595A9E5CB96C16A
+        B582528ACECE4EFCFEDD77E42AD3B2E2F182DA35C556BBDCC7B4F8EEA14B5B64
+        A7F302F17A10745A21FEE9C0013070BCF5BBFFD69A9E7B6EE7FB39B993FEDE59
+        F87733915BBEAE78CA4B3F6F3DEFDFB0E1276F3FF4D0C3F17BEFB907353535A8
+        ACAED6CC8367123E08300581A70C6DE0FEFB1FC82E5DBA14914804FB3EFE182D
+        7FFE73DED704D7634F1654AF09490E5F84726DC76047737732F65E535393B6EC
+        DBCB40402056555501000281000CD31C7DB3B3F5F9BC89B2F31139F8ADB93450
+        5A52EEF879F3D0C5D9BF7AE1C5DF7EB4EFA3330D0D0BD38669A86322DAB82868
+        43861AE9535367A70982F9CEAE5DF8E3DEBDEE447BE7ECE5AE82D54B0B6B1BFC
+        A2248D52A66DB9D2B6FD68F8F2CB321122814000D555D500AE1F4ABF74B04C36
+        DBF372DB67FF96AEB823B6DA137A7832CD713F1F9AB6F2646AECEBBBDBFBF6FF
+        EEF40BFB47B8DE6630B6EF074656896B6A3CA628573EDCF9665D09AC772C70F8
+        E72F2C9A716F95E4F48B94E202CFC6D60DB6361F0A0F6E5A13A819D81D1DE006
+        FFCAE06E18CBAF7109104BCFEEAEB667CFF946CF3D5538F189199273D2BD62B0
+        688E2B6FC5A8AE2EEFCBA6C343BA329A32F58CC54949DE04F9C962AB3DAF58B2
+        E77A05AB20508A1861E6DECCF0E99707CEBF9AC864766F2C9C12599093CFF744
+        066EB0EB7102822040966500C05DBE422CF587C29B87DA7FFD54FBE1C377F9F2
+        972CF6152F9A627556F92D0E5B81CD5140380A08AE5E66080838008D7074313D
+        7D2413F9E2ED70CF9EC36343BB2487FDC2CEF51BB4AF97D522CB4CFC7BFC414C
+        BCABEE2B9FB8C666707010EDEDED0080091619D5363792A68EF51B36E0977F78
+        47A682505AEEF44CBFDDE59B51657357072D72C04E041B0778CAD433839A32FC
+        4526D6DE9A8C9CE8CB243E3719EB07A00683417CDAD282AACACA5BD9C4570A14
+        1616A2B0B0F08697128094CF099D7395197AFBF9D8E8C5F3B1D15D005C02A56E
+        815019E03018571867495C754215D70DA500C0CC5B1E110080FF057E9918F927
+        599D800000000049454E44AE426082
+      }
+      Stretch = True
+    end
+  end
+  object pnlCorpoPrincipal: TBCPanel
+    Left = 0
+    Height = 252
+    Top = 32
+    Width = 550
+    Align = alClient
+    Background.Color = clBtnFace
+    Background.ColorOpacity = 255
+    Background.Gradient1.StartColor = 16775925
+    Background.Gradient1.StartColorOpacity = 255
+    Background.Gradient1.DrawMode = dmSet
+    Background.Gradient1.EndColor = 16445670
+    Background.Gradient1.EndColorOpacity = 255
+    Background.Gradient1.ColorCorrection = True
+    Background.Gradient1.GradientType = gtLinear
+    Background.Gradient1.Point1XPercent = 0
+    Background.Gradient1.Point1YPercent = 0
+    Background.Gradient1.Point2XPercent = 0
+    Background.Gradient1.Point2YPercent = 100
+    Background.Gradient1.Sinus = False
+    Background.Gradient2.StartColor = 16049884
+    Background.Gradient2.StartColorOpacity = 255
+    Background.Gradient2.DrawMode = dmSet
+    Background.Gradient2.EndColor = 16247261
+    Background.Gradient2.EndColorOpacity = 255
+    Background.Gradient2.ColorCorrection = True
+    Background.Gradient2.GradientType = gtLinear
+    Background.Gradient2.Point1XPercent = 0
+    Background.Gradient2.Point1YPercent = 0
+    Background.Gradient2.Point2XPercent = 0
+    Background.Gradient2.Point2YPercent = 100
+    Background.Gradient2.Sinus = False
+    Background.Gradient1EndPercent = 50
+    Background.Style = bbsGradient
+    BevelInner = bvNone
+    BevelOuter = bvRaised
+    BevelWidth = 1
+    Border.Color = 12824480
+    Border.ColorOpacity = 200
+    Border.LightColor = clWhite
+    Border.LightOpacity = 200
+    Border.LightWidth = 1
+    Border.Style = bboSolid
+    Border.Width = 1
+    BorderBCStyle = bpsBorder
+    FontEx.Color = clBlue
+    FontEx.EndEllipsis = False
+    FontEx.FontQuality = fqSystemClearType
+    FontEx.Height = 20
+    FontEx.SingleLine = True
+    FontEx.Shadow = False
+    FontEx.ShadowColor = clAqua
+    FontEx.ShadowColorOpacity = 255
+    FontEx.ShadowRadius = 5
+    FontEx.ShadowOffsetX = 5
+    FontEx.ShadowOffsetY = 5
+    FontEx.Style = []
+    FontEx.TextAlignment = bcaCenterTop
+    FontEx.WordBreak = False
+    Rounding.RoundX = 1
+    Rounding.RoundY = 1
+    Rounding.RoundOptions = [rrTopLeftSquare, rrTopRightSquare, rrBottomRightSquare, rrBottomLeftSquare]
+    TabOrder = 1
+    object lblVersao: TLabel
+      Left = 24
+      Height = 20
+      Top = 68
+      Width = 150
+      Caption = 'Versão do Programa: '
+      Font.CharSet = ANSI_CHARSET
+      Font.Color = clBlack
+      Font.Height = -15
+      Font.Name = 'Segoe UI'
+      Font.Pitch = fpVariable
+      Font.Quality = fqDraft
+      Font.Style = [fsBold]
+      ParentColor = False
+      ParentFont = False
+    end
+    object lblPoeVersao: TLabel
+      Left = 184
+      Height = 20
+      Top = 68
+      Width = 110
+      Caption = 'Versão em Alfa '
+      Font.CharSet = ANSI_CHARSET
+      Font.Color = clBlack
+      Font.Height = -15
+      Font.Name = 'Segoe UI'
+      Font.Pitch = fpVariable
+      Font.Quality = fqDraft
+      Font.Style = [fsBold]
+      ParentColor = False
+      ParentFont = False
+    end
+    object lblEXECaminho: TLabel
+      Left = 184
+      Height = 20
+      Top = 138
+      Width = 114
+      Caption = 'Caminho do EXE'
+      Constraints.MaxWidth = 360
+      Font.CharSet = ANSI_CHARSET
+      Font.Color = clBlack
+      Font.Height = -15
+      Font.Name = 'Segoe UI'
+      Font.Pitch = fpVariable
+      Font.Quality = fqDraft
+      Font.Style = [fsBold]
+      ParentColor = False
+      ParentFont = False
+      WordWrap = True
+    end
+    object lblVersao1: TLabel
+      Left = 24
+      Height = 20
+      Top = 138
+      Width = 145
+      Caption = 'Caminho do binario: '
+      Font.CharSet = ANSI_CHARSET
+      Font.Color = clBlack
+      Font.Height = -15
+      Font.Name = 'Segoe UI'
+      Font.Pitch = fpVariable
+      Font.Quality = fqDraft
+      Font.Style = [fsBold]
+      ParentColor = False
+      ParentFont = False
+    end
+    object lblProductVersion: TLabel
+      Left = 184
+      Height = 20
+      Top = 32
+      Width = 130
+      Caption = 'Versão do Produto'
+      Constraints.MaxWidth = 350
+      Font.CharSet = ANSI_CHARSET
+      Font.Color = clBlack
+      Font.Height = -15
+      Font.Name = 'Segoe UI'
+      Font.Pitch = fpVariable
+      Font.Quality = fqDraft
+      Font.Style = [fsBold]
+      ParentColor = False
+      ParentFont = False
+      WordWrap = True
+    end
+    object lblVersaoProduto: TLabel
+      Left = 24
+      Height = 20
+      Top = 32
+      Width = 138
+      Caption = 'Versão do Produto: '
+      Font.CharSet = ANSI_CHARSET
+      Font.Color = clBlack
+      Font.Height = -15
+      Font.Name = 'Segoe UI'
+      Font.Pitch = fpVariable
+      Font.Quality = fqDraft
+      Font.Style = [fsBold]
+      ParentColor = False
+      ParentFont = False
+    end
+    object lblVersaoLCL: TLabel
+      Left = 24
+      Height = 20
+      Top = 104
+      Width = 126
+      Caption = 'Versão do Lazarus'
+      Font.CharSet = ANSI_CHARSET
+      Font.Color = clBlack
+      Font.Height = -15
+      Font.Name = 'Segoe UI'
+      Font.Pitch = fpVariable
+      Font.Quality = fqDraft
+      Font.Style = [fsBold]
+      ParentColor = False
+      ParentFont = False
+    end
+    object lblLCL: TLabel
+      Left = 184
+      Height = 20
+      Top = 104
+      Width = 76
+      Caption = 'Versão LCL'
+      Font.CharSet = ANSI_CHARSET
+      Font.Color = clBlack
+      Font.Height = -15
+      Font.Name = 'Segoe UI'
+      Font.Pitch = fpVariable
+      Font.Quality = fqDraft
+      Font.Style = [fsBold]
+      ParentColor = False
+      ParentFont = False
+    end
+  end
+  object rxVersao: TRxVersionInfo
+    left = 387
+    top = 53
+  end
+end

@@ -5,7 +5,7 @@ unit uClassControlePaciente;
 interface
 
 uses
-   Classes, SysUtils, uClassPaciente, uDMCadPaciente, Forms, uLocalizarPaciente, dialogs;
+   Classes, SysUtils, uClassPaciente, uClassResponsavelPaciente, uDMCadPaciente, Forms, uLocalizarPaciente, dialogs;
 
 type
 
@@ -22,6 +22,9 @@ type
         function ApagarCadastroBasico(codigo: integer): boolean;
         function TblPacienteVazia : boolean;
         class procedure EnviaDadosBasicos(objPaciente: TPaciente);
+
+        function InclusaoResponsavel(objResponsavel: TResponsavelPaciente): boolean;
+        function SelectResponsavel(idTblPaciente: integer; objResponsavel: TResponsavelPaciente): TResponsavelPaciente;
 
         constructor Create;
         destructor Destroy; override;
@@ -72,6 +75,16 @@ end;
 class procedure TControlePaciente.EnviaDadosBasicos(objPaciente: TPaciente);
 begin
    frmCadPaciente.PreencheFormDadosBasicos(objPaciente);
+end;
+
+function TControlePaciente.InclusaoResponsavel(objResponsavel: TResponsavelPaciente): boolean;
+begin
+   result := dmCadPaciente.InclusaoResponsavel(objResponsavel);
+end;
+
+function TControlePaciente.SelectResponsavel(idTblPaciente: integer; objResponsavel: TResponsavelPaciente): TResponsavelPaciente;
+begin
+   dmCadPaciente.SelectResponsavel(idTblPaciente, objResponsavel);
 end;
 
 constructor TControlePaciente.Create;

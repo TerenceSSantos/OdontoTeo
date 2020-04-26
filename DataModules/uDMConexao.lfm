@@ -24,6 +24,6 @@ object dmConexao: TdmConexao
     Protocol = 'firebird-3.0'
     LibraryLocation = 'D:\Projetos\Lazarus\OdontoTeo\fbclient.dll'
     left = 57
-    top = 49
+    top = 48
   end
 end
