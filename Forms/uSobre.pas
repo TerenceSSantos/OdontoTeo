@@ -22,6 +22,7 @@ type
       lblVersaoProduto: TLabel;
       lblVersaoLCL: TLabel;
       lblLCL: TLabel;
+      memoSobre: TMemo;
       pnlCorpoPrincipal: TBCPanel;
       pnlTitulo: TBCPanel;
       rxVersao: TRxVersionInfo;
@@ -56,7 +57,7 @@ procedure TfrmSobre.FormShow(Sender: TObject);
 begin
    lblProductVersion.Caption := rxVersao.ProductVersion;
    lblPoeVersao.Caption := lblPoeVersao.Caption + rxVersao.FileVersion;
-   lblLCL.Caption := lcl_version;
+   lblLCL.Caption := lcl_version + ' - ' + DateToStr(rxVersao.VerFileDate);
    lblEXECaminho.Caption := rxVersao.FileName;
 end;
 

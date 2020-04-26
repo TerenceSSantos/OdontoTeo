@@ -6,7 +6,7 @@ interface
 
 uses
    Classes, SysUtils, Forms, Controls, Graphics, Dialogs, ExtCtrls, Buttons, StdCtrls, ComCtrls, MaskEdit, {CustomDrawnControls,}
-   DateTimePicker, BCPanel, BCButton, uClassPaciente, uClassResponsavelPaciente, uClassDocumentos;
+   DateTimePicker, BCPanel, BCButton, uClassPaciente, uClassResponsavelPaciente, uClassDocumentos, uClassSinaisSintomas;
 
 type
 
@@ -28,46 +28,46 @@ type
       cboxOperadoraCel1: TComboBox;
       cboxOperadoraCel2: TComboBox;
       cboxUFEmpresa: TComboBox;
-      CheckBox1: TCheckBox;
-      CheckBox10: TCheckBox;
-      CheckBox11: TCheckBox;
-      CheckBox12: TCheckBox;
-      CheckBox13: TCheckBox;
-      CheckBox14: TCheckBox;
-      CheckBox15: TCheckBox;
-      CheckBox16: TCheckBox;
-      CheckBox17: TCheckBox;
-      CheckBox18: TCheckBox;
-      CheckBox19: TCheckBox;
-      CheckBox2: TCheckBox;
-      CheckBox20: TCheckBox;
-      CheckBox21: TCheckBox;
-      CheckBox22: TCheckBox;
-      CheckBox23: TCheckBox;
-      CheckBox24: TCheckBox;
-      CheckBox25: TCheckBox;
-      CheckBox26: TCheckBox;
-      CheckBox27: TCheckBox;
-      CheckBox28: TCheckBox;
-      CheckBox29: TCheckBox;
-      CheckBox3: TCheckBox;
-      CheckBox30: TCheckBox;
-      CheckBox31: TCheckBox;
-      CheckBox32: TCheckBox;
-      CheckBox33: TCheckBox;
-      CheckBox34: TCheckBox;
-      CheckBox35: TCheckBox;
-      CheckBox36: TCheckBox;
-      CheckBox37: TCheckBox;
-      CheckBox38: TCheckBox;
-      CheckBox39: TCheckBox;
-      CheckBox4: TCheckBox;
-      CheckBox40: TCheckBox;
-      CheckBox5: TCheckBox;
-      CheckBox6: TCheckBox;
-      CheckBox7: TCheckBox;
-      CheckBox8: TCheckBox;
-      CheckBox9: TCheckBox;
+      chkboxAlteracaoApetite: TCheckBox;
+      chkboxEmagrecimentoAcentuado: TCheckBox;
+      chkboxEstaloMandibula: TCheckBox;
+      chkboxFebreFrequente: TCheckBox;
+      chkboxIndigestaoFrequente: TCheckBox;
+      chkboxMaCicatrizacao: TCheckBox;
+      chkboxMiccaoFrequente: TCheckBox;
+      chkboxRangeDentes: TCheckBox;
+      chkboxRespiraPelaBoca: TCheckBox;
+      chkboxSangramentoAnormal: TCheckBox;
+      chkboxTonturaDesmaio: TCheckBox;
+      chkboxCalorExagerado: TCheckBox;
+      chkboxPoucaSaliva: TCheckBox;
+      chkboxAIDS: TCheckBox;
+      chkboxAnemia: TCheckBox;
+      chkboxAsma: TCheckBox;
+      chkboxDiabete: TCheckBox;
+      chkboxDoencaCoracao: TCheckBox;
+      chkboxTumorBucal: TCheckBox;
+      chkboxDoencaRenal: TCheckBox;
+      chkboxDisritmiaEplepsia: TCheckBox;
+      chkboxFebreReumatica: TCheckBox;
+      chkboxCansaFacil: TCheckBox;
+      chkboxGlaucoma: TCheckBox;
+      chkboxGonorreia: TCheckBox;
+      chkboxHanseniase: TCheckBox;
+      chkboxHemofilia: TCheckBox;
+      chkboxHepatite: TCheckBox;
+      chkboxIctericia: TCheckBox;
+      chkboxProblemaHormonal: TCheckBox;
+      chkboxSifilis: TCheckBox;
+      chkboxSinusite: TCheckBox;
+      chkboxTuberculose: TCheckBox;
+      chkboxCoceiraAnormal: TCheckBox;
+      chkboxUlceraHepatica: TCheckBox;
+      chkboxDificuldadeEngolir: TCheckBox;
+      chkboxDificuldadeMastigar: TCheckBox;
+      chkboxDorFacial: TCheckBox;
+      chkboxDorCabecaFrequente: TCheckBox;
+      chkboxDorOuvidoFrequente: TCheckBox;
       chkboxAtivo: TCheckBox;
       edtHabitosViciosos: TEdit;
       edtBairroEmpresa: TEdit;
@@ -331,6 +331,9 @@ type
       function CarregaObjResponsavel(objResponsavel: TResponsavelPaciente): TResponsavelPaciente;
       procedure InclusaoResponsavel;
 
+      function CarregaObjSinaisSintomas(objSinaisSintomas: TSinaisSintomas): TSinaisSintomas;
+      procedure InclusaoSinaisSintomas;
+
    public
       procedure PreencheFormDadosBasicos(objDados: TPaciente);
       procedure PreencheFormResponsavel(idPaciente: integer);
@@ -380,6 +383,10 @@ begin
       1 : begin
              if estado in [teInclusao] then
                 InclusaoResponsavel;
+          end;
+      7 : begin
+             if estado in [teInclusao] then
+                InclusaoSinaisSintomas;
           end;
    end;
 
@@ -779,6 +786,55 @@ begin
       FreeAndNil(objResponsavel);
    end;
 
+end;
+
+function TfrmCadPaciente.CarregaObjSinaisSintomas(objSinaisSintomas: TSinaisSintomas): TSinaisSintomas;
+begin
+   with objSinaisSintomas do                      { TODO -oTerence -cFormulario : ALTERAR OS CHECKS BOXES POR RADIOS GROUPS }
+   begin
+      idTblPaciente := StrToInt(edtCodPaciente.Text);
+      alteracaoApetite := chkboxAlteracaoApetite.Checked;
+      calorExagerado := chkboxCalorExagerado.Checked;
+      cansaFacil := chkboxCansaFacil.Checked;
+      coceiraAnormal := chkboxCoceiraAnormal.Checked;
+      dificuldadeEngolir := chkboxDificuldadeEngolir.Checked;
+      dificuldadeMastigar := chkboxDificuldadeMastigar.Checked;
+      dorFacial := chkboxDorFacial.Checked;
+      dorFrequenteCabeca := chkboxDorCabecaFrequente.Checked;
+      dorOuvidoFrequente := chkboxDorOuvidoFrequente.Checked;
+      emagrecimentoAcentuado := chkboxEmagrecimentoAcentuado.Checked;
+      estaloMandibula := chkboxEstaloMandibula.Checked;
+      febreFrequente := chkboxFebreFrequente.Checked;
+      indigestaoFrequente := chkboxIndigestaoFrequente.Checked;
+      maCicatrizacao := chkboxMaCicatrizacao.Checked;
+      miccaoFrequente := chkboxMiccaoFrequente.Checked;
+      rangeDentes := chkboxRangeDentes.Checked;
+      respiraPelaBoca := chkboxRespiraPelaBoca.Checked;
+      sangramentoAnormal := chkboxSangramentoAnormal.Checked;
+      tonturaDesmaio := chkboxTonturaDesmaio.Checked;
+      poucaSaliva := chkboxPoucaSaliva.Checked;
+   end;
+   result := objSinaisSintomas;
+end;
+
+procedure TfrmCadPaciente.InclusaoSinaisSintomas;
+var
+   objSinaisSintomas : TSinaisSintomas;
+   objControlePaciente : TControlePaciente;
+begin
+   objSinaisSintomas := TSinaisSintomas.Create;
+   objControlePaciente := TControlePaciente.Create;
+   try
+      if objControlePaciente.InclusaoSinaisSintomas(CarregaObjSinaisSintomas(objSinaisSintomas))then
+         ShowMessage('Cadastro dos Sinais & Sintomas realizado com sucesso!');
+
+      DesabilitaControles(pcCadPaciente.ActivePage);
+      estado := teNavegacao;
+      EstadoBotoes;
+   finally
+      FreeAndNil(objControlePaciente);
+      FreeAndNil(objSinaisSintomas);
+   end;
 end;
 
 procedure TfrmCadPaciente.PreencheFormDadosBasicos(objDados: TPaciente);

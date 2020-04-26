@@ -582,7 +582,7 @@ object frmPrincipal: TfrmPrincipal
     Appearance.Element.ActiveInnerDarkColor = 7559947
     Appearance.Element.ActiveCaptionColor = 8405614
     Appearance.Element.Style = esRounded
-    TabIndex = 2
+    TabIndex = 0
     LargeImages = imglstPrincipal
     OnTabChanging = spkbarPrincipalTabChanging
     Tabs = (

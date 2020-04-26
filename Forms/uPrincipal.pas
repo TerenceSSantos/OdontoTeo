@@ -51,7 +51,7 @@ var
 implementation
 
 uses
-   uCadPacientes, uSobre;
+   uCadPacientes, uSobre, RxVersInfo;
 
 {$R *.lfm}
 
@@ -63,8 +63,16 @@ begin
 end;
 
 procedure TfrmPrincipal.FormCreate(Sender: TObject);
+var
+   rxVersao : TRxVersionInfo;
 begin
    TranslateUnitResourceStrings('LclStrConsts', ExtractFilePath(Application.ExeName ) + 'lclstrconsts.pt_BR.po', 'pt_BR', '');
+   try
+      rxVersao := TRxVersionInfo.Create(self);
+      pnlTitulo.Caption := pnlTitulo.Caption + ' - Versão: ' + rxVersao.ProductVersion;
+   finally
+      FreeAndNil(rxVersao);
+   end;
 end;
 
 procedure TfrmPrincipal.btnMinimizarClick(Sender: TObject);

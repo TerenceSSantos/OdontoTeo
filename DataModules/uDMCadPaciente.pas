@@ -5,7 +5,8 @@ unit uDMCadPaciente;
 interface
 
 uses
-   Classes, SysUtils, db, ZDataset, dialogs, uClassPaciente, ZStoredProcedure, uClassResponsavelPaciente, uClassDocumentos;
+   Classes, SysUtils, db, ZDataset, dialogs, uClassPaciente, ZStoredProcedure, uClassResponsavelPaciente, uClassDocumentos,
+   uClassSinaisSintomas;
 
 type
 
@@ -23,6 +24,7 @@ type
       strprocGravarDocumentos: TZStoredProc;
       strprocGravarDadosBasicos: TZStoredProc;
       strprocGravarResponsavel: TZStoredProc;
+      strprocGravarSinaisSintomas: TZStoredProc;
    private
 
    public
@@ -34,6 +36,8 @@ type
 
       function InclusaoResponsavel(objResponsavel: TResponsavelPaciente): boolean;
       function SelectResponsavel(idTblPaciente: integer; objResponsavel: TResponsavelPaciente): TResponsavelPaciente;
+
+      function InclusaoSinaisSintomas(objSinaisSintomas: TSinaisSintomas): boolean;
 
       { TODO 1 -oTerence -cCadastro : AQUI DEVERÁ CRIAR O INSERT DE DOCUMENTOS. PORÉM ANTES DE INCLUIR O DOCUMENTO DO RESPONSÁVEL,
       DEVEMOS VERIFICAR SE JÁ EXISTE UM RESPONSÁVEL CADASTRADO. }
@@ -187,6 +191,43 @@ begin
    objResponsavel.nomeResponsavel := qryTblResponsavelNOME_RESPONSAVEL.AsString;
    objResponsavel.parentesco := qryTblResponsavelPARENTESCO.AsString;
    result := objResponsavel;
+end;
+
+function TdmCadPaciente.InclusaoSinaisSintomas(objSinaisSintomas: TSinaisSintomas): boolean;
+begin
+   with strprocGravarSinaisSintomas do
+   begin
+      Params[0].AsBoolean := objSinaisSintomas.alteracaoApetite;
+      Params[1].AsBoolean := objSinaisSintomas.calorExagerado;
+      Params[2].AsBoolean := objSinaisSintomas.cansaFacil;
+      Params[3].AsBoolean := objSinaisSintomas.coceiraAnormal;
+      Params[4].AsBoolean := objSinaisSintomas.dificuldadeEngolir;
+      Params[5].AsBoolean := objSinaisSintomas.dificuldadeMastigar;
+      Params[6].AsBoolean := objSinaisSintomas.dorFacial;
+      Params[7].AsBoolean := objSinaisSintomas.dorFrequenteCabeca;
+      Params[8].AsBoolean := objSinaisSintomas.dorOuvidoFrequente;
+      Params[9].AsBoolean := objSinaisSintomas.emagrecimentoAcentuado;
+      Params[10].AsBoolean := objSinaisSintomas.estaloMandibula;
+      Params[11].AsBoolean := objSinaisSintomas.febreFrequente;
+      Params[12].AsBoolean := objSinaisSintomas.indigestaoFrequente;
+      Params[13].AsBoolean := objSinaisSintomas.maCicatrizacao;
+      Params[14].AsBoolean := objSinaisSintomas.miccaoFrequente;
+      Params[15].AsBoolean := objSinaisSintomas.rangeDentes;
+      Params[16].AsBoolean := objSinaisSintomas.respiraPelaBoca;
+      Params[17].AsBoolean := objSinaisSintomas.sangramentoAnormal;
+      Params[18].AsBoolean := objSinaisSintomas.tonturaDesmaio;
+      Params[19].AsBoolean := objSinaisSintomas.poucaSaliva;
+      Params[20].AsInteger := objSinaisSintomas.idTblPaciente;
+      try
+         ExecProc;
+         result := true;
+      except on E: Exception do
+         begin
+            ShowMessage('Erro ao tentar gravar a inclusão do registro, com a seguinte mensagem de erro:' + LineEnding + E.Message);
+            result := false;
+         end;
+      end;
+   end;
 end;
 
 function TdmCadPaciente.SelectDocumentos(id: integer): TDocumento;

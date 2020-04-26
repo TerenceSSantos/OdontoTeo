@@ -5,7 +5,7 @@ unit uClassControlePaciente;
 interface
 
 uses
-   Classes, SysUtils, uClassPaciente, uClassResponsavelPaciente, uDMCadPaciente, Forms, uLocalizarPaciente, dialogs;
+   Classes, SysUtils, uClassPaciente, uClassResponsavelPaciente, uClassSinaisSintomas,uDMCadPaciente, uLocalizarPaciente;
 
 type
 
@@ -25,6 +25,8 @@ type
 
         function InclusaoResponsavel(objResponsavel: TResponsavelPaciente): boolean;
         function SelectResponsavel(idTblPaciente: integer; objResponsavel: TResponsavelPaciente): TResponsavelPaciente;
+
+        function InclusaoSinaisSintomas(objSinaisSintomas: TSinaisSintomas): boolean;
 
         constructor Create;
         destructor Destroy; override;
@@ -85,6 +87,11 @@ end;
 function TControlePaciente.SelectResponsavel(idTblPaciente: integer; objResponsavel: TResponsavelPaciente): TResponsavelPaciente;
 begin
    dmCadPaciente.SelectResponsavel(idTblPaciente, objResponsavel);
+end;
+
+function TControlePaciente.InclusaoSinaisSintomas(objSinaisSintomas: TSinaisSintomas): boolean;
+begin
+   result := dmCadPaciente.InclusaoSinaisSintomas(objSinaisSintomas);
 end;
 
 constructor TControlePaciente.Create;

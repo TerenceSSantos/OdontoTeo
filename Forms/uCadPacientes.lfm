@@ -4309,8 +4309,8 @@ object frmCadPaciente: TfrmCadPaciente
           Align = alClient
           BorderSpacing.Around = 10
         end
-        object CheckBox1: TCheckBox
-          Left = 87
+        object chkboxAlteracaoApetite: TCheckBox
+          Left = 88
           Height = 21
           Top = 42
           Width = 166
@@ -4327,7 +4327,7 @@ object frmCadPaciente: TfrmCadPaciente
           ParentFont = False
           TabOrder = 0
         end
-        object CheckBox2: TCheckBox
+        object chkboxCalorExagerado: TCheckBox
           Left = 87
           Height = 21
           Top = 81
@@ -4345,7 +4345,7 @@ object frmCadPaciente: TfrmCadPaciente
           ParentFont = False
           TabOrder = 1
         end
-        object CheckBox3: TCheckBox
+        object chkboxCansaFacil: TCheckBox
           Left = 87
           Height = 21
           Top = 120
@@ -4363,7 +4363,7 @@ object frmCadPaciente: TfrmCadPaciente
           ParentFont = False
           TabOrder = 2
         end
-        object CheckBox4: TCheckBox
+        object chkboxCoceiraAnormal: TCheckBox
           Left = 87
           Height = 21
           Top = 161
@@ -4381,7 +4381,7 @@ object frmCadPaciente: TfrmCadPaciente
           ParentFont = False
           TabOrder = 3
         end
-        object CheckBox5: TCheckBox
+        object chkboxDificuldadeEngolir: TCheckBox
           Left = 87
           Height = 21
           Top = 198
@@ -4399,7 +4399,7 @@ object frmCadPaciente: TfrmCadPaciente
           ParentFont = False
           TabOrder = 4
         end
-        object CheckBox6: TCheckBox
+        object chkboxDificuldadeMastigar: TCheckBox
           Left = 87
           Height = 21
           Top = 237
@@ -4417,7 +4417,7 @@ object frmCadPaciente: TfrmCadPaciente
           ParentFont = False
           TabOrder = 5
         end
-        object CheckBox7: TCheckBox
+        object chkboxDorFacial: TCheckBox
           Left = 87
           Height = 21
           Top = 276
@@ -4435,7 +4435,7 @@ object frmCadPaciente: TfrmCadPaciente
           ParentFont = False
           TabOrder = 6
         end
-        object CheckBox8: TCheckBox
+        object chkboxDorCabecaFrequente: TCheckBox
           Left = 433
           Height = 21
           Top = 42
@@ -4453,7 +4453,7 @@ object frmCadPaciente: TfrmCadPaciente
           ParentFont = False
           TabOrder = 7
         end
-        object CheckBox9: TCheckBox
+        object chkboxDorOuvidoFrequente: TCheckBox
           Left = 433
           Height = 21
           Top = 81
@@ -4471,7 +4471,7 @@ object frmCadPaciente: TfrmCadPaciente
           ParentFont = False
           TabOrder = 8
         end
-        object CheckBox10: TCheckBox
+        object chkboxEmagrecimentoAcentuado: TCheckBox
           Left = 433
           Height = 21
           Top = 120
@@ -4489,7 +4489,7 @@ object frmCadPaciente: TfrmCadPaciente
           ParentFont = False
           TabOrder = 9
         end
-        object CheckBox11: TCheckBox
+        object chkboxEstaloMandibula: TCheckBox
           Left = 433
           Height = 21
           Top = 161
@@ -4507,7 +4507,7 @@ object frmCadPaciente: TfrmCadPaciente
           ParentFont = False
           TabOrder = 10
         end
-        object CheckBox12: TCheckBox
+        object chkboxFebreFrequente: TCheckBox
           Left = 433
           Height = 21
           Top = 198
@@ -4525,7 +4525,7 @@ object frmCadPaciente: TfrmCadPaciente
           ParentFont = False
           TabOrder = 11
         end
-        object CheckBox13: TCheckBox
+        object chkboxIndigestaoFrequente: TCheckBox
           Left = 433
           Height = 21
           Top = 237
@@ -4543,7 +4543,7 @@ object frmCadPaciente: TfrmCadPaciente
           ParentFont = False
           TabOrder = 12
         end
-        object CheckBox14: TCheckBox
+        object chkboxMaCicatrizacao: TCheckBox
           Left = 433
           Height = 21
           Top = 276
@@ -4561,7 +4561,7 @@ object frmCadPaciente: TfrmCadPaciente
           ParentFont = False
           TabOrder = 13
         end
-        object CheckBox15: TCheckBox
+        object chkboxMiccaoFrequente: TCheckBox
           Left = 799
           Height = 21
           Top = 42
@@ -4579,7 +4579,7 @@ object frmCadPaciente: TfrmCadPaciente
           ParentFont = False
           TabOrder = 14
         end
-        object CheckBox16: TCheckBox
+        object chkboxRangeDentes: TCheckBox
           Left = 799
           Height = 21
           Top = 88
@@ -4597,7 +4597,7 @@ object frmCadPaciente: TfrmCadPaciente
           ParentFont = False
           TabOrder = 15
         end
-        object CheckBox17: TCheckBox
+        object chkboxRespiraPelaBoca: TCheckBox
           Left = 799
           Height = 21
           Top = 134
@@ -4615,7 +4615,7 @@ object frmCadPaciente: TfrmCadPaciente
           ParentFont = False
           TabOrder = 16
         end
-        object CheckBox18: TCheckBox
+        object chkboxSangramentoAnormal: TCheckBox
           Left = 799
           Height = 21
           Top = 180
@@ -4633,7 +4633,7 @@ object frmCadPaciente: TfrmCadPaciente
           ParentFont = False
           TabOrder = 17
         end
-        object CheckBox19: TCheckBox
+        object chkboxTonturaDesmaio: TCheckBox
           Left = 799
           Height = 21
           Top = 226
@@ -4651,7 +4651,7 @@ object frmCadPaciente: TfrmCadPaciente
           ParentFont = False
           TabOrder = 18
         end
-        object CheckBox20: TCheckBox
+        object chkboxPoucaSaliva: TCheckBox
           Left = 799
           Height = 21
           Top = 272
@@ -4748,7 +4748,7 @@ object frmCadPaciente: TfrmCadPaciente
           Align = alClient
           BorderSpacing.Around = 10
         end
-        object CheckBox21: TCheckBox
+        object chkboxAIDS: TCheckBox
           Left = 87
           Height = 21
           Top = 42
@@ -4766,7 +4766,7 @@ object frmCadPaciente: TfrmCadPaciente
           ParentFont = False
           TabOrder = 0
         end
-        object CheckBox22: TCheckBox
+        object chkboxAnemia: TCheckBox
           Left = 87
           Height = 21
           Top = 81
@@ -4784,7 +4784,7 @@ object frmCadPaciente: TfrmCadPaciente
           ParentFont = False
           TabOrder = 1
         end
-        object CheckBox23: TCheckBox
+        object chkboxAsma: TCheckBox
           Left = 87
           Height = 21
           Top = 120
@@ -4802,7 +4802,7 @@ object frmCadPaciente: TfrmCadPaciente
           ParentFont = False
           TabOrder = 2
         end
-        object CheckBox24: TCheckBox
+        object chkboxDiabete: TCheckBox
           Left = 87
           Height = 21
           Top = 161
@@ -4820,7 +4820,7 @@ object frmCadPaciente: TfrmCadPaciente
           ParentFont = False
           TabOrder = 3
         end
-        object CheckBox25: TCheckBox
+        object chkboxDoencaCoracao: TCheckBox
           Left = 87
           Height = 21
           Top = 198
@@ -4838,7 +4838,7 @@ object frmCadPaciente: TfrmCadPaciente
           ParentFont = False
           TabOrder = 4
         end
-        object CheckBox26: TCheckBox
+        object chkboxTumorBucal: TCheckBox
           Left = 87
           Height = 21
           Top = 237
@@ -4856,7 +4856,7 @@ object frmCadPaciente: TfrmCadPaciente
           ParentFont = False
           TabOrder = 5
         end
-        object CheckBox27: TCheckBox
+        object chkboxDoencaRenal: TCheckBox
           Left = 87
           Height = 21
           Top = 276
@@ -4874,7 +4874,7 @@ object frmCadPaciente: TfrmCadPaciente
           ParentFont = False
           TabOrder = 6
         end
-        object CheckBox28: TCheckBox
+        object chkboxDisritmiaEplepsia: TCheckBox
           Left = 433
           Height = 21
           Top = 42
@@ -4892,7 +4892,7 @@ object frmCadPaciente: TfrmCadPaciente
           ParentFont = False
           TabOrder = 7
         end
-        object CheckBox29: TCheckBox
+        object chkboxFebreReumatica: TCheckBox
           Left = 433
           Height = 21
           Top = 81
@@ -4910,7 +4910,7 @@ object frmCadPaciente: TfrmCadPaciente
           ParentFont = False
           TabOrder = 8
         end
-        object CheckBox30: TCheckBox
+        object chkboxGlaucoma: TCheckBox
           Left = 433
           Height = 21
           Top = 120
@@ -4928,7 +4928,7 @@ object frmCadPaciente: TfrmCadPaciente
           ParentFont = False
           TabOrder = 9
         end
-        object CheckBox31: TCheckBox
+        object chkboxGonorreia: TCheckBox
           Left = 433
           Height = 21
           Top = 161
@@ -4946,7 +4946,7 @@ object frmCadPaciente: TfrmCadPaciente
           ParentFont = False
           TabOrder = 10
         end
-        object CheckBox32: TCheckBox
+        object chkboxHanseniase: TCheckBox
           Left = 433
           Height = 21
           Top = 198
@@ -4964,7 +4964,7 @@ object frmCadPaciente: TfrmCadPaciente
           ParentFont = False
           TabOrder = 11
         end
-        object CheckBox33: TCheckBox
+        object chkboxHemofilia: TCheckBox
           Left = 433
           Height = 21
           Top = 237
@@ -4982,7 +4982,7 @@ object frmCadPaciente: TfrmCadPaciente
           ParentFont = False
           TabOrder = 12
         end
-        object CheckBox34: TCheckBox
+        object chkboxHepatite: TCheckBox
           Left = 433
           Height = 21
           Top = 276
@@ -5000,7 +5000,7 @@ object frmCadPaciente: TfrmCadPaciente
           ParentFont = False
           TabOrder = 13
         end
-        object CheckBox35: TCheckBox
+        object chkboxIctericia: TCheckBox
           Left = 799
           Height = 21
           Top = 42
@@ -5018,7 +5018,7 @@ object frmCadPaciente: TfrmCadPaciente
           ParentFont = False
           TabOrder = 14
         end
-        object CheckBox36: TCheckBox
+        object chkboxProblemaHormonal: TCheckBox
           Left = 799
           Height = 21
           Top = 88
@@ -5036,7 +5036,7 @@ object frmCadPaciente: TfrmCadPaciente
           ParentFont = False
           TabOrder = 15
         end
-        object CheckBox37: TCheckBox
+        object chkboxSifilis: TCheckBox
           Left = 799
           Height = 21
           Top = 134
@@ -5054,7 +5054,7 @@ object frmCadPaciente: TfrmCadPaciente
           ParentFont = False
           TabOrder = 16
         end
-        object CheckBox38: TCheckBox
+        object chkboxSinusite: TCheckBox
           Left = 799
           Height = 21
           Top = 180
@@ -5072,7 +5072,7 @@ object frmCadPaciente: TfrmCadPaciente
           ParentFont = False
           TabOrder = 17
         end
-        object CheckBox39: TCheckBox
+        object chkboxTuberculose: TCheckBox
           Left = 799
           Height = 21
           Top = 226
@@ -5090,7 +5090,7 @@ object frmCadPaciente: TfrmCadPaciente
           ParentFont = False
           TabOrder = 18
         end
-        object CheckBox40: TCheckBox
+        object chkboxUlceraHepatica: TCheckBox
           Left = 799
           Height = 21
           Top = 272

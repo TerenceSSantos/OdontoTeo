@@ -374,4 +374,222 @@ object dmCadPaciente: TdmCadPaciente
     left = 565
     top = 32
   end
+  object strprocGravarSinaisSintomas: TZStoredProc
+    Connection = dmConexao.zConexao
+    Params = <    
+      item
+        DataType = ftBoolean
+        Name = 'ALTERACAO_APETITE'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftBoolean
+        Name = 'CALOR_EXAGERADO'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftBoolean
+        Name = 'CANSA_FACIL'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftBoolean
+        Name = 'COCEIRA_ANORMAL'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftBoolean
+        Name = 'DIFICULDADE_ENGOLIR'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftBoolean
+        Name = 'DIFICULDADE_MASTIGAR'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftBoolean
+        Name = 'DOR_FACIAL'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftBoolean
+        Name = 'DOR_CABECA_FREQUENTE'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftBoolean
+        Name = 'DOR_OUVIDO_FREQUENTE'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftBoolean
+        Name = 'EMAGRECIMENTO_ACENTUADO'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftBoolean
+        Name = 'ESTALO_MANDIBULA'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftBoolean
+        Name = 'FEBRE_FREQUENTE'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftBoolean
+        Name = 'INDIGESTAO_FREQUENTE'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftBoolean
+        Name = 'MA_CICATRIZACAO'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftBoolean
+        Name = 'MICCAO_FREQUENTE'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftBoolean
+        Name = 'RANGE_DENTES'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftBoolean
+        Name = 'RESPIRA_BOCA'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftBoolean
+        Name = 'SANGRAMENTO_ANORMAL'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftBoolean
+        Name = 'TONTURA_DESMAIOS'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftBoolean
+        Name = 'POUCA_SALIVA'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftInteger
+        Name = 'ID_TBLPACIENTE'
+        ParamType = ptInput
+      end>
+    StoredProcName = 'PROC_CAD_TBLSINAISSINTOMAS'
+    left = 751
+    top = 100
+    ParamData = <    
+      item
+        DataType = ftBoolean
+        Name = 'ALTERACAO_APETITE'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftBoolean
+        Name = 'CALOR_EXAGERADO'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftBoolean
+        Name = 'CANSA_FACIL'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftBoolean
+        Name = 'COCEIRA_ANORMAL'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftBoolean
+        Name = 'DIFICULDADE_ENGOLIR'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftBoolean
+        Name = 'DIFICULDADE_MASTIGAR'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftBoolean
+        Name = 'DOR_FACIAL'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftBoolean
+        Name = 'DOR_CABECA_FREQUENTE'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftBoolean
+        Name = 'DOR_OUVIDO_FREQUENTE'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftBoolean
+        Name = 'EMAGRECIMENTO_ACENTUADO'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftBoolean
+        Name = 'ESTALO_MANDIBULA'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftBoolean
+        Name = 'FEBRE_FREQUENTE'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftBoolean
+        Name = 'INDIGESTAO_FREQUENTE'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftBoolean
+        Name = 'MA_CICATRIZACAO'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftBoolean
+        Name = 'MICCAO_FREQUENTE'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftBoolean
+        Name = 'RANGE_DENTES'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftBoolean
+        Name = 'RESPIRA_BOCA'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftBoolean
+        Name = 'SANGRAMENTO_ANORMAL'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftBoolean
+        Name = 'TONTURA_DESMAIOS'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftBoolean
+        Name = 'POUCA_SALIVA'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftInteger
+        Name = 'ID_TBLPACIENTE'
+        ParamType = ptInput
+      end>
+  end
 end

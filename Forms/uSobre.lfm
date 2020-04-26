@@ -8,6 +8,7 @@ object frmSobre: TfrmSobre
   ClientHeight = 284
   ClientWidth = 550
   OnShow = FormShow
+  Position = poScreenCenter
   LCLVersion = '2.0.4.0'
   object pnlTitulo: TBCPanel
     Left = 0
@@ -428,8 +429,8 @@ object frmSobre: TfrmSobre
       Left = 24
       Height = 20
       Top = 68
-      Width = 150
-      Caption = 'Versão do Programa: '
+      Width = 132
+      Caption = 'Release Completa: '
       Font.CharSet = ANSI_CHARSET
       Font.Color = clBlack
       Font.Height = -15
@@ -555,6 +556,17 @@ object frmSobre: TfrmSobre
       Font.Style = [fsBold]
       ParentColor = False
       ParentFont = False
+    end
+    object memoSobre: TMemo
+      Left = 24
+      Height = 50
+      Top = 184
+      Width = 273
+      Enabled = False
+      Lines.Strings = (
+        '© Produto sendo desenvolvido desde o final de 2019 por Terence Santana dos Santos.'
+      )
+      TabOrder = 0
     end
   end
   object rxVersao: TRxVersionInfo
