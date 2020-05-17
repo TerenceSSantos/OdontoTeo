@@ -1,49 +1,38 @@
 object frmCadPaciente: TfrmCadPaciente
-  Left = 314
+  Left = 293
   Height = 547
-  Top = 126
-  Width = 1091
+  Top = 116
+  Width = 1095
   BorderStyle = bsNone
   Caption = 'Cadastro de Pacientes'
   ClientHeight = 547
-  ClientWidth = 1091
+  ClientWidth = 1095
   OnClose = FormClose
   OnCreate = FormCreate
   OnShow = FormShow
   Position = poScreenCenter
-  LCLVersion = '2.0.4.0'
+  LCLVersion = '2.0.8.0'
   object pnlTitulo: TBCPanel
     Left = 0
     Height = 32
     Top = 0
-    Width = 1091
+    Width = 1095
     Align = alTop
     Background.Color = clBtnFace
-    Background.ColorOpacity = 255
     Background.Gradient1.StartColor = 16775925
-    Background.Gradient1.StartColorOpacity = 255
-    Background.Gradient1.DrawMode = dmSet
     Background.Gradient1.EndColor = 16445670
-    Background.Gradient1.EndColorOpacity = 255
-    Background.Gradient1.ColorCorrection = True
     Background.Gradient1.GradientType = gtLinear
     Background.Gradient1.Point1XPercent = 0
     Background.Gradient1.Point1YPercent = 0
     Background.Gradient1.Point2XPercent = 0
     Background.Gradient1.Point2YPercent = 100
-    Background.Gradient1.Sinus = False
     Background.Gradient2.StartColor = 16049884
-    Background.Gradient2.StartColorOpacity = 255
-    Background.Gradient2.DrawMode = dmSet
     Background.Gradient2.EndColor = 16247261
-    Background.Gradient2.EndColorOpacity = 255
-    Background.Gradient2.ColorCorrection = True
     Background.Gradient2.GradientType = gtLinear
     Background.Gradient2.Point1XPercent = 0
     Background.Gradient2.Point1YPercent = 0
     Background.Gradient2.Point2XPercent = 0
     Background.Gradient2.Point2YPercent = 100
-    Background.Gradient2.Sinus = False
     Background.Gradient1EndPercent = 50
     Background.Style = bbsGradient
     BevelInner = bvNone
@@ -51,27 +40,22 @@ object frmCadPaciente: TfrmCadPaciente
     BevelWidth = 1
     Border.Color = 12824480
     Border.ColorOpacity = 200
-    Border.LightColor = clWhite
     Border.LightOpacity = 200
     Border.LightWidth = 1
     Border.Style = bboSolid
-    Border.Width = 1
     BorderBCStyle = bpsBorder
     Caption = 'Cadastro de Pacientes'
     FontEx.Color = 16646144
-    FontEx.EndEllipsis = False
     FontEx.FontQuality = fqSystemClearType
     FontEx.Height = 20
-    FontEx.SingleLine = True
     FontEx.Shadow = True
     FontEx.ShadowColor = 16711424
-    FontEx.ShadowColorOpacity = 255
     FontEx.ShadowRadius = 3
     FontEx.ShadowOffsetX = 3
     FontEx.ShadowOffsetY = 3
     FontEx.Style = [fsBold]
     FontEx.TextAlignment = bcaCenterTop
-    FontEx.WordBreak = False
+    ParentBackground = False
     Rounding.RoundX = 10
     Rounding.RoundY = 10
     Rounding.RoundOptions = [rrBottomRightSquare, rrBottomLeftSquare, rrDefault]
@@ -80,159 +64,87 @@ object frmCadPaciente: TfrmCadPaciente
     OnMouseMove = pnlTituloMouseMove
     OnMouseUp = pnlTituloMouseUp
     object btnFechar: TBCButton
-      Left = 1052
+      Left = 1056
       Height = 24
       Hint = 'Fechar o Cadastro de Pacientes'
       Top = 4
       Width = 31
       Anchors = [akTop, akRight]
-      StateClicked.Background.Color = clBlack
-      StateClicked.Background.ColorOpacity = 255
       StateClicked.Background.Gradient1.StartColor = clRed
-      StateClicked.Background.Gradient1.StartColorOpacity = 255
-      StateClicked.Background.Gradient1.DrawMode = dmSet
       StateClicked.Background.Gradient1.EndColor = 4194304
-      StateClicked.Background.Gradient1.EndColorOpacity = 255
-      StateClicked.Background.Gradient1.ColorCorrection = True
       StateClicked.Background.Gradient1.GradientType = gtRadial
       StateClicked.Background.Gradient1.Point1XPercent = 50
       StateClicked.Background.Gradient1.Point1YPercent = 100
       StateClicked.Background.Gradient1.Point2XPercent = 0
       StateClicked.Background.Gradient1.Point2YPercent = 0
-      StateClicked.Background.Gradient1.Sinus = False
       StateClicked.Background.Gradient2.StartColor = 13137169
-      StateClicked.Background.Gradient2.StartColorOpacity = 255
-      StateClicked.Background.Gradient2.DrawMode = dmSet
       StateClicked.Background.Gradient2.EndColor = 15722194
-      StateClicked.Background.Gradient2.EndColorOpacity = 255
-      StateClicked.Background.Gradient2.ColorCorrection = True
       StateClicked.Background.Gradient2.GradientType = gtLinear
       StateClicked.Background.Gradient2.Point1XPercent = 0
       StateClicked.Background.Gradient2.Point1YPercent = 0
       StateClicked.Background.Gradient2.Point2XPercent = 0
       StateClicked.Background.Gradient2.Point2YPercent = 100
-      StateClicked.Background.Gradient2.Sinus = False
       StateClicked.Background.Gradient1EndPercent = 100
       StateClicked.Background.Style = bbsGradient
       StateClicked.Border.Color = 11235643
-      StateClicked.Border.ColorOpacity = 255
-      StateClicked.Border.LightColor = clWhite
-      StateClicked.Border.LightOpacity = 255
-      StateClicked.Border.LightWidth = 0
       StateClicked.Border.Style = bboNone
-      StateClicked.Border.Width = 1
       StateClicked.FontEx.Color = 16770790
-      StateClicked.FontEx.EndEllipsis = False
       StateClicked.FontEx.FontQuality = fqSystemClearType
-      StateClicked.FontEx.Height = 0
-      StateClicked.FontEx.SingleLine = True
       StateClicked.FontEx.Shadow = True
-      StateClicked.FontEx.ShadowColor = clBlack
-      StateClicked.FontEx.ShadowColorOpacity = 255
       StateClicked.FontEx.ShadowRadius = 2
       StateClicked.FontEx.ShadowOffsetX = 1
       StateClicked.FontEx.ShadowOffsetY = 1
       StateClicked.FontEx.Style = [fsBold]
-      StateClicked.FontEx.TextAlignment = bcaCenter
-      StateClicked.FontEx.WordBreak = False
-      StateHover.Background.Color = clBlack
-      StateHover.Background.ColorOpacity = 255
       StateHover.Background.Gradient1.StartColor = 65791
-      StateHover.Background.Gradient1.StartColorOpacity = 255
-      StateHover.Background.Gradient1.DrawMode = dmSet
       StateHover.Background.Gradient1.EndColor = 8404992
-      StateHover.Background.Gradient1.EndColorOpacity = 255
-      StateHover.Background.Gradient1.ColorCorrection = True
       StateHover.Background.Gradient1.GradientType = gtRadial
       StateHover.Background.Gradient1.Point1XPercent = 50
       StateHover.Background.Gradient1.Point1YPercent = 100
       StateHover.Background.Gradient1.Point2XPercent = 0
       StateHover.Background.Gradient1.Point2YPercent = 0
-      StateHover.Background.Gradient1.Sinus = False
       StateHover.Background.Gradient2.StartColor = 13137169
-      StateHover.Background.Gradient2.StartColorOpacity = 255
-      StateHover.Background.Gradient2.DrawMode = dmSet
       StateHover.Background.Gradient2.EndColor = 15722194
-      StateHover.Background.Gradient2.EndColorOpacity = 255
-      StateHover.Background.Gradient2.ColorCorrection = True
       StateHover.Background.Gradient2.GradientType = gtLinear
       StateHover.Background.Gradient2.Point1XPercent = 0
       StateHover.Background.Gradient2.Point1YPercent = 0
       StateHover.Background.Gradient2.Point2XPercent = 0
       StateHover.Background.Gradient2.Point2YPercent = 100
-      StateHover.Background.Gradient2.Sinus = False
       StateHover.Background.Gradient1EndPercent = 100
       StateHover.Background.Style = bbsGradient
       StateHover.Border.Color = 65791
-      StateHover.Border.ColorOpacity = 255
-      StateHover.Border.LightColor = clWhite
-      StateHover.Border.LightOpacity = 255
-      StateHover.Border.LightWidth = 0
       StateHover.Border.Style = bboNone
-      StateHover.Border.Width = 1
       StateHover.FontEx.Color = clWhite
-      StateHover.FontEx.EndEllipsis = False
       StateHover.FontEx.FontQuality = fqSystemClearType
-      StateHover.FontEx.Height = 0
-      StateHover.FontEx.SingleLine = True
       StateHover.FontEx.Shadow = True
-      StateHover.FontEx.ShadowColor = clBlack
-      StateHover.FontEx.ShadowColorOpacity = 255
       StateHover.FontEx.ShadowRadius = 2
       StateHover.FontEx.ShadowOffsetX = 1
       StateHover.FontEx.ShadowOffsetY = 1
       StateHover.FontEx.Style = [fsBold]
-      StateHover.FontEx.TextAlignment = bcaCenter
-      StateHover.FontEx.WordBreak = False
-      StateNormal.Background.Color = clBlack
-      StateNormal.Background.ColorOpacity = 255
       StateNormal.Background.Gradient1.StartColor = 4194304
-      StateNormal.Background.Gradient1.StartColorOpacity = 255
-      StateNormal.Background.Gradient1.DrawMode = dmSet
       StateNormal.Background.Gradient1.EndColor = 8405056
-      StateNormal.Background.Gradient1.EndColorOpacity = 255
-      StateNormal.Background.Gradient1.ColorCorrection = True
       StateNormal.Background.Gradient1.GradientType = gtLinear
       StateNormal.Background.Gradient1.Point1XPercent = 0
       StateNormal.Background.Gradient1.Point1YPercent = 0
       StateNormal.Background.Gradient1.Point2XPercent = 0
       StateNormal.Background.Gradient1.Point2YPercent = 100
-      StateNormal.Background.Gradient1.Sinus = False
       StateNormal.Background.Gradient2.StartColor = 8405056
-      StateNormal.Background.Gradient2.StartColorOpacity = 255
-      StateNormal.Background.Gradient2.DrawMode = dmSet
       StateNormal.Background.Gradient2.EndColor = 4194304
-      StateNormal.Background.Gradient2.EndColorOpacity = 255
-      StateNormal.Background.Gradient2.ColorCorrection = True
       StateNormal.Background.Gradient2.GradientType = gtRadial
       StateNormal.Background.Gradient2.Point1XPercent = 50
       StateNormal.Background.Gradient2.Point1YPercent = 100
       StateNormal.Background.Gradient2.Point2XPercent = 0
       StateNormal.Background.Gradient2.Point2YPercent = 0
-      StateNormal.Background.Gradient2.Sinus = False
       StateNormal.Background.Gradient1EndPercent = 60
       StateNormal.Background.Style = bbsGradient
       StateNormal.Border.Color = 11235643
-      StateNormal.Border.ColorOpacity = 255
-      StateNormal.Border.LightColor = clWhite
-      StateNormal.Border.LightOpacity = 255
-      StateNormal.Border.LightWidth = 0
       StateNormal.Border.Style = bboNone
-      StateNormal.Border.Width = 1
       StateNormal.FontEx.Color = 16770790
-      StateNormal.FontEx.EndEllipsis = False
       StateNormal.FontEx.FontQuality = fqSystemClearType
-      StateNormal.FontEx.Height = 0
-      StateNormal.FontEx.SingleLine = True
       StateNormal.FontEx.Shadow = True
-      StateNormal.FontEx.ShadowColor = clBlack
-      StateNormal.FontEx.ShadowColorOpacity = 255
       StateNormal.FontEx.ShadowRadius = 2
       StateNormal.FontEx.ShadowOffsetX = 1
       StateNormal.FontEx.ShadowOffsetY = 1
       StateNormal.FontEx.Style = [fsBold]
-      StateNormal.FontEx.TextAlignment = bcaCenter
-      StateNormal.FontEx.WordBreak = False
       Caption = 'X'
       Color = clNone
       DropDownWidth = 16
@@ -243,10 +155,8 @@ object frmCadPaciente: TfrmCadPaciente
       ParentColor = False
       Rounding.RoundX = 12
       Rounding.RoundY = 12
-      Rounding.RoundOptions = []
       RoundingDropDown.RoundX = 1
       RoundingDropDown.RoundY = 1
-      RoundingDropDown.RoundOptions = []
       ShowHint = True
       TextApplyGlobalOpacity = False
       MemoryUsage = bmuHigh
@@ -368,34 +278,23 @@ object frmCadPaciente: TfrmCadPaciente
     Left = 0
     Height = 85
     Top = 32
-    Width = 1091
+    Width = 1095
     Align = alTop
     Background.Color = clBtnFace
-    Background.ColorOpacity = 255
     Background.Gradient1.StartColor = 16775925
-    Background.Gradient1.StartColorOpacity = 255
-    Background.Gradient1.DrawMode = dmSet
     Background.Gradient1.EndColor = 16445670
-    Background.Gradient1.EndColorOpacity = 255
-    Background.Gradient1.ColorCorrection = True
     Background.Gradient1.GradientType = gtLinear
     Background.Gradient1.Point1XPercent = 0
     Background.Gradient1.Point1YPercent = 0
     Background.Gradient1.Point2XPercent = 0
     Background.Gradient1.Point2YPercent = 100
-    Background.Gradient1.Sinus = False
     Background.Gradient2.StartColor = 16049884
-    Background.Gradient2.StartColorOpacity = 255
-    Background.Gradient2.DrawMode = dmSet
     Background.Gradient2.EndColor = 16247261
-    Background.Gradient2.EndColorOpacity = 255
-    Background.Gradient2.ColorCorrection = True
     Background.Gradient2.GradientType = gtLinear
     Background.Gradient2.Point1XPercent = 0
     Background.Gradient2.Point1YPercent = 0
     Background.Gradient2.Point2XPercent = 0
     Background.Gradient2.Point2YPercent = 100
-    Background.Gradient2.Sinus = False
     Background.Gradient1EndPercent = 30
     Background.Style = bbsGradient
     BevelInner = bvNone
@@ -403,26 +302,18 @@ object frmCadPaciente: TfrmCadPaciente
     BevelWidth = 1
     Border.Color = 12824480
     Border.ColorOpacity = 200
-    Border.LightColor = clWhite
     Border.LightOpacity = 200
     Border.LightWidth = 1
     Border.Style = bboSolid
-    Border.Width = 1
     BorderBCStyle = bpsBorder
     FontEx.Color = clDefault
-    FontEx.EndEllipsis = False
     FontEx.FontQuality = fqSystemClearType
-    FontEx.Height = 0
-    FontEx.SingleLine = True
     FontEx.Shadow = False
-    FontEx.ShadowColor = clBlack
-    FontEx.ShadowColorOpacity = 255
     FontEx.ShadowRadius = 5
     FontEx.ShadowOffsetX = 5
     FontEx.ShadowOffsetY = 5
     FontEx.Style = []
-    FontEx.TextAlignment = bcaCenter
-    FontEx.WordBreak = False
+    ParentBackground = False
     Rounding.RoundX = 1
     Rounding.RoundY = 1
     Rounding.RoundOptions = [rrTopLeftSquare, rrTopRightSquare, rrBottomRightSquare, rrBottomLeftSquare]
@@ -556,38 +447,27 @@ object frmCadPaciente: TfrmCadPaciente
       TabOrder = 5
     end
   end
-  object pnlBotoes1: TBCPanel
+  object pnlCodigoNomeIdade: TBCPanel
     Left = 0
     Height = 64
     Top = 117
-    Width = 1091
+    Width = 1095
     Align = alTop
     Background.Color = clBtnFace
-    Background.ColorOpacity = 255
     Background.Gradient1.StartColor = 16775925
-    Background.Gradient1.StartColorOpacity = 255
-    Background.Gradient1.DrawMode = dmSet
     Background.Gradient1.EndColor = 16445670
-    Background.Gradient1.EndColorOpacity = 255
-    Background.Gradient1.ColorCorrection = True
     Background.Gradient1.GradientType = gtLinear
     Background.Gradient1.Point1XPercent = 0
     Background.Gradient1.Point1YPercent = 0
     Background.Gradient1.Point2XPercent = 0
     Background.Gradient1.Point2YPercent = 100
-    Background.Gradient1.Sinus = False
     Background.Gradient2.StartColor = 16049884
-    Background.Gradient2.StartColorOpacity = 255
-    Background.Gradient2.DrawMode = dmSet
     Background.Gradient2.EndColor = 16247261
-    Background.Gradient2.EndColorOpacity = 255
-    Background.Gradient2.ColorCorrection = True
     Background.Gradient2.GradientType = gtLinear
     Background.Gradient2.Point1XPercent = 0
     Background.Gradient2.Point1YPercent = 0
     Background.Gradient2.Point2XPercent = 0
     Background.Gradient2.Point2YPercent = 100
-    Background.Gradient2.Sinus = False
     Background.Gradient1EndPercent = 30
     Background.Style = bbsGradient
     BevelInner = bvNone
@@ -595,26 +475,18 @@ object frmCadPaciente: TfrmCadPaciente
     BevelWidth = 1
     Border.Color = 12824480
     Border.ColorOpacity = 200
-    Border.LightColor = clWhite
     Border.LightOpacity = 200
     Border.LightWidth = 1
     Border.Style = bboSolid
-    Border.Width = 1
     BorderBCStyle = bpsBorder
     FontEx.Color = clDefault
-    FontEx.EndEllipsis = False
     FontEx.FontQuality = fqSystemClearType
-    FontEx.Height = 0
-    FontEx.SingleLine = True
     FontEx.Shadow = False
-    FontEx.ShadowColor = clBlack
-    FontEx.ShadowColorOpacity = 255
     FontEx.ShadowRadius = 5
     FontEx.ShadowOffsetX = 5
     FontEx.ShadowOffsetY = 5
     FontEx.Style = []
-    FontEx.TextAlignment = bcaCenter
-    FontEx.WordBreak = False
+    ParentBackground = False
     Rounding.RoundX = 1
     Rounding.RoundY = 1
     Rounding.RoundOptions = [rrTopLeftSquare, rrTopRightSquare, rrBottomRightSquare, rrBottomLeftSquare]
@@ -698,11 +570,11 @@ object frmCadPaciente: TfrmCadPaciente
     Left = 0
     Height = 366
     Top = 181
-    Width = 1091
-    ActivePage = tabSinaisSintomas
+    Width = 1095
+    ActivePage = tabDocumentos
     Align = alClient
     Images = miglstCadPaciente
-    TabIndex = 7
+    TabIndex = 2
     TabOrder = 3
     OnChange = pcCadPacienteChange
     OnChanging = pcCadPacienteChanging
@@ -725,32 +597,21 @@ object frmCadPaciente: TfrmCadPaciente
         Top = 0
         Width = 1083
         Align = alClient
-        Background.Color = 16049884
-        Background.ColorOpacity = 255
-        Background.Gradient1.StartColor = 16247261
-        Background.Gradient1.StartColorOpacity = 255
-        Background.Gradient1.DrawMode = dmSet
-        Background.Gradient1.EndColor = 16049884
-        Background.Gradient1.EndColorOpacity = 255
-        Background.Gradient1.ColorCorrection = True
+        Background.Color = clBtnFace
+        Background.Gradient1.StartColor = 16775925
+        Background.Gradient1.EndColor = 16445670
         Background.Gradient1.GradientType = gtLinear
         Background.Gradient1.Point1XPercent = 0
         Background.Gradient1.Point1YPercent = 0
         Background.Gradient1.Point2XPercent = 0
         Background.Gradient1.Point2YPercent = 100
-        Background.Gradient1.Sinus = False
-        Background.Gradient2.StartColor = 16445670
-        Background.Gradient2.StartColorOpacity = 255
-        Background.Gradient2.DrawMode = dmSet
-        Background.Gradient2.EndColor = 16775925
-        Background.Gradient2.EndColorOpacity = 255
-        Background.Gradient2.ColorCorrection = True
+        Background.Gradient2.StartColor = 16049884
+        Background.Gradient2.EndColor = 16247261
         Background.Gradient2.GradientType = gtLinear
         Background.Gradient2.Point1XPercent = 0
         Background.Gradient2.Point1YPercent = 0
         Background.Gradient2.Point2XPercent = 0
         Background.Gradient2.Point2YPercent = 100
-        Background.Gradient2.Sinus = False
         Background.Gradient1EndPercent = 50
         Background.Style = bbsGradient
         BevelInner = bvNone
@@ -758,38 +619,30 @@ object frmCadPaciente: TfrmCadPaciente
         BevelWidth = 1
         Border.Color = 12824480
         Border.ColorOpacity = 200
-        Border.LightColor = clWhite
         Border.LightOpacity = 200
         Border.LightWidth = 1
         Border.Style = bboSolid
-        Border.Width = 1
         BorderBCStyle = bpsBorder
         Enabled = False
         FontEx.Color = clDefault
-        FontEx.EndEllipsis = False
         FontEx.FontQuality = fqSystemClearType
-        FontEx.Height = 0
-        FontEx.SingleLine = True
         FontEx.Shadow = False
-        FontEx.ShadowColor = clBlack
-        FontEx.ShadowColorOpacity = 255
         FontEx.ShadowRadius = 5
         FontEx.ShadowOffsetX = 5
         FontEx.ShadowOffsetY = 5
         FontEx.Style = []
-        FontEx.TextAlignment = bcaCenter
-        FontEx.WordBreak = False
+        ParentBackground = False
         Rounding.RoundX = 1
         Rounding.RoundY = 1
         Rounding.RoundOptions = [rrTopLeftSquare, rrTopRightSquare, rrBottomRightSquare, rrBottomLeftSquare]
         TabOrder = 0
         object bvDadosBasicos: TBevel
-          Left = 11
-          Height = 301
-          Top = 11
-          Width = 1061
+          Left = 16
+          Height = 291
+          Top = 16
+          Width = 1051
           Align = alClient
-          BorderSpacing.Around = 10
+          BorderSpacing.Around = 15
         end
         object lblCodigoPaciente: TLabel
           Left = 72
@@ -957,7 +810,7 @@ object frmCadPaciente: TfrmCadPaciente
           Font.Quality = fqDraft
           Font.Style = [fsBold]
           ParentFont = False
-          TabOrder = 5
+          TabOrder = 4
         end
         object lblNaturalidade: TLabel
           Left = 237
@@ -989,7 +842,7 @@ object frmCadPaciente: TfrmCadPaciente
           Font.Quality = fqDraft
           Font.Style = [fsBold]
           ParentFont = False
-          TabOrder = 9
+          TabOrder = 5
         end
         object lblNacionalidade: TLabel
           Left = 693
@@ -1021,7 +874,7 @@ object frmCadPaciente: TfrmCadPaciente
           Font.Quality = fqDraft
           Font.Style = [fsBold]
           ParentFont = False
-          TabOrder = 11
+          TabOrder = 6
         end
         object lblEstadoCivil: TLabel
           Left = 72
@@ -1059,7 +912,7 @@ object frmCadPaciente: TfrmCadPaciente
             'Viúvo(a)'
           )
           ParentFont = False
-          TabOrder = 4
+          TabOrder = 7
         end
         object bvSexo: TBevel
           Left = 616
@@ -1099,7 +952,7 @@ object frmCadPaciente: TfrmCadPaciente
           Font.Style = [fsBold]
           ParentColor = False
           ParentFont = False
-          TabOrder = 6
+          TabOrder = 8
         end
         object rbtnMasculino: TRadioButton
           Left = 749
@@ -1117,7 +970,7 @@ object frmCadPaciente: TfrmCadPaciente
           Font.Style = [fsBold]
           ParentColor = False
           ParentFont = False
-          TabOrder = 7
+          TabOrder = 9
         end
         object lblDtNascimento: TLabel
           Left = 72
@@ -1151,7 +1004,7 @@ object frmCadPaciente: TfrmCadPaciente
           Font.Quality = fqDraft
           Font.Style = [fsBold]
           ParentFont = False
-          TabOrder = 8
+          TabOrder = 10
           Color = clInfoBk
           TrailingSeparator = False
           TextForNullDate = 'VAZIA'
@@ -1229,7 +1082,7 @@ object frmCadPaciente: TfrmCadPaciente
             'TO'
           )
           ParentFont = False
-          TabOrder = 10
+          TabOrder = 11
         end
         object lblParaDataVazia: TLabel
           Left = 72
@@ -1270,40 +1123,29 @@ object frmCadPaciente: TfrmCadPaciente
     object tabResponsavel: TTabSheet
       Caption = 'Responsável'
       ClientHeight = 323
-      ClientWidth = 1083
+      ClientWidth = 1087
       ImageIndex = 15
       object pnlResponsavel: TBCPanel
         Left = 0
         Height = 323
         Top = 0
-        Width = 1083
+        Width = 1087
         Align = alClient
-        Background.Color = 16049884
-        Background.ColorOpacity = 255
-        Background.Gradient1.StartColor = 16247261
-        Background.Gradient1.StartColorOpacity = 255
-        Background.Gradient1.DrawMode = dmSet
-        Background.Gradient1.EndColor = 16049884
-        Background.Gradient1.EndColorOpacity = 255
-        Background.Gradient1.ColorCorrection = True
+        Background.Color = clBtnFace
+        Background.Gradient1.StartColor = 16775925
+        Background.Gradient1.EndColor = 16445670
         Background.Gradient1.GradientType = gtLinear
         Background.Gradient1.Point1XPercent = 0
         Background.Gradient1.Point1YPercent = 0
         Background.Gradient1.Point2XPercent = 0
         Background.Gradient1.Point2YPercent = 100
-        Background.Gradient1.Sinus = False
-        Background.Gradient2.StartColor = 16445670
-        Background.Gradient2.StartColorOpacity = 255
-        Background.Gradient2.DrawMode = dmSet
-        Background.Gradient2.EndColor = 16775925
-        Background.Gradient2.EndColorOpacity = 255
-        Background.Gradient2.ColorCorrection = True
+        Background.Gradient2.StartColor = 16049884
+        Background.Gradient2.EndColor = 16247261
         Background.Gradient2.GradientType = gtLinear
         Background.Gradient2.Point1XPercent = 0
         Background.Gradient2.Point1YPercent = 0
         Background.Gradient2.Point2XPercent = 0
         Background.Gradient2.Point2YPercent = 100
-        Background.Gradient2.Sinus = False
         Background.Gradient1EndPercent = 50
         Background.Style = bbsGradient
         BevelInner = bvNone
@@ -1311,27 +1153,19 @@ object frmCadPaciente: TfrmCadPaciente
         BevelWidth = 1
         Border.Color = 12824480
         Border.ColorOpacity = 200
-        Border.LightColor = clWhite
         Border.LightOpacity = 200
         Border.LightWidth = 1
         Border.Style = bboSolid
-        Border.Width = 1
         BorderBCStyle = bpsBorder
         Enabled = False
         FontEx.Color = clDefault
-        FontEx.EndEllipsis = False
         FontEx.FontQuality = fqSystemClearType
-        FontEx.Height = 0
-        FontEx.SingleLine = True
         FontEx.Shadow = False
-        FontEx.ShadowColor = clBlack
-        FontEx.ShadowColorOpacity = 255
         FontEx.ShadowRadius = 5
         FontEx.ShadowOffsetX = 5
         FontEx.ShadowOffsetY = 5
         FontEx.Style = []
-        FontEx.TextAlignment = bcaCenter
-        FontEx.WordBreak = False
+        ParentBackground = False
         Rounding.RoundX = 1
         Rounding.RoundY = 1
         Rounding.RoundOptions = [rrTopLeftSquare, rrTopRightSquare, rrBottomRightSquare, rrBottomLeftSquare]
@@ -1340,7 +1174,7 @@ object frmCadPaciente: TfrmCadPaciente
           Left = 71
           Height = 181
           Top = 71
-          Width = 941
+          Width = 945
           Align = alClient
           BorderSpacing.Around = 70
         end
@@ -1350,6 +1184,22 @@ object frmCadPaciente: TfrmCadPaciente
           Top = 131
           Width = 118
           Caption = 'Nome do Responsável'
+          Font.CharSet = ANSI_CHARSET
+          Font.Color = 98304
+          Font.Height = -12
+          Font.Name = 'Segoe UI Semibold'
+          Font.Pitch = fpVariable
+          Font.Quality = fqDraft
+          Font.Style = [fsBold]
+          ParentColor = False
+          ParentFont = False
+        end
+        object lblParentesco: TLabel
+          Left = 544
+          Height = 15
+          Top = 131
+          Width = 58
+          Caption = 'Parentesco'
           Font.CharSet = ANSI_CHARSET
           Font.Color = 98304
           Font.Height = -12
@@ -1372,22 +1222,6 @@ object frmCadPaciente: TfrmCadPaciente
           ParentFont = False
           TabOrder = 0
         end
-        object lblParentesco: TLabel
-          Left = 544
-          Height = 15
-          Top = 131
-          Width = 58
-          Caption = 'Parentesco'
-          Font.CharSet = ANSI_CHARSET
-          Font.Color = 98304
-          Font.Height = -12
-          Font.Name = 'Segoe UI Semibold'
-          Font.Pitch = fpVariable
-          Font.Quality = fqDraft
-          Font.Style = [fsBold]
-          ParentColor = False
-          ParentFont = False
-        end
         object edtParentesco: TEdit
           Left = 544
           Height = 23
@@ -1405,40 +1239,29 @@ object frmCadPaciente: TfrmCadPaciente
     object tabDocumentos: TTabSheet
       Caption = 'Documentos'
       ClientHeight = 323
-      ClientWidth = 1083
+      ClientWidth = 1087
       ImageIndex = 16
       object pnlDocumentos: TBCPanel
         Left = 0
         Height = 323
         Top = 0
-        Width = 1083
+        Width = 1087
         Align = alClient
         Background.Color = 16049884
-        Background.ColorOpacity = 255
         Background.Gradient1.StartColor = 16247261
-        Background.Gradient1.StartColorOpacity = 255
-        Background.Gradient1.DrawMode = dmSet
         Background.Gradient1.EndColor = 16049884
-        Background.Gradient1.EndColorOpacity = 255
-        Background.Gradient1.ColorCorrection = True
         Background.Gradient1.GradientType = gtLinear
         Background.Gradient1.Point1XPercent = 0
         Background.Gradient1.Point1YPercent = 0
         Background.Gradient1.Point2XPercent = 0
         Background.Gradient1.Point2YPercent = 100
-        Background.Gradient1.Sinus = False
         Background.Gradient2.StartColor = 16445670
-        Background.Gradient2.StartColorOpacity = 255
-        Background.Gradient2.DrawMode = dmSet
         Background.Gradient2.EndColor = 16775925
-        Background.Gradient2.EndColorOpacity = 255
-        Background.Gradient2.ColorCorrection = True
         Background.Gradient2.GradientType = gtLinear
         Background.Gradient2.Point1XPercent = 0
         Background.Gradient2.Point1YPercent = 0
         Background.Gradient2.Point2XPercent = 0
         Background.Gradient2.Point2YPercent = 100
-        Background.Gradient2.Sinus = False
         Background.Gradient1EndPercent = 50
         Background.Style = bbsGradient
         BevelInner = bvNone
@@ -1446,27 +1269,19 @@ object frmCadPaciente: TfrmCadPaciente
         BevelWidth = 1
         Border.Color = 12824480
         Border.ColorOpacity = 200
-        Border.LightColor = clWhite
         Border.LightOpacity = 200
         Border.LightWidth = 1
         Border.Style = bboSolid
-        Border.Width = 1
         BorderBCStyle = bpsBorder
         Enabled = False
         FontEx.Color = clDefault
-        FontEx.EndEllipsis = False
         FontEx.FontQuality = fqSystemClearType
-        FontEx.Height = 0
-        FontEx.SingleLine = True
         FontEx.Shadow = False
-        FontEx.ShadowColor = clBlack
-        FontEx.ShadowColorOpacity = 255
         FontEx.ShadowRadius = 5
         FontEx.ShadowOffsetX = 5
         FontEx.ShadowOffsetY = 5
         FontEx.Style = []
-        FontEx.TextAlignment = bcaCenter
-        FontEx.WordBreak = False
+        ParentBackground = False
         Rounding.RoundX = 1
         Rounding.RoundY = 1
         Rounding.RoundOptions = [rrTopLeftSquare, rrTopRightSquare, rrBottomRightSquare, rrBottomLeftSquare]
@@ -1475,7 +1290,7 @@ object frmCadPaciente: TfrmCadPaciente
           Left = 51
           Height = 221
           Top = 51
-          Width = 981
+          Width = 985
           Align = alClient
           BorderSpacing.Around = 50
         end
@@ -1669,31 +1484,20 @@ object frmCadPaciente: TfrmCadPaciente
         Width = 1083
         Align = alClient
         Background.Color = 16049884
-        Background.ColorOpacity = 255
         Background.Gradient1.StartColor = 16247261
-        Background.Gradient1.StartColorOpacity = 255
-        Background.Gradient1.DrawMode = dmSet
         Background.Gradient1.EndColor = 16049884
-        Background.Gradient1.EndColorOpacity = 255
-        Background.Gradient1.ColorCorrection = True
         Background.Gradient1.GradientType = gtLinear
         Background.Gradient1.Point1XPercent = 0
         Background.Gradient1.Point1YPercent = 0
         Background.Gradient1.Point2XPercent = 0
         Background.Gradient1.Point2YPercent = 100
-        Background.Gradient1.Sinus = False
         Background.Gradient2.StartColor = 16445670
-        Background.Gradient2.StartColorOpacity = 255
-        Background.Gradient2.DrawMode = dmSet
         Background.Gradient2.EndColor = 16775925
-        Background.Gradient2.EndColorOpacity = 255
-        Background.Gradient2.ColorCorrection = True
         Background.Gradient2.GradientType = gtLinear
         Background.Gradient2.Point1XPercent = 0
         Background.Gradient2.Point1YPercent = 0
         Background.Gradient2.Point2XPercent = 0
         Background.Gradient2.Point2YPercent = 100
-        Background.Gradient2.Sinus = False
         Background.Gradient1EndPercent = 50
         Background.Style = bbsGradient
         BevelInner = bvNone
@@ -1701,27 +1505,19 @@ object frmCadPaciente: TfrmCadPaciente
         BevelWidth = 1
         Border.Color = 12824480
         Border.ColorOpacity = 200
-        Border.LightColor = clWhite
         Border.LightOpacity = 200
         Border.LightWidth = 1
         Border.Style = bboSolid
-        Border.Width = 1
         BorderBCStyle = bpsBorder
         Enabled = False
         FontEx.Color = clDefault
-        FontEx.EndEllipsis = False
         FontEx.FontQuality = fqSystemClearType
-        FontEx.Height = 0
-        FontEx.SingleLine = True
         FontEx.Shadow = False
-        FontEx.ShadowColor = clBlack
-        FontEx.ShadowColorOpacity = 255
         FontEx.ShadowRadius = 5
         FontEx.ShadowOffsetX = 5
         FontEx.ShadowOffsetY = 5
         FontEx.Style = []
-        FontEx.TextAlignment = bcaCenter
-        FontEx.WordBreak = False
+        ParentBackground = False
         Rounding.RoundX = 1
         Rounding.RoundY = 1
         Rounding.RoundOptions = [rrTopLeftSquare, rrTopRightSquare, rrBottomRightSquare, rrBottomLeftSquare]
@@ -1982,31 +1778,20 @@ object frmCadPaciente: TfrmCadPaciente
         Width = 1083
         Align = alClient
         Background.Color = 16049884
-        Background.ColorOpacity = 255
         Background.Gradient1.StartColor = 16247261
-        Background.Gradient1.StartColorOpacity = 255
-        Background.Gradient1.DrawMode = dmSet
         Background.Gradient1.EndColor = 16049884
-        Background.Gradient1.EndColorOpacity = 255
-        Background.Gradient1.ColorCorrection = True
         Background.Gradient1.GradientType = gtLinear
         Background.Gradient1.Point1XPercent = 0
         Background.Gradient1.Point1YPercent = 0
         Background.Gradient1.Point2XPercent = 0
         Background.Gradient1.Point2YPercent = 100
-        Background.Gradient1.Sinus = False
         Background.Gradient2.StartColor = 16445670
-        Background.Gradient2.StartColorOpacity = 255
-        Background.Gradient2.DrawMode = dmSet
         Background.Gradient2.EndColor = 16775925
-        Background.Gradient2.EndColorOpacity = 255
-        Background.Gradient2.ColorCorrection = True
         Background.Gradient2.GradientType = gtLinear
         Background.Gradient2.Point1XPercent = 0
         Background.Gradient2.Point1YPercent = 0
         Background.Gradient2.Point2XPercent = 0
         Background.Gradient2.Point2YPercent = 100
-        Background.Gradient2.Sinus = False
         Background.Gradient1EndPercent = 50
         Background.Style = bbsGradient
         BevelInner = bvNone
@@ -2014,27 +1799,19 @@ object frmCadPaciente: TfrmCadPaciente
         BevelWidth = 1
         Border.Color = 12824480
         Border.ColorOpacity = 200
-        Border.LightColor = clWhite
         Border.LightOpacity = 200
         Border.LightWidth = 1
         Border.Style = bboSolid
-        Border.Width = 1
         BorderBCStyle = bpsBorder
         Enabled = False
         FontEx.Color = clDefault
-        FontEx.EndEllipsis = False
         FontEx.FontQuality = fqSystemClearType
-        FontEx.Height = 0
-        FontEx.SingleLine = True
         FontEx.Shadow = False
-        FontEx.ShadowColor = clBlack
-        FontEx.ShadowColorOpacity = 255
         FontEx.ShadowRadius = 5
         FontEx.ShadowOffsetX = 5
         FontEx.ShadowOffsetY = 5
         FontEx.Style = []
-        FontEx.TextAlignment = bcaCenter
-        FontEx.WordBreak = False
+        ParentBackground = False
         Rounding.RoundX = 1
         Rounding.RoundY = 1
         Rounding.RoundOptions = [rrTopLeftSquare, rrTopRightSquare, rrBottomRightSquare, rrBottomLeftSquare]
@@ -2554,31 +2331,20 @@ object frmCadPaciente: TfrmCadPaciente
         Width = 1083
         Align = alClient
         Background.Color = 16049884
-        Background.ColorOpacity = 255
         Background.Gradient1.StartColor = 16247261
-        Background.Gradient1.StartColorOpacity = 255
-        Background.Gradient1.DrawMode = dmSet
         Background.Gradient1.EndColor = 16049884
-        Background.Gradient1.EndColorOpacity = 255
-        Background.Gradient1.ColorCorrection = True
         Background.Gradient1.GradientType = gtLinear
         Background.Gradient1.Point1XPercent = 0
         Background.Gradient1.Point1YPercent = 0
         Background.Gradient1.Point2XPercent = 0
         Background.Gradient1.Point2YPercent = 100
-        Background.Gradient1.Sinus = False
         Background.Gradient2.StartColor = 16445670
-        Background.Gradient2.StartColorOpacity = 255
-        Background.Gradient2.DrawMode = dmSet
         Background.Gradient2.EndColor = 16775925
-        Background.Gradient2.EndColorOpacity = 255
-        Background.Gradient2.ColorCorrection = True
         Background.Gradient2.GradientType = gtLinear
         Background.Gradient2.Point1XPercent = 0
         Background.Gradient2.Point1YPercent = 0
         Background.Gradient2.Point2XPercent = 0
         Background.Gradient2.Point2YPercent = 100
-        Background.Gradient2.Sinus = False
         Background.Gradient1EndPercent = 50
         Background.Style = bbsGradient
         BevelInner = bvNone
@@ -2586,27 +2352,19 @@ object frmCadPaciente: TfrmCadPaciente
         BevelWidth = 1
         Border.Color = 12824480
         Border.ColorOpacity = 200
-        Border.LightColor = clWhite
         Border.LightOpacity = 200
         Border.LightWidth = 1
         Border.Style = bboSolid
-        Border.Width = 1
         BorderBCStyle = bpsBorder
         Enabled = False
         FontEx.Color = clDefault
-        FontEx.EndEllipsis = False
         FontEx.FontQuality = fqSystemClearType
-        FontEx.Height = 0
-        FontEx.SingleLine = True
         FontEx.Shadow = False
-        FontEx.ShadowColor = clBlack
-        FontEx.ShadowColorOpacity = 255
         FontEx.ShadowRadius = 5
         FontEx.ShadowOffsetX = 5
         FontEx.ShadowOffsetY = 5
         FontEx.Style = []
-        FontEx.TextAlignment = bcaCenter
-        FontEx.WordBreak = False
+        ParentBackground = False
         Rounding.RoundX = 1
         Rounding.RoundY = 1
         Rounding.RoundOptions = [rrTopLeftSquare, rrTopRightSquare, rrBottomRightSquare, rrBottomLeftSquare]
@@ -2940,31 +2698,20 @@ object frmCadPaciente: TfrmCadPaciente
           Width = 1066
           Align = alCustom
           Background.Color = 16049884
-          Background.ColorOpacity = 255
           Background.Gradient1.StartColor = 16247261
-          Background.Gradient1.StartColorOpacity = 255
-          Background.Gradient1.DrawMode = dmSet
           Background.Gradient1.EndColor = 16049884
-          Background.Gradient1.EndColorOpacity = 255
-          Background.Gradient1.ColorCorrection = True
           Background.Gradient1.GradientType = gtLinear
           Background.Gradient1.Point1XPercent = 0
           Background.Gradient1.Point1YPercent = 0
           Background.Gradient1.Point2XPercent = 0
           Background.Gradient1.Point2YPercent = 100
-          Background.Gradient1.Sinus = False
           Background.Gradient2.StartColor = 16445670
-          Background.Gradient2.StartColorOpacity = 255
-          Background.Gradient2.DrawMode = dmSet
           Background.Gradient2.EndColor = 16775925
-          Background.Gradient2.EndColorOpacity = 255
-          Background.Gradient2.ColorCorrection = True
           Background.Gradient2.GradientType = gtLinear
           Background.Gradient2.Point1XPercent = 0
           Background.Gradient2.Point1YPercent = 0
           Background.Gradient2.Point2XPercent = 0
           Background.Gradient2.Point2YPercent = 100
-          Background.Gradient2.Sinus = False
           Background.Gradient1EndPercent = 50
           Background.Style = bbsGradient
           BevelInner = bvNone
@@ -2972,27 +2719,19 @@ object frmCadPaciente: TfrmCadPaciente
           BevelWidth = 1
           Border.Color = 12824480
           Border.ColorOpacity = 200
-          Border.LightColor = clWhite
           Border.LightOpacity = 200
           Border.LightWidth = 1
           Border.Style = bboSolid
-          Border.Width = 1
           BorderBCStyle = bpsBorder
           Enabled = False
           FontEx.Color = clDefault
-          FontEx.EndEllipsis = False
           FontEx.FontQuality = fqSystemClearType
-          FontEx.Height = 0
-          FontEx.SingleLine = True
           FontEx.Shadow = False
-          FontEx.ShadowColor = clBlack
-          FontEx.ShadowColorOpacity = 255
           FontEx.ShadowRadius = 5
           FontEx.ShadowOffsetX = 5
           FontEx.ShadowOffsetY = 5
           FontEx.Style = []
-          FontEx.TextAlignment = bcaCenter
-          FontEx.WordBreak = False
+          ParentBackground = False
           Rounding.RoundX = 1
           Rounding.RoundY = 1
           Rounding.RoundOptions = [rrTopLeftSquare, rrTopRightSquare, rrBottomRightSquare, rrBottomLeftSquare]
@@ -4235,40 +3974,29 @@ object frmCadPaciente: TfrmCadPaciente
     object tabSinaisSintomas: TTabSheet
       Caption = 'Sinais e Sintomas'
       ClientHeight = 323
-      ClientWidth = 1083
+      ClientWidth = 1087
       ImageIndex = 10
       object pnlSinaisSintomas: TBCPanel
         Left = 0
         Height = 323
         Top = 0
-        Width = 1083
+        Width = 1087
         Align = alClient
-        Background.Color = 16049884
-        Background.ColorOpacity = 255
-        Background.Gradient1.StartColor = 16247261
-        Background.Gradient1.StartColorOpacity = 255
-        Background.Gradient1.DrawMode = dmSet
-        Background.Gradient1.EndColor = 16049884
-        Background.Gradient1.EndColorOpacity = 255
-        Background.Gradient1.ColorCorrection = True
+        Background.Color = clBtnFace
+        Background.Gradient1.StartColor = 16775925
+        Background.Gradient1.EndColor = 16445670
         Background.Gradient1.GradientType = gtLinear
         Background.Gradient1.Point1XPercent = 0
         Background.Gradient1.Point1YPercent = 0
         Background.Gradient1.Point2XPercent = 0
         Background.Gradient1.Point2YPercent = 100
-        Background.Gradient1.Sinus = False
-        Background.Gradient2.StartColor = 16445670
-        Background.Gradient2.StartColorOpacity = 255
-        Background.Gradient2.DrawMode = dmSet
-        Background.Gradient2.EndColor = 16775925
-        Background.Gradient2.EndColorOpacity = 255
-        Background.Gradient2.ColorCorrection = True
+        Background.Gradient2.StartColor = 16049884
+        Background.Gradient2.EndColor = 16247261
         Background.Gradient2.GradientType = gtLinear
         Background.Gradient2.Point1XPercent = 0
         Background.Gradient2.Point1YPercent = 0
         Background.Gradient2.Point2XPercent = 0
         Background.Gradient2.Point2YPercent = 100
-        Background.Gradient2.Sinus = False
         Background.Gradient1EndPercent = 50
         Background.Style = bbsGradient
         BevelInner = bvNone
@@ -4276,396 +4004,569 @@ object frmCadPaciente: TfrmCadPaciente
         BevelWidth = 1
         Border.Color = 12824480
         Border.ColorOpacity = 200
-        Border.LightColor = clWhite
         Border.LightOpacity = 200
         Border.LightWidth = 1
         Border.Style = bboSolid
-        Border.Width = 1
         BorderBCStyle = bpsBorder
         Enabled = False
         FontEx.Color = clDefault
-        FontEx.EndEllipsis = False
         FontEx.FontQuality = fqSystemClearType
-        FontEx.Height = 0
-        FontEx.SingleLine = True
         FontEx.Shadow = False
-        FontEx.ShadowColor = clBlack
-        FontEx.ShadowColorOpacity = 255
         FontEx.ShadowRadius = 5
         FontEx.ShadowOffsetX = 5
         FontEx.ShadowOffsetY = 5
         FontEx.Style = []
-        FontEx.TextAlignment = bcaCenter
-        FontEx.WordBreak = False
+        ParentBackground = False
         Rounding.RoundX = 1
         Rounding.RoundY = 1
         Rounding.RoundOptions = [rrTopLeftSquare, rrTopRightSquare, rrBottomRightSquare, rrBottomLeftSquare]
         TabOrder = 0
         object bvSinaisSintomas: TBevel
-          Left = 11
-          Height = 301
-          Top = 11
-          Width = 1061
+          Left = 16
+          Height = 291
+          Top = 16
+          Width = 1055
           Align = alClient
-          BorderSpacing.Around = 10
+          BorderSpacing.Around = 15
         end
-        object chkboxAlteracaoApetite: TCheckBox
-          Left = 88
-          Height = 21
-          Top = 42
-          Width = 166
-          Caption = 'ALTERAÇÃO DE APETITE'
-          Color = 16049884
-          Font.CharSet = ANSI_CHARSET
+        object rgAlteracaoApetite: TRadioGroup
+          Left = 40
+          Height = 45
+          Top = 26
+          Width = 190
+          AutoFill = True
+          Caption = 'Alteração de Apetite ?'
+          ChildSizing.LeftRightSpacing = 6
+          ChildSizing.EnlargeHorizontal = crsHomogenousChildResize
+          ChildSizing.EnlargeVertical = crsHomogenousChildResize
+          ChildSizing.ShrinkHorizontal = crsScaleChilds
+          ChildSizing.ShrinkVertical = crsScaleChilds
+          ChildSizing.Layout = cclLeftToRightThenTopToBottom
+          ChildSizing.ControlsPerLine = 2
+          ClientHeight = 23
+          ClientWidth = 186
+          Columns = 2
           Font.Color = 98304
           Font.Height = -13
           Font.Name = 'Segoe UI Semibold'
-          Font.Pitch = fpVariable
-          Font.Quality = fqDraft
-          Font.Style = [fsBold]
-          ParentColor = False
+          Items.Strings = (
+            'Sim'
+            'Não'
+          )
           ParentFont = False
+          ParentColor = False
           TabOrder = 0
         end
-        object chkboxCalorExagerado: TCheckBox
-          Left = 87
-          Height = 21
-          Top = 81
-          Width = 141
-          Caption = 'CALOR EXAGERADO'
-          Color = 16049884
-          Font.CharSet = ANSI_CHARSET
+        object rgCalorExagerado: TRadioGroup
+          Left = 41
+          Height = 45
+          Top = 82
+          Width = 190
+          AutoFill = True
+          Caption = 'Calor Exagerado ?'
+          ChildSizing.LeftRightSpacing = 6
+          ChildSizing.EnlargeHorizontal = crsHomogenousChildResize
+          ChildSizing.EnlargeVertical = crsHomogenousChildResize
+          ChildSizing.ShrinkHorizontal = crsScaleChilds
+          ChildSizing.ShrinkVertical = crsScaleChilds
+          ChildSizing.Layout = cclLeftToRightThenTopToBottom
+          ChildSizing.ControlsPerLine = 2
+          ClientHeight = 23
+          ClientWidth = 186
+          Columns = 2
           Font.Color = 98304
           Font.Height = -13
           Font.Name = 'Segoe UI Semibold'
-          Font.Pitch = fpVariable
-          Font.Quality = fqDraft
-          Font.Style = [fsBold]
-          ParentColor = False
+          Items.Strings = (
+            'Sim'
+            'Não'
+          )
           ParentFont = False
           TabOrder = 1
         end
-        object chkboxCansaFacil: TCheckBox
-          Left = 87
-          Height = 21
-          Top = 120
-          Width = 120
-          Caption = 'CANSA-SE FÁCIL'
-          Color = 16049884
-          Font.CharSet = ANSI_CHARSET
+        object rgCansaFacil: TRadioGroup
+          Left = 40
+          Height = 45
+          Top = 138
+          Width = 190
+          AutoFill = True
+          Caption = 'Cansa Fácil ?'
+          ChildSizing.LeftRightSpacing = 6
+          ChildSizing.EnlargeHorizontal = crsHomogenousChildResize
+          ChildSizing.EnlargeVertical = crsHomogenousChildResize
+          ChildSizing.ShrinkHorizontal = crsScaleChilds
+          ChildSizing.ShrinkVertical = crsScaleChilds
+          ChildSizing.Layout = cclLeftToRightThenTopToBottom
+          ChildSizing.ControlsPerLine = 2
+          ClientHeight = 23
+          ClientWidth = 186
+          Columns = 2
           Font.Color = 98304
           Font.Height = -13
           Font.Name = 'Segoe UI Semibold'
-          Font.Pitch = fpVariable
-          Font.Quality = fqDraft
-          Font.Style = [fsBold]
-          ParentColor = False
+          Items.Strings = (
+            'Sim'
+            'Não'
+          )
           ParentFont = False
           TabOrder = 2
         end
-        object chkboxCoceiraAnormal: TCheckBox
-          Left = 87
-          Height = 21
-          Top = 161
-          Width = 142
-          Caption = 'COCEIRA ANORMAL'
-          Color = 16445670
-          Font.CharSet = ANSI_CHARSET
+        object rgCoceiraAnormal: TRadioGroup
+          Left = 40
+          Height = 45
+          Top = 194
+          Width = 190
+          AutoFill = True
+          Caption = 'Coceira Anormal ?'
+          ChildSizing.LeftRightSpacing = 6
+          ChildSizing.EnlargeHorizontal = crsHomogenousChildResize
+          ChildSizing.EnlargeVertical = crsHomogenousChildResize
+          ChildSizing.ShrinkHorizontal = crsScaleChilds
+          ChildSizing.ShrinkVertical = crsScaleChilds
+          ChildSizing.Layout = cclLeftToRightThenTopToBottom
+          ChildSizing.ControlsPerLine = 2
+          ClientHeight = 23
+          ClientWidth = 186
+          Columns = 2
           Font.Color = 98304
           Font.Height = -13
           Font.Name = 'Segoe UI Semibold'
-          Font.Pitch = fpVariable
-          Font.Quality = fqDraft
-          Font.Style = [fsBold]
-          ParentColor = False
+          Items.Strings = (
+            'Sim'
+            'Não'
+          )
           ParentFont = False
           TabOrder = 3
         end
-        object chkboxDificuldadeEngolir: TCheckBox
-          Left = 87
-          Height = 21
-          Top = 198
-          Width = 179
-          Caption = 'DIFICULDADE DE ENGOLIR'
-          Color = 16445670
-          Font.CharSet = ANSI_CHARSET
+        object rgDificuldadeEngolir: TRadioGroup
+          Left = 40
+          Height = 45
+          Top = 250
+          Width = 190
+          AutoFill = True
+          Caption = 'Dificuldade de Engolir ?'
+          ChildSizing.LeftRightSpacing = 6
+          ChildSizing.EnlargeHorizontal = crsHomogenousChildResize
+          ChildSizing.EnlargeVertical = crsHomogenousChildResize
+          ChildSizing.ShrinkHorizontal = crsScaleChilds
+          ChildSizing.ShrinkVertical = crsScaleChilds
+          ChildSizing.Layout = cclLeftToRightThenTopToBottom
+          ChildSizing.ControlsPerLine = 2
+          ClientHeight = 23
+          ClientWidth = 186
+          Columns = 2
           Font.Color = 98304
           Font.Height = -13
           Font.Name = 'Segoe UI Semibold'
-          Font.Pitch = fpVariable
-          Font.Quality = fqDraft
-          Font.Style = [fsBold]
-          ParentColor = False
+          Items.Strings = (
+            'Sim'
+            'Não'
+          )
           ParentFont = False
           TabOrder = 4
         end
-        object chkboxDificuldadeMastigar: TCheckBox
-          Left = 87
-          Height = 21
-          Top = 237
+        object rgDificuldadeMastigar: TRadioGroup
+          Left = 304
+          Height = 45
+          Top = 26
           Width = 190
-          Caption = 'DIFICULDADE DE MASTIGAR'
-          Color = 16775925
-          Font.CharSet = ANSI_CHARSET
+          AutoFill = True
+          Caption = 'Dificuldade de Mastigar ?'
+          ChildSizing.LeftRightSpacing = 6
+          ChildSizing.EnlargeHorizontal = crsHomogenousChildResize
+          ChildSizing.EnlargeVertical = crsHomogenousChildResize
+          ChildSizing.ShrinkHorizontal = crsScaleChilds
+          ChildSizing.ShrinkVertical = crsScaleChilds
+          ChildSizing.Layout = cclLeftToRightThenTopToBottom
+          ChildSizing.ControlsPerLine = 2
+          ClientHeight = 23
+          ClientWidth = 186
+          Columns = 2
           Font.Color = 98304
           Font.Height = -13
           Font.Name = 'Segoe UI Semibold'
-          Font.Pitch = fpVariable
-          Font.Quality = fqDraft
-          Font.Style = [fsBold]
-          ParentColor = False
+          Items.Strings = (
+            'Sim'
+            'Não'
+          )
           ParentFont = False
           TabOrder = 5
         end
-        object chkboxDorFacial: TCheckBox
-          Left = 87
-          Height = 21
-          Top = 276
-          Width = 94
-          Caption = 'DOR FACIAL'
-          Color = 16775925
-          Font.CharSet = ANSI_CHARSET
+        object rgDorFacial: TRadioGroup
+          Left = 304
+          Height = 45
+          Top = 82
+          Width = 190
+          AutoFill = True
+          Caption = 'Dor Facial ?'
+          ChildSizing.LeftRightSpacing = 6
+          ChildSizing.EnlargeHorizontal = crsHomogenousChildResize
+          ChildSizing.EnlargeVertical = crsHomogenousChildResize
+          ChildSizing.ShrinkHorizontal = crsScaleChilds
+          ChildSizing.ShrinkVertical = crsScaleChilds
+          ChildSizing.Layout = cclLeftToRightThenTopToBottom
+          ChildSizing.ControlsPerLine = 2
+          ClientHeight = 23
+          ClientWidth = 186
+          Columns = 2
           Font.Color = 98304
           Font.Height = -13
           Font.Name = 'Segoe UI Semibold'
-          Font.Pitch = fpVariable
-          Font.Quality = fqDraft
-          Font.Style = [fsBold]
-          ParentColor = False
+          Items.Strings = (
+            'Sim'
+            'Não'
+          )
           ParentFont = False
           TabOrder = 6
         end
-        object chkboxDorCabecaFrequente: TCheckBox
-          Left = 433
-          Height = 21
-          Top = 42
-          Width = 196
-          Caption = 'DOR DE CABEÇA FREQUENTE'
-          Color = 16049884
-          Font.CharSet = ANSI_CHARSET
+        object rgDorCabecaFrequente: TRadioGroup
+          Left = 304
+          Height = 45
+          Top = 138
+          Width = 190
+          AutoFill = True
+          Caption = 'Dor de Cabeca Frequente ?'
+          ChildSizing.LeftRightSpacing = 6
+          ChildSizing.EnlargeHorizontal = crsHomogenousChildResize
+          ChildSizing.EnlargeVertical = crsHomogenousChildResize
+          ChildSizing.ShrinkHorizontal = crsScaleChilds
+          ChildSizing.ShrinkVertical = crsScaleChilds
+          ChildSizing.Layout = cclLeftToRightThenTopToBottom
+          ChildSizing.ControlsPerLine = 2
+          ClientHeight = 23
+          ClientWidth = 186
+          Columns = 2
           Font.Color = 98304
           Font.Height = -13
           Font.Name = 'Segoe UI Semibold'
-          Font.Pitch = fpVariable
-          Font.Quality = fqDraft
-          Font.Style = [fsBold]
-          ParentColor = False
+          Items.Strings = (
+            'Sim'
+            'Não'
+          )
           ParentFont = False
           TabOrder = 7
         end
-        object chkboxDorOuvidoFrequente: TCheckBox
-          Left = 433
-          Height = 21
-          Top = 81
-          Width = 197
-          Caption = 'DOR DE OUVIDO FREQUENTE'
-          Color = 16049884
-          Font.CharSet = ANSI_CHARSET
+        object rgDorOuvidoFrequente: TRadioGroup
+          Left = 304
+          Height = 45
+          Top = 194
+          Width = 190
+          AutoFill = True
+          Caption = 'Dor de Ouvido Frequente ?'
+          ChildSizing.LeftRightSpacing = 6
+          ChildSizing.EnlargeHorizontal = crsHomogenousChildResize
+          ChildSizing.EnlargeVertical = crsHomogenousChildResize
+          ChildSizing.ShrinkHorizontal = crsScaleChilds
+          ChildSizing.ShrinkVertical = crsScaleChilds
+          ChildSizing.Layout = cclLeftToRightThenTopToBottom
+          ChildSizing.ControlsPerLine = 2
+          ClientHeight = 23
+          ClientWidth = 186
+          Columns = 2
           Font.Color = 98304
           Font.Height = -13
           Font.Name = 'Segoe UI Semibold'
-          Font.Pitch = fpVariable
-          Font.Quality = fqDraft
-          Font.Style = [fsBold]
-          ParentColor = False
+          Items.Strings = (
+            'Sim'
+            'Não'
+          )
           ParentFont = False
           TabOrder = 8
         end
-        object chkboxEmagrecimentoAcentuado: TCheckBox
-          Left = 433
-          Height = 21
-          Top = 120
-          Width = 212
-          Caption = 'EMAGRECIMENTO ACENTUADO'
-          Color = 16049884
-          Font.CharSet = ANSI_CHARSET
+        object rgEmagrecimentoAcentuado: TRadioGroup
+          Left = 304
+          Height = 45
+          Top = 250
+          Width = 190
+          AutoFill = True
+          Caption = 'Emagrecimento Acentuado ?'
+          ChildSizing.LeftRightSpacing = 6
+          ChildSizing.EnlargeHorizontal = crsHomogenousChildResize
+          ChildSizing.EnlargeVertical = crsHomogenousChildResize
+          ChildSizing.ShrinkHorizontal = crsScaleChilds
+          ChildSizing.ShrinkVertical = crsScaleChilds
+          ChildSizing.Layout = cclLeftToRightThenTopToBottom
+          ChildSizing.ControlsPerLine = 2
+          ClientHeight = 23
+          ClientWidth = 186
+          Columns = 2
           Font.Color = 98304
           Font.Height = -13
           Font.Name = 'Segoe UI Semibold'
-          Font.Pitch = fpVariable
-          Font.Quality = fqDraft
-          Font.Style = [fsBold]
-          ParentColor = False
+          Items.Strings = (
+            'Sim'
+            'Não'
+          )
           ParentFont = False
           TabOrder = 9
         end
-        object chkboxEstaloMandibula: TCheckBox
-          Left = 433
-          Height = 21
-          Top = 161
-          Width = 168
-          Caption = 'ESTALO DA MANDÍBULA'
-          Color = 16445670
-          Font.CharSet = ANSI_CHARSET
+        object rgEstaloMandibula: TRadioGroup
+          Left = 580
+          Height = 45
+          Top = 27
+          Width = 190
+          AutoFill = True
+          Caption = 'Estalo da Mandíbula ?'
+          ChildSizing.LeftRightSpacing = 6
+          ChildSizing.EnlargeHorizontal = crsHomogenousChildResize
+          ChildSizing.EnlargeVertical = crsHomogenousChildResize
+          ChildSizing.ShrinkHorizontal = crsScaleChilds
+          ChildSizing.ShrinkVertical = crsScaleChilds
+          ChildSizing.Layout = cclLeftToRightThenTopToBottom
+          ChildSizing.ControlsPerLine = 2
+          ClientHeight = 23
+          ClientWidth = 186
+          Columns = 2
           Font.Color = 98304
           Font.Height = -13
           Font.Name = 'Segoe UI Semibold'
-          Font.Pitch = fpVariable
-          Font.Quality = fqDraft
-          Font.Style = [fsBold]
-          ParentColor = False
+          Items.Strings = (
+            'Sim'
+            'Não'
+          )
           ParentFont = False
           TabOrder = 10
         end
-        object chkboxFebreFrequente: TCheckBox
-          Left = 433
-          Height = 21
-          Top = 198
-          Width = 133
-          Caption = 'FEBRE FREQUENTE'
-          Color = 16775925
-          Font.CharSet = ANSI_CHARSET
+        object rgFebreFrequente: TRadioGroup
+          Left = 580
+          Height = 45
+          Top = 82
+          Width = 190
+          AutoFill = True
+          Caption = 'Febre Frequente ?'
+          ChildSizing.LeftRightSpacing = 6
+          ChildSizing.EnlargeHorizontal = crsHomogenousChildResize
+          ChildSizing.EnlargeVertical = crsHomogenousChildResize
+          ChildSizing.ShrinkHorizontal = crsScaleChilds
+          ChildSizing.ShrinkVertical = crsScaleChilds
+          ChildSizing.Layout = cclLeftToRightThenTopToBottom
+          ChildSizing.ControlsPerLine = 2
+          ClientHeight = 23
+          ClientWidth = 186
+          Columns = 2
           Font.Color = 98304
           Font.Height = -13
           Font.Name = 'Segoe UI Semibold'
-          Font.Pitch = fpVariable
-          Font.Quality = fqDraft
-          Font.Style = [fsBold]
-          ParentColor = False
+          Items.Strings = (
+            'Sim'
+            'Não'
+          )
           ParentFont = False
           TabOrder = 11
         end
-        object chkboxIndigestaoFrequente: TCheckBox
-          Left = 433
-          Height = 21
-          Top = 237
-          Width = 172
-          Caption = 'INDIGESTÃO FREQUENTE'
-          Color = 16775925
-          Font.CharSet = ANSI_CHARSET
+        object rgIndigestaoFrequente: TRadioGroup
+          Left = 580
+          Height = 45
+          Top = 138
+          Width = 190
+          AutoFill = True
+          Caption = 'Indigestão Frequente ?'
+          ChildSizing.LeftRightSpacing = 6
+          ChildSizing.EnlargeHorizontal = crsHomogenousChildResize
+          ChildSizing.EnlargeVertical = crsHomogenousChildResize
+          ChildSizing.ShrinkHorizontal = crsScaleChilds
+          ChildSizing.ShrinkVertical = crsScaleChilds
+          ChildSizing.Layout = cclLeftToRightThenTopToBottom
+          ChildSizing.ControlsPerLine = 2
+          ClientHeight = 23
+          ClientWidth = 186
+          Columns = 2
           Font.Color = 98304
           Font.Height = -13
           Font.Name = 'Segoe UI Semibold'
-          Font.Pitch = fpVariable
-          Font.Quality = fqDraft
-          Font.Style = [fsBold]
-          ParentColor = False
+          Items.Strings = (
+            'Sim'
+            'Não'
+          )
           ParentFont = False
           TabOrder = 12
         end
-        object chkboxMaCicatrizacao: TCheckBox
-          Left = 433
-          Height = 21
-          Top = 276
-          Width = 137
-          Caption = 'MÁ CICATRIZAÇÃO'
-          Color = 16775925
-          Font.CharSet = ANSI_CHARSET
+        object rgMaCicatrizacao: TRadioGroup
+          Left = 580
+          Height = 45
+          Top = 194
+          Width = 190
+          AutoFill = True
+          Caption = 'Má Cicatrização ?'
+          ChildSizing.LeftRightSpacing = 6
+          ChildSizing.EnlargeHorizontal = crsHomogenousChildResize
+          ChildSizing.EnlargeVertical = crsHomogenousChildResize
+          ChildSizing.ShrinkHorizontal = crsScaleChilds
+          ChildSizing.ShrinkVertical = crsScaleChilds
+          ChildSizing.Layout = cclLeftToRightThenTopToBottom
+          ChildSizing.ControlsPerLine = 2
+          ClientHeight = 23
+          ClientWidth = 186
+          Columns = 2
           Font.Color = 98304
           Font.Height = -13
           Font.Name = 'Segoe UI Semibold'
-          Font.Pitch = fpVariable
-          Font.Quality = fqDraft
-          Font.Style = [fsBold]
-          ParentColor = False
+          Items.Strings = (
+            'Sim'
+            'Não'
+          )
           ParentFont = False
           TabOrder = 13
         end
-        object chkboxMiccaoFrequente: TCheckBox
-          Left = 799
-          Height = 21
-          Top = 42
-          Width = 147
-          Caption = 'MICÇÃO FREQUENTE'
-          Color = 16049884
-          Font.CharSet = ANSI_CHARSET
+        object rgMiccaoFrequente: TRadioGroup
+          Left = 580
+          Height = 45
+          Top = 250
+          Width = 190
+          AutoFill = True
+          Caption = 'Micção Frequente ?'
+          ChildSizing.LeftRightSpacing = 6
+          ChildSizing.EnlargeHorizontal = crsHomogenousChildResize
+          ChildSizing.EnlargeVertical = crsHomogenousChildResize
+          ChildSizing.ShrinkHorizontal = crsScaleChilds
+          ChildSizing.ShrinkVertical = crsScaleChilds
+          ChildSizing.Layout = cclLeftToRightThenTopToBottom
+          ChildSizing.ControlsPerLine = 2
+          ClientHeight = 23
+          ClientWidth = 186
+          Columns = 2
           Font.Color = 98304
           Font.Height = -13
           Font.Name = 'Segoe UI Semibold'
-          Font.Pitch = fpVariable
-          Font.Quality = fqDraft
-          Font.Style = [fsBold]
-          ParentColor = False
+          Items.Strings = (
+            'Sim'
+            'Não'
+          )
           ParentFont = False
           TabOrder = 14
         end
-        object chkboxRangeDentes: TCheckBox
-          Left = 799
-          Height = 21
-          Top = 88
-          Width = 135
-          Caption = 'RANGE OS DENTES'
-          Color = 16049884
-          Font.CharSet = ANSI_CHARSET
+        object rgRangeDentes: TRadioGroup
+          Left = 854
+          Height = 45
+          Top = 27
+          Width = 190
+          AutoFill = True
+          Caption = 'Range os Dentes ?'
+          ChildSizing.LeftRightSpacing = 6
+          ChildSizing.EnlargeHorizontal = crsHomogenousChildResize
+          ChildSizing.EnlargeVertical = crsHomogenousChildResize
+          ChildSizing.ShrinkHorizontal = crsScaleChilds
+          ChildSizing.ShrinkVertical = crsScaleChilds
+          ChildSizing.Layout = cclLeftToRightThenTopToBottom
+          ChildSizing.ControlsPerLine = 2
+          ClientHeight = 23
+          ClientWidth = 186
+          Columns = 2
           Font.Color = 98304
           Font.Height = -13
           Font.Name = 'Segoe UI Semibold'
-          Font.Pitch = fpVariable
-          Font.Quality = fqDraft
-          Font.Style = [fsBold]
-          ParentColor = False
+          Items.Strings = (
+            'Sim'
+            'Não'
+          )
           ParentFont = False
           TabOrder = 15
         end
-        object chkboxRespiraPelaBoca: TCheckBox
-          Left = 799
-          Height = 21
-          Top = 134
-          Width = 144
-          Caption = 'RESPIRA PELA BOCA'
-          Color = 16049884
-          Font.CharSet = ANSI_CHARSET
+        object rgRespiraPelaBoca: TRadioGroup
+          Left = 854
+          Height = 45
+          Top = 82
+          Width = 190
+          AutoFill = True
+          Caption = 'Respira pela Boca ?'
+          ChildSizing.LeftRightSpacing = 6
+          ChildSizing.EnlargeHorizontal = crsHomogenousChildResize
+          ChildSizing.EnlargeVertical = crsHomogenousChildResize
+          ChildSizing.ShrinkHorizontal = crsScaleChilds
+          ChildSizing.ShrinkVertical = crsScaleChilds
+          ChildSizing.Layout = cclLeftToRightThenTopToBottom
+          ChildSizing.ControlsPerLine = 2
+          ClientHeight = 23
+          ClientWidth = 186
+          Columns = 2
           Font.Color = 98304
           Font.Height = -13
           Font.Name = 'Segoe UI Semibold'
-          Font.Pitch = fpVariable
-          Font.Quality = fqDraft
-          Font.Style = [fsBold]
-          ParentColor = False
+          Items.Strings = (
+            'Sim'
+            'Não'
+          )
           ParentFont = False
           TabOrder = 16
         end
-        object chkboxSangramentoAnormal: TCheckBox
-          Left = 799
-          Height = 21
-          Top = 180
-          Width = 186
-          Caption = 'SANGRAMENTO ANORMAL'
-          Color = 16445670
-          Font.CharSet = ANSI_CHARSET
+        object rgSangramentoAnormal: TRadioGroup
+          Left = 854
+          Height = 45
+          Top = 138
+          Width = 190
+          AutoFill = True
+          Caption = 'Sangramento Anormal ?'
+          ChildSizing.LeftRightSpacing = 6
+          ChildSizing.EnlargeHorizontal = crsHomogenousChildResize
+          ChildSizing.EnlargeVertical = crsHomogenousChildResize
+          ChildSizing.ShrinkHorizontal = crsScaleChilds
+          ChildSizing.ShrinkVertical = crsScaleChilds
+          ChildSizing.Layout = cclLeftToRightThenTopToBottom
+          ChildSizing.ControlsPerLine = 2
+          ClientHeight = 23
+          ClientWidth = 186
+          Columns = 2
           Font.Color = 98304
           Font.Height = -13
           Font.Name = 'Segoe UI Semibold'
-          Font.Pitch = fpVariable
-          Font.Quality = fqDraft
-          Font.Style = [fsBold]
-          ParentColor = False
+          Items.Strings = (
+            'Sim'
+            'Não'
+          )
           ParentFont = False
           TabOrder = 17
         end
-        object chkboxTonturaDesmaio: TCheckBox
-          Left = 799
-          Height = 21
-          Top = 226
-          Width = 165
-          Caption = 'TONTURAS / DESMAIOS'
-          Color = 16775925
-          Font.CharSet = ANSI_CHARSET
+        object rgTonturasDesmaios: TRadioGroup
+          Left = 854
+          Height = 45
+          Top = 194
+          Width = 190
+          AutoFill = True
+          Caption = 'Tonturas / Desmaios ?'
+          ChildSizing.LeftRightSpacing = 6
+          ChildSizing.EnlargeHorizontal = crsHomogenousChildResize
+          ChildSizing.EnlargeVertical = crsHomogenousChildResize
+          ChildSizing.ShrinkHorizontal = crsScaleChilds
+          ChildSizing.ShrinkVertical = crsScaleChilds
+          ChildSizing.Layout = cclLeftToRightThenTopToBottom
+          ChildSizing.ControlsPerLine = 2
+          ClientHeight = 23
+          ClientWidth = 186
+          Columns = 2
           Font.Color = 98304
           Font.Height = -13
           Font.Name = 'Segoe UI Semibold'
-          Font.Pitch = fpVariable
-          Font.Quality = fqDraft
-          Font.Style = [fsBold]
-          ParentColor = False
+          Items.Strings = (
+            'Sim'
+            'Não'
+          )
           ParentFont = False
           TabOrder = 18
         end
-        object chkboxPoucaSaliva: TCheckBox
-          Left = 799
-          Height = 21
-          Top = 272
-          Width = 111
-          Caption = 'POUCA SALIVA'
-          Color = 16775925
-          Font.CharSet = ANSI_CHARSET
+        object rgPoucaSaliva: TRadioGroup
+          Left = 854
+          Height = 45
+          Top = 250
+          Width = 190
+          AutoFill = True
+          Caption = 'Pouca Saliva ?'
+          ChildSizing.LeftRightSpacing = 6
+          ChildSizing.EnlargeHorizontal = crsHomogenousChildResize
+          ChildSizing.EnlargeVertical = crsHomogenousChildResize
+          ChildSizing.ShrinkHorizontal = crsScaleChilds
+          ChildSizing.ShrinkVertical = crsScaleChilds
+          ChildSizing.Layout = cclLeftToRightThenTopToBottom
+          ChildSizing.ControlsPerLine = 2
+          ClientHeight = 23
+          ClientWidth = 186
+          Columns = 2
           Font.Color = 98304
           Font.Height = -13
           Font.Name = 'Segoe UI Semibold'
-          Font.Pitch = fpVariable
-          Font.Quality = fqDraft
-          Font.Style = [fsBold]
-          ParentColor = False
+          Items.Strings = (
+            'Sim'
+            'Não'
+          )
           ParentFont = False
           TabOrder = 19
         end
@@ -4674,40 +4575,29 @@ object frmCadPaciente: TfrmCadPaciente
     object tabEnfermidades: TTabSheet
       Caption = 'Enfermidades'
       ClientHeight = 323
-      ClientWidth = 1083
+      ClientWidth = 1087
       ImageIndex = 4
       object pnlEnfermidades: TBCPanel
         Left = 0
         Height = 323
         Top = 0
-        Width = 1083
+        Width = 1087
         Align = alClient
         Background.Color = 16049884
-        Background.ColorOpacity = 255
         Background.Gradient1.StartColor = 16247261
-        Background.Gradient1.StartColorOpacity = 255
-        Background.Gradient1.DrawMode = dmSet
         Background.Gradient1.EndColor = 16049884
-        Background.Gradient1.EndColorOpacity = 255
-        Background.Gradient1.ColorCorrection = True
         Background.Gradient1.GradientType = gtLinear
         Background.Gradient1.Point1XPercent = 0
         Background.Gradient1.Point1YPercent = 0
         Background.Gradient1.Point2XPercent = 0
         Background.Gradient1.Point2YPercent = 100
-        Background.Gradient1.Sinus = False
         Background.Gradient2.StartColor = 16445670
-        Background.Gradient2.StartColorOpacity = 255
-        Background.Gradient2.DrawMode = dmSet
         Background.Gradient2.EndColor = 16775925
-        Background.Gradient2.EndColorOpacity = 255
-        Background.Gradient2.ColorCorrection = True
         Background.Gradient2.GradientType = gtLinear
         Background.Gradient2.Point1XPercent = 0
         Background.Gradient2.Point1YPercent = 0
         Background.Gradient2.Point2XPercent = 0
         Background.Gradient2.Point2YPercent = 100
-        Background.Gradient2.Sinus = False
         Background.Gradient1EndPercent = 50
         Background.Style = bbsGradient
         BevelInner = bvNone
@@ -4715,27 +4605,19 @@ object frmCadPaciente: TfrmCadPaciente
         BevelWidth = 1
         Border.Color = 12824480
         Border.ColorOpacity = 200
-        Border.LightColor = clWhite
         Border.LightOpacity = 200
         Border.LightWidth = 1
         Border.Style = bboSolid
-        Border.Width = 1
         BorderBCStyle = bpsBorder
         Enabled = False
         FontEx.Color = clDefault
-        FontEx.EndEllipsis = False
         FontEx.FontQuality = fqSystemClearType
-        FontEx.Height = 0
-        FontEx.SingleLine = True
         FontEx.Shadow = False
-        FontEx.ShadowColor = clBlack
-        FontEx.ShadowColorOpacity = 255
         FontEx.ShadowRadius = 5
         FontEx.ShadowOffsetX = 5
         FontEx.ShadowOffsetY = 5
         FontEx.Style = []
-        FontEx.TextAlignment = bcaCenter
-        FontEx.WordBreak = False
+        ParentBackground = False
         Rounding.RoundX = 1
         Rounding.RoundY = 1
         Rounding.RoundOptions = [rrTopLeftSquare, rrTopRightSquare, rrBottomRightSquare, rrBottomLeftSquare]
@@ -4744,368 +4626,578 @@ object frmCadPaciente: TfrmCadPaciente
           Left = 11
           Height = 301
           Top = 11
-          Width = 1061
+          Width = 1065
           Align = alClient
           BorderSpacing.Around = 10
         end
-        object chkboxAIDS: TCheckBox
-          Left = 87
-          Height = 21
-          Top = 42
-          Width = 49
-          Caption = 'AIDS'
-          Color = 16049884
-          Font.CharSet = ANSI_CHARSET
+        object rgAIDS: TRadioGroup
+          Left = 40
+          Height = 44
+          Top = 19
+          Width = 190
+          AutoFill = True
+          Caption = 'AIDS ?'
+          ChildSizing.LeftRightSpacing = 6
+          ChildSizing.EnlargeHorizontal = crsHomogenousChildResize
+          ChildSizing.EnlargeVertical = crsHomogenousChildResize
+          ChildSizing.ShrinkHorizontal = crsScaleChilds
+          ChildSizing.ShrinkVertical = crsScaleChilds
+          ChildSizing.Layout = cclLeftToRightThenTopToBottom
+          ChildSizing.ControlsPerLine = 2
+          ClientHeight = 22
+          ClientWidth = 186
+          Columns = 2
           Font.Color = 98304
           Font.Height = -13
           Font.Name = 'Segoe UI Semibold'
-          Font.Pitch = fpVariable
-          Font.Quality = fqDraft
-          Font.Style = [fsBold]
-          ParentColor = False
+          Items.Strings = (
+            'Sim'
+            'Não'
+          )
           ParentFont = False
           TabOrder = 0
         end
-        object chkboxAnemia: TCheckBox
-          Left = 87
-          Height = 21
-          Top = 81
-          Width = 71
-          Caption = 'ANEMIA'
-          Color = 16049884
-          Font.CharSet = ANSI_CHARSET
+        object rgAnemia: TRadioGroup
+          Left = 40
+          Height = 44
+          Top = 79
+          Width = 190
+          AutoFill = True
+          Caption = 'Anemia ?'
+          ChildSizing.LeftRightSpacing = 6
+          ChildSizing.EnlargeHorizontal = crsHomogenousChildResize
+          ChildSizing.EnlargeVertical = crsHomogenousChildResize
+          ChildSizing.ShrinkHorizontal = crsScaleChilds
+          ChildSizing.ShrinkVertical = crsScaleChilds
+          ChildSizing.Layout = cclLeftToRightThenTopToBottom
+          ChildSizing.ControlsPerLine = 2
+          ClientHeight = 22
+          ClientWidth = 186
+          Columns = 2
           Font.Color = 98304
           Font.Height = -13
           Font.Name = 'Segoe UI Semibold'
-          Font.Pitch = fpVariable
-          Font.Quality = fqDraft
-          Font.Style = [fsBold]
-          ParentColor = False
+          Items.Strings = (
+            'Sim'
+            'Não'
+          )
           ParentFont = False
           TabOrder = 1
         end
-        object chkboxAsma: TCheckBox
-          Left = 87
-          Height = 21
-          Top = 120
-          Width = 57
-          Caption = 'ASMA'
-          Color = 16049884
-          Font.CharSet = ANSI_CHARSET
+        object rgAsma: TRadioGroup
+          Left = 40
+          Height = 44
+          Top = 139
+          Width = 190
+          AutoFill = True
+          Caption = 'Asma ?'
+          ChildSizing.LeftRightSpacing = 6
+          ChildSizing.EnlargeHorizontal = crsHomogenousChildResize
+          ChildSizing.EnlargeVertical = crsHomogenousChildResize
+          ChildSizing.ShrinkHorizontal = crsScaleChilds
+          ChildSizing.ShrinkVertical = crsScaleChilds
+          ChildSizing.Layout = cclLeftToRightThenTopToBottom
+          ChildSizing.ControlsPerLine = 2
+          ClientHeight = 22
+          ClientWidth = 186
+          Columns = 2
           Font.Color = 98304
           Font.Height = -13
           Font.Name = 'Segoe UI Semibold'
-          Font.Pitch = fpVariable
-          Font.Quality = fqDraft
-          Font.Style = [fsBold]
-          ParentColor = False
+          Items.Strings = (
+            'Sim'
+            'Não'
+          )
           ParentFont = False
           TabOrder = 2
         end
-        object chkboxDiabete: TCheckBox
-          Left = 87
-          Height = 21
-          Top = 161
-          Width = 71
-          Caption = 'DIABETE'
-          Color = 16445670
-          Font.CharSet = ANSI_CHARSET
+        object rgDiabete: TRadioGroup
+          Left = 40
+          Height = 44
+          Top = 199
+          Width = 190
+          AutoFill = True
+          Caption = 'Diabetes ?'
+          ChildSizing.LeftRightSpacing = 6
+          ChildSizing.EnlargeHorizontal = crsHomogenousChildResize
+          ChildSizing.EnlargeVertical = crsHomogenousChildResize
+          ChildSizing.ShrinkHorizontal = crsScaleChilds
+          ChildSizing.ShrinkVertical = crsScaleChilds
+          ChildSizing.Layout = cclLeftToRightThenTopToBottom
+          ChildSizing.ControlsPerLine = 2
+          ClientHeight = 22
+          ClientWidth = 186
+          Columns = 2
           Font.Color = 98304
           Font.Height = -13
           Font.Name = 'Segoe UI Semibold'
-          Font.Pitch = fpVariable
-          Font.Quality = fqDraft
-          Font.Style = [fsBold]
-          ParentColor = False
+          Items.Strings = (
+            'Sim'
+            'Não'
+          )
           ParentFont = False
           TabOrder = 3
         end
-        object chkboxDoencaCoracao: TCheckBox
-          Left = 87
-          Height = 21
-          Top = 198
-          Width = 189
-          Caption = 'DOENÇA CARDIOVASCULAR'
-          Color = 16445670
-          Font.CharSet = ANSI_CHARSET
+        object rgDoencaCoracao: TRadioGroup
+          Left = 40
+          Height = 44
+          Top = 259
+          Width = 190
+          AutoFill = True
+          Caption = 'Doença Cardiovascular ?'
+          ChildSizing.LeftRightSpacing = 6
+          ChildSizing.EnlargeHorizontal = crsHomogenousChildResize
+          ChildSizing.EnlargeVertical = crsHomogenousChildResize
+          ChildSizing.ShrinkHorizontal = crsScaleChilds
+          ChildSizing.ShrinkVertical = crsScaleChilds
+          ChildSizing.Layout = cclLeftToRightThenTopToBottom
+          ChildSizing.ControlsPerLine = 2
+          ClientHeight = 22
+          ClientWidth = 186
+          Columns = 2
           Font.Color = 98304
           Font.Height = -13
           Font.Name = 'Segoe UI Semibold'
-          Font.Pitch = fpVariable
-          Font.Quality = fqDraft
-          Font.Style = [fsBold]
-          ParentColor = False
+          Items.Strings = (
+            'Sim'
+            'Não'
+          )
           ParentFont = False
           TabOrder = 4
         end
-        object chkboxTumorBucal: TCheckBox
-          Left = 87
-          Height = 21
-          Top = 237
-          Width = 110
-          Caption = 'TUMOR BUCAL'
-          Color = 16775925
-          Font.CharSet = ANSI_CHARSET
+        object rgTumorBoca: TRadioGroup
+          Left = 304
+          Height = 44
+          Top = 19
+          Width = 190
+          AutoFill = True
+          Caption = 'Tumor na Boca ?'
+          ChildSizing.LeftRightSpacing = 6
+          ChildSizing.EnlargeHorizontal = crsHomogenousChildResize
+          ChildSizing.EnlargeVertical = crsHomogenousChildResize
+          ChildSizing.ShrinkHorizontal = crsScaleChilds
+          ChildSizing.ShrinkVertical = crsScaleChilds
+          ChildSizing.Layout = cclLeftToRightThenTopToBottom
+          ChildSizing.ControlsPerLine = 2
+          ClientHeight = 22
+          ClientWidth = 186
+          Color = 16445670
+          Columns = 2
           Font.Color = 98304
           Font.Height = -13
           Font.Name = 'Segoe UI Semibold'
-          Font.Pitch = fpVariable
-          Font.Quality = fqDraft
-          Font.Style = [fsBold]
-          ParentColor = False
+          Items.Strings = (
+            'Sim'
+            'Não'
+          )
           ParentFont = False
+          ParentColor = False
           TabOrder = 5
         end
-        object chkboxDoencaRenal: TCheckBox
-          Left = 87
-          Height = 21
-          Top = 276
-          Width = 117
-          Caption = 'DOENÇA RENAL'
-          Color = 16775925
-          Font.CharSet = ANSI_CHARSET
+        object rgDoencaRenal: TRadioGroup
+          Left = 304
+          Height = 44
+          Top = 79
+          Width = 190
+          AutoFill = True
+          Caption = 'Doença Renal ?'
+          ChildSizing.LeftRightSpacing = 6
+          ChildSizing.EnlargeHorizontal = crsHomogenousChildResize
+          ChildSizing.EnlargeVertical = crsHomogenousChildResize
+          ChildSizing.ShrinkHorizontal = crsScaleChilds
+          ChildSizing.ShrinkVertical = crsScaleChilds
+          ChildSizing.Layout = cclLeftToRightThenTopToBottom
+          ChildSizing.ControlsPerLine = 2
+          ClientHeight = 22
+          ClientWidth = 186
+          Color = 16049884
+          Columns = 2
           Font.Color = 98304
           Font.Height = -13
           Font.Name = 'Segoe UI Semibold'
-          Font.Pitch = fpVariable
-          Font.Quality = fqDraft
-          Font.Style = [fsBold]
-          ParentColor = False
+          Items.Strings = (
+            'Sim'
+            'Não'
+          )
           ParentFont = False
+          ParentColor = False
           TabOrder = 6
         end
-        object chkboxDisritmiaEplepsia: TCheckBox
-          Left = 433
-          Height = 21
-          Top = 42
-          Width = 157
-          Caption = 'DISRITMIA / EPILEPSIA'
+        object rgDisritmiaEpilepsia: TRadioGroup
+          Left = 304
+          Height = 44
+          Top = 139
+          Width = 190
+          AutoFill = True
+          Caption = 'Disritmia ou Epilepsia ?'
+          ChildSizing.LeftRightSpacing = 6
+          ChildSizing.EnlargeHorizontal = crsHomogenousChildResize
+          ChildSizing.EnlargeVertical = crsHomogenousChildResize
+          ChildSizing.ShrinkHorizontal = crsScaleChilds
+          ChildSizing.ShrinkVertical = crsScaleChilds
+          ChildSizing.Layout = cclLeftToRightThenTopToBottom
+          ChildSizing.ControlsPerLine = 2
+          ClientHeight = 22
+          ClientWidth = 186
           Color = 16049884
-          Font.CharSet = ANSI_CHARSET
+          Columns = 2
           Font.Color = 98304
           Font.Height = -13
           Font.Name = 'Segoe UI Semibold'
-          Font.Pitch = fpVariable
-          Font.Quality = fqDraft
-          Font.Style = [fsBold]
-          ParentColor = False
+          Items.Strings = (
+            'Sim'
+            'Não'
+          )
           ParentFont = False
+          ParentColor = False
           TabOrder = 7
         end
-        object chkboxFebreReumatica: TCheckBox
-          Left = 433
-          Height = 21
-          Top = 81
-          Width = 134
-          Caption = 'FEBRE REUMÁTICA'
+        object rgFebreReumatica: TRadioGroup
+          Left = 304
+          Height = 44
+          Top = 199
+          Width = 190
+          AutoFill = True
+          Caption = 'Febre Reumática ?'
+          ChildSizing.LeftRightSpacing = 6
+          ChildSizing.EnlargeHorizontal = crsHomogenousChildResize
+          ChildSizing.EnlargeVertical = crsHomogenousChildResize
+          ChildSizing.ShrinkHorizontal = crsScaleChilds
+          ChildSizing.ShrinkVertical = crsScaleChilds
+          ChildSizing.Layout = cclLeftToRightThenTopToBottom
+          ChildSizing.ControlsPerLine = 2
+          ClientHeight = 22
+          ClientWidth = 186
           Color = 16049884
-          Font.CharSet = ANSI_CHARSET
+          Columns = 2
           Font.Color = 98304
           Font.Height = -13
           Font.Name = 'Segoe UI Semibold'
-          Font.Pitch = fpVariable
-          Font.Quality = fqDraft
-          Font.Style = [fsBold]
-          ParentColor = False
+          Items.Strings = (
+            'Sim'
+            'Não'
+          )
           ParentFont = False
+          ParentColor = False
           TabOrder = 8
         end
-        object chkboxGlaucoma: TCheckBox
-          Left = 433
-          Height = 21
-          Top = 120
-          Width = 92
-          Caption = 'GLAUCOMA'
-          Color = 16049884
-          Font.CharSet = ANSI_CHARSET
+        object rgGlaucoma: TRadioGroup
+          Left = 304
+          Height = 44
+          Top = 259
+          Width = 190
+          AutoFill = True
+          Caption = 'Glaucoma ?'
+          ChildSizing.LeftRightSpacing = 6
+          ChildSizing.EnlargeHorizontal = crsHomogenousChildResize
+          ChildSizing.EnlargeVertical = crsHomogenousChildResize
+          ChildSizing.ShrinkHorizontal = crsScaleChilds
+          ChildSizing.ShrinkVertical = crsScaleChilds
+          ChildSizing.Layout = cclLeftToRightThenTopToBottom
+          ChildSizing.ControlsPerLine = 2
+          ClientHeight = 22
+          ClientWidth = 186
+          Color = 16445670
+          Columns = 2
           Font.Color = 98304
           Font.Height = -13
           Font.Name = 'Segoe UI Semibold'
-          Font.Pitch = fpVariable
-          Font.Quality = fqDraft
-          Font.Style = [fsBold]
-          ParentColor = False
+          Items.Strings = (
+            'Sim'
+            'Não'
+          )
           ParentFont = False
+          ParentColor = False
           TabOrder = 9
         end
-        object chkboxGonorreia: TCheckBox
-          Left = 433
-          Height = 21
-          Top = 161
-          Width = 95
-          Caption = 'GONORRÉIA'
+        object rgGonorreia: TRadioGroup
+          Left = 580
+          Height = 44
+          Top = 19
+          Width = 190
+          AutoFill = True
+          Caption = 'Gonorréia'
+          ChildSizing.LeftRightSpacing = 6
+          ChildSizing.EnlargeHorizontal = crsHomogenousChildResize
+          ChildSizing.EnlargeVertical = crsHomogenousChildResize
+          ChildSizing.ShrinkHorizontal = crsScaleChilds
+          ChildSizing.ShrinkVertical = crsScaleChilds
+          ChildSizing.Layout = cclLeftToRightThenTopToBottom
+          ChildSizing.ControlsPerLine = 2
+          ClientHeight = 22
+          ClientWidth = 186
           Color = 16445670
-          Font.CharSet = ANSI_CHARSET
+          Columns = 2
           Font.Color = 98304
           Font.Height = -13
           Font.Name = 'Segoe UI Semibold'
-          Font.Pitch = fpVariable
-          Font.Quality = fqDraft
-          Font.Style = [fsBold]
-          ParentColor = False
+          Items.Strings = (
+            'Sim'
+            'Não'
+          )
           ParentFont = False
+          ParentColor = False
           TabOrder = 10
         end
-        object chkboxHanseniase: TCheckBox
-          Left = 433
-          Height = 21
-          Top = 198
-          Width = 100
-          Caption = 'HANSENÍASE'
-          Color = 16775925
-          Font.CharSet = ANSI_CHARSET
-          Font.Color = 98304
-          Font.Height = -13
-          Font.Name = 'Segoe UI Semibold'
-          Font.Pitch = fpVariable
-          Font.Quality = fqDraft
-          Font.Style = [fsBold]
-          ParentColor = False
-          ParentFont = False
-          TabOrder = 11
-        end
-        object chkboxHemofilia: TCheckBox
-          Left = 433
-          Height = 21
-          Top = 237
-          Width = 89
-          Caption = 'HEMOFILIA'
-          Color = 16775925
-          Font.CharSet = ANSI_CHARSET
-          Font.Color = 98304
-          Font.Height = -13
-          Font.Name = 'Segoe UI Semibold'
-          Font.Pitch = fpVariable
-          Font.Quality = fqDraft
-          Font.Style = [fsBold]
-          ParentColor = False
-          ParentFont = False
-          TabOrder = 12
-        end
-        object chkboxHepatite: TCheckBox
-          Left = 433
-          Height = 21
-          Top = 276
-          Width = 79
-          Caption = 'HEPATÍTE'
-          Color = 16775925
-          Font.CharSet = ANSI_CHARSET
-          Font.Color = 98304
-          Font.Height = -13
-          Font.Name = 'Segoe UI Semibold'
-          Font.Pitch = fpVariable
-          Font.Quality = fqDraft
-          Font.Style = [fsBold]
-          ParentColor = False
-          ParentFont = False
-          TabOrder = 13
-        end
-        object chkboxIctericia: TCheckBox
-          Left = 799
-          Height = 21
-          Top = 42
-          Width = 79
-          Caption = 'ICTERÍCIA'
-          Color = 16049884
-          Font.CharSet = ANSI_CHARSET
-          Font.Color = 98304
-          Font.Height = -13
-          Font.Name = 'Segoe UI Semibold'
-          Font.Pitch = fpVariable
-          Font.Quality = fqDraft
-          Font.Style = [fsBold]
-          ParentColor = False
-          ParentFont = False
-          TabOrder = 14
-        end
-        object chkboxProblemaHormonal: TCheckBox
-          Left = 799
-          Height = 21
-          Top = 88
-          Width = 167
-          Caption = 'PROBLEMA HORMONAL'
-          Color = 16049884
-          Font.CharSet = ANSI_CHARSET
-          Font.Color = 98304
-          Font.Height = -13
-          Font.Name = 'Segoe UI Semibold'
-          Font.Pitch = fpVariable
-          Font.Quality = fqDraft
-          Font.Style = [fsBold]
-          ParentColor = False
-          ParentFont = False
-          TabOrder = 15
-        end
-        object chkboxSifilis: TCheckBox
-          Left = 799
-          Height = 21
-          Top = 134
-          Width = 59
-          Caption = 'SÍFILIS'
-          Color = 16049884
-          Font.CharSet = ANSI_CHARSET
-          Font.Color = 98304
-          Font.Height = -13
-          Font.Name = 'Segoe UI Semibold'
-          Font.Pitch = fpVariable
-          Font.Quality = fqDraft
-          Font.Style = [fsBold]
-          ParentColor = False
-          ParentFont = False
-          TabOrder = 16
-        end
-        object chkboxSinusite: TCheckBox
-          Left = 799
-          Height = 21
-          Top = 180
-          Width = 75
-          Caption = 'SINUSITE'
+        object rgSinusite: TRadioGroup
+          Left = 854
+          Height = 44
+          Top = 139
+          Width = 190
+          AutoFill = True
+          Caption = 'Sinusite ?'
+          ChildSizing.LeftRightSpacing = 6
+          ChildSizing.EnlargeHorizontal = crsHomogenousChildResize
+          ChildSizing.EnlargeVertical = crsHomogenousChildResize
+          ChildSizing.ShrinkHorizontal = crsScaleChilds
+          ChildSizing.ShrinkVertical = crsScaleChilds
+          ChildSizing.Layout = cclLeftToRightThenTopToBottom
+          ChildSizing.ControlsPerLine = 2
+          ClientHeight = 22
+          ClientWidth = 186
           Color = 16445670
-          Font.CharSet = ANSI_CHARSET
+          Columns = 2
           Font.Color = 98304
           Font.Height = -13
           Font.Name = 'Segoe UI Semibold'
-          Font.Pitch = fpVariable
-          Font.Quality = fqDraft
-          Font.Style = [fsBold]
-          ParentColor = False
+          Items.Strings = (
+            'Sim'
+            'Não'
+          )
           ParentFont = False
+          ParentColor = False
           TabOrder = 17
         end
-        object chkboxTuberculose: TCheckBox
-          Left = 799
-          Height = 21
-          Top = 226
-          Width = 106
-          Caption = 'TUBERCULOSE'
-          Color = 16775925
-          Font.CharSet = ANSI_CHARSET
+        object rgHanseniase: TRadioGroup
+          Left = 580
+          Height = 44
+          Top = 79
+          Width = 190
+          AutoFill = True
+          Caption = 'Hanseniase ?'
+          ChildSizing.LeftRightSpacing = 6
+          ChildSizing.EnlargeHorizontal = crsHomogenousChildResize
+          ChildSizing.EnlargeVertical = crsHomogenousChildResize
+          ChildSizing.ShrinkHorizontal = crsScaleChilds
+          ChildSizing.ShrinkVertical = crsScaleChilds
+          ChildSizing.Layout = cclLeftToRightThenTopToBottom
+          ChildSizing.ControlsPerLine = 2
+          ClientHeight = 22
+          ClientWidth = 186
+          Color = 16049884
+          Columns = 2
           Font.Color = 98304
           Font.Height = -13
           Font.Name = 'Segoe UI Semibold'
-          Font.Pitch = fpVariable
-          Font.Quality = fqDraft
-          Font.Style = [fsBold]
-          ParentColor = False
+          Items.Strings = (
+            'Sim'
+            'Não'
+          )
           ParentFont = False
+          ParentColor = False
+          TabOrder = 11
+        end
+        object rgHemofilia: TRadioGroup
+          Left = 580
+          Height = 44
+          Top = 139
+          Width = 190
+          AutoFill = True
+          Caption = 'Hemofília ?'
+          ChildSizing.LeftRightSpacing = 6
+          ChildSizing.EnlargeHorizontal = crsHomogenousChildResize
+          ChildSizing.EnlargeVertical = crsHomogenousChildResize
+          ChildSizing.ShrinkHorizontal = crsScaleChilds
+          ChildSizing.ShrinkVertical = crsScaleChilds
+          ChildSizing.Layout = cclLeftToRightThenTopToBottom
+          ChildSizing.ControlsPerLine = 2
+          ClientHeight = 22
+          ClientWidth = 186
+          Color = 16049884
+          Columns = 2
+          Font.Color = 98304
+          Font.Height = -13
+          Font.Name = 'Segoe UI Semibold'
+          Items.Strings = (
+            'Sim'
+            'Não'
+          )
+          ParentFont = False
+          ParentColor = False
+          TabOrder = 12
+        end
+        object rgHepatite: TRadioGroup
+          Left = 580
+          Height = 44
+          Top = 199
+          Width = 190
+          AutoFill = True
+          Caption = 'Hepatíte ?'
+          ChildSizing.LeftRightSpacing = 6
+          ChildSizing.EnlargeHorizontal = crsHomogenousChildResize
+          ChildSizing.EnlargeVertical = crsHomogenousChildResize
+          ChildSizing.ShrinkHorizontal = crsScaleChilds
+          ChildSizing.ShrinkVertical = crsScaleChilds
+          ChildSizing.Layout = cclLeftToRightThenTopToBottom
+          ChildSizing.ControlsPerLine = 2
+          ClientHeight = 22
+          ClientWidth = 186
+          Color = 16049884
+          Columns = 2
+          Font.Color = 98304
+          Font.Height = -13
+          Font.Name = 'Segoe UI Semibold'
+          Items.Strings = (
+            'Sim'
+            'Não'
+          )
+          ParentFont = False
+          ParentColor = False
+          TabOrder = 13
+        end
+        object rgIctericia: TRadioGroup
+          Left = 580
+          Height = 44
+          Top = 259
+          Width = 190
+          AutoFill = True
+          Caption = 'Icterícia ?'
+          ChildSizing.LeftRightSpacing = 6
+          ChildSizing.EnlargeHorizontal = crsHomogenousChildResize
+          ChildSizing.EnlargeVertical = crsHomogenousChildResize
+          ChildSizing.ShrinkHorizontal = crsScaleChilds
+          ChildSizing.ShrinkVertical = crsScaleChilds
+          ChildSizing.Layout = cclLeftToRightThenTopToBottom
+          ChildSizing.ControlsPerLine = 2
+          ClientHeight = 22
+          ClientWidth = 186
+          Color = 16445670
+          Columns = 2
+          Font.Color = 98304
+          Font.Height = -13
+          Font.Name = 'Segoe UI Semibold'
+          Items.Strings = (
+            'Sim'
+            'Não'
+          )
+          ParentFont = False
+          ParentColor = False
+          TabOrder = 14
+        end
+        object rgProblemaHormonal: TRadioGroup
+          Left = 854
+          Height = 44
+          Top = 19
+          Width = 190
+          AutoFill = True
+          Caption = 'Problema Hormonal ?'
+          ChildSizing.LeftRightSpacing = 6
+          ChildSizing.EnlargeHorizontal = crsHomogenousChildResize
+          ChildSizing.EnlargeVertical = crsHomogenousChildResize
+          ChildSizing.ShrinkHorizontal = crsScaleChilds
+          ChildSizing.ShrinkVertical = crsScaleChilds
+          ChildSizing.Layout = cclLeftToRightThenTopToBottom
+          ChildSizing.ControlsPerLine = 2
+          ClientHeight = 22
+          ClientWidth = 186
+          Color = 16445670
+          Columns = 2
+          Font.Color = 98304
+          Font.Height = -13
+          Font.Name = 'Segoe UI Semibold'
+          Items.Strings = (
+            'Sim'
+            'Não'
+          )
+          ParentFont = False
+          ParentColor = False
+          TabOrder = 15
+        end
+        object rgSifilis: TRadioGroup
+          Left = 854
+          Height = 44
+          Top = 79
+          Width = 190
+          AutoFill = True
+          Caption = 'Sífilis ?'
+          ChildSizing.LeftRightSpacing = 6
+          ChildSizing.EnlargeHorizontal = crsHomogenousChildResize
+          ChildSizing.EnlargeVertical = crsHomogenousChildResize
+          ChildSizing.ShrinkHorizontal = crsScaleChilds
+          ChildSizing.ShrinkVertical = crsScaleChilds
+          ChildSizing.Layout = cclLeftToRightThenTopToBottom
+          ChildSizing.ControlsPerLine = 2
+          ClientHeight = 22
+          ClientWidth = 186
+          Color = 16445670
+          Columns = 2
+          Font.Color = 98304
+          Font.Height = -13
+          Font.Name = 'Segoe UI Semibold'
+          Items.Strings = (
+            'Sim'
+            'Não'
+          )
+          ParentFont = False
+          ParentColor = False
+          TabOrder = 16
+        end
+        object rgTuberculose: TRadioGroup
+          Left = 854
+          Height = 44
+          Top = 199
+          Width = 190
+          AutoFill = True
+          Caption = 'Tuberculose ?'
+          ChildSizing.LeftRightSpacing = 6
+          ChildSizing.EnlargeHorizontal = crsHomogenousChildResize
+          ChildSizing.EnlargeVertical = crsHomogenousChildResize
+          ChildSizing.ShrinkHorizontal = crsScaleChilds
+          ChildSizing.ShrinkVertical = crsScaleChilds
+          ChildSizing.Layout = cclLeftToRightThenTopToBottom
+          ChildSizing.ControlsPerLine = 2
+          ClientHeight = 22
+          ClientWidth = 186
+          Color = 16049884
+          Columns = 2
+          Font.Color = 98304
+          Font.Height = -13
+          Font.Name = 'Segoe UI Semibold'
+          Items.Strings = (
+            'Sim'
+            'Não'
+          )
+          ParentFont = False
+          ParentColor = False
           TabOrder = 18
         end
-        object chkboxUlceraHepatica: TCheckBox
-          Left = 799
-          Height = 21
-          Top = 272
-          Width = 133
-          Caption = 'ÚLCERA HEPÁTICA'
-          Color = 16775925
-          Font.CharSet = ANSI_CHARSET
+        object rgUlceraHepatica: TRadioGroup
+          Left = 854
+          Height = 44
+          Top = 259
+          Width = 190
+          AutoFill = True
+          Caption = 'Húlcera Hepática ?'
+          ChildSizing.LeftRightSpacing = 6
+          ChildSizing.EnlargeHorizontal = crsHomogenousChildResize
+          ChildSizing.EnlargeVertical = crsHomogenousChildResize
+          ChildSizing.ShrinkHorizontal = crsScaleChilds
+          ChildSizing.ShrinkVertical = crsScaleChilds
+          ChildSizing.Layout = cclLeftToRightThenTopToBottom
+          ChildSizing.ControlsPerLine = 2
+          ClientHeight = 22
+          ClientWidth = 186
+          Color = 16049884
+          Columns = 2
           Font.Color = 98304
           Font.Height = -13
           Font.Name = 'Segoe UI Semibold'
-          Font.Pitch = fpVariable
-          Font.Quality = fqDraft
-          Font.Style = [fsBold]
-          ParentColor = False
+          Items.Strings = (
+            'Sim'
+            'Não'
+          )
           ParentFont = False
+          ParentColor = False
           TabOrder = 19
         end
       end

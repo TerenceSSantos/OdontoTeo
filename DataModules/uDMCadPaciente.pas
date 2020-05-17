@@ -6,7 +6,7 @@ interface
 
 uses
    Classes, SysUtils, db, ZDataset, dialogs, uClassPaciente, ZStoredProcedure, uClassResponsavelPaciente, uClassDocumentos,
-   uClassSinaisSintomas;
+   uClassSinaisSintomas, uClassEnfermidades;
 
 type
 
@@ -23,6 +23,7 @@ type
       strprocEditarDadosBasicos: TZStoredProc;
       strprocGravarDocumentos: TZStoredProc;
       strprocGravarDadosBasicos: TZStoredProc;
+      strprocGravarEnfermidades: TZStoredProc;
       strprocGravarResponsavel: TZStoredProc;
       strprocGravarSinaisSintomas: TZStoredProc;
    private
@@ -34,10 +35,14 @@ type
       function EnviaDadosBasicos(objPaciente: TPaciente) : TPaciente;
       function ApagarCadastroBasico(codigo: integer): boolean;
 
+      function ConvertePraBoolean(s: string): boolean;
+
       function InclusaoResponsavel(objResponsavel: TResponsavelPaciente): boolean;
       function SelectResponsavel(idTblPaciente: integer; objResponsavel: TResponsavelPaciente): TResponsavelPaciente;
 
       function InclusaoSinaisSintomas(objSinaisSintomas: TSinaisSintomas): boolean;
+
+      function InclusaoEnfermidades(objEnfermidades: TEnfermidades): boolean;
 
       { TODO 1 -oTerence -cCadastro : AQUI DEVERÁ CRIAR O INSERT DE DOCUMENTOS. PORÉM ANTES DE INCLUIR O DOCUMENTO DO RESPONSÁVEL,
       DEVEMOS VERIFICAR SE JÁ EXISTE UM RESPONSÁVEL CADASTRADO. }
@@ -165,6 +170,14 @@ begin
    end;
 end;
 
+function TdmCadPaciente.ConvertePraBoolean(s: string): boolean;
+begin
+   if s = 'true' then
+      result := true
+   else if s ='false' then
+      result := false;
+end;
+
 function TdmCadPaciente.InclusaoResponsavel(objResponsavel: TResponsavelPaciente): boolean;
 begin                                { TODO 0 -oTerence -cDMCadPaciente : Continuar o processo do CADASTRO DE RESPONSÁVEL }
    strprocGravarResponsavel.Params[0].AsString := objResponsavel.nomeResponsavel;
@@ -197,27 +210,64 @@ function TdmCadPaciente.InclusaoSinaisSintomas(objSinaisSintomas: TSinaisSintoma
 begin
    with strprocGravarSinaisSintomas do
    begin
-      Params[0].AsBoolean := objSinaisSintomas.alteracaoApetite;
-      Params[1].AsBoolean := objSinaisSintomas.calorExagerado;
-      Params[2].AsBoolean := objSinaisSintomas.cansaFacil;
-      Params[3].AsBoolean := objSinaisSintomas.coceiraAnormal;
-      Params[4].AsBoolean := objSinaisSintomas.dificuldadeEngolir;
-      Params[5].AsBoolean := objSinaisSintomas.dificuldadeMastigar;
-      Params[6].AsBoolean := objSinaisSintomas.dorFacial;
-      Params[7].AsBoolean := objSinaisSintomas.dorFrequenteCabeca;
-      Params[8].AsBoolean := objSinaisSintomas.dorOuvidoFrequente;
-      Params[9].AsBoolean := objSinaisSintomas.emagrecimentoAcentuado;
-      Params[10].AsBoolean := objSinaisSintomas.estaloMandibula;
-      Params[11].AsBoolean := objSinaisSintomas.febreFrequente;
-      Params[12].AsBoolean := objSinaisSintomas.indigestaoFrequente;
-      Params[13].AsBoolean := objSinaisSintomas.maCicatrizacao;
-      Params[14].AsBoolean := objSinaisSintomas.miccaoFrequente;
-      Params[15].AsBoolean := objSinaisSintomas.rangeDentes;
-      Params[16].AsBoolean := objSinaisSintomas.respiraPelaBoca;
-      Params[17].AsBoolean := objSinaisSintomas.sangramentoAnormal;
-      Params[18].AsBoolean := objSinaisSintomas.tonturaDesmaio;
-      Params[19].AsBoolean := objSinaisSintomas.poucaSaliva;
+      Params[0].Value := objSinaisSintomas.alteracaoApetite;
+      Params[1].Value := objSinaisSintomas.calorExagerado;
+      Params[2].Value := objSinaisSintomas.cansaFacil;
+      Params[3].Value := objSinaisSintomas.coceiraAnormal;
+      Params[4].Value := objSinaisSintomas.dificuldadeEngolir;
+      Params[5].Value := objSinaisSintomas.dificuldadeMastigar;
+      Params[6].Value := objSinaisSintomas.dorFacial;
+      Params[7].Value := objSinaisSintomas.dorFrequenteCabeca;
+      Params[8].Value := objSinaisSintomas.dorOuvidoFrequente;
+      Params[9].Value := objSinaisSintomas.emagrecimentoAcentuado;
+      Params[10].Value := objSinaisSintomas.estaloMandibula;
+      Params[11].Value := objSinaisSintomas.febreFrequente;
+      Params[12].Value := objSinaisSintomas.indigestaoFrequente;
+      Params[13].Value := objSinaisSintomas.maCicatrizacao;
+      Params[14].Value := objSinaisSintomas.miccaoFrequente;
+      Params[15].Value := objSinaisSintomas.rangeDentes;
+      Params[16].Value := objSinaisSintomas.respiraPelaBoca;
+      Params[17].Value := objSinaisSintomas.sangramentoAnormal;
+      Params[18].Value := objSinaisSintomas.tonturaDesmaio;
+      Params[19].Value := objSinaisSintomas.poucaSaliva;
       Params[20].AsInteger := objSinaisSintomas.idTblPaciente;
+      try
+         ExecProc;
+         result := true;
+      except on E: Exception do
+         begin
+            ShowMessage('Erro ao tentar gravar a inclusão do registro, com a seguinte mensagem de erro:' + LineEnding + E.Message);
+            result := false;
+         end;
+      end;
+   end;
+end;
+
+function TdmCadPaciente.InclusaoEnfermidades(objEnfermidades: TEnfermidades): boolean;
+begin
+   with strprocGravarEnfermidades do
+   begin
+      Params[0].Value := objEnfermidades.aids;
+      Params[1].Value := objEnfermidades.anemia;
+      Params[2].Value := objEnfermidades.asma;
+      Params[3].Value := objEnfermidades.diabete;
+      Params[4].Value := objEnfermidades.doencaCoracao;
+      Params[5].Value := objEnfermidades.tumorBoca;
+      Params[6].Value := objEnfermidades.doencaRenal;
+      Params[7].Value := objEnfermidades.disritmiaEpilepsia;
+      Params[8].Value := objEnfermidades.febreReumatica;
+      Params[9].Value := objEnfermidades.glaucoma;
+      Params[10].Value := objEnfermidades.gonorreia;
+      Params[11].Value := objEnfermidades.hanseniase;
+      Params[12].Value := objEnfermidades.hemofilia;
+      Params[13].Value := objEnfermidades.hepatite;
+      Params[14].Value := objEnfermidades.ictericia;
+      Params[15].Value := objEnfermidades.problemaHormonal;
+      Params[16].Value := objEnfermidades.sifilis;
+      Params[17].Value := objEnfermidades.sinusite;
+      Params[18].Value := objEnfermidades.tuberculose;
+      Params[19].Value := objEnfermidades.ulceraHepatica;
+      Params[20].AsInteger := objEnfermidades.idTblPaciente;
       try
          ExecProc;
          result := true;

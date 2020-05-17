@@ -16,12 +16,12 @@ type
       btnFecharSistema: TBitBtn;
       btnFechar: TBCButton;
       btnMinimizar: TBCButton;
+      imgLogoOdonto: TImage;
       imglstPrincipal: TImageList;
       imgLogoTitulo: TImage;
-      imgLogoOdonto: TImage;
       lblDataHora: TLabel;
-      pnlTitulo: TBCPanel;
       pnlCorpoPrincipal: TBCPanel;
+      pnlTitulo: TBCPanel;
       spkbtnCadPacientes: TSpkLargeButton;
       spkbtnCadDentistas: TSpkLargeButton;
       spkpaneRelatorios: TSpkPane;
@@ -37,7 +37,6 @@ type
       procedure FormShow(Sender: TObject);
       procedure spkbarPrincipalTabChanging(Sender: TObject; OldIndex, NewIndex: integer; var Allowed: boolean);
       procedure spkbtnCadPacientesClick(Sender: TObject);
-      procedure spktabSobreClick(Sender: TObject);
       procedure Timer1Timer(Sender: TObject);
    private
        var oldTab: integer;
@@ -113,16 +112,6 @@ begin
    finally
       FreeAndNil(frmCadPaciente);
    end;
-end;
-
-procedure TfrmPrincipal.spktabSobreClick(Sender: TObject);
-begin
-   //try
-   //   frmSobre := TfrmSobre.Create(nil);
-   //   frmSobre.ShowModal;
-   //finally
-   //   FreeAndNil(frmSobre);
-   //end;
 end;
 
 procedure TfrmPrincipal.Timer1Timer(Sender: TObject);

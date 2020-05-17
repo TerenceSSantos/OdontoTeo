@@ -5,79 +5,69 @@ unit uCadPacientes;
 interface
 
 uses
-   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, ExtCtrls, Buttons, StdCtrls, ComCtrls, MaskEdit, {CustomDrawnControls,}
-   DateTimePicker, BCPanel, BCButton, uClassPaciente, uClassResponsavelPaciente, uClassDocumentos, uClassSinaisSintomas;
+   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, ExtCtrls, Buttons, StdCtrls, ComCtrls, MaskEdit, ECGroupCtrls, rxctrls,
+   {CustomDrawnControls,} DateTimePicker, BCPanel, BCButton, RTTICtrls,
+   uClassPaciente, uClassResponsavelPaciente, uClassDocumentos, uClassSinaisSintomas, uClassEnfermidades;
 
 type
 
    { TfrmCadPaciente }
 
    TfrmCadPaciente = class(TForm)
-      bvSinaisSintomas: TBevel;
-      bvEndereco: TBevel;
       bvContatos: TBevel;
+      bvDadosBasicos: TBevel;
+      bvDocumentos: TBevel;
+      bvEndereco: TBevel;
       bvEndereco1: TBevel;
+      bvResponsavel: TBevel;
+      bvSexo: TBevel;
+      bvSinaisSintomas: TBevel;
       bvSinaisSintomas1: TBevel;
       cboxConsAcucar: TComboBox;
-      cboxEscovacao: TComboBox;
       cboxConsAcucar2: TComboBox;
-      cboxOperadoraTelTrab: TComboBox;
-      cboxOperadoraTelRecado: TComboBox;
-      cboxUFCasa: TComboBox;
+      cboxEscovacao: TComboBox;
+      cboxEstCivil: TComboBox;
       cboxOperadoraCasa: TComboBox;
       cboxOperadoraCel1: TComboBox;
       cboxOperadoraCel2: TComboBox;
+      cboxOperadoraTelRecado: TComboBox;
+      cboxOperadoraTelTrab: TComboBox;
+      cboxUFCasa: TComboBox;
       cboxUFEmpresa: TComboBox;
-      chkboxAlteracaoApetite: TCheckBox;
-      chkboxEmagrecimentoAcentuado: TCheckBox;
-      chkboxEstaloMandibula: TCheckBox;
-      chkboxFebreFrequente: TCheckBox;
-      chkboxIndigestaoFrequente: TCheckBox;
-      chkboxMaCicatrizacao: TCheckBox;
-      chkboxMiccaoFrequente: TCheckBox;
-      chkboxRangeDentes: TCheckBox;
-      chkboxRespiraPelaBoca: TCheckBox;
-      chkboxSangramentoAnormal: TCheckBox;
-      chkboxTonturaDesmaio: TCheckBox;
-      chkboxCalorExagerado: TCheckBox;
-      chkboxPoucaSaliva: TCheckBox;
-      chkboxAIDS: TCheckBox;
-      chkboxAnemia: TCheckBox;
-      chkboxAsma: TCheckBox;
-      chkboxDiabete: TCheckBox;
-      chkboxDoencaCoracao: TCheckBox;
-      chkboxTumorBucal: TCheckBox;
-      chkboxDoencaRenal: TCheckBox;
-      chkboxDisritmiaEplepsia: TCheckBox;
-      chkboxFebreReumatica: TCheckBox;
-      chkboxCansaFacil: TCheckBox;
-      chkboxGlaucoma: TCheckBox;
-      chkboxGonorreia: TCheckBox;
-      chkboxHanseniase: TCheckBox;
-      chkboxHemofilia: TCheckBox;
-      chkboxHepatite: TCheckBox;
-      chkboxIctericia: TCheckBox;
-      chkboxProblemaHormonal: TCheckBox;
-      chkboxSifilis: TCheckBox;
-      chkboxSinusite: TCheckBox;
-      chkboxTuberculose: TCheckBox;
-      chkboxCoceiraAnormal: TCheckBox;
-      chkboxUlceraHepatica: TCheckBox;
-      chkboxDificuldadeEngolir: TCheckBox;
-      chkboxDificuldadeMastigar: TCheckBox;
-      chkboxDorFacial: TCheckBox;
-      chkboxDorCabecaFrequente: TCheckBox;
-      chkboxDorOuvidoFrequente: TCheckBox;
+      cboxUFNascimento: TComboBox;
       chkboxAtivo: TCheckBox;
-      edtHabitosViciosos: TEdit;
-      edtBairroEmpresa: TEdit;
-      edtCidadeEmpresa: TEdit;
-      edtComplEmpresa: TEdit;
+      dtpkNascimento: TDateTimePicker;
       edtAntecFamiliar: TEdit;
-      edtLogradEmpresa: TEdit;
-      edtNomeEmpresa: TEdit;
-      edtNumEndEmpresa: TEdit;
+      edtBairro: TEdit;
+      edtBairroEmpresa: TEdit;
       edtCargo: TEdit;
+      edtCelular1: TEdit;
+      edtCelular2: TEdit;
+      edtCidade: TEdit;
+      edtCidadeEmpresa: TEdit;
+      edtCodPaciente: TEdit;
+      edtComplemento: TEdit;
+      edtComplEmpresa: TEdit;
+      edtDDDCasa: TEdit;
+      edtDDDCel1: TEdit;
+      edtDDDCel2: TEdit;
+      edtDDDTelRecado: TEdit;
+      edtDDDTelTrab: TEdit;
+      edtHabitosViciosos: TEdit;
+      edtIdentidadePaciente: TEdit;
+      edtIdentidadeResp: TEdit;
+      edtIdentidadeResp1: TEdit;
+      edtLogradEmpresa: TEdit;
+      edtLogradouro: TEdit;
+      edtNacionalidade: TEdit;
+      edtNaturalidade: TEdit;
+      edtNomeConjuge: TEdit;
+      edtNomeEmpresa: TEdit;
+      edtNomeMae: TEdit;
+      edtNomePaciente: TEdit;
+      edtNomePai: TEdit;
+      edtNomeResp: TEdit;
+      edtNumEndEmpresa: TEdit;
       edtNumEndEmpresa1: TEdit;
       edtNumEndEmpresa10: TEdit;
       edtNumEndEmpresa2: TEdit;
@@ -88,26 +78,15 @@ type
       edtNumEndEmpresa7: TEdit;
       edtNumEndEmpresa8: TEdit;
       edtNumEndEmpresa9: TEdit;
-      edtPessoaRecado: TEdit;
-      edtTelTrab: TEdit;
-      edtTelRecado: TEdit;
-      edtDDDTelTrab: TEdit;
-      edtDDDTelRecado: TEdit;
       edtNumEndereco: TEdit;
-      edtIdentidadeResp: TEdit;
-      edtIdentidadePaciente: TEdit;
-      edtCidade: TEdit;
-      edtBairro: TEdit;
-      edtLogradouro: TEdit;
-      edtComplemento: TEdit;
-      edtDDDCasa: TEdit;
-      edtDDDCel1: TEdit;
-      edtDDDCel2: TEdit;
-      edtOrgaoExpedResp: TEdit;
+      edtOrgaoExpedidorResp1: TEdit;
       edtOrgaoExpedPaciente: TEdit;
+      edtOrgaoExpedResp: TEdit;
+      edtParentesco: TEdit;
+      edtPessoaRecado: TEdit;
       edtTelCasa: TEdit;
-      edtCelular1: TEdit;
-      edtCelular2: TEdit;
+      edtTelRecado: TEdit;
+      edtTelTrab: TEdit;
       GroupBox1: TGroupBox;
       GroupBox10: TGroupBox;
       GroupBox11: TGroupBox;
@@ -120,6 +99,7 @@ type
       GroupBox7: TGroupBox;
       GroupBox8: TGroupBox;
       GroupBox9: TGroupBox;
+      lblAntecFamiliar: TLabel;
       lblAntecFamiliar1: TLabel;
       lblAntecFamiliar10: TLabel;
       lblAntecFamiliar11: TLabel;
@@ -140,118 +120,99 @@ type
       lblAntecFamiliar7: TLabel;
       lblAntecFamiliar8: TLabel;
       lblAntecFamiliar9: TLabel;
-      lblBairroEmpresa: TLabel;
-      lblCEPEmpresa: TLabel;
-      lblCidadeEmpresea: TLabel;
-      lblComplEmpresa: TLabel;
-      lblAntecFamiliar: TLabel;
-      lblObsAnatHistPatol: TLabel;
-      lblHabitosViciosos: TLabel;
-      lblEscovacao: TLabel;
-      lblUsoFioDental: TLabel;
-      lblLogradEmpresa: TLabel;
-      lblNomeEmpresa: TLabel;
-      lblNumEndEmpresa: TLabel;
-      lblCargo: TLabel;
-      lblConsAcucar: TLabel;
-      lblPessoaRecado: TLabel;
-      lblTelTrab: TLabel;
-      lblTelRecado: TLabel;
-      lblDDDTelTrab: TLabel;
-      lblDDDTelRecado: TLabel;
-      lblNumEndereco: TLabel;
-      lblCPFResp: TLabel;
-      lblCPFPaciente: TLabel;
-      lblCEPCasa: TLabel;
-      lblIdentidadeResp: TLabel;
-      lblIdentidadePaciente: TLabel;
       lblBairro: TLabel;
+      lblBairroEmpresa: TLabel;
+      lblCargo: TLabel;
+      lblCel1: TLabel;
+      lblCelular2: TLabel;
+      lblCEPCasa: TLabel;
+      lblCEPEmpresa: TLabel;
       lblCidade: TLabel;
+      lblCidadeEmpresea: TLabel;
+      lblCodigoPaciente: TLabel;
+      lblComplemento: TLabel;
+      lblComplEmpresa: TLabel;
+      lblConsAcucar: TLabel;
+      lblCPFPaciente: TLabel;
+      lblCPFResp: TLabel;
+      lblCPFResp1: TLabel;
       lblDDDCasa: TLabel;
       lblDDDCel1: TLabel;
       lblDDDCel2: TLabel;
-      lblOperadoraTelTrab: TLabel;
-      lblOperadorTelRecado: TLabel;
-      lblOrgaoExpResp: TLabel;
-      lblOrgaoExpedPaciente: TLabel;
+      lblDDDTelRecado: TLabel;
+      lblDDDTelTrab: TLabel;
+      lblDtNascimento: TLabel;
+      lblEscovacao: TLabel;
+      lblEstadoCivil: TLabel;
+      lblHabitosViciosos: TLabel;
+      lblIdentidadePaciente: TLabel;
+      lblIdentidadeResp: TLabel;
+      lblIdentidadeResp1: TLabel;
+      lblLogradEmpresa: TLabel;
       lblLogradouro: TLabel;
-      lblComplemento: TLabel;
-      lblTelCasa: TLabel;
+      lblMae: TLabel;
+      lblNacionalidade: TLabel;
+      lblNaturalidade: TLabel;
+      lblNomeConjuge: TLabel;
+      lblNomeEmpresa: TLabel;
+      lblNomeResponsavel: TLabel;
+      lblNumEndEmpresa: TLabel;
+      lblNumEndereco: TLabel;
+      lblObsAnatHistPatol: TLabel;
       lblOperadoraCasa: TLabel;
-      lblCel1: TLabel;
       lblOperadoraCel: TLabel;
-      lblCelular2: TLabel;
+      lblOperadoraTelTrab: TLabel;
       lblOperadorCel2: TLabel;
+      lblOperadorTelRecado: TLabel;
+      lblOrgaoExpedidorResp1: TLabel;
+      lblOrgaoExpedPaciente: TLabel;
+      lblOrgaoExpResp: TLabel;
+      lblPaciente: TLabel;
+      lblPai: TLabel;
+      lblParaDataVazia: TLabel;
+      lblParentesco: TLabel;
+      lblPessoaRecado: TLabel;
+      lblSexo: TLabel;
+      lblTelCasa: TLabel;
+      lblTelRecado: TLabel;
+      lblTelTrab: TLabel;
+      lblUF: TLabel;
       lblUFCasa: TLabel;
       lblUFEmpresa: TLabel;
+      lblUsoFioDental: TLabel;
       memoObsAnatHistPatol: TMemo;
-      mskedtCEPEmpresa: TMaskEdit;
-      mskedtCPFResp: TMaskEdit;
-      mskedtCPFPaciente: TMaskEdit;
       mskedtCEPCasa: TMaskEdit;
-      pnlAnamnese: TBCPanel;
-      pnlDadosBasicos: TBCPanel;
-      pnlEndereco: TBCPanel;
-      pnlDadosProfissionais: TBCPanel;
-      pnlResponsavel: TBCPanel;
-      bvDadosBasicos: TBevel;
-      bvSexo: TBevel;
-      bvResponsavel: TBevel;
-      bvDocumentos: TBevel;
-      edtIdentidadeResp1: TEdit;
-      edtParentesco: TEdit;
-      edtNomeResp: TEdit;
-      edtOrgaoExpedidorResp1: TEdit;
-      lblCodigoPaciente: TLabel;
-      lblParaDataVazia: TLabel;
-      lblCPFResp1: TLabel;
-      lblIdentidadeResp1: TLabel;
-      lblParentesco: TLabel;
-      lblOrgaoExpedidorResp1: TLabel;
-      lblNomeResponsavel: TLabel;
+      mskedtCEPEmpresa: TMaskEdit;
+      mskedtCPFPaciente: TMaskEdit;
+      mskedtCPFResp: TMaskEdit;
       mskedtCPFResp1: TMaskEdit;
-      pcCadPaciente: TPageControl;
       btnAlteraCadastro: TBitBtn;
       btnApagaCadastro: TBitBtn;
       btnGravaCadastro: TBitBtn;
       btnCancelaCadastro: TBitBtn;
       btnSaiCadastro: TBitBtn;
-      cboxEstCivil: TComboBox;
-      cboxUFNascimento: TComboBox;
-      dtpkNascimento: TDateTimePicker;
-      edtCodPaciente: TEdit;
-      edtNomePaciente: TEdit;
-      edtNomePai: TEdit;
-      edtNomeMae: TEdit;
-      edtNomeConjuge: TEdit;
-      edtNaturalidade: TEdit;
-      edtNacionalidade: TEdit;
       edtOrgaoExpedidorResp: TEdit;
-      lblDtNascimento: TLabel;
       lblOrgaoExpedidorResp: TLabel;
       lblNomeResp: TLabel;
-      lblUF: TLabel;
-      lblSexo: TLabel;
-      lblEstadoCivil: TLabel;
-      lblPaciente: TLabel;
       lblIdade: TLabel;
       lblCodPaciente: TLabel;
       lblNomePaciente: TLabel;
-      lblNomeConjuge: TLabel;
-      lblNaturalidade: TLabel;
-      lblNacionalidade: TLabel;
-      lblPai: TLabel;
-      lblMae: TLabel;
       miglstCadPaciente: TImageList;
+      pcCadPaciente: TPageControl;
+      pnlAnamnese: TBCPanel;
       pnlBotoes: TBCPanel;
       btnNovoCadastro: TBitBtn;
       btnFechar: TBCButton;
       imgLogoTitulo: TImage;
-      pnlBotoes1: TBCPanel;
-      pnlDocumentos: TBCPanel;
+      pnlCodigoNomeIdade: TBCPanel;
       pnlContatos: TBCPanel;
-      pnlSinaisSintomas: TBCPanel;
+      pnlDadosBasicos: TBCPanel;
+      pnlDadosProfissionais: TBCPanel;
+      pnlDocumentos: TBCPanel;
+      pnlEndereco: TBCPanel;
       pnlEnfermidades: TBCPanel;
+      pnlResponsavel: TBCPanel;
+      pnlSinaisSintomas: TBCPanel;
       pnlTitulo: TBCPanel;
       btnProcuraPaciente: TSpeedButton;
       RadioButton1: TRadioButton;
@@ -288,17 +249,57 @@ type
       RadioButton7: TRadioButton;
       RadioButton8: TRadioButton;
       RadioButton9: TRadioButton;
+      rgDificuldadeMastigar: TRadioGroup;
+      rgMiccaoFrequente: TRadioGroup;
+      rgRangeDentes: TRadioGroup;
+      rgRespiraPelaBoca: TRadioGroup;
+      rgSangramentoAnormal: TRadioGroup;
+      rgTonturasDesmaios: TRadioGroup;
+      rgPoucaSaliva: TRadioGroup;
+      rgDorFacial: TRadioGroup;
+      rgDorCabecaFrequente: TRadioGroup;
+      rgDorOuvidoFrequente: TRadioGroup;
+      rgEmagrecimentoAcentuado: TRadioGroup;
+      rgEstaloMandibula: TRadioGroup;
+      rgFebreFrequente: TRadioGroup;
+      rgIndigestaoFrequente: TRadioGroup;
+      rgMaCicatrizacao: TRadioGroup;
       rbtnFeminino: TRadioButton;
       rbtnMasculino: TRadioButton;
+      rgAIDS: TRadioGroup;
+      rgAlteracaoApetite: TRadioGroup;
+      rgAnemia: TRadioGroup;
+      rgAsma: TRadioGroup;
+      rgCalorExagerado: TRadioGroup;
+      rgCansaFacil: TRadioGroup;
+      rgCoceiraAnormal: TRadioGroup;
+      rgDiabete: TRadioGroup;
+      rgDificuldadeEngolir: TRadioGroup;
+      rgDisritmiaEpilepsia: TRadioGroup;
+      rgDoencaCoracao: TRadioGroup;
+      rgDoencaRenal: TRadioGroup;
+      rgFebreReumatica: TRadioGroup;
+      rgGlaucoma: TRadioGroup;
+      rgGonorreia: TRadioGroup;
+      rgHanseniase: TRadioGroup;
+      rgHemofilia: TRadioGroup;
+      rgHepatite: TRadioGroup;
+      rgIctericia: TRadioGroup;
+      rgProblemaHormonal: TRadioGroup;
+      rgSifilis: TRadioGroup;
+      rgSinusite: TRadioGroup;
+      rgTuberculose: TRadioGroup;
+      rgTumorBoca: TRadioGroup;
+      rgUlceraHepatica: TRadioGroup;
       ScrollBox1: TScrollBox;
-      tabDadosBasicos: TTabSheet;
-      tabResponsavel: TTabSheet;
-      tabEndereco: TTabSheet;
-      tabContatos: TTabSheet;
-      tabDadosProfissionais: TTabSheet;
       tabAnamnese: TTabSheet;
-      tabEnfermidades: TTabSheet;
+      tabContatos: TTabSheet;
+      tabDadosBasicos: TTabSheet;
+      tabDadosProfissionais: TTabSheet;
       tabDocumentos: TTabSheet;
+      tabEndereco: TTabSheet;
+      tabEnfermidades: TTabSheet;
+      tabResponsavel: TTabSheet;
       tabSinaisSintomas: TTabSheet;
       UpDown1: TUpDown;
       UpDown2: TUpDown;
@@ -323,8 +324,12 @@ type
       procedure HabilitaControles(controle: TWinControl);
       procedure DesabilitaControles(controle: TWinControl);
       procedure EstadoBotoes;
-      function CarregaObjDadosBasicos(objDados: TPaciente): TPaciente;
+
       procedure LimpaControles(controle: TWinControl);
+
+      function RetornoRadioGroup(ItemIndex: integer): string;
+
+      function CarregaObjDadosBasicos(objDados: TPaciente): TPaciente;
       procedure InclusaoDadosBasicos;
       procedure EdicaoDadosBasicos(objPaciente: TPaciente);
 
@@ -333,6 +338,9 @@ type
 
       function CarregaObjSinaisSintomas(objSinaisSintomas: TSinaisSintomas): TSinaisSintomas;
       procedure InclusaoSinaisSintomas;
+
+      function CarregaObjEnfermidades(objEnfermidades: TEnfermidades): TEnfermidades;
+      procedure InclusaoEnfermidades;
 
    public
       procedure PreencheFormDadosBasicos(objDados: TPaciente);
@@ -387,6 +395,10 @@ begin
       7 : begin
              if estado in [teInclusao] then
                 InclusaoSinaisSintomas;
+          end;
+      8 : begin
+             if estado in [teInclusao] then
+                InclusaoEnfermidades;
           end;
    end;
 
@@ -701,6 +713,16 @@ begin
       end;
 end;
 
+function TfrmCadPaciente.RetornoRadioGroup(ItemIndex: integer): string;
+begin
+   case ItemIndex of            {** Função para retornar True ou False dos RadioGroups **}
+      0 : result := 'S';
+      1 : result := 'N';
+      else
+         result := EmptyStr;
+   end;
+end;
+
 procedure TfrmCadPaciente.InclusaoDadosBasicos;
 var
    objControlePaciente : TControlePaciente;
@@ -790,29 +812,29 @@ end;
 
 function TfrmCadPaciente.CarregaObjSinaisSintomas(objSinaisSintomas: TSinaisSintomas): TSinaisSintomas;
 begin
-   with objSinaisSintomas do                      { TODO -oTerence -cFormulario : ALTERAR OS CHECKS BOXES POR RADIOS GROUPS }
+   with objSinaisSintomas do
    begin
       idTblPaciente := StrToInt(edtCodPaciente.Text);
-      alteracaoApetite := chkboxAlteracaoApetite.Checked;
-      calorExagerado := chkboxCalorExagerado.Checked;
-      cansaFacil := chkboxCansaFacil.Checked;
-      coceiraAnormal := chkboxCoceiraAnormal.Checked;
-      dificuldadeEngolir := chkboxDificuldadeEngolir.Checked;
-      dificuldadeMastigar := chkboxDificuldadeMastigar.Checked;
-      dorFacial := chkboxDorFacial.Checked;
-      dorFrequenteCabeca := chkboxDorCabecaFrequente.Checked;
-      dorOuvidoFrequente := chkboxDorOuvidoFrequente.Checked;
-      emagrecimentoAcentuado := chkboxEmagrecimentoAcentuado.Checked;
-      estaloMandibula := chkboxEstaloMandibula.Checked;
-      febreFrequente := chkboxFebreFrequente.Checked;
-      indigestaoFrequente := chkboxIndigestaoFrequente.Checked;
-      maCicatrizacao := chkboxMaCicatrizacao.Checked;
-      miccaoFrequente := chkboxMiccaoFrequente.Checked;
-      rangeDentes := chkboxRangeDentes.Checked;
-      respiraPelaBoca := chkboxRespiraPelaBoca.Checked;
-      sangramentoAnormal := chkboxSangramentoAnormal.Checked;
-      tonturaDesmaio := chkboxTonturaDesmaio.Checked;
-      poucaSaliva := chkboxPoucaSaliva.Checked;
+      alteracaoApetite := RetornoRadioGroup(rgAlteracaoApetite.ItemIndex);
+      calorExagerado := RetornoRadioGroup(rgCalorExagerado.ItemIndex);
+      cansaFacil := RetornoRadioGroup(rgCansaFacil.ItemIndex);
+      coceiraAnormal := RetornoRadioGroup(rgCoceiraAnormal.ItemIndex);
+      dificuldadeEngolir := RetornoRadioGroup(rgDificuldadeEngolir.ItemIndex);
+      dificuldadeMastigar := RetornoRadioGroup(rgDificuldadeMastigar.ItemIndex);
+      dorFacial := RetornoRadioGroup(rgDorFacial.ItemIndex);
+      dorFrequenteCabeca := RetornoRadioGroup(rgDorCabecaFrequente.ItemIndex);
+      dorOuvidoFrequente := RetornoRadioGroup(rgDorOuvidoFrequente.ItemIndex);
+      emagrecimentoAcentuado := RetornoRadioGroup(rgEmagrecimentoAcentuado.ItemIndex);
+      estaloMandibula := RetornoRadioGroup(rgEstaloMandibula.ItemIndex);
+      febreFrequente := RetornoRadioGroup(rgFebreFrequente.ItemIndex);
+      indigestaoFrequente := RetornoRadioGroup(rgIndigestaoFrequente.ItemIndex);
+      maCicatrizacao := RetornoRadioGroup(rgMaCicatrizacao.ItemIndex);
+      miccaoFrequente := RetornoRadioGroup(rgMiccaoFrequente.ItemIndex);
+      rangeDentes := RetornoRadioGroup(rgRangeDentes.ItemIndex);
+      respiraPelaBoca := RetornoRadioGroup(rgRespiraPelaBoca.ItemIndex);
+      sangramentoAnormal := RetornoRadioGroup(rgSangramentoAnormal.ItemIndex);
+      tonturaDesmaio := RetornoRadioGroup(rgTonturasDesmaios.ItemIndex);
+      poucaSaliva := RetornoRadioGroup(rgPoucaSaliva.ItemIndex);
    end;
    result := objSinaisSintomas;
 end;
@@ -834,6 +856,54 @@ begin
    finally
       FreeAndNil(objControlePaciente);
       FreeAndNil(objSinaisSintomas);
+   end;
+end;
+
+function TfrmCadPaciente.CarregaObjEnfermidades(objEnfermidades: TEnfermidades): TEnfermidades;
+begin
+   with objEnfermidades do
+   begin
+      idTblPaciente := StrToInt(edtCodPaciente.Text);
+      aids := RetornoRadioGroup(rgAIDS.ItemIndex);
+      anemia := RetornoRadioGroup(rgAnemia.ItemIndex);
+      asma := RetornoRadioGroup(rgAsma.ItemIndex);
+      diabete := RetornoRadioGroup(rgDiabete.ItemIndex);
+      disritmiaEpilepsia := RetornoRadioGroup(rgDisritmiaEpilepsia.ItemIndex);
+      doencaCoracao := RetornoRadioGroup(rgDoencaCoracao.ItemIndex);
+      doencaRenal := RetornoRadioGroup(rgDoencaRenal.ItemIndex);
+      febreReumatica := RetornoRadioGroup(rgFebreReumatica.ItemIndex);
+      glaucoma := RetornoRadioGroup(rgGlaucoma.ItemIndex);
+      gonorreia := RetornoRadioGroup(rgGonorreia.ItemIndex);
+      hanseniase := RetornoRadioGroup(rgHanseniase.ItemIndex);
+      hemofilia := RetornoRadioGroup(rgHemofilia.ItemIndex);
+      hepatite := RetornoRadioGroup(rgHepatite.ItemIndex);
+      ictericia := RetornoRadioGroup(rgIctericia.ItemIndex);
+      problemaHormonal := RetornoRadioGroup(rgProblemaHormonal.ItemIndex);
+      sifilis := RetornoRadioGroup(rgSifilis.ItemIndex);
+      sinusite := RetornoRadioGroup(rgSinusite.ItemIndex);
+      tuberculose := RetornoRadioGroup(rgTuberculose.ItemIndex);
+      tumorBoca := RetornoRadioGroup(rgTumorBoca.ItemIndex);
+      ulceraHepatica := RetornoRadioGroup(rgUlceraHepatica.ItemIndex);
+   end;
+end;
+
+procedure TfrmCadPaciente.InclusaoEnfermidades;
+var
+   objEnfermidades : TEnfermidades;
+   objControlePaciente : TControlePaciente;
+begin
+   objEnfermidades := TEnfermidades.Create;
+   objControlePaciente := TControlePaciente.Create;
+   try
+      if objControlePaciente.InclusaoEnfermidades(CarregaObjEnfermidades(objEnfermidades))then
+         ShowMessage('Cadastro das Enfermidades realizado com sucesso!');
+
+      DesabilitaControles(pcCadPaciente.ActivePage);
+      estado := teNavegacao;
+      EstadoBotoes;
+   finally
+      FreeAndNil(objControlePaciente);
+      FreeAndNil(objEnfermidades);
    end;
 end;
 

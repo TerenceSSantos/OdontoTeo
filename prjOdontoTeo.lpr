@@ -7,10 +7,11 @@ uses
    cthreads,
    {$ENDIF}{$ENDIF}
    Interfaces, // this includes the LCL widgetset
-   Forms, notlcldesigner, datetimectrls, zcomponent, rxnew, uPrincipal,
-   uDMConexao, uCadPacientes, uLocalizarPaciente, uDMCadPaciente,
-   uClassPaciente, uClassControlePaciente, uClassResponsavelPaciente,
-   uClassDocumentos, uClassContatos, uClassSinaisSintomas, uSobre;
+   Forms, notlcldesigner, datetimectrls, runtimetypeinfocontrols, zcomponent,
+   rxnew, uPrincipal, uDMConexao, uCadPacientes, uLocalizarPaciente,
+   uDMCadPaciente, uClassPaciente, uClassControlePaciente,
+   uClassResponsavelPaciente, uClassContatos,
+   uClassSinaisSintomas, uSobre, uClassEnfermidades;
 
 {$R *.res}
 
