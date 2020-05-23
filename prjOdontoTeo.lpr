@@ -11,7 +11,7 @@ uses
    rxnew, uPrincipal, uDMConexao, uCadPacientes, uLocalizarPaciente,
    uDMCadPaciente, uClassPaciente, uClassControlePaciente,
    uClassResponsavelPaciente, uClassContatos,
-   uClassSinaisSintomas, uSobre, uClassEnfermidades;
+   uClassSinaisSintomas, uSobre, uClassEnfermidades, uFrmMensagem;
 
 {$R *.res}
 

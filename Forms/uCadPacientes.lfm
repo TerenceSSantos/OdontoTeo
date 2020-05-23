@@ -571,17 +571,17 @@ object frmCadPaciente: TfrmCadPaciente
     Height = 366
     Top = 181
     Width = 1095
-    ActivePage = tabDocumentos
+    ActivePage = tabDadosBasicos
     Align = alClient
     Images = miglstCadPaciente
-    TabIndex = 2
+    TabIndex = 0
     TabOrder = 3
     OnChange = pcCadPacienteChange
     OnChanging = pcCadPacienteChanging
     object tabDadosBasicos: TTabSheet
       Caption = 'Dados Basicos'
       ClientHeight = 323
-      ClientWidth = 1083
+      ClientWidth = 1087
       Font.CharSet = ANSI_CHARSET
       Font.Color = clMaroon
       Font.Height = -12
@@ -595,7 +595,7 @@ object frmCadPaciente: TfrmCadPaciente
         Left = 0
         Height = 323
         Top = 0
-        Width = 1083
+        Width = 1087
         Align = alClient
         Background.Color = clBtnFace
         Background.Gradient1.StartColor = 16775925
@@ -640,7 +640,7 @@ object frmCadPaciente: TfrmCadPaciente
           Left = 16
           Height = 291
           Top = 16
-          Width = 1051
+          Width = 1055
           Align = alClient
           BorderSpacing.Around = 15
         end
@@ -714,28 +714,12 @@ object frmCadPaciente: TfrmCadPaciente
           OnChange = edtNomePacienteChange
           ParentFont = False
           TabOrder = 1
-          TextHint = 'NOME DO PACIENTE'
-        end
-        object lblPai: TLabel
-          Left = 72
-          Height = 15
-          Top = 96
-          Width = 69
-          Caption = 'Nome do Pai'
-          Font.CharSet = ANSI_CHARSET
-          Font.Color = 98304
-          Font.Height = -12
-          Font.Name = 'Segoe UI Semibold'
-          Font.Pitch = fpVariable
-          Font.Quality = fqDraft
-          Font.Style = [fsBold]
-          ParentColor = False
-          ParentFont = False
+          TextHint = 'Nome do(a) paciente'
         end
         object edtNomePai: TEdit
-          Left = 72
+          Left = 616
           Height = 23
-          Top = 116
+          Top = 60
           Width = 350
           Color = clInfoBk
           Font.CharSet = ANSI_CHARSET
@@ -747,9 +731,10 @@ object frmCadPaciente: TfrmCadPaciente
           Font.Style = [fsBold]
           ParentFont = False
           TabOrder = 2
+          TextHint = 'Nome do pai do(a) paciente'
         end
         object lblMae: TLabel
-          Left = 453
+          Left = 72
           Height = 15
           Top = 96
           Width = 75
@@ -765,7 +750,7 @@ object frmCadPaciente: TfrmCadPaciente
           ParentFont = False
         end
         object edtNomeMae: TEdit
-          Left = 453
+          Left = 72
           Height = 23
           Top = 116
           Width = 350
@@ -779,11 +764,12 @@ object frmCadPaciente: TfrmCadPaciente
           Font.Style = [fsBold]
           ParentFont = False
           TabOrder = 3
+          TextHint = 'Nome da mãe do(a) paciente'
         end
         object lblNomeConjuge: TLabel
-          Left = 200
+          Left = 616
           Height = 15
-          Top = 153
+          Top = 96
           Width = 97
           Caption = 'Nome do Conjuge'
           Font.CharSet = ANSI_CHARSET
@@ -797,9 +783,9 @@ object frmCadPaciente: TfrmCadPaciente
           ParentFont = False
         end
         object edtNomeConjuge: TEdit
-          Left = 200
+          Left = 616
           Height = 23
-          Top = 173
+          Top = 116
           Width = 350
           Color = clInfoBk
           Font.CharSet = ANSI_CHARSET
@@ -811,11 +797,12 @@ object frmCadPaciente: TfrmCadPaciente
           Font.Style = [fsBold]
           ParentFont = False
           TabOrder = 4
+          TextHint = 'Nome da esposa ou marido do(a) paciente'
         end
         object lblNaturalidade: TLabel
-          Left = 237
+          Left = 581
           Height = 15
-          Top = 213
+          Top = 148
           Width = 68
           Caption = 'Naturalidade'
           Font.CharSet = ANSI_CHARSET
@@ -829,9 +816,9 @@ object frmCadPaciente: TfrmCadPaciente
           ParentFont = False
         end
         object edtNaturalidade: TEdit
-          Left = 237
+          Left = 581
           Height = 23
-          Top = 233
+          Top = 168
           Width = 281
           Color = clInfoBk
           Font.CharSet = ANSI_CHARSET
@@ -843,9 +830,10 @@ object frmCadPaciente: TfrmCadPaciente
           Font.Style = [fsBold]
           ParentFont = False
           TabOrder = 5
+          TextHint = 'Cidade de nascimento do(a) paciente'
         end
         object lblNacionalidade: TLabel
-          Left = 693
+          Left = 72
           Height = 15
           Top = 213
           Width = 76
@@ -861,7 +849,7 @@ object frmCadPaciente: TfrmCadPaciente
           ParentFont = False
         end
         object edtNacionalidade: TEdit
-          Left = 693
+          Left = 72
           Height = 23
           Top = 233
           Width = 281
@@ -875,11 +863,12 @@ object frmCadPaciente: TfrmCadPaciente
           Font.Style = [fsBold]
           ParentFont = False
           TabOrder = 6
+          TextHint = 'País onde o paciente nasceu'
         end
         object lblEstadoCivil: TLabel
-          Left = 72
+          Left = 474
           Height = 15
-          Top = 153
+          Top = 96
           Width = 60
           Caption = 'Estado Civil'
           Font.CharSet = ANSI_CHARSET
@@ -893,9 +882,9 @@ object frmCadPaciente: TfrmCadPaciente
           ParentFont = False
         end
         object cboxEstCivil: TComboBox
-          Left = 72
+          Left = 474
           Height = 23
-          Top = 173
+          Top = 116
           Width = 100
           Color = clInfoBk
           Font.CharSet = ANSI_CHARSET
@@ -915,13 +904,13 @@ object frmCadPaciente: TfrmCadPaciente
           TabOrder = 7
         end
         object bvSexo: TBevel
-          Left = 616
+          Left = 72
           Height = 28
           Top = 168
           Width = 234
         end
         object lblSexo: TLabel
-          Left = 616
+          Left = 72
           Height = 15
           Top = 153
           Width = 26
@@ -937,7 +926,7 @@ object frmCadPaciente: TfrmCadPaciente
           ParentFont = False
         end
         object rbtnFeminino: TRadioButton
-          Left = 629
+          Left = 85
           Height = 19
           Top = 172
           Width = 70
@@ -955,7 +944,7 @@ object frmCadPaciente: TfrmCadPaciente
           TabOrder = 8
         end
         object rbtnMasculino: TRadioButton
-          Left = 749
+          Left = 205
           Height = 19
           Top = 172
           Width = 75
@@ -973,9 +962,9 @@ object frmCadPaciente: TfrmCadPaciente
           TabOrder = 9
         end
         object lblDtNascimento: TLabel
-          Left = 72
+          Left = 352
           Height = 15
-          Top = 213
+          Top = 144
           Width = 108
           Caption = 'Data de Nascimento'
           Font.CharSet = ANSI_CHARSET
@@ -989,9 +978,9 @@ object frmCadPaciente: TfrmCadPaciente
           ParentFont = False
         end
         object dtpkNascimento: TDateTimePicker
-          Left = 72
+          Left = 352
           Height = 23
-          Top = 233
+          Top = 164
           Width = 91
           CenturyFrom = 1920
           MaxDate = 2958465
@@ -1020,9 +1009,9 @@ object frmCadPaciente: TfrmCadPaciente
           MonthNames = 'Long'
         end
         object lblUF: TLabel
-          Left = 552
+          Left = 896
           Height = 15
-          Top = 213
+          Top = 148
           Width = 14
           Caption = 'UF'
           Font.CharSet = ANSI_CHARSET
@@ -1036,9 +1025,9 @@ object frmCadPaciente: TfrmCadPaciente
           ParentFont = False
         end
         object cboxUFNascimento: TComboBox
-          Left = 552
+          Left = 896
           Height = 23
-          Top = 233
+          Top = 168
           Width = 70
           CharCase = ecUppercase
           Color = clInfoBk
@@ -1085,9 +1074,9 @@ object frmCadPaciente: TfrmCadPaciente
           TabOrder = 11
         end
         object lblParaDataVazia: TLabel
-          Left = 72
+          Left = 352
           Height = 32
-          Top = 255
+          Top = 186
           Width = 100
           AutoSize = False
           Caption = 'Para data "Vazia" digite a letra "N".'
@@ -1102,7 +1091,7 @@ object frmCadPaciente: TfrmCadPaciente
           WordWrap = True
         end
         object chkboxAtivo: TCheckBox
-          Left = 635
+          Left = 995
           Height = 22
           Top = 40
           Width = 62
@@ -1117,6 +1106,113 @@ object frmCadPaciente: TfrmCadPaciente
           ParentColor = False
           ParentFont = False
           TabOrder = 12
+        end
+        object lblPai: TLabel
+          Left = 616
+          Height = 15
+          Top = 40
+          Width = 69
+          Caption = 'Nome do Pai'
+          Font.CharSet = ANSI_CHARSET
+          Font.Color = 98304
+          Font.Height = -12
+          Font.Name = 'Segoe UI Semibold'
+          Font.Pitch = fpVariable
+          Font.Quality = fqDraft
+          Font.Style = [fsBold]
+          ParentColor = False
+          ParentFont = False
+        end
+        object lblCPFPaciente: TLabel
+          Left = 464
+          Height = 15
+          Top = 213
+          Width = 85
+          Caption = 'CPF do Paciente'
+          Font.CharSet = ANSI_CHARSET
+          Font.Color = 98304
+          Font.Height = -12
+          Font.Name = 'Segoe UI Semibold'
+          Font.Pitch = fpVariable
+          Font.Quality = fqDraft
+          Font.Style = [fsBold]
+          ParentColor = False
+          ParentFont = False
+        end
+        object mskedtCPFPaciente: TMaskEdit
+          Left = 464
+          Height = 23
+          Top = 233
+          Width = 132
+          CharCase = ecNormal
+          Color = 14876671
+          Font.Color = 65664
+          Font.Height = -12
+          Font.Name = 'Segoe UI Semibold'
+          MaxLength = 14
+          ParentFont = False
+          TabOrder = 13
+          EditMask = '!000.000.000-00;0;_'
+          TextHint = 'CPF do(a) paciente'
+          SpaceChar = '_'
+        end
+        object lblIdentidadePaciente: TLabel
+          Left = 72
+          Height = 15
+          Top = 258
+          Width = 122
+          Caption = 'Identidade do Paciente'
+          Font.CharSet = ANSI_CHARSET
+          Font.Color = 98304
+          Font.Height = -12
+          Font.Name = 'Segoe UI Semibold'
+          Font.Pitch = fpVariable
+          Font.Quality = fqDraft
+          Font.Style = [fsBold]
+          ParentColor = False
+          ParentFont = False
+        end
+        object edtIdentidadePaciente: TEdit
+          Left = 72
+          Height = 23
+          Top = 279
+          Width = 281
+          Color = 14876671
+          Font.Color = 65664
+          Font.Height = -12
+          Font.Name = 'Segoe UI Semibold'
+          ParentFont = False
+          TabOrder = 14
+          TextHint = 'Documento de identidade do(a) paciente'
+        end
+        object lblOrgaoExpedPaciente: TLabel
+          Left = 387
+          Height = 15
+          Top = 258
+          Width = 89
+          Caption = 'Órgão Expedidor'
+          Font.CharSet = ANSI_CHARSET
+          Font.Color = 98304
+          Font.Height = -12
+          Font.Name = 'Segoe UI Semibold'
+          Font.Pitch = fpVariable
+          Font.Quality = fqDraft
+          Font.Style = [fsBold]
+          ParentColor = False
+          ParentFont = False
+        end
+        object edtOrgaoExpedPaciente: TEdit
+          Left = 387
+          Height = 23
+          Top = 279
+          Width = 281
+          Color = 14876671
+          Font.Color = 65664
+          Font.Height = -12
+          Font.Name = 'Segoe UI Semibold'
+          ParentFont = False
+          TabOrder = 15
+          TextHint = 'Órgão que expediu a identidadedo(a) paciente'
         end
       end
     end
@@ -1234,14 +1330,102 @@ object frmCadPaciente: TfrmCadPaciente
           ParentFont = False
           TabOrder = 1
         end
+        object lblCPFResp: TLabel
+          Left = 152
+          Height = 15
+          Top = 184
+          Width = 105
+          Caption = 'CPF do Responsável'
+          Font.CharSet = ANSI_CHARSET
+          Font.Color = 98304
+          Font.Height = -12
+          Font.Name = 'Segoe UI Semibold'
+          Font.Pitch = fpVariable
+          Font.Quality = fqDraft
+          Font.Style = [fsBold]
+          ParentColor = False
+          ParentFont = False
+        end
+        object mskedtCPFResp: TMaskEdit
+          Left = 152
+          Height = 23
+          Top = 204
+          Width = 132
+          CharCase = ecNormal
+          Color = 14876671
+          Font.Color = 65664
+          Font.Height = -12
+          Font.Name = 'Segoe UI Semibold'
+          MaxLength = 14
+          ParentFont = False
+          TabOrder = 2
+          EditMask = '!000.000.000-00;0;_'
+          SpaceChar = '_'
+        end
+        object lblIdentidadeResp: TLabel
+          Left = 371
+          Height = 15
+          Top = 183
+          Width = 142
+          Caption = 'Identidade do Responsável'
+          Font.CharSet = ANSI_CHARSET
+          Font.Color = 98304
+          Font.Height = -12
+          Font.Name = 'Segoe UI Semibold'
+          Font.Pitch = fpVariable
+          Font.Quality = fqDraft
+          Font.Style = [fsBold]
+          ParentColor = False
+          ParentFont = False
+        end
+        object edtIdentidadeResp: TEdit
+          Left = 371
+          Height = 23
+          Top = 203
+          Width = 281
+          Color = 14876671
+          Font.Color = 65664
+          Font.Height = -12
+          Font.Name = 'Segoe UI Semibold'
+          ParentFont = False
+          TabOrder = 3
+        end
+        object lblOrgaoExpResp: TLabel
+          Left = 686
+          Height = 15
+          Top = 184
+          Width = 89
+          Caption = 'Órgão Expedidor'
+          Font.CharSet = ANSI_CHARSET
+          Font.Color = 98304
+          Font.Height = -12
+          Font.Name = 'Segoe UI Semibold'
+          Font.Pitch = fpVariable
+          Font.Quality = fqDraft
+          Font.Style = [fsBold]
+          ParentColor = False
+          ParentFont = False
+        end
+        object edtOrgaoExpedResp: TEdit
+          Left = 686
+          Height = 23
+          Top = 204
+          Width = 281
+          Color = 14876671
+          Font.Color = 65664
+          Font.Height = -12
+          Font.Name = 'Segoe UI Semibold'
+          ParentFont = False
+          TabOrder = 4
+        end
       end
     end
-    object tabDocumentos: TTabSheet
-      Caption = 'Documentos'
+    object tabEndereco: TTabSheet
+      Caption = 'Endereço'
       ClientHeight = 323
       ClientWidth = 1087
-      ImageIndex = 16
-      object pnlDocumentos: TBCPanel
+      ImageIndex = 9
+      object pnlEndereco: TBCPanel
         Left = 0
         Height = 323
         Top = 0
@@ -1286,247 +1470,11 @@ object frmCadPaciente: TfrmCadPaciente
         Rounding.RoundY = 1
         Rounding.RoundOptions = [rrTopLeftSquare, rrTopRightSquare, rrBottomRightSquare, rrBottomLeftSquare]
         TabOrder = 0
-        object bvDocumentos: TBevel
-          Left = 51
-          Height = 221
-          Top = 51
-          Width = 985
-          Align = alClient
-          BorderSpacing.Around = 50
-        end
-        object lblOrgaoExpResp: TLabel
-          Left = 686
-          Height = 15
-          Top = 184
-          Width = 89
-          Caption = 'Órgão Expedidor'
-          Font.CharSet = ANSI_CHARSET
-          Font.Color = 98304
-          Font.Height = -12
-          Font.Name = 'Segoe UI Semibold'
-          Font.Pitch = fpVariable
-          Font.Quality = fqDraft
-          Font.Style = [fsBold]
-          ParentColor = False
-          ParentFont = False
-        end
-        object edtOrgaoExpedResp: TEdit
-          Left = 686
-          Height = 23
-          Top = 204
-          Width = 281
-          Color = 14876671
-          Font.Color = 65664
-          Font.Height = -12
-          Font.Name = 'Segoe UI Semibold'
-          ParentFont = False
-          TabOrder = 0
-        end
-        object edtIdentidadeResp: TEdit
-          Left = 371
-          Height = 23
-          Top = 203
-          Width = 281
-          Color = 14876671
-          Font.Color = 65664
-          Font.Height = -12
-          Font.Name = 'Segoe UI Semibold'
-          ParentFont = False
-          TabOrder = 1
-        end
-        object lblIdentidadeResp: TLabel
-          Left = 371
-          Height = 15
-          Top = 183
-          Width = 142
-          Caption = 'Identidade do Responsável'
-          Font.CharSet = ANSI_CHARSET
-          Font.Color = 98304
-          Font.Height = -12
-          Font.Name = 'Segoe UI Semibold'
-          Font.Pitch = fpVariable
-          Font.Quality = fqDraft
-          Font.Style = [fsBold]
-          ParentColor = False
-          ParentFont = False
-        end
-        object mskedtCPFResp: TMaskEdit
-          Left = 152
-          Height = 23
-          Top = 204
-          Width = 132
-          CharCase = ecNormal
-          Color = 14876671
-          Font.Color = 65664
-          Font.Height = -12
-          Font.Name = 'Segoe UI Semibold'
-          MaxLength = 14
-          ParentFont = False
-          TabOrder = 2
-          EditMask = '!000.000.000-00;0;_'
-          SpaceChar = '_'
-        end
-        object lblCPFResp: TLabel
-          Left = 152
-          Height = 15
-          Top = 184
-          Width = 105
-          Caption = 'CPF do Responsável'
-          Font.CharSet = ANSI_CHARSET
-          Font.Color = 98304
-          Font.Height = -12
-          Font.Name = 'Segoe UI Semibold'
-          Font.Pitch = fpVariable
-          Font.Quality = fqDraft
-          Font.Style = [fsBold]
-          ParentColor = False
-          ParentFont = False
-        end
-        object lblOrgaoExpedPaciente: TLabel
-          Left = 686
-          Height = 15
-          Top = 97
-          Width = 89
-          Caption = 'Órgão Expedidor'
-          Font.CharSet = ANSI_CHARSET
-          Font.Color = 98304
-          Font.Height = -12
-          Font.Name = 'Segoe UI Semibold'
-          Font.Pitch = fpVariable
-          Font.Quality = fqDraft
-          Font.Style = [fsBold]
-          ParentColor = False
-          ParentFont = False
-        end
-        object edtOrgaoExpedPaciente: TEdit
-          Left = 686
-          Height = 23
-          Top = 117
-          Width = 281
-          Color = 14876671
-          Font.Color = 65664
-          Font.Height = -12
-          Font.Name = 'Segoe UI Semibold'
-          ParentFont = False
-          TabOrder = 3
-        end
-        object edtIdentidadePaciente: TEdit
-          Left = 371
-          Height = 23
-          Top = 120
-          Width = 281
-          Color = 14876671
-          Font.Color = 65664
-          Font.Height = -12
-          Font.Name = 'Segoe UI Semibold'
-          ParentFont = False
-          TabOrder = 4
-        end
-        object lblIdentidadePaciente: TLabel
-          Left = 371
-          Height = 15
-          Top = 97
-          Width = 122
-          Caption = 'Identidade do Paciente'
-          Font.CharSet = ANSI_CHARSET
-          Font.Color = 98304
-          Font.Height = -12
-          Font.Name = 'Segoe UI Semibold'
-          Font.Pitch = fpVariable
-          Font.Quality = fqDraft
-          Font.Style = [fsBold]
-          ParentColor = False
-          ParentFont = False
-        end
-        object mskedtCPFPaciente: TMaskEdit
-          Left = 152
-          Height = 23
-          Top = 117
-          Width = 132
-          CharCase = ecNormal
-          Color = 14876671
-          Font.Color = 65664
-          Font.Height = -12
-          Font.Name = 'Segoe UI Semibold'
-          MaxLength = 14
-          ParentFont = False
-          TabOrder = 5
-          EditMask = '!000.000.000-00;0;_'
-          SpaceChar = '_'
-        end
-        object lblCPFPaciente: TLabel
-          Left = 152
-          Height = 15
-          Top = 97
-          Width = 85
-          Caption = 'CPF do Paciente'
-          Font.CharSet = ANSI_CHARSET
-          Font.Color = 98304
-          Font.Height = -12
-          Font.Name = 'Segoe UI Semibold'
-          Font.Pitch = fpVariable
-          Font.Quality = fqDraft
-          Font.Style = [fsBold]
-          ParentColor = False
-          ParentFont = False
-        end
-      end
-    end
-    object tabEndereco: TTabSheet
-      Caption = 'Endereço'
-      ClientHeight = 323
-      ClientWidth = 1083
-      ImageIndex = 9
-      object pnlEndereco: TBCPanel
-        Left = 0
-        Height = 323
-        Top = 0
-        Width = 1083
-        Align = alClient
-        Background.Color = 16049884
-        Background.Gradient1.StartColor = 16247261
-        Background.Gradient1.EndColor = 16049884
-        Background.Gradient1.GradientType = gtLinear
-        Background.Gradient1.Point1XPercent = 0
-        Background.Gradient1.Point1YPercent = 0
-        Background.Gradient1.Point2XPercent = 0
-        Background.Gradient1.Point2YPercent = 100
-        Background.Gradient2.StartColor = 16445670
-        Background.Gradient2.EndColor = 16775925
-        Background.Gradient2.GradientType = gtLinear
-        Background.Gradient2.Point1XPercent = 0
-        Background.Gradient2.Point1YPercent = 0
-        Background.Gradient2.Point2XPercent = 0
-        Background.Gradient2.Point2YPercent = 100
-        Background.Gradient1EndPercent = 50
-        Background.Style = bbsGradient
-        BevelInner = bvNone
-        BevelOuter = bvRaised
-        BevelWidth = 1
-        Border.Color = 12824480
-        Border.ColorOpacity = 200
-        Border.LightOpacity = 200
-        Border.LightWidth = 1
-        Border.Style = bboSolid
-        BorderBCStyle = bpsBorder
-        Enabled = False
-        FontEx.Color = clDefault
-        FontEx.FontQuality = fqSystemClearType
-        FontEx.Shadow = False
-        FontEx.ShadowRadius = 5
-        FontEx.ShadowOffsetX = 5
-        FontEx.ShadowOffsetY = 5
-        FontEx.Style = []
-        ParentBackground = False
-        Rounding.RoundX = 1
-        Rounding.RoundY = 1
-        Rounding.RoundOptions = [rrTopLeftSquare, rrTopRightSquare, rrBottomRightSquare, rrBottomLeftSquare]
-        TabOrder = 0
         object bvEndereco: TBevel
           Left = 41
           Height = 241
           Top = 41
-          Width = 1001
+          Width = 1005
           Align = alClient
           BorderSpacing.Around = 40
         end

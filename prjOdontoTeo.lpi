@@ -89,7 +89,7 @@
         <PackageName Value="LCL"/>
       </Item11>
     </RequiredPackages>
-    <Units Count="13">
+    <Units Count="14">
       <Unit0>
         <Filename Value="prjOdontoTeo.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -160,6 +160,13 @@
         <Filename Value="Classes\uClassEnfermidades.pas"/>
         <IsPartOfProject Value="True"/>
       </Unit12>
+      <Unit13>
+        <Filename Value="Forms\uFrmMensagem.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frmMensagem"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+      </Unit13>
     </Units>
   </ProjectOptions>
   <CompilerOptions>

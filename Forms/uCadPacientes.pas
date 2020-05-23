@@ -7,7 +7,7 @@ interface
 uses
    Classes, SysUtils, Forms, Controls, Graphics, Dialogs, ExtCtrls, Buttons, StdCtrls, ComCtrls, MaskEdit, ECGroupCtrls, rxctrls,
    {CustomDrawnControls,} DateTimePicker, BCPanel, BCButton, RTTICtrls,
-   uClassPaciente, uClassResponsavelPaciente, uClassDocumentos, uClassSinaisSintomas, uClassEnfermidades;
+   uClassPaciente, uClassResponsavelPaciente, uClassSinaisSintomas, uClassEnfermidades;
 
 type
 
@@ -16,7 +16,6 @@ type
    TfrmCadPaciente = class(TForm)
       bvContatos: TBevel;
       bvDadosBasicos: TBevel;
-      bvDocumentos: TBevel;
       bvEndereco: TBevel;
       bvEndereco1: TBevel;
       bvResponsavel: TBevel;
@@ -208,7 +207,6 @@ type
       pnlContatos: TBCPanel;
       pnlDadosBasicos: TBCPanel;
       pnlDadosProfissionais: TBCPanel;
-      pnlDocumentos: TBCPanel;
       pnlEndereco: TBCPanel;
       pnlEnfermidades: TBCPanel;
       pnlResponsavel: TBCPanel;
@@ -296,7 +294,6 @@ type
       tabContatos: TTabSheet;
       tabDadosBasicos: TTabSheet;
       tabDadosProfissionais: TTabSheet;
-      tabDocumentos: TTabSheet;
       tabEndereco: TTabSheet;
       tabEnfermidades: TTabSheet;
       tabResponsavel: TTabSheet;
@@ -345,7 +342,6 @@ type
    public
       procedure PreencheFormDadosBasicos(objDados: TPaciente);
       procedure PreencheFormResponsavel(idPaciente: integer);
-      procedure PreencheFormDocumentos(id: integer);
    end;
 
    TipoEstado = (teNavegacao, teInclusao, teEdicao);
@@ -361,7 +357,7 @@ var
 implementation
 
 uses
-   uClassControlePaciente;
+   uClassControlePaciente, uFrmMensagem;
 
 
 {$R *.lfm}
@@ -369,9 +365,16 @@ uses
 { TfrmCadPaciente }
 
 procedure TfrmCadPaciente.btnFecharClick(Sender: TObject);
+var
+   frmMensagem : TfrmMensagem;
 begin
    if estado in [teInclusao, teEdicao] then
-      MessageDlg('A V I S O !', 'Você deve cancelar ou gravar o registro antes de sair!', mtWarning, [mbOK],0)
+      try
+         frmMensagem := TfrmMensagem.Create(Self);
+         frmMensagem.InfoFormMensagem('A T E N Ç Ã O', tiInformacao, 'Você deve cancelar ou gravar o registro antes de sair!');
+      finally
+         FreeAndNil(frmMensagem);
+      end
    else
       frmCadPaciente.Close;
 end;
@@ -432,16 +435,21 @@ end;
 
 procedure TfrmCadPaciente.btnApagaCadastroClick(Sender: TObject);
 var
-   objControlePaciente : TControlePaciente;
+   objControlePaciente : TControlePaciente;  { TODO : Continuar com a inserção da janela de mensagem }
+   frmMensagem : TfrmMensagem;
 begin
-   if MessageDlg('A V I S O !', 'Tem certeza que você deseja apagar o cadastro de:' + LineEnding +
-                  edtNomePaciente.Text, mtConfirmation, [mbOK, mbCancel],0) = mrOK then
+   frmMensagem := TfrmMensagem.Create(Self);
+   frmMensagem.InfoFormMensagem('Apagar Registro?', tiDuvida, 'Tem certeza que você deseja apagar o cadastro de:' + LineEnding +
+                  edtNomePaciente.Text + '?');
+
+   if frmMensagem.resultadoBtn = mrOK then
     begin
        objControlePaciente := TControlePaciente.Create;
        try
           if objControlePaciente.ApagarCadastroBasico(StrToInt(edtCodPaciente.Text)) then
            begin
-             ShowMessage('O Cadastro foi apagado com sucesso.');
+             frmMensagem.InfoFormMensagem('I N F O R M A Ç Ã O',tiInformacao, 'O Cadastro foi apagado com sucesso.');
+
              LimpaControles(pcCadPaciente.ActivePage);
              EstadoBotoes;
              DesabilitaControles(pcCadPaciente.ActivePage);
@@ -450,6 +458,7 @@ begin
           FreeAndNil(objControlePaciente);
        end;
     end;
+    FreeAndNil(frmMensagem);
 end;
 
 procedure TfrmCadPaciente.btnNovoCadastroClick(Sender: TObject);
@@ -557,7 +566,13 @@ begin
    if estado in [teEdicao, teInclusao] then
    begin
       AllowChange := false;
-      ShowMessage('Você deve gravar ou cancelar a operação atual');
+      try
+         frmMensagem := TfrmMensagem.Create(Self);
+         frmMensagem.InfoFormMensagem('A T E N Ç Ã O', tiInformacao, 'Você deve gravar ou cancelar a operação atual');
+      finally
+         FreeAndNil(frmMensagem);
+      end;
+
    end;
 end;
 
@@ -730,7 +745,12 @@ var
 begin
    if Trim(edtNomePaciente.Text) = '' then
    begin
-      ShowMessage('O nome do paciente deve ser preenchido!');
+      try
+         frmMensagem := TfrmMensagem.Create(Self);
+         frmMensagem.InfoFormMensagem('A T E N Ç Ã O', tiAviso, 'O nome do paciente deve ser preenchido!');
+      finally
+         FreeAndNil(frmMensagem);
+      end;
       edtNomePaciente.SetFocus;
       exit;
    end;
@@ -740,7 +760,12 @@ begin
       codigo := objControlePaciente.InclusaoDadosBasicos(objDadosBasicos);
       if codigo > 0 then
       begin
-         ShowMessage('Paciente cadastrado com sucesso!');
+         try
+            frmMensagem := TfrmMensagem.Create(Self);
+            frmMensagem.InfoFormMensagem('Cadastro do paciente', tiInformacao, 'Paciente cadastrado com sucesso!');
+         finally
+            FreeAndNil(frmMensagem);
+         end;
          lblCodPaciente.Caption := 'Código: ' + IntToStr(codigo);
          lblNomePaciente.Caption := 'Nome do Paciente: ' + edtNomePaciente.Text;
          if objDadosBasicos.dataNascimento <> StrToDate('30/12/1899')then
@@ -764,14 +789,26 @@ var
 begin
    if Trim(edtNomePaciente.Text) = '' then
     begin
-       ShowMessage('O nome do paciente deve ser preenchido!');
+       try
+          frmMensagem := TfrmMensagem.Create(Self);
+          frmMensagem.InfoFormMensagem('Alteração no cadastro do paciente', tiInformacao, 'O nome do paciente deve ser preenchido!');
+       finally
+          FreeAndNil(frmMensagem);
+       end;
        edtNomePaciente.SetFocus;
        exit;
     end;
    try
       objControlePaciente := TControlePaciente.Create;
       if objControlePaciente.EdicaoDadosBasicos(objDadosBasicos) then
-         ShowMessage('Cadastro Alterado com Sucesso');
+       begin
+         try
+            frmMensagem := TfrmMensagem.Create(Self);
+            frmMensagem.InfoFormMensagem('Alteração no cadastro do paciente', tiInformacao, 'Paciente alterado com sucesso!');
+         finally
+            FreeAndNil(frmMensagem);
+         end;
+       end;
 
       DesabilitaControles(pcCadPaciente.ActivePage);
       estado := teNavegacao;
@@ -798,7 +835,14 @@ begin
       objResponsavel := TResponsavelPaciente.Create;
       objControlePaciente := TControlePaciente.Create;
       if objControlePaciente.InclusaoResponsavel(CarregaObjResponsavel(objResponsavel))then
-         ShowMessage('Cadastro do Responsável realizado com sucesso!');
+       begin
+          try
+             frmMensagem := TfrmMensagem.Create(Self);
+             frmMensagem.InfoFormMensagem('Cadastro do Responsável', tiInformacao, 'Cadastrado do Responsável realizado com sucesso!');
+          finally
+             FreeAndNil(frmMensagem);
+          end;
+       end;
 
       DesabilitaControles(pcCadPaciente.ActivePage);
       estado := teNavegacao;
@@ -848,7 +892,14 @@ begin
    objControlePaciente := TControlePaciente.Create;
    try
       if objControlePaciente.InclusaoSinaisSintomas(CarregaObjSinaisSintomas(objSinaisSintomas))then
-         ShowMessage('Cadastro dos Sinais & Sintomas realizado com sucesso!');
+       begin
+          try
+             frmMensagem := TfrmMensagem.Create(Self);
+             frmMensagem.InfoFormMensagem('Cadastro de Sinais & Sintomas', tiInformacao, 'Cadastro dos Sinais & Sintomas realizado com sucesso!');
+          finally
+             FreeAndNil(frmMensagem);
+          end;
+       end;
 
       DesabilitaControles(pcCadPaciente.ActivePage);
       estado := teNavegacao;
@@ -896,7 +947,14 @@ begin
    objControlePaciente := TControlePaciente.Create;
    try
       if objControlePaciente.InclusaoEnfermidades(CarregaObjEnfermidades(objEnfermidades))then
-         ShowMessage('Cadastro das Enfermidades realizado com sucesso!');
+       begin
+           try
+              frmMensagem := TfrmMensagem.Create(Self);
+              frmMensagem.InfoFormMensagem('Cadastro de Enfermidades', tiInformacao, 'Cadastro das Enfermidades realizado com sucesso!');
+           finally
+              FreeAndNil(frmMensagem);
+           end;
+       end;
 
       DesabilitaControles(pcCadPaciente.ActivePage);
       estado := teNavegacao;
@@ -963,15 +1021,6 @@ begin
       FreeAndNil(objResponsavel);
    end;
 end;
-
-procedure TfrmCadPaciente.PreencheFormDocumentos(id: integer);
-var
-   objDocumento : TDocumento;
-   objControlePaciente: TControlePaciente;
-begin
-   objDocumento := TDocumento.Create;
-end;
-
 
 end.
 

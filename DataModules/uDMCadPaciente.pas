@@ -5,7 +5,7 @@ unit uDMCadPaciente;
 interface
 
 uses
-   Classes, SysUtils, db, ZDataset, dialogs, uClassPaciente, ZStoredProcedure, uClassResponsavelPaciente, uClassDocumentos,
+   Classes, SysUtils, db, ZDataset, dialogs, uClassPaciente, ZStoredProcedure, uClassResponsavelPaciente, {uClassDocumentos,}
    uClassSinaisSintomas, uClassEnfermidades;
 
 type
@@ -46,7 +46,7 @@ type
 
       { TODO 1 -oTerence -cCadastro : AQUI DEVERÁ CRIAR O INSERT DE DOCUMENTOS. PORÉM ANTES DE INCLUIR O DOCUMENTO DO RESPONSÁVEL,
       DEVEMOS VERIFICAR SE JÁ EXISTE UM RESPONSÁVEL CADASTRADO. }
-      function SelectDocumentos(id: integer): TDocumento;
+//      function SelectDocumentos(id: integer): TDocumento;
 
       var ativo : string;
       var nome : string;
@@ -60,7 +60,7 @@ var
 implementation
 
 uses
-   uDMConexao;
+   uDMConexao, uFrmMensagem;
 
 {$R *.lfm}
 
@@ -100,7 +100,13 @@ begin
       result := strprocGravarDadosBasicos.Params[12].AsInteger;
    except on E: Exception do
    begin
-      ShowMessage('Erro ao tentar gravar o registro, com a seguinte mensagem de erro:' + LineEnding + E.Message);
+      try
+         frmMensagem := TfrmMensagem.Create(Self);
+         frmMensagem.InfoFormMensagem('Cadastro de Dados Básicos', tiErro, 'Erro ao tentar gravar o registro, com a seguinte mensagem' +
+                                      ' de erro:' + LineEnding + LineEnding + E.Message);
+      finally
+         FreeAndNil(frmMensagem);
+      end;
       result := 0;
    end;
    end;
@@ -128,7 +134,13 @@ begin
       result := true;
    except on E: Exception do
     begin
-       ShowMessage('Erro ao tentar gravar a alteração do registro, com a seguinte mensagem de erro:' + LineEnding + E.Message);
+       try
+         frmMensagem := TfrmMensagem.Create(Self);
+         frmMensagem.InfoFormMensagem('Alteração dos Dados Básicos', tiErro, 'Erro ao tentar gravar a alteração do registro ' +
+                                      'com a seguinte mensagem de erro:' + LineEnding + LineEnding + E.Message);
+       finally
+          FreeAndNil(frmMensagem);
+       end;
        result := false;
     end;
    end;
@@ -164,7 +176,13 @@ begin
       result := true;
    except on E: Exception do
     begin
-       ShowMessage('Erro ao tentar apagar o registro, com a seguinte mensagem de erro:' + LineEnding + E.Message);
+       try
+         frmMensagem := TfrmMensagem.Create(Self);
+         frmMensagem.InfoFormMensagem('Apagar Cadastro', tiErro, 'Erro ao tentar apagar o registro ' +
+                                      ' com a seguinte mensagem de erro:' + LineEnding + LineEnding + E.Message);
+       finally
+          FreeAndNil(frmMensagem);
+       end;
        result := false;
     end;
    end;
@@ -188,7 +206,13 @@ begin                                { TODO 0 -oTerence -cDMCadPaciente : Contin
       result := true;
    except on E: Exception do
     begin
-       ShowMessage('Erro ao tentar gravar a inclusão do registro, com a seguinte mensagem de erro:' + LineEnding + E.Message);
+       try
+         frmMensagem := TfrmMensagem.Create(Self);
+         frmMensagem.InfoFormMensagem('Cadastro do Responsável', tiErro, 'Erro ao tentar gravar a inclusão do registro ' +
+                                      ' com a seguinte mensagem de erro:' + LineEnding + LineEnding + E.Message);
+       finally
+          FreeAndNil(frmMensagem);
+       end;
        result := false;
     end;
    end;
@@ -236,7 +260,13 @@ begin
          result := true;
       except on E: Exception do
          begin
-            ShowMessage('Erro ao tentar gravar a inclusão do registro, com a seguinte mensagem de erro:' + LineEnding + E.Message);
+            try
+               frmMensagem := TfrmMensagem.Create(Self);
+               frmMensagem.InfoFormMensagem('Inclusão de Sinais & Sintomas', tiErro, 'Erro ao tentar gravar o registro ' +
+                                            ' com a seguinte mensagem de erro:' + LineEnding + LineEnding + E.Message);
+            finally
+               FreeAndNil(frmMensagem);
+            end;
             result := false;
          end;
       end;
@@ -273,18 +303,24 @@ begin
          result := true;
       except on E: Exception do
          begin
-            ShowMessage('Erro ao tentar gravar a inclusão do registro, com a seguinte mensagem de erro:' + LineEnding + E.Message);
+            try
+               frmMensagem := TfrmMensagem.Create(Self);
+               frmMensagem.InfoFormMensagem('Inclusão de Enfermidades', tiErro, 'Erro ao tentar gravar a inclusão do registro' +
+                                            ' com a seguinte mensagem de erro:' + LineEnding + LineEnding + E.Message);
+            finally
+               FreeAndNil(frmMensagem);
+            end;
             result := false;
          end;
       end;
    end;
 end;
-
+{
 function TdmCadPaciente.SelectDocumentos(id: integer): TDocumento;
 begin
    qryDocumentos.Close;
    qryDocumentos.SQL.Clear;
-end;
+end; }
 
 procedure TdmCadPaciente.MontaSelect;    //** ESCOLHA DOS SELECTS USADOS NO "LOCALIZAR PACIENTES"
 begin
