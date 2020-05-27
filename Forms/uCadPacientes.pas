@@ -6,8 +6,8 @@ interface
 
 uses
    Classes, SysUtils, Forms, Controls, Graphics, Dialogs, ExtCtrls, Buttons, StdCtrls, ComCtrls, MaskEdit, ECGroupCtrls, rxctrls,
-   {CustomDrawnControls,} DateTimePicker, BCPanel, BCButton, RTTICtrls,
-   uClassPaciente, uClassResponsavelPaciente, uClassSinaisSintomas, uClassEnfermidades;
+   DateTimePicker, BCPanel, BCButton, RTTICtrls, ExCheckCtrls, uClassPaciente, uClassResponsavelPaciente, uClassSinaisSintomas,
+   uClassEnfermidades, uClassEndereco, uClassContatos;
 
 type
 
@@ -40,8 +40,6 @@ type
       edtBairro: TEdit;
       edtBairroEmpresa: TEdit;
       edtCargo: TEdit;
-      edtCelular1: TEdit;
-      edtCelular2: TEdit;
       edtCidade: TEdit;
       edtCidadeEmpresa: TEdit;
       edtCodPaciente: TEdit;
@@ -58,6 +56,7 @@ type
       edtIdentidadeResp1: TEdit;
       edtLogradEmpresa: TEdit;
       edtLogradouro: TEdit;
+      edtEmail: TEdit;
       edtNacionalidade: TEdit;
       edtNaturalidade: TEdit;
       edtNomeConjuge: TEdit;
@@ -83,9 +82,6 @@ type
       edtOrgaoExpedResp: TEdit;
       edtParentesco: TEdit;
       edtPessoaRecado: TEdit;
-      edtTelCasa: TEdit;
-      edtTelRecado: TEdit;
-      edtTelTrab: TEdit;
       GroupBox1: TGroupBox;
       GroupBox10: TGroupBox;
       GroupBox11: TGroupBox;
@@ -149,6 +145,7 @@ type
       lblIdentidadeResp1: TLabel;
       lblLogradEmpresa: TLabel;
       lblLogradouro: TLabel;
+      lblEmail: TLabel;
       lblMae: TLabel;
       lblNacionalidade: TLabel;
       lblNaturalidade: TLabel;
@@ -184,7 +181,7 @@ type
       mskedtCEPEmpresa: TMaskEdit;
       mskedtCPFPaciente: TMaskEdit;
       mskedtCPFResp: TMaskEdit;
-      mskedtCPFResp1: TMaskEdit;
+      mskedtTelCasa: TMaskEdit;
       btnAlteraCadastro: TBitBtn;
       btnApagaCadastro: TBitBtn;
       btnGravaCadastro: TBitBtn;
@@ -197,12 +194,17 @@ type
       lblCodPaciente: TLabel;
       lblNomePaciente: TLabel;
       miglstCadPaciente: TImageList;
+      mskedtCel1: TMaskEdit;
+      mskedtCel2: TMaskEdit;
+      mskedtTelRecado: TMaskEdit;
+      mskedtTelTrab: TMaskEdit;
       pcCadPaciente: TPageControl;
       pnlAnamnese: TBCPanel;
       pnlBotoes: TBCPanel;
       btnNovoCadastro: TBitBtn;
       btnFechar: TBCButton;
       imgLogoTitulo: TImage;
+      pnlCadPaciente: TBCPanel;
       pnlCodigoNomeIdade: TBCPanel;
       pnlContatos: TBCPanel;
       pnlDadosBasicos: TBCPanel;
@@ -247,21 +249,6 @@ type
       RadioButton7: TRadioButton;
       RadioButton8: TRadioButton;
       RadioButton9: TRadioButton;
-      rgDificuldadeMastigar: TRadioGroup;
-      rgMiccaoFrequente: TRadioGroup;
-      rgRangeDentes: TRadioGroup;
-      rgRespiraPelaBoca: TRadioGroup;
-      rgSangramentoAnormal: TRadioGroup;
-      rgTonturasDesmaios: TRadioGroup;
-      rgPoucaSaliva: TRadioGroup;
-      rgDorFacial: TRadioGroup;
-      rgDorCabecaFrequente: TRadioGroup;
-      rgDorOuvidoFrequente: TRadioGroup;
-      rgEmagrecimentoAcentuado: TRadioGroup;
-      rgEstaloMandibula: TRadioGroup;
-      rgFebreFrequente: TRadioGroup;
-      rgIndigestaoFrequente: TRadioGroup;
-      rgMaCicatrizacao: TRadioGroup;
       rbtnFeminino: TRadioButton;
       rbtnMasculino: TRadioButton;
       rgAIDS: TRadioGroup;
@@ -273,9 +260,17 @@ type
       rgCoceiraAnormal: TRadioGroup;
       rgDiabete: TRadioGroup;
       rgDificuldadeEngolir: TRadioGroup;
+      rgDificuldadeMastigar: TRadioGroup;
       rgDisritmiaEpilepsia: TRadioGroup;
       rgDoencaCoracao: TRadioGroup;
       rgDoencaRenal: TRadioGroup;
+      rgDorCabecaFrequente: TRadioGroup;
+      rgDorFacial: TRadioGroup;
+      rgDorOuvidoFrequente: TRadioGroup;
+      rgEmagrecimentoAcentuado: TRadioGroup;
+      rgEstaloMandibula: TRadioGroup;
+      rgexSexo: TRadioGroupEx;
+      rgFebreFrequente: TRadioGroup;
       rgFebreReumatica: TRadioGroup;
       rgGlaucoma: TRadioGroup;
       rgGonorreia: TRadioGroup;
@@ -283,9 +278,17 @@ type
       rgHemofilia: TRadioGroup;
       rgHepatite: TRadioGroup;
       rgIctericia: TRadioGroup;
+      rgIndigestaoFrequente: TRadioGroup;
+      rgMaCicatrizacao: TRadioGroup;
+      rgMiccaoFrequente: TRadioGroup;
+      rgPoucaSaliva: TRadioGroup;
       rgProblemaHormonal: TRadioGroup;
+      rgRangeDentes: TRadioGroup;
+      rgRespiraPelaBoca: TRadioGroup;
+      rgSangramentoAnormal: TRadioGroup;
       rgSifilis: TRadioGroup;
       rgSinusite: TRadioGroup;
+      rgTonturasDesmaios: TRadioGroup;
       rgTuberculose: TRadioGroup;
       rgTumorBoca: TRadioGroup;
       rgUlceraHepatica: TRadioGroup;
@@ -312,6 +315,16 @@ type
       procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
       procedure FormCreate(Sender: TObject);
       procedure FormShow(Sender: TObject);
+      procedure mskedtCel1Enter(Sender: TObject);
+      procedure mskedtCel1Exit(Sender: TObject);
+      procedure mskedtCel2Enter(Sender: TObject);
+      procedure mskedtCel2Exit(Sender: TObject);
+      procedure mskedtTelCasaEnter(Sender: TObject);
+      procedure mskedtTelCasaExit(Sender: TObject);
+      procedure mskedtTelRecadoEnter(Sender: TObject);
+      procedure mskedtTelRecadoExit(Sender: TObject);
+      procedure mskedtTelTrabEnter(Sender: TObject);
+      procedure mskedtTelTrabExit(Sender: TObject);
       procedure pcCadPacienteChange(Sender: TObject);
       procedure pcCadPacienteChanging(Sender: TObject; var AllowChange: Boolean);
       procedure pnlTituloMouseDown(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
@@ -326,12 +339,22 @@ type
 
       function RetornoRadioGroup(ItemIndex: integer): string;
 
+      function RetornoMascaraContatos(tamanho: integer): string;
+
+      {=========================================================================}
+
       function CarregaObjDadosBasicos(objDados: TPaciente): TPaciente;
       procedure InclusaoDadosBasicos;
       procedure EdicaoDadosBasicos(objPaciente: TPaciente);
 
       function CarregaObjResponsavel(objResponsavel: TResponsavelPaciente): TResponsavelPaciente;
       procedure InclusaoResponsavel;
+
+      function CarregaObjEndereco(objEndereco: TEndereco): TEndereco;
+      procedure InclusaoEndereco;
+
+      function CarregaObjContatos(objContatos: TContatos) : TContatos;
+      procedure InclusaoContatos;
 
       function CarregaObjSinaisSintomas(objSinaisSintomas: TSinaisSintomas): TSinaisSintomas;
       procedure InclusaoSinaisSintomas;
@@ -395,6 +418,14 @@ begin
              if estado in [teInclusao] then
                 InclusaoResponsavel;
           end;
+      2 : begin
+             if estado in [teInclusao] then
+                InclusaoEndereco;
+          end;
+      3 : begin
+             if estado in [teInclusao] then
+                InclusaoContatos;
+          end;
       7 : begin
              if estado in [teInclusao] then
                 InclusaoSinaisSintomas;
@@ -435,7 +466,7 @@ end;
 
 procedure TfrmCadPaciente.btnApagaCadastroClick(Sender: TObject);
 var
-   objControlePaciente : TControlePaciente;  { TODO : Continuar com a inserção da janela de mensagem }
+   objControlePaciente : TControlePaciente;
    frmMensagem : TfrmMensagem;
 begin
    frmMensagem := TfrmMensagem.Create(Self);
@@ -544,6 +575,104 @@ begin
    finally
       FreeAndNil(objControlePaciente);
    end;
+
+   rgexSexo.Buttons[0].ThemedCaption := false;
+   rgexSexo.Buttons[1].ThemedCaption := false;
+end;
+
+procedure TfrmCadPaciente.mskedtCel1Enter(Sender: TObject);
+var
+   telefone: string;
+begin
+   telefone := mskedtCel1.Text;
+   mskedtCel1.EditMask := EmptyStr;
+   mskedtCel1.MaxLength := 10;
+   mskedtCel1.Text := telefone;
+end;
+
+procedure TfrmCadPaciente.mskedtCel1Exit(Sender: TObject);
+var
+   telefone: string;
+begin
+   telefone := mskedtCel1.Text;
+   mskedtCel1.EditMask := RetornoMascaraContatos(Length(mskedtCel1.Text));
+   mskedtCel1.Text := telefone;
+end;
+
+procedure TfrmCadPaciente.mskedtCel2Enter(Sender: TObject);
+var
+   telefone: string;
+begin
+   telefone := mskedtCel2.Text;
+   mskedtCel2.EditMask := EmptyStr;
+   mskedtCel2.MaxLength := 10;
+   mskedtCel2.Text := telefone;
+end;
+
+procedure TfrmCadPaciente.mskedtCel2Exit(Sender: TObject);
+var
+   telefone: string;
+begin
+   telefone := mskedtCel2.Text;
+   mskedtCel2.EditMask := RetornoMascaraContatos(Length(mskedtCel2.Text));
+   mskedtCel2.Text := telefone;
+end;
+
+procedure TfrmCadPaciente.mskedtTelCasaEnter(Sender: TObject);
+var
+   telefone: string;
+begin
+   telefone := mskedtTelCasa.Text;
+   mskedtTelCasa.EditMask := EmptyStr;
+   mskedtTelCasa.MaxLength := 9;
+   mskedtTelCasa.Text := telefone;
+end;
+
+procedure TfrmCadPaciente.mskedtTelCasaExit(Sender: TObject);
+var
+   telefone: string;
+begin
+   telefone := mskedtTelCasa.Text;
+   mskedtTelCasa.EditMask := RetornoMascaraContatos(Length(mskedtTelCasa.Text));
+   mskedtTelCasa.Text := telefone;
+end;
+
+procedure TfrmCadPaciente.mskedtTelRecadoEnter(Sender: TObject);
+var
+   telefone: string;
+begin
+   telefone := mskedtTelRecado.Text;
+   mskedtTelRecado.EditMask := EmptyStr;
+   mskedtTelRecado.MaxLength := 10;
+   mskedtTelRecado.Text := telefone;
+end;
+
+procedure TfrmCadPaciente.mskedtTelRecadoExit(Sender: TObject);
+var
+   telefone: string;
+begin
+   telefone := mskedtTelRecado.Text;
+   mskedtTelRecado.EditMask := RetornoMascaraContatos(Length(mskedtTelRecado.Text));
+   mskedtTelRecado.Text := telefone;
+end;
+
+procedure TfrmCadPaciente.mskedtTelTrabEnter(Sender: TObject);
+var
+   telefone: string;
+begin
+   telefone := mskedtTelTrab.Text;
+   mskedtTelTrab.EditMask := EmptyStr;
+   mskedtTelTrab.MaxLength := 9;
+   mskedtTelTrab.Text := telefone;
+end;
+
+procedure TfrmCadPaciente.mskedtTelTrabExit(Sender: TObject);
+var
+   telefone: string;
+begin
+   telefone := mskedtTelTrab.Text;
+   mskedtTelTrab.EditMask := RetornoMascaraContatos(Length(mskedtTelTrab.Text));
+   mskedtTelTrab.Text := telefone;
 end;
 
 procedure TfrmCadPaciente.pcCadPacienteChange(Sender: TObject);
@@ -669,9 +798,6 @@ begin
               btnApagaCadastro.Enabled := true;
            end;
        end;
-
-
-
 end;
 
 function TfrmCadPaciente.CarregaObjDadosBasicos(objDados: TPaciente): TPaciente;
@@ -736,6 +862,14 @@ begin
       else
          result := EmptyStr;
    end;
+end;
+
+function TfrmCadPaciente.RetornoMascaraContatos(tamanho: integer): string;
+begin
+   if tamanho = 8 then
+      result := '!9000-0000;0;_'
+   else if tamanho >= 9 then
+      result := '!99-9000-0000;0;_';;
 end;
 
 procedure TfrmCadPaciente.InclusaoDadosBasicos;
@@ -823,6 +957,9 @@ begin
    objResponsavel.idPaciente := StrToInt(edtCodPaciente.Text);
    objResponsavel.nomeResponsavel := edtNomeResp.Text;
    objResponsavel.parentesco := edtParentesco.Text;
+   objResponsavel.cpfResponsavel := mskedtCPFResp.Text;
+   objResponsavel.identidadeResponsavel := edtIdentidadeResp.Text;
+   objResponsavel.orgaoExpedidorID := edtOrgaoExpedResp.Text;
    result := objResponsavel;
 end;
 
@@ -852,6 +989,102 @@ begin
       FreeAndNil(objResponsavel);
    end;
 
+end;
+
+function TfrmCadPaciente.CarregaObjEndereco(objEndereco: TEndereco): TEndereco;
+begin
+   with objEndereco do
+   begin
+      idTblPaciente := StrToInt(edtCodPaciente.Text);
+      logradouro := edtLogradouro.Text;
+      numero := edtNumEndereco.Text;
+      complemento := edtComplemento.Text;
+      bairro := edtBairro.Text;
+      cidade := edtCidade.Text;
+      objEndereco.estado := cboxUFCasa.Text;
+      cep := mskedtCEPCasa.Text;
+   end;
+   result := objEndereco;
+end;
+
+procedure TfrmCadPaciente.InclusaoEndereco;
+var
+   objEndereco : TEndereco;
+   objControlePaciente : TControlePaciente;
+begin
+   try
+      objEndereco := TEndereco.Create;
+      objControlePaciente := TControlePaciente.Create;
+      if objControlePaciente.InclusaoEndereco(CarregaObjEndereco(objEndereco))then
+       begin
+          try
+             frmMensagem := TfrmMensagem.Create(Self);
+             frmMensagem.InfoFormMensagem('Cadastro do Endereço do Paciente', tiInformacao, 'Cadastrado do Endereço realizado com sucesso!');
+          finally
+             FreeAndNil(frmMensagem);
+          end;
+       end;
+
+      DesabilitaControles(pcCadPaciente.ActivePage);
+      estado := teNavegacao;
+      EstadoBotoes;
+   finally
+      FreeAndNil(objControlePaciente);
+      FreeAndNil(objEndereco);
+   end;
+end;
+
+function TfrmCadPaciente.CarregaObjContatos(objContatos: TContatos): TContatos;
+begin
+   with objContatos do
+   begin
+      idTblPaciente := StrToInt(edtCodPaciente.Text);
+      dddTelCasa := edtDDDCasa.Text;
+      telefoneCasa := mskedtTelCasa.Text;
+      operadoraTelCasa := cboxOperadoraCasa.Text;
+      dddCelular1 := edtDDDCel1.Text;
+      NumeroCelular1 := mskedtCel1.Text;
+      operadoraCelular1 := cboxOperadoraCel1.Text;
+      dddCelular2 := edtDDDCel2.Text;
+      numeroCelular2 := mskedtCel2.Text;
+      operadoraCelular2 := cboxOperadoraCel2.Text;
+      dddTelTrabalho := edtDDDTelTrab.Text;
+      telefoneTrabalho := mskedtTelTrab.Text;
+      operadoraTelTrabalho := cboxOperadoraTelTrab.Text;
+      dddTelRecado := edtDDDTelRecado.Text;
+      telefoneRecado := mskedtTelRecado.Text;
+      operadoraTelRecado := cboxOperadoraTelRecado.Text;
+      nomePessoaTelRecado := edtPessoaRecado.Text;
+      email := edtEmail.Text;
+   end;
+   result := objContatos;
+end;
+
+procedure TfrmCadPaciente.InclusaoContatos;
+var
+   objContatos : TContatos;
+   objControlePaciente : TControlePaciente;
+begin
+   try
+      objContatos := TContatos.Create;
+      objControlePaciente := TControlePaciente.Create;
+      if objControlePaciente.InclusaoContatos(CarregaObjContatos(objContatos))then
+       begin
+          try
+             frmMensagem := TfrmMensagem.Create(Self);
+             frmMensagem.InfoFormMensagem('Cadastro dos Contatos do Paciente', tiInformacao, 'Cadastrado dos Contatos realizado com sucesso!');
+          finally
+             FreeAndNil(frmMensagem);
+          end;
+       end;
+
+      DesabilitaControles(pcCadPaciente.ActivePage);
+      estado := teNavegacao;
+      EstadoBotoes;
+   finally
+      FreeAndNil(objControlePaciente);
+      FreeAndNil(objContatos);
+   end;
 end;
 
 function TfrmCadPaciente.CarregaObjSinaisSintomas(objSinaisSintomas: TSinaisSintomas): TSinaisSintomas;

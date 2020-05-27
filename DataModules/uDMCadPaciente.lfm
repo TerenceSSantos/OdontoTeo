@@ -1,9 +1,9 @@
 object dmCadPaciente: TdmCadPaciente
   OldCreateOrder = False
   Height = 449
-  HorizontalOffset = 297
-  VerticalOffset = 118
-  Width = 1163
+  HorizontalOffset = 551
+  VerticalOffset = 126
+  Width = 898
   PPI = 96
   object qryTblPaciente: TZQuery
     Connection = dmConexao.zConexao
@@ -284,6 +284,21 @@ object dmCadPaciente: TdmCadPaciente
         ParamType = ptInput
       end    
       item
+        DataType = ftString
+        Name = 'CPF_RESPONSAVEL'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'IDENTIDADE_RESPONSAVEL'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'ORGAO_EXPEDIDOR_ID'
+        ParamType = ptInput
+      end    
+      item
         DataType = ftInteger
         Name = 'ID_TBLPACIENTE'
         ParamType = ptInput
@@ -300,6 +315,21 @@ object dmCadPaciente: TdmCadPaciente
       item
         DataType = ftString
         Name = 'PARENTESCO'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'CPF_RESPONSAVEL'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'IDENTIDADE_RESPONSAVEL'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'ORGAO_EXPEDIDOR_ID'
         ParamType = ptInput
       end    
       item
@@ -359,17 +389,100 @@ object dmCadPaciente: TdmCadPaciente
       Size = 40
     end
   end
-  object qryTblDocumentos: TZQuery
+  object qryTblEndereco: TZQuery
     Params = <>
     left = 399
     top = 32
   end
-  object strprocGravarDocumentos: TZStoredProc
-    Params = <>
+  object strprocGravarEndereco: TZStoredProc
+    Connection = dmConexao.zConexao
+    Params = <    
+      item
+        DataType = ftString
+        Name = 'LOGRADOURO'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'NUMERO'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'COMPLEMENTO'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'BAIRRO'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'CIDADE'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'ESTADO'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'CEP'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftInteger
+        Name = 'ID_TBLPACIENTE'
+        ParamType = ptInput
+      end>
+    StoredProcName = 'PROC_CAD_TBLENDERECO'
     left = 399
     top = 100
+    ParamData = <    
+      item
+        DataType = ftString
+        Name = 'LOGRADOURO'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'NUMERO'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'COMPLEMENTO'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'BAIRRO'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'CIDADE'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'ESTADO'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'CEP'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftInteger
+        Name = 'ID_TBLPACIENTE'
+        ParamType = ptInput
+      end>
   end
-  object qryDocumentos: TZQuery
+  object qryContatos: TZQuery
     Params = <>
     left = 565
     top = 32
@@ -802,6 +915,194 @@ object dmCadPaciente: TdmCadPaciente
       item
         DataType = ftString
         Name = 'ULCERA_HEPATICA'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftInteger
+        Name = 'ID_TBLPACIENTE'
+        ParamType = ptInput
+      end>
+  end
+  object strprocGravarContatos: TZStoredProc
+    Connection = dmConexao.zConexao
+    Params = <    
+      item
+        DataType = ftString
+        Name = 'DDD_TEL_CASA'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'TEL_CASA'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'OPERADORA_TEL_CASA'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'DDD_CELULAR1'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'CELULAR1'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'OPERADORA_CEL1'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'DDD_CELULAR2'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'CELULAR2'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'OPERADORA_CEL2'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'DDD_TEL_TRABALHO'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'TEL_TRABALHO'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'OPERADORA_TEL_TRABALHO'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'DDD_TEL_RECADO'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'TELEFONE_RECADO'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'OPERADORA_TEL_RECADO'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'NOME_PESSOA_TEL_RECADO'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'EMAIL'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftInteger
+        Name = 'ID_TBLPACIENTE'
+        ParamType = ptInput
+      end>
+    StoredProcName = 'PROC_CAD_TBLCONTATOS'
+    left = 565
+    top = 100
+    ParamData = <    
+      item
+        DataType = ftString
+        Name = 'DDD_TEL_CASA'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'TEL_CASA'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'OPERADORA_TEL_CASA'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'DDD_CELULAR1'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'CELULAR1'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'OPERADORA_CEL1'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'DDD_CELULAR2'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'CELULAR2'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'OPERADORA_CEL2'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'DDD_TEL_TRABALHO'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'TEL_TRABALHO'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'OPERADORA_TEL_TRABALHO'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'DDD_TEL_RECADO'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'TELEFONE_RECADO'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'OPERADORA_TEL_RECADO'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'NOME_PESSOA_TEL_RECADO'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'EMAIL'
         ParamType = ptInput
       end    
       item

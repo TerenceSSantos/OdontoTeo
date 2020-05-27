@@ -18,7 +18,7 @@
     <VersionInfo>
       <UseVersionInfo Value="True"/>
       <AutoIncrementBuild Value="True"/>
-      <BuildNr Value="31"/>
+      <BuildNr Value="32"/>
       <Language Value="0416"/>
       <StringTable Comments="Produto destinado a uso em Consultório Dentário" ProductVersion="0.0"/>
     </VersionInfo>
@@ -54,42 +54,45 @@
       <FormatVersion Value="2"/>
       <Modes Count="0"/>
     </RunParams>
-    <RequiredPackages Count="11">
+    <RequiredPackages Count="12">
       <Item1>
-        <PackageName Value="eccontrols"/>
+        <PackageName Value="ExCtrlsPkg"/>
       </Item1>
       <Item2>
-        <PackageName Value="RunTimeTypeInfoControls"/>
+        <PackageName Value="eccontrols"/>
       </Item2>
       <Item3>
-        <PackageName Value="ACBrDiversos"/>
+        <PackageName Value="RunTimeTypeInfoControls"/>
       </Item3>
       <Item4>
-        <PackageName Value="FCL"/>
+        <PackageName Value="ACBrDiversos"/>
       </Item4>
       <Item5>
-        <PackageName Value="NotLCLDesigner"/>
+        <PackageName Value="FCL"/>
       </Item5>
       <Item6>
-        <PackageName Value="DateTimeCtrls"/>
+        <PackageName Value="NotLCLDesigner"/>
       </Item6>
       <Item7>
-        <PackageName Value="zcomponent"/>
+        <PackageName Value="DateTimeCtrls"/>
       </Item7>
       <Item8>
-        <PackageName Value="rxnew"/>
+        <PackageName Value="zcomponent"/>
       </Item8>
       <Item9>
-        <PackageName Value="SpkToolbarPackage"/>
+        <PackageName Value="rxnew"/>
       </Item9>
       <Item10>
-        <PackageName Value="bgracontrols"/>
+        <PackageName Value="SpkToolbarPackage"/>
       </Item10>
       <Item11>
-        <PackageName Value="LCL"/>
+        <PackageName Value="bgracontrols"/>
       </Item11>
+      <Item12>
+        <PackageName Value="LCL"/>
+      </Item12>
     </RequiredPackages>
-    <Units Count="14">
+    <Units Count="15">
       <Unit0>
         <Filename Value="prjOdontoTeo.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -167,6 +170,10 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
       </Unit13>
+      <Unit14>
+        <Filename Value="Classes\uClassEndereco.pas"/>
+        <IsPartOfProject Value="True"/>
+      </Unit14>
     </Units>
   </ProjectOptions>
   <CompilerOptions>

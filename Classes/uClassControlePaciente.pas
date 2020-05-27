@@ -5,7 +5,8 @@ unit uClassControlePaciente;
 interface
 
 uses
-   Classes, SysUtils, uClassPaciente, uClassResponsavelPaciente, uClassSinaisSintomas,uDMCadPaciente, uLocalizarPaciente, uClassEnfermidades;
+   Classes, SysUtils, uClassPaciente, uClassResponsavelPaciente, uClassSinaisSintomas, uDMCadPaciente, uLocalizarPaciente,
+   uClassEnfermidades, uClassEndereco, uClassContatos;
 
 type
 
@@ -25,6 +26,10 @@ type
 
         function InclusaoResponsavel(objResponsavel: TResponsavelPaciente): boolean;
         function SelectResponsavel(idTblPaciente: integer; objResponsavel: TResponsavelPaciente): TResponsavelPaciente;
+
+        function InclusaoEndereco(objEndereco: TEndereco): boolean;
+
+        function InclusaoContatos(objContatos: TContatos): boolean;
 
         function InclusaoSinaisSintomas(objSinaisSintomas: TSinaisSintomas): boolean;
         function InclusaoEnfermidades(objEnfermidades: TEnfermidades): boolean;
@@ -88,6 +93,16 @@ end;
 function TControlePaciente.SelectResponsavel(idTblPaciente: integer; objResponsavel: TResponsavelPaciente): TResponsavelPaciente;
 begin
    dmCadPaciente.SelectResponsavel(idTblPaciente, objResponsavel);
+end;
+
+function TControlePaciente.InclusaoEndereco(objEndereco: TEndereco): boolean;
+begin
+   result := dmCadPaciente.InclusaoEndereco(objEndereco);
+end;
+
+function TControlePaciente.InclusaoContatos(objContatos: TContatos): boolean;
+begin
+   result := dmCadPaciente.InclusaoContatos(objContatos);
 end;
 
 function TControlePaciente.InclusaoSinaisSintomas(objSinaisSintomas: TSinaisSintomas): boolean;

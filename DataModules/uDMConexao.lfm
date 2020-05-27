@@ -1,8 +1,8 @@
 object dmConexao: TdmConexao
   OldCreateOrder = False
   Height = 150
-  HorizontalOffset = 300
-  VerticalOffset = 104
+  HorizontalOffset = 302
+  VerticalOffset = 105
   Width = 245
   PPI = 96
   object zConexao: TZConnection
