@@ -4,11 +4,11 @@
     <PathDelim Value="\"/>
     <Version Value="11"/>
     <BuildModes Active="Default1"/>
-    <Units Count="65">
+    <Units Count="66">
       <Unit0>
         <Filename Value="prjOdontoTeo.lpr"/>
         <IsPartOfProject Value="True"/>
-        <CursorPos X="82" Y="14"/>
+        <CursorPos X="68" Y="14"/>
         <UsageCount Value="204"/>
         <Loaded Value="True"/>
       </Unit0>
@@ -18,7 +18,7 @@
         <ComponentName Value="frmPrincipal"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="10"/>
+        <EditorIndex Value="11"/>
         <TopLine Value="53"/>
         <CursorPos Y="63"/>
         <UsageCount Value="204"/>
@@ -31,7 +31,7 @@
         <ComponentName Value="dmConexao"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
-        <EditorIndex Value="7"/>
+        <EditorIndex Value="8"/>
         <TopLine Value="29"/>
         <CursorPos X="96" Y="30"/>
         <UsageCount Value="201"/>
@@ -44,9 +44,10 @@
         <ComponentName Value="frmCadPaciente"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
+        <IsVisibleTab Value="True"/>
         <EditorIndex Value="1"/>
-        <TopLine Value="1035"/>
-        <CursorPos X="14" Y="1050"/>
+        <TopLine Value="988"/>
+        <CursorPos Y="965"/>
         <UsageCount Value="202"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -57,7 +58,7 @@
         <ComponentName Value="frmLocalizaPaciente"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="9"/>
+        <EditorIndex Value="10"/>
         <TopLine Value="114"/>
         <CursorPos X="4" Y="80"/>
         <UsageCount Value="202"/>
@@ -70,10 +71,9 @@
         <ComponentName Value="dmCadPaciente"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
-        <IsVisibleTab Value="True"/>
-        <EditorIndex Value="6"/>
-        <TopLine Value="269"/>
-        <CursorPos Y="279"/>
+        <EditorIndex Value="7"/>
+        <TopLine Value="270"/>
+        <CursorPos X="30" Y="270"/>
         <UsageCount Value="202"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -81,7 +81,7 @@
       <Unit6>
         <Filename Value="Classes\uClassPaciente.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="5"/>
+        <EditorIndex Value="6"/>
         <TopLine Value="40"/>
         <CursorPos X="89" Y="52"/>
         <UsageCount Value="200"/>
@@ -90,7 +90,7 @@
       <Unit7>
         <Filename Value="Classes\uClassControlePaciente.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="3"/>
+        <EditorIndex Value="4"/>
         <TopLine Value="94"/>
         <CursorPos X="59" Y="105"/>
         <UsageCount Value="200"/>
@@ -102,15 +102,15 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="15"/>
         <CursorPos X="8" Y="42"/>
-        <UsageCount Value="187"/>
+        <UsageCount Value="190"/>
       </Unit8>
       <Unit9>
         <Filename Value="Classes\uClassContatos.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="2"/>
+        <EditorIndex Value="3"/>
         <TopLine Value="34"/>
-        <CursorPos X="36" Y="55"/>
-        <UsageCount Value="150"/>
+        <CursorPos X="24" Y="46"/>
+        <UsageCount Value="153"/>
         <Loaded Value="True"/>
       </Unit9>
       <Unit10>
@@ -119,7 +119,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="12"/>
         <CursorPos X="32" Y="16"/>
-        <UsageCount Value="150"/>
+        <UsageCount Value="153"/>
       </Unit10>
       <Unit11>
         <Filename Value="Forms\uSobre.pas"/>
@@ -130,7 +130,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="31"/>
         <CursorPos X="47" Y="16"/>
-        <UsageCount Value="145"/>
+        <UsageCount Value="148"/>
       </Unit11>
       <Unit12>
         <Filename Value="Classes\uClassEnfermidades.pas"/>
@@ -138,7 +138,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="7"/>
         <CursorPos X="19" Y="14"/>
-        <UsageCount Value="78"/>
+        <UsageCount Value="81"/>
       </Unit12>
       <Unit13>
         <Filename Value="Forms\uFrmMensagem.pas"/>
@@ -146,20 +146,20 @@
         <ComponentName Value="frmMensagem"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="8"/>
+        <EditorIndex Value="9"/>
         <TopLine Value="58"/>
         <CursorPos X="68" Y="61"/>
-        <UsageCount Value="56"/>
+        <UsageCount Value="59"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit13>
       <Unit14>
         <Filename Value="Classes\uClassEndereco.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="4"/>
+        <EditorIndex Value="5"/>
         <TopLine Value="16"/>
         <CursorPos X="28" Y="33"/>
-        <UsageCount Value="41"/>
+        <UsageCount Value="44"/>
         <Loaded Value="True"/>
       </Unit14>
       <Unit15>
@@ -193,7 +193,7 @@
         <Filename Value="C:\Users\Terence\AppData\Local\lazarus\onlinepackagemanager\packages\zeosdbo\src\component\ZConnection.pas"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="59"/>
-        <UsageCount Value="0"/>
+        <UsageCount Value="10"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit19>
       <Unit20>
@@ -201,7 +201,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="848"/>
         <CursorPos X="4" Y="850"/>
-        <UsageCount Value="0"/>
+        <UsageCount Value="10"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit20>
       <Unit21>
@@ -306,7 +306,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="115"/>
         <CursorPos Y="128"/>
-        <UsageCount Value="0"/>
+        <UsageCount Value="10"/>
       </Unit34>
       <Unit35>
         <Filename Value="D:\lazarus\lcl\controls.pp"/>
@@ -382,7 +382,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="883"/>
         <CursorPos X="3" Y="885"/>
-        <UsageCount Value="0"/>
+        <UsageCount Value="10"/>
       </Unit45>
       <Unit46>
         <Filename Value="D:\lazarus\lcl\include\buttoncontrol.inc"/>
@@ -521,127 +521,136 @@
         <CursorPos X="41" Y="21"/>
         <UsageCount Value="13"/>
       </Unit64>
+      <Unit65>
+        <Filename Value="Classes\uClassAnamnese.pas"/>
+        <IsPartOfProject Value="True"/>
+        <EditorIndex Value="2"/>
+        <TopLine Value="45"/>
+        <CursorPos X="67" Y="69"/>
+        <UsageCount Value="22"/>
+        <Loaded Value="True"/>
+      </Unit65>
     </Units>
     <JumpHistory Count="30" HistoryIndex="29">
       <Position1>
         <Filename Value="Forms\uCadPacientes.pas"/>
-        <Caret Line="765" Column="65" TopLine="737"/>
+        <Caret Line="618" Column="29" TopLine="614"/>
       </Position1>
       <Position2>
         <Filename Value="Forms\uCadPacientes.pas"/>
-        <Caret Line="580" Column="34" TopLine="558"/>
+        <Caret Line="613" Column="31" TopLine="609"/>
       </Position2>
       <Position3>
         <Filename Value="Forms\uCadPacientes.pas"/>
-        <Caret Line="590" Column="35" TopLine="568"/>
+        <Caret Line="603" Column="35" TopLine="597"/>
       </Position3>
       <Position4>
         <Filename Value="Forms\uCadPacientes.pas"/>
-        <Caret Line="575" Column="29" TopLine="569"/>
+        <Caret Line="578" Column="26" TopLine="574"/>
       </Position4>
       <Position5>
         <Filename Value="Forms\uCadPacientes.pas"/>
-        <Caret Line="585" Column="29" TopLine="570"/>
+        <Caret Line="579" Column="4" TopLine="575"/>
       </Position5>
       <Position6>
         <Filename Value="Forms\uCadPacientes.pas"/>
-        <Caret Line="618" Column="29" TopLine="614"/>
+        <Caret Line="598" Column="26" TopLine="576"/>
       </Position6>
       <Position7>
         <Filename Value="Forms\uCadPacientes.pas"/>
-        <Caret Line="613" Column="31" TopLine="609"/>
+        <Caret Line="649" Column="29" TopLine="642"/>
       </Position7>
       <Position8>
         <Filename Value="Forms\uCadPacientes.pas"/>
-        <Caret Line="603" Column="35" TopLine="597"/>
+        <Caret Line="635" Column="31" TopLine="631"/>
       </Position8>
       <Position9>
         <Filename Value="Forms\uCadPacientes.pas"/>
-        <Caret Line="578" Column="26" TopLine="574"/>
+        <Caret Line="581" Column="26" TopLine="568"/>
       </Position9>
       <Position10>
         <Filename Value="Forms\uCadPacientes.pas"/>
-        <Caret Line="579" Column="4" TopLine="575"/>
+        <Caret Line="619" Column="33" TopLine="613"/>
       </Position10>
       <Position11>
         <Filename Value="Forms\uCadPacientes.pas"/>
-        <Caret Line="598" Column="26" TopLine="576"/>
+        <Caret Line="583" Column="30" TopLine="577"/>
       </Position11>
       <Position12>
         <Filename Value="Forms\uCadPacientes.pas"/>
-        <Caret Line="649" Column="29" TopLine="642"/>
+        <Caret Line="602" Column="30" TopLine="592"/>
       </Position12>
       <Position13>
         <Filename Value="Forms\uCadPacientes.pas"/>
-        <Caret Line="635" Column="31" TopLine="631"/>
+        <Caret Line="658" Column="32" TopLine="652"/>
       </Position13>
       <Position14>
         <Filename Value="Forms\uCadPacientes.pas"/>
-        <Caret Line="581" Column="26" TopLine="568"/>
+        <Caret Line="640" Column="35" TopLine="634"/>
       </Position14>
       <Position15>
         <Filename Value="Forms\uCadPacientes.pas"/>
-        <Caret Line="619" Column="33" TopLine="613"/>
+        <Caret Line="354" Column="35" TopLine="335"/>
       </Position15>
       <Position16>
         <Filename Value="Forms\uCadPacientes.pas"/>
-        <Caret Line="583" Column="30" TopLine="577"/>
+        <Caret Line="1052" Column="20" TopLine="1029"/>
       </Position16>
       <Position17>
         <Filename Value="Forms\uCadPacientes.pas"/>
-        <Caret Line="602" Column="30" TopLine="592"/>
+        <Caret Line="1054" Column="20" TopLine="1031"/>
       </Position17>
       <Position18>
-        <Filename Value="Forms\uCadPacientes.pas"/>
-        <Caret Line="658" Column="32" TopLine="652"/>
+        <Filename Value="DataModules\uDMCadPaciente.pas"/>
+        <Caret Line="45" Column="7" TopLine="23"/>
       </Position18>
       <Position19>
-        <Filename Value="Forms\uCadPacientes.pas"/>
-        <Caret Line="640" Column="35" TopLine="634"/>
+        <Filename Value="DataModules\uDMCadPaciente.pas"/>
+        <Caret Line="269" Column="4" TopLine="254"/>
       </Position19>
       <Position20>
-        <Filename Value="Forms\uCadPacientes.pas"/>
-        <Caret Line="354" Column="35" TopLine="335"/>
+        <Filename Value="Classes\uClassControlePaciente.pas"/>
+        <Caret Line="32" Column="64" TopLine="13"/>
       </Position20>
       <Position21>
         <Filename Value="Forms\uCadPacientes.pas"/>
-        <Caret Line="1052" Column="20" TopLine="1029"/>
+        <Caret Line="1072" Column="118" TopLine="1047"/>
       </Position21>
       <Position22>
-        <Filename Value="Forms\uCadPacientes.pas"/>
-        <Caret Line="1054" Column="20" TopLine="1031"/>
+        <Filename Value="DataModules\uDMCadPaciente.pas"/>
+        <Caret Line="279" Column="20" TopLine="269"/>
       </Position22>
       <Position23>
         <Filename Value="DataModules\uDMCadPaciente.pas"/>
-        <Caret Line="45" Column="7" TopLine="23"/>
+        <Caret Line="278" TopLine="269"/>
       </Position23>
       <Position24>
         <Filename Value="DataModules\uDMCadPaciente.pas"/>
-        <Caret Line="269" Column="4" TopLine="254"/>
+        <Caret Line="279" TopLine="269"/>
       </Position24>
       <Position25>
-        <Filename Value="Classes\uClassControlePaciente.pas"/>
-        <Caret Line="32" Column="64" TopLine="13"/>
+        <Filename Value="Forms\uCadPacientes.pas"/>
+        <Caret Line="356" Column="32" TopLine="344"/>
       </Position25>
       <Position26>
         <Filename Value="Forms\uCadPacientes.pas"/>
-        <Caret Line="1072" Column="118" TopLine="1047"/>
+        <Caret Line="1043" Column="138" TopLine="1035"/>
       </Position26>
       <Position27>
         <Filename Value="DataModules\uDMCadPaciente.pas"/>
-        <Caret Line="279" Column="20" TopLine="269"/>
+        <Caret Line="278" TopLine="269"/>
       </Position27>
       <Position28>
-        <Filename Value="DataModules\uDMCadPaciente.pas"/>
-        <Caret Line="278" TopLine="269"/>
+        <Filename Value="Classes\uClassAnamnese.pas"/>
+        <Caret Line="41" Column="31" TopLine="18"/>
       </Position28>
       <Position29>
-        <Filename Value="DataModules\uDMCadPaciente.pas"/>
-        <Caret Line="279" TopLine="269"/>
+        <Filename Value="Classes\uClassAnamnese.pas"/>
+        <Caret Line="40" Column="30" TopLine="24"/>
       </Position29>
       <Position30>
-        <Filename Value="Forms\uCadPacientes.pas"/>
-        <Caret Line="356" Column="32" TopLine="344"/>
+        <Filename Value="Classes\uClassAnamnese.pas"/>
+        <Caret Line="94" Column="17" TopLine="72"/>
       </Position30>
     </JumpHistory>
     <RunParams>
@@ -650,15 +659,6 @@
     </RunParams>
   </ProjectSession>
   <Debugging>
-    <BreakPoints Count="1">
-      <Item1>
-        <Kind Value="bpkSource"/>
-        <WatchScope Value="wpsLocal"/>
-        <WatchKind Value="wpkWrite"/>
-        <Source Value="DataModules\uDMCadPaciente.pas"/>
-        <Line Value="278"/>
-      </Item1>
-    </BreakPoints>
     <Watches Count="1">
       <Item1>
         <Expression Value="alteracaoApetite"/>

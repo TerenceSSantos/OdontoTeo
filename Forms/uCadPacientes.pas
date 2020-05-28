@@ -7,7 +7,7 @@ interface
 uses
    Classes, SysUtils, Forms, Controls, Graphics, Dialogs, ExtCtrls, Buttons, StdCtrls, ComCtrls, MaskEdit, ECGroupCtrls, rxctrls,
    DateTimePicker, BCPanel, BCButton, RTTICtrls, ExCheckCtrls, uClassPaciente, uClassResponsavelPaciente, uClassSinaisSintomas,
-   uClassEnfermidades, uClassEndereco, uClassContatos;
+   uClassEnfermidades, uClassEndereco, uClassContatos, uClassAnamnese;
 
 type
 

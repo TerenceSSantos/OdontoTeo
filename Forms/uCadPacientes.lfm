@@ -615,10 +615,10 @@ object frmCadPaciente: TfrmCadPaciente
       Height = 362
       Top = 2
       Width = 1088
-      ActivePage = tabContatos
+      ActivePage = tabAnamnese
       Align = alClient
       Images = miglstCadPaciente
-      TabIndex = 3
+      TabIndex = 5
       TabOrder = 0
       OnChange = pcCadPacienteChange
       OnChanging = pcCadPacienteChanging

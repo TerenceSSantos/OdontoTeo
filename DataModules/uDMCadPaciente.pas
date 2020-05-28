@@ -6,7 +6,8 @@ interface
 
 uses
    Classes, SysUtils, db, ZDataset, dialogs, uClassPaciente, ZStoredProcedure, uClassResponsavelPaciente, {uClassDocumentos,}
-   uClassSinaisSintomas, uClassEnfermidades, uClassEndereco, uClassContatos;
+   uClassSinaisSintomas, uClassEnfermidades, uClassEndereco, uClassContatos,
+   uClassAnamnese;
 
 type
 
@@ -266,7 +267,7 @@ end;
 
 function TdmCadPaciente.InclusaoContatos(objContatos: TContatos): boolean;
 begin
-   with strprocGravarEndereco do
+   with strprocGravarContatos do
    begin
       Params[0].AsString := objContatos.dddTelCasa;
       Params[1].AsString := objContatos.telefoneCasa;

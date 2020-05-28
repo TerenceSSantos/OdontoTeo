@@ -10,8 +10,8 @@ uses
    Forms, notlcldesigner, datetimectrls, runtimetypeinfocontrols, zcomponent,
    rxnew, uPrincipal, uDMConexao, uCadPacientes, uLocalizarPaciente,
    uDMCadPaciente, uClassPaciente, uClassControlePaciente,
-   uClassResponsavelPaciente, uClassContatos,
-   uClassSinaisSintomas, uSobre, uClassEnfermidades, uFrmMensagem, uClassEndereco;
+   uClassResponsavelPaciente, uClassContatos, uClassSinaisSintomas, uSobre,
+   uClassEnfermidades, uFrmMensagem, uClassEndereco, uClassAnamnese;
 
 {$R *.res}
 

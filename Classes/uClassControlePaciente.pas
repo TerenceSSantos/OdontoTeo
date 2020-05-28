@@ -6,7 +6,7 @@ interface
 
 uses
    Classes, SysUtils, uClassPaciente, uClassResponsavelPaciente, uClassSinaisSintomas, uDMCadPaciente, uLocalizarPaciente,
-   uClassEnfermidades, uClassEndereco, uClassContatos;
+   uClassEnfermidades, uClassEndereco, uClassContatos, uClassAnamnese;
 
 type
 
