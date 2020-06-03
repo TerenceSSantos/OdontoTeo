@@ -6,8 +6,7 @@ interface
 
 uses
    Classes, SysUtils, db, ZDataset, dialogs, uClassPaciente, ZStoredProcedure, uClassResponsavelPaciente, {uClassDocumentos,}
-   uClassSinaisSintomas, uClassEnfermidades, uClassEndereco, uClassContatos,
-   uClassAnamnese;
+   uClassSinaisSintomas, uClassEnfermidades, uClassEndereco, uClassContatos, uClassAnamnese;
 
 type
 

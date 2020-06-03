@@ -19,7 +19,6 @@ type
       bvEndereco: TBevel;
       bvEndereco1: TBevel;
       bvResponsavel: TBevel;
-      bvSexo: TBevel;
       bvSinaisSintomas: TBevel;
       bvSinaisSintomas1: TBevel;
       cboxConsAcucar: TComboBox;
@@ -94,6 +93,32 @@ type
       GroupBox7: TGroupBox;
       GroupBox8: TGroupBox;
       GroupBox9: TGroupBox;
+      lblAids: TLabel;
+      lblDisritmiaEpilepsia: TLabel;
+      lblDoencaRenal: TLabel;
+      lblTumorBoca: TLabel;
+      lblDoencaCoracao: TLabel;
+      lblDiabetes: TLabel;
+      lblAsma: TLabel;
+      lblAnemia: TLabel;
+      lblPoucaSaliva: TLabel;
+      lblTonturaDesmaio: TLabel;
+      lblSangramentoAnormal: TLabel;
+      lblRespiraPelaBoca: TLabel;
+      lblRangeDentes: TLabel;
+      lblMiccaoFrequente: TLabel;
+      lblMaCicatrizacao: TLabel;
+      lblIndigestaoFrequente: TLabel;
+      lblFebreFrequente: TLabel;
+      lblEstaloMandibula: TLabel;
+      lblEmagrecimentoAcentuado: TLabel;
+      lblDorOuvidoFrequente: TLabel;
+      lblDorCabecaFrequente: TLabel;
+      lblDorFacial: TLabel;
+      lblDificuldadeMastigar: TLabel;
+      lblDificuldadeEngolir: TLabel;
+      lblCoceiraAnormal: TLabel;
+      lblCansaFacil: TLabel;
       lblAntecFamiliar: TLabel;
       lblAntecFamiliar1: TLabel;
       lblAntecFamiliar10: TLabel;
@@ -169,6 +194,8 @@ type
       lblParentesco: TLabel;
       lblPessoaRecado: TLabel;
       lblSexo: TLabel;
+      lblAlteracaoPetite: TLabel;
+      lblCalorExagerado: TLabel;
       lblTelCasa: TLabel;
       lblTelRecado: TLabel;
       lblTelTrab: TLabel;
@@ -215,62 +242,69 @@ type
       pnlSinaisSintomas: TBCPanel;
       pnlTitulo: TBCPanel;
       btnProcuraPaciente: TSpeedButton;
-      RadioButton1: TRadioButton;
-      RadioButton10: TRadioButton;
-      RadioButton11: TRadioButton;
-      RadioButton12: TRadioButton;
-      RadioButton13: TRadioButton;
-      RadioButton14: TRadioButton;
-      RadioButton15: TRadioButton;
-      RadioButton16: TRadioButton;
-      RadioButton17: TRadioButton;
-      RadioButton18: TRadioButton;
-      RadioButton19: TRadioButton;
-      RadioButton2: TRadioButton;
-      RadioButton20: TRadioButton;
-      RadioButton21: TRadioButton;
-      RadioButton22: TRadioButton;
-      RadioButton23: TRadioButton;
-      RadioButton24: TRadioButton;
-      RadioButton25: TRadioButton;
-      RadioButton26: TRadioButton;
-      RadioButton27: TRadioButton;
-      RadioButton28: TRadioButton;
-      RadioButton29: TRadioButton;
-      RadioButton3: TRadioButton;
-      RadioButton30: TRadioButton;
-      RadioButton31: TRadioButton;
-      RadioButton32: TRadioButton;
-      RadioButton33: TRadioButton;
-      RadioButton34: TRadioButton;
-      RadioButton4: TRadioButton;
-      RadioButton5: TRadioButton;
-      RadioButton6: TRadioButton;
-      RadioButton7: TRadioButton;
-      RadioButton8: TRadioButton;
-      RadioButton9: TRadioButton;
-      rbtnFeminino: TRadioButton;
-      rbtnMasculino: TRadioButton;
-      rgAIDS: TRadioGroup;
-      rgAlteracaoApetite: TRadioGroup;
-      rgAnemia: TRadioGroup;
-      rgAsma: TRadioGroup;
-      rgCalorExagerado: TRadioGroup;
-      rgCansaFacil: TRadioGroup;
-      rgCoceiraAnormal: TRadioGroup;
-      rgDiabete: TRadioGroup;
-      rgDificuldadeEngolir: TRadioGroup;
-      rgDificuldadeMastigar: TRadioGroup;
-      rgDisritmiaEpilepsia: TRadioGroup;
-      rgDoencaCoracao: TRadioGroup;
-      rgDoencaRenal: TRadioGroup;
-      rgDorCabecaFrequente: TRadioGroup;
-      rgDorFacial: TRadioGroup;
-      rgDorOuvidoFrequente: TRadioGroup;
-      rgEmagrecimentoAcentuado: TRadioGroup;
-      rgEstaloMandibula: TRadioGroup;
+      rbexNaoMenopausa: TRadioButtonEx;
+      rbexNaoTaGravida: TRadioButtonEx;
+      rbexNaoTomaRemedio: TRadioButtonEx;
+      rbexNaoAlergiaAnestesia: TRadioButtonEx;
+      rbexNaoAlgumaAlergia: TRadioButtonEx;
+      rbexNaoFoiHospitalizado: TRadioButtonEx;
+      rbexNaoTratMedico: TRadioButtonEx;
+      rbexSimApreesTratDent: TRadioButtonEx;
+      rbexNaoApreesTratDent: TRadioButtonEx;
+      rbexSimMenopausa: TRadioButtonEx;
+      rbexSimTaGravida: TRadioButtonEx;
+      rbex1Filho: TRadioButtonEx;
+      rbex9Gravidez: TRadioButtonEx;
+      rbex1Gravidez: TRadioButtonEx;
+      rbex2Gravidez: TRadioButtonEx;
+      rbex3Gravidez: TRadioButtonEx;
+      rbex4Gravidez: TRadioButtonEx;
+      rbex5Gravidez: TRadioButtonEx;
+      rbex6Gravidez: TRadioButtonEx;
+      rbex7Gravidez: TRadioButtonEx;
+      rbex8Gravidez: TRadioButtonEx;
+      rbex2Filho: TRadioButtonEx;
+      rbex3Filho: TRadioButtonEx;
+      rbex4Filho: TRadioButtonEx;
+      rbex5Filho: TRadioButtonEx;
+      rbex6Filho: TRadioButtonEx;
+      rbex7Filho: TRadioButtonEx;
+      rbex8Filho: TRadioButtonEx;
+      rbex9Filho: TRadioButtonEx;
+      rbexSimTomaRemedio: TRadioButtonEx;
+      rbexSimAlergiaAnestesia: TRadioButtonEx;
+      rbexSimAlgumaAlergia: TRadioButtonEx;
+      rbexSimFoiHospitalizado: TRadioButtonEx;
+      rbexSimTratMedico: TRadioButtonEx;
+      rgexDisritmiaEpilepsia: TRadioGroupEx;
+      rgexDoencaRenal: TRadioGroupEx;
+      rgexTumorBoca: TRadioGroupEx;
+      rgexDoencaCoracao: TRadioGroupEx;
+      rgexDiabetes: TRadioGroupEx;
+      rgexAsma: TRadioGroupEx;
+      rgexAnemia: TRadioGroupEx;
+      rgexAlteracaoApetite: TRadioGroupEx;
+      rgexAids: TRadioGroupEx;
+      rgexPoucaSaliva: TRadioGroupEx;
+      rgexTonturasDesmaios: TRadioGroupEx;
+      rgexSangramentoAnormal: TRadioGroupEx;
+      rgexRespiraPelaBoca: TRadioGroupEx;
+      rgexRangeDentes: TRadioGroupEx;
+      rgexMiccaoFrequente: TRadioGroupEx;
+      rgexMaCicatrizacao: TRadioGroupEx;
+      rgexIndigestaoFrequente: TRadioGroupEx;
+      rgexFebreFrequente: TRadioGroupEx;
+      rgexEstaloMandibula: TRadioGroupEx;
+      rgexEmagrecimentoAcentuado: TRadioGroupEx;
+      rgexDorOuvidoFrequente: TRadioGroupEx;
+      rgexDorCabecaFrequente: TRadioGroupEx;
+      rgexDorFacial: TRadioGroupEx;
+      rgexDificuldadeMastigar: TRadioGroupEx;
+      rgexCansaFacil: TRadioGroupEx;
+      rgexDificuldadeEngolir: TRadioGroupEx;
+      rgexCoceiraAnormal: TRadioGroupEx;
+      rgexCalorExagerado: TRadioGroupEx;
       rgexSexo: TRadioGroupEx;
-      rgFebreFrequente: TRadioGroup;
       rgFebreReumatica: TRadioGroup;
       rgGlaucoma: TRadioGroup;
       rgGonorreia: TRadioGroup;
@@ -278,19 +312,10 @@ type
       rgHemofilia: TRadioGroup;
       rgHepatite: TRadioGroup;
       rgIctericia: TRadioGroup;
-      rgIndigestaoFrequente: TRadioGroup;
-      rgMaCicatrizacao: TRadioGroup;
-      rgMiccaoFrequente: TRadioGroup;
-      rgPoucaSaliva: TRadioGroup;
       rgProblemaHormonal: TRadioGroup;
-      rgRangeDentes: TRadioGroup;
-      rgRespiraPelaBoca: TRadioGroup;
-      rgSangramentoAnormal: TRadioGroup;
       rgSifilis: TRadioGroup;
       rgSinusite: TRadioGroup;
-      rgTonturasDesmaios: TRadioGroup;
       rgTuberculose: TRadioGroup;
-      rgTumorBoca: TRadioGroup;
       rgUlceraHepatica: TRadioGroup;
       ScrollBox1: TScrollBox;
       tabAnamnese: TTabSheet;
@@ -341,7 +366,9 @@ type
 
       function RetornoMascaraContatos(tamanho: integer): string;
 
-      {=========================================================================}
+      procedure DesabilitaTemaRadioButtonEX(Sender: TObject);
+
+      {================================= FUNÇÕES E PROCEDIMENTOS DE CADASTRO  ====================================================}
 
       function CarregaObjDadosBasicos(objDados: TPaciente): TPaciente;
       procedure InclusaoDadosBasicos;
@@ -355,6 +382,9 @@ type
 
       function CarregaObjContatos(objContatos: TContatos) : TContatos;
       procedure InclusaoContatos;
+
+      //function CarregaObjAnamnese(objAnamnese: TContatos) : TAnamnese;
+      //procedure InclusaoAnamnese;
 
       function CarregaObjSinaisSintomas(objSinaisSintomas: TSinaisSintomas): TSinaisSintomas;
       procedure InclusaoSinaisSintomas;
@@ -575,9 +605,7 @@ begin
    finally
       FreeAndNil(objControlePaciente);
    end;
-
-   rgexSexo.Buttons[0].ThemedCaption := false;
-   rgexSexo.Buttons[1].ThemedCaption := false;
+   DesabilitaTemaRadioButtonEX(Sender);
 end;
 
 procedure TfrmCadPaciente.mskedtCel1Enter(Sender: TObject);
@@ -814,10 +842,15 @@ begin
       nomeMae := edtNomeMae.Text;
       estadoCivil := cboxEstCivil.Text;
       nomeConjuge := edtNomeConjuge.Text;
-      if rbtnFeminino.Checked then
-         sexo := 'F'
-      else if rbtnMasculino.Checked then
-         sexo := 'M';
+      //if rbtnFeminino.Checked then
+      //   sexo := 'F'
+      //else if rbtnMasculino.Checked then
+      //   sexo := 'M';
+
+      case rgexSexo.ItemIndex of
+         0 : sexo := 'F';
+         1 : sexo := 'M';
+      end;
       if not(IsNullDate(dtpkNascimento.Date)) then
          dataNascimento := dtpkNascimento.Date;
       naturalidade := edtNaturalidade.Text;
@@ -870,6 +903,17 @@ begin
       result := '!9000-0000;0;_'
    else if tamanho >= 9 then
       result := '!99-9000-0000;0;_';;
+end;
+
+procedure TfrmCadPaciente.DesabilitaTemaRadioButtonEX(Sender: TObject);
+var
+   i : integer;
+begin
+   for i := 0 to ComponentCount - 1 do
+   begin
+      if Components[i] is TRadioButtonEx then
+         (Components[i] as TRadioButtonEx).ThemedCaption := false;
+   end;
 end;
 
 procedure TfrmCadPaciente.InclusaoDadosBasicos;
@@ -1092,26 +1136,26 @@ begin
    with objSinaisSintomas do
    begin
       idTblPaciente := StrToInt(edtCodPaciente.Text);
-      alteracaoApetite := RetornoRadioGroup(rgAlteracaoApetite.ItemIndex);
-      calorExagerado := RetornoRadioGroup(rgCalorExagerado.ItemIndex);
-      cansaFacil := RetornoRadioGroup(rgCansaFacil.ItemIndex);
-      coceiraAnormal := RetornoRadioGroup(rgCoceiraAnormal.ItemIndex);
-      dificuldadeEngolir := RetornoRadioGroup(rgDificuldadeEngolir.ItemIndex);
-      dificuldadeMastigar := RetornoRadioGroup(rgDificuldadeMastigar.ItemIndex);
-      dorFacial := RetornoRadioGroup(rgDorFacial.ItemIndex);
-      dorFrequenteCabeca := RetornoRadioGroup(rgDorCabecaFrequente.ItemIndex);
-      dorOuvidoFrequente := RetornoRadioGroup(rgDorOuvidoFrequente.ItemIndex);
-      emagrecimentoAcentuado := RetornoRadioGroup(rgEmagrecimentoAcentuado.ItemIndex);
-      estaloMandibula := RetornoRadioGroup(rgEstaloMandibula.ItemIndex);
-      febreFrequente := RetornoRadioGroup(rgFebreFrequente.ItemIndex);
-      indigestaoFrequente := RetornoRadioGroup(rgIndigestaoFrequente.ItemIndex);
-      maCicatrizacao := RetornoRadioGroup(rgMaCicatrizacao.ItemIndex);
-      miccaoFrequente := RetornoRadioGroup(rgMiccaoFrequente.ItemIndex);
-      rangeDentes := RetornoRadioGroup(rgRangeDentes.ItemIndex);
-      respiraPelaBoca := RetornoRadioGroup(rgRespiraPelaBoca.ItemIndex);
-      sangramentoAnormal := RetornoRadioGroup(rgSangramentoAnormal.ItemIndex);
-      tonturaDesmaio := RetornoRadioGroup(rgTonturasDesmaios.ItemIndex);
-      poucaSaliva := RetornoRadioGroup(rgPoucaSaliva.ItemIndex);
+      alteracaoApetite := RetornoRadioGroup(rgexAlteracaoApetite.ItemIndex);
+      calorExagerado := RetornoRadioGroup(rgexCalorExagerado.ItemIndex);
+      cansaFacil := RetornoRadioGroup(rgexCansaFacil.ItemIndex);
+      coceiraAnormal := RetornoRadioGroup(rgexCoceiraAnormal.ItemIndex);
+      dificuldadeEngolir := RetornoRadioGroup(rgexDificuldadeEngolir.ItemIndex);
+      dificuldadeMastigar := RetornoRadioGroup(rgexDificuldadeMastigar.ItemIndex);
+      dorFacial := RetornoRadioGroup(rgexDorFacial.ItemIndex);
+      dorFrequenteCabeca := RetornoRadioGroup(rgexDorCabecaFrequente.ItemIndex);
+      dorOuvidoFrequente := RetornoRadioGroup(rgexDorOuvidoFrequente.ItemIndex);
+      emagrecimentoAcentuado := RetornoRadioGroup(rgexEmagrecimentoAcentuado.ItemIndex);
+      estaloMandibula := RetornoRadioGroup(rgexEstaloMandibula.ItemIndex);
+      febreFrequente := RetornoRadioGroup(rgexFebreFrequente.ItemIndex);
+      indigestaoFrequente := RetornoRadioGroup(rgexIndigestaoFrequente.ItemIndex);
+      maCicatrizacao := RetornoRadioGroup(rgexMaCicatrizacao.ItemIndex);
+      miccaoFrequente := RetornoRadioGroup(rgexMiccaoFrequente.ItemIndex);
+      rangeDentes := RetornoRadioGroup(rgexRangeDentes.ItemIndex);
+      respiraPelaBoca := RetornoRadioGroup(rgexRespiraPelaBoca.ItemIndex);
+      sangramentoAnormal := RetornoRadioGroup(rgexSangramentoAnormal.ItemIndex);
+      tonturaDesmaio := RetornoRadioGroup(rgexTonturasDesmaios.ItemIndex);
+      poucaSaliva := RetornoRadioGroup(rgexPoucaSaliva.ItemIndex);
    end;
    result := objSinaisSintomas;
 end;
@@ -1148,12 +1192,12 @@ begin
    with objEnfermidades do
    begin
       idTblPaciente := StrToInt(edtCodPaciente.Text);
-      aids := RetornoRadioGroup(rgAIDS.ItemIndex);
-      anemia := RetornoRadioGroup(rgAnemia.ItemIndex);
-      asma := RetornoRadioGroup(rgAsma.ItemIndex);
-      diabete := RetornoRadioGroup(rgDiabete.ItemIndex);
+      aids := RetornoRadioGroup(rgexAIDS.ItemIndex);
+      anemia := RetornoRadioGroup(rgexAnemia.ItemIndex);
+      asma := RetornoRadioGroup(rgexAsma.ItemIndex);
+      diabete := RetornoRadioGroup(rgexDiabetes.ItemIndex);
       disritmiaEpilepsia := RetornoRadioGroup(rgDisritmiaEpilepsia.ItemIndex);
-      doencaCoracao := RetornoRadioGroup(rgDoencaCoracao.ItemIndex);
+      doencaCoracao := RetornoRadioGroup(rgexDoencaCoracao.ItemIndex);
       doencaRenal := RetornoRadioGroup(rgDoencaRenal.ItemIndex);
       febreReumatica := RetornoRadioGroup(rgFebreReumatica.ItemIndex);
       glaucoma := RetornoRadioGroup(rgGlaucoma.ItemIndex);
@@ -1211,10 +1255,17 @@ begin
    edtNomeMae.Text := objDados.nomeMae;
    cboxEstCivil.Text := objDados.estadoCivil;
    edtNomeConjuge.Text := objDados.nomeConjuge;
-   if objDados.sexo = 'F' then
-      rbtnFeminino.Checked := true
-   else if objDados.sexo = 'M' then
-      rbtnMasculino.Checked := true;
+   //if objDados.sexo = 'F' then
+   //   rbtnFeminino.Checked := true
+   //else if objDados.sexo = 'M' then
+   //   rbtnMasculino.Checked := true;
+
+   case objDados.sexo of
+      'F' : rgexSexo.ItemIndex := 0;
+      'M' : rgexSexo.ItemIndex := 1;
+      else
+         rgexSexo.ItemIndex := -1;
+   end;
 
    if objDados.dataNascimento = StrToDate('30/12/1899') then
     begin
