@@ -7,7 +7,7 @@ interface
 uses
    Classes, SysUtils, Forms, Controls, Graphics, Dialogs, ExtCtrls, Buttons, StdCtrls, ComCtrls, MaskEdit, ECGroupCtrls, rxctrls,
    DateTimePicker, BCPanel, BCButton, RTTICtrls, ExCheckCtrls, uClassPaciente, uClassResponsavelPaciente, uClassSinaisSintomas,
-   uClassEnfermidades, uClassEndereco, uClassContatos, uClassAnamnese;
+   uClassEnfermidades, uClassEndereco, uClassContatos, uClassAnamnese, uClassDadosProfissionais;
 
 type
 
@@ -22,7 +22,7 @@ type
       bvSinaisSintomas: TBevel;
       bvSinaisSintomas1: TBevel;
       cboxConsAcucar: TComboBox;
-      cboxConsAcucar2: TComboBox;
+      cboxFioDental: TComboBox;
       cboxEscovacao: TComboBox;
       cboxEstCivil: TComboBox;
       cboxOperadoraCasa: TComboBox;
@@ -65,36 +65,48 @@ type
       edtNomePai: TEdit;
       edtNomeResp: TEdit;
       edtNumEndEmpresa: TEdit;
-      edtNumEndEmpresa1: TEdit;
-      edtNumEndEmpresa10: TEdit;
-      edtNumEndEmpresa2: TEdit;
-      edtNumEndEmpresa3: TEdit;
-      edtNumEndEmpresa4: TEdit;
-      edtNumEndEmpresa5: TEdit;
-      edtNumEndEmpresa6: TEdit;
-      edtNumEndEmpresa7: TEdit;
-      edtNumEndEmpresa8: TEdit;
-      edtNumEndEmpresa9: TEdit;
+      edtApreensivoTratamento: TEdit;
+      edtMenopausa: TEdit;
+      edtTratamentoMedico: TEdit;
+      edtTomaRemedio: TEdit;
+      edtAlergiaAnestesia: TEdit;
+      edtAlgumaAlergia: TEdit;
+      edtFoiHospitalizado: TEdit;
+      edtTaGravida: TEdit;
+      edtQtdGravidez: TEdit;
+      edtQtdFilhos: TEdit;
       edtNumEndereco: TEdit;
       edtOrgaoExpedidorResp1: TEdit;
       edtOrgaoExpedPaciente: TEdit;
       edtOrgaoExpedResp: TEdit;
       edtParentesco: TEdit;
       edtPessoaRecado: TEdit;
-      GroupBox1: TGroupBox;
-      GroupBox10: TGroupBox;
-      GroupBox11: TGroupBox;
-      GroupBox12: TGroupBox;
-      GroupBox2: TGroupBox;
-      GroupBox3: TGroupBox;
-      GroupBox4: TGroupBox;
-      GroupBox5: TGroupBox;
-      GroupBox6: TGroupBox;
-      GroupBox7: TGroupBox;
-      GroupBox8: TGroupBox;
-      GroupBox9: TGroupBox;
+      gbApreensivoTrat: TGroupBox;
+      gbQtdFilhos: TGroupBox;
+      gbNumFilhos: TGroupBox;
+      gbMenopausa: TGroupBox;
+      gbTratMedico: TGroupBox;
+      gbTomaRemedio: TGroupBox;
+      gbAlergiaAnestesia: TGroupBox;
+      gbAlgumaAlergia: TGroupBox;
+      gbHospitalizado: TGroupBox;
+      gbTaGravida: TGroupBox;
+      gbQtdGravidez: TGroupBox;
+      gbNumGravidez: TGroupBox;
       lblAids: TLabel;
       lblDisritmiaEpilepsia: TLabel;
+      lblUlceraHepatica: TLabel;
+      lblTuberculose: TLabel;
+      lblSinusite: TLabel;
+      lblSifilis: TLabel;
+      lblProblemaHormonal: TLabel;
+      lblIctericia: TLabel;
+      lblHepatite: TLabel;
+      lblHemofilia: TLabel;
+      lblHanseniase: TLabel;
+      lblGonorreia: TLabel;
+      lblGlaucoma: TLabel;
+      lblFebreReumatica: TLabel;
       lblDoencaRenal: TLabel;
       lblTumorBoca: TLabel;
       lblDoencaCoracao: TLabel;
@@ -120,26 +132,26 @@ type
       lblCoceiraAnormal: TLabel;
       lblCansaFacil: TLabel;
       lblAntecFamiliar: TLabel;
-      lblAntecFamiliar1: TLabel;
-      lblAntecFamiliar10: TLabel;
-      lblAntecFamiliar11: TLabel;
-      lblAntecFamiliar12: TLabel;
-      lblAntecFamiliar13: TLabel;
-      lblAntecFamiliar14: TLabel;
-      lblAntecFamiliar15: TLabel;
-      lblAntecFamiliar16: TLabel;
-      lblAntecFamiliar17: TLabel;
-      lblAntecFamiliar18: TLabel;
-      lblAntecFamiliar19: TLabel;
-      lblAntecFamiliar2: TLabel;
-      lblAntecFamiliar20: TLabel;
-      lblAntecFamiliar3: TLabel;
-      lblAntecFamiliar4: TLabel;
-      lblAntecFamiliar5: TLabel;
-      lblAntecFamiliar6: TLabel;
-      lblAntecFamiliar7: TLabel;
-      lblAntecFamiliar8: TLabel;
-      lblAntecFamiliar9: TLabel;
+      lblApreensivoTrat: TLabel;
+      lblQualAlergia: TLabel;
+      lblHospitalizado: TLabel;
+      lblPQFoiHospitalizado: TLabel;
+      lblTaGravida: TLabel;
+      lblPrevisaoParto: TLabel;
+      lblQtdGravidez: TLabel;
+      lblMaisGravidez: TLabel;
+      lblQtdFilhos: TLabel;
+      lblMaisFilhos: TLabel;
+      lblMenopausa: TLabel;
+      lblPQApreensivoTrat: TLabel;
+      lblQuandoMenopausa: TLabel;
+      lblTratMedico: TLabel;
+      lblQualTratMedico: TLabel;
+      lblTomaRemedio: TLabel;
+      lblTomaQualRemedio: TLabel;
+      lblAlergiaAnestesia: TLabel;
+      lblAlergiaQualAnestesia: TLabel;
+      lblAlgumaAlergia: TLabel;
       lblBairro: TLabel;
       lblBairroEmpresa: TLabel;
       lblCargo: TLabel;
@@ -277,6 +289,18 @@ type
       rbexSimFoiHospitalizado: TRadioButtonEx;
       rbexSimTratMedico: TRadioButtonEx;
       rgexDisritmiaEpilepsia: TRadioGroupEx;
+      rgexUlceraHepatica: TRadioGroupEx;
+      rgexTuberculose: TRadioGroupEx;
+      rgexSinusite: TRadioGroupEx;
+      rgexSifilis: TRadioGroupEx;
+      rgexProblemaHormonal: TRadioGroupEx;
+      rgexIctericia: TRadioGroupEx;
+      rgexHepatite: TRadioGroupEx;
+      rgexHemofilia: TRadioGroupEx;
+      rgexHanseniase: TRadioGroupEx;
+      rgexGonorreia: TRadioGroupEx;
+      rgexGlaucoma: TRadioGroupEx;
+      rgexFebreReumatica: TRadioGroupEx;
       rgexDoencaRenal: TRadioGroupEx;
       rgexTumorBoca: TRadioGroupEx;
       rgexDoencaCoracao: TRadioGroupEx;
@@ -305,19 +329,7 @@ type
       rgexCoceiraAnormal: TRadioGroupEx;
       rgexCalorExagerado: TRadioGroupEx;
       rgexSexo: TRadioGroupEx;
-      rgFebreReumatica: TRadioGroup;
-      rgGlaucoma: TRadioGroup;
-      rgGonorreia: TRadioGroup;
-      rgHanseniase: TRadioGroup;
-      rgHemofilia: TRadioGroup;
-      rgHepatite: TRadioGroup;
-      rgIctericia: TRadioGroup;
-      rgProblemaHormonal: TRadioGroup;
-      rgSifilis: TRadioGroup;
-      rgSinusite: TRadioGroup;
-      rgTuberculose: TRadioGroup;
-      rgUlceraHepatica: TRadioGroup;
-      ScrollBox1: TScrollBox;
+      scrboxAnamnese: TScrollBox;
       tabAnamnese: TTabSheet;
       tabContatos: TTabSheet;
       tabDadosBasicos: TTabSheet;
@@ -326,8 +338,8 @@ type
       tabEnfermidades: TTabSheet;
       tabResponsavel: TTabSheet;
       tabSinaisSintomas: TTabSheet;
-      UpDown1: TUpDown;
-      UpDown2: TUpDown;
+      udQtdGravidez: TUpDown;
+      udQtdFilhos: TUpDown;
       procedure btnAlteraCadastroClick(Sender: TObject);
       procedure btnApagaCadastroClick(Sender: TObject);
       procedure btnCancelaCadastroClick(Sender: TObject);
@@ -383,8 +395,11 @@ type
       function CarregaObjContatos(objContatos: TContatos) : TContatos;
       procedure InclusaoContatos;
 
-      //function CarregaObjAnamnese(objAnamnese: TContatos) : TAnamnese;
-      //procedure InclusaoAnamnese;
+      function CarregaObjDadoProfissional(objDadoProf: TDadosProfissionais) : TDadosProfissionais;
+      procedure InclusaoDadoProfissional;
+
+      function CarregaObjAnamnese(objAnamnese: TAnamnese): TAnamnese;
+      procedure InclusaoAnamnese;
 
       function CarregaObjSinaisSintomas(objSinaisSintomas: TSinaisSintomas): TSinaisSintomas;
       procedure InclusaoSinaisSintomas;
@@ -448,19 +463,30 @@ begin
              if estado in [teInclusao] then
                 InclusaoResponsavel;
           end;
+
       2 : begin
              if estado in [teInclusao] then
                 InclusaoEndereco;
           end;
+
       3 : begin
              if estado in [teInclusao] then
                 InclusaoContatos;
           end;
-      7 : begin
+
+      4 : begin
+             if estado in [teInclusao] then
+             InclusaoDadoProfissional;
+          end;
+
+//      5 : Anamnese
+
+      6 : begin
              if estado in [teInclusao] then
                 InclusaoSinaisSintomas;
           end;
-      8 : begin
+
+      7 : begin
              if estado in [teInclusao] then
                 InclusaoEnfermidades;
           end;
@@ -1059,7 +1085,7 @@ begin
    try
       objEndereco := TEndereco.Create;
       objControlePaciente := TControlePaciente.Create;
-      if objControlePaciente.InclusaoEndereco(CarregaObjEndereco(objEndereco))then
+      if objControlePaciente.InclusaoEndereco(CarregaObjEndereco(objEndereco)) > 0 then
        begin
           try
              frmMensagem := TfrmMensagem.Create(Self);
@@ -1131,6 +1157,72 @@ begin
    end;
 end;
 
+function TfrmCadPaciente.CarregaObjDadoProfissional(objDadoProf: TDadosProfissionais): TDadosProfissionais;
+begin
+   with objDadoProf do
+   begin
+      nomeEmpresa := edtNomeEmpresa.Text;
+      cargo := edtCargo.Text;
+      idTblPaciente := StrToInt(edtCodPaciente.Text);
+      enderecoEmpresa.idTblPaciente := StrToInt(edtCodPaciente.Text);
+      enderecoEmpresa.logradouro := edtLogradEmpresa.Text;
+      enderecoEmpresa.numero := edtNumEndEmpresa.Text;
+      enderecoEmpresa.complemento := edtComplEmpresa.Text;
+      enderecoEmpresa.bairro := edtBairroEmpresa.Text;
+      enderecoEmpresa.cidade := edtCidadeEmpresa.Text;
+      enderecoEmpresa.estado := cboxUFEmpresa.Text;
+      enderecoEmpresa.cep := mskedtCEPEmpresa.Text;
+   end;
+   result := objDadoProf;
+end;
+
+procedure TfrmCadPaciente.InclusaoDadoProfissional;
+var
+   objDadoProf : TDadosProfissionais;
+   objControlePaciente : TControlePaciente;
+begin
+   try
+      objDadoProf := TDadosProfissionais.Create;
+      objControlePaciente := TControlePaciente.Create;
+      if objControlePaciente.InclusaoDadosProfissionais(CarregaObjDadoProfissional(objDadoProf)) then
+       begin
+          try
+             frmMensagem := TfrmMensagem.Create(Self);
+             frmMensagem.InfoFormMensagem('Cadastro de Dados Profissionais', tiInformacao, 'Cadastro de Dados Profissionais realizado com sucesso!');
+          finally
+             FreeAndNil(frmMensagem);
+          end;
+       end;
+
+      DesabilitaControles(pcCadPaciente.ActivePage);
+      estado := teNavegacao;
+      EstadoBotoes;
+   finally
+      FreeAndNil(objControlePaciente);
+      FreeAndNil(objDadoProf);
+   end;
+end;
+
+function TfrmCadPaciente.CarregaObjAnamnese(objAnamnese: TAnamnese): TAnamnese;
+begin
+   with objAnamnese do    { TODO -oTerence -cCadastro : Continuar com o cadastro da Anamnese };
+   begin
+      idTblPaciente := StrToInt(edtCodPaciente.Text);
+      consumoAcucar := cboxConsAcucar.Text;
+      escovacao := cboxEscovacao.Text;
+      usoFioDental := cboxFioDental;
+      obsAnatomoHisto := memoObsAnatHistPatol.Text;
+      habitosViciosos := edtHabitosViciosos;
+      antecedentesFamiliares := edtAntecFamiliar.Text;
+      apreensivoTratDentario := edtApreensivoTratamento.Text;
+   end;
+end;
+
+procedure TfrmCadPaciente.InclusaoAnamnese;
+begin
+
+end;
+
 function TfrmCadPaciente.CarregaObjSinaisSintomas(objSinaisSintomas: TSinaisSintomas): TSinaisSintomas;
 begin
    with objSinaisSintomas do
@@ -1196,22 +1288,22 @@ begin
       anemia := RetornoRadioGroup(rgexAnemia.ItemIndex);
       asma := RetornoRadioGroup(rgexAsma.ItemIndex);
       diabete := RetornoRadioGroup(rgexDiabetes.ItemIndex);
-      disritmiaEpilepsia := RetornoRadioGroup(rgDisritmiaEpilepsia.ItemIndex);
+      disritmiaEpilepsia := RetornoRadioGroup(rgexDisritmiaEpilepsia.ItemIndex);
       doencaCoracao := RetornoRadioGroup(rgexDoencaCoracao.ItemIndex);
-      doencaRenal := RetornoRadioGroup(rgDoencaRenal.ItemIndex);
-      febreReumatica := RetornoRadioGroup(rgFebreReumatica.ItemIndex);
-      glaucoma := RetornoRadioGroup(rgGlaucoma.ItemIndex);
-      gonorreia := RetornoRadioGroup(rgGonorreia.ItemIndex);
-      hanseniase := RetornoRadioGroup(rgHanseniase.ItemIndex);
-      hemofilia := RetornoRadioGroup(rgHemofilia.ItemIndex);
-      hepatite := RetornoRadioGroup(rgHepatite.ItemIndex);
-      ictericia := RetornoRadioGroup(rgIctericia.ItemIndex);
-      problemaHormonal := RetornoRadioGroup(rgProblemaHormonal.ItemIndex);
-      sifilis := RetornoRadioGroup(rgSifilis.ItemIndex);
-      sinusite := RetornoRadioGroup(rgSinusite.ItemIndex);
-      tuberculose := RetornoRadioGroup(rgTuberculose.ItemIndex);
-      tumorBoca := RetornoRadioGroup(rgTumorBoca.ItemIndex);
-      ulceraHepatica := RetornoRadioGroup(rgUlceraHepatica.ItemIndex);
+      doencaRenal := RetornoRadioGroup(rgexDoencaRenal.ItemIndex);
+      febreReumatica := RetornoRadioGroup(rgexFebreReumatica.ItemIndex);
+      glaucoma := RetornoRadioGroup(rgexGlaucoma.ItemIndex);
+      gonorreia := RetornoRadioGroup(rgexGonorreia.ItemIndex);
+      hanseniase := RetornoRadioGroup(rgexHanseniase.ItemIndex);
+      hemofilia := RetornoRadioGroup(rgexHemofilia.ItemIndex);
+      hepatite := RetornoRadioGroup(rgexHepatite.ItemIndex);
+      ictericia := RetornoRadioGroup(rgexIctericia.ItemIndex);
+      problemaHormonal := RetornoRadioGroup(rgexProblemaHormonal.ItemIndex);
+      sifilis := RetornoRadioGroup(rgexSifilis.ItemIndex);
+      sinusite := RetornoRadioGroup(rgexSinusite.ItemIndex);
+      tuberculose := RetornoRadioGroup(rgexTuberculose.ItemIndex);
+      tumorBoca := RetornoRadioGroup(rgexTumorBoca.ItemIndex);
+      ulceraHepatica := RetornoRadioGroup(rgexUlceraHepatica.ItemIndex);
    end;
 end;
 

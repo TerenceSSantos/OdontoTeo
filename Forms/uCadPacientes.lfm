@@ -615,10 +615,10 @@ object frmCadPaciente: TfrmCadPaciente
       Height = 362
       Top = 2
       Width = 1088
-      ActivePage = tabEnfermidades
+      ActivePage = tabAnamnese
       Align = alClient
       Images = miglstCadPaciente
-      TabIndex = 7
+      TabIndex = 5
       TabOrder = 0
       OnChange = pcCadPacienteChange
       OnChanging = pcCadPacienteChanging
@@ -747,7 +747,7 @@ object frmCadPaciente: TfrmCadPaciente
             Height = 23
             Top = 45
             Width = 350
-            Color = clInfoBk
+            Color = 14876671
             Font.CharSet = ANSI_CHARSET
             Font.Color = 65664
             Font.Height = -12
@@ -765,7 +765,7 @@ object frmCadPaciente: TfrmCadPaciente
             Height = 23
             Top = 44
             Width = 350
-            Color = clInfoBk
+            Color = 14876671
             Font.CharSet = ANSI_CHARSET
             Font.Color = 65664
             Font.Height = -12
@@ -798,7 +798,7 @@ object frmCadPaciente: TfrmCadPaciente
             Height = 23
             Top = 100
             Width = 350
-            Color = clInfoBk
+            Color = 14876671
             Font.CharSet = ANSI_CHARSET
             Font.Color = 65664
             Font.Height = -12
@@ -831,7 +831,7 @@ object frmCadPaciente: TfrmCadPaciente
             Height = 23
             Top = 100
             Width = 350
-            Color = clInfoBk
+            Color = 14876671
             Font.CharSet = ANSI_CHARSET
             Font.Color = 65664
             Font.Height = -12
@@ -864,7 +864,7 @@ object frmCadPaciente: TfrmCadPaciente
             Height = 23
             Top = 152
             Width = 281
-            Color = clInfoBk
+            Color = 14876671
             Font.CharSet = ANSI_CHARSET
             Font.Color = 65664
             Font.Height = -12
@@ -873,7 +873,7 @@ object frmCadPaciente: TfrmCadPaciente
             Font.Quality = fqDraft
             Font.Style = [fsBold]
             ParentFont = False
-            TabOrder = 8
+            TabOrder = 9
             TextHint = 'Cidade de nascimento do(a) paciente'
           end
           object lblNacionalidade: TLabel
@@ -897,7 +897,7 @@ object frmCadPaciente: TfrmCadPaciente
             Height = 23
             Top = 217
             Width = 281
-            Color = clInfoBk
+            Color = 14876671
             Font.CharSet = ANSI_CHARSET
             Font.Color = 65664
             Font.Height = -12
@@ -906,7 +906,7 @@ object frmCadPaciente: TfrmCadPaciente
             Font.Quality = fqDraft
             Font.Style = [fsBold]
             ParentFont = False
-            TabOrder = 10
+            TabOrder = 11
             TextHint = 'País onde o paciente nasceu'
           end
           object lblEstadoCivil: TLabel
@@ -930,7 +930,7 @@ object frmCadPaciente: TfrmCadPaciente
             Height = 23
             Top = 100
             Width = 100
-            Color = clInfoBk
+            Color = 14876671
             Font.CharSet = ANSI_CHARSET
             Font.Color = 65664
             Font.Height = -12
@@ -979,8 +979,8 @@ object frmCadPaciente: TfrmCadPaciente
             Font.Quality = fqDraft
             Font.Style = [fsBold]
             ParentFont = False
-            TabOrder = 7
-            Color = clInfoBk
+            TabOrder = 8
+            Color = 14876671
             TrailingSeparator = False
             TextForNullDate = 'VAZIA'
             LeadingZeros = True
@@ -1016,7 +1016,7 @@ object frmCadPaciente: TfrmCadPaciente
             Top = 152
             Width = 70
             CharCase = ecUppercase
-            Color = clInfoBk
+            Color = 14876671
             Font.CharSet = ANSI_CHARSET
             Font.Color = 65664
             Font.Height = -12
@@ -1057,7 +1057,7 @@ object frmCadPaciente: TfrmCadPaciente
               'TO'
             )
             ParentFont = False
-            TabOrder = 9
+            TabOrder = 10
           end
           object lblParaDataVazia: TLabel
             Left = 336
@@ -1138,7 +1138,7 @@ object frmCadPaciente: TfrmCadPaciente
             Font.Name = 'Segoe UI Semibold'
             MaxLength = 14
             ParentFont = False
-            TabOrder = 11
+            TabOrder = 12
             EditMask = '!000.000.000-00;0;_'
             TextHint = 'CPF do(a) paciente'
             SpaceChar = '_'
@@ -1169,7 +1169,7 @@ object frmCadPaciente: TfrmCadPaciente
             Font.Height = -12
             Font.Name = 'Segoe UI Semibold'
             ParentFont = False
-            TabOrder = 12
+            TabOrder = 13
             TextHint = 'Documento de identidade do(a) paciente'
           end
           object lblOrgaoExpedPaciente: TLabel
@@ -1198,7 +1198,7 @@ object frmCadPaciente: TfrmCadPaciente
             Font.Height = -12
             Font.Name = 'Segoe UI Semibold'
             ParentFont = False
-            TabOrder = 13
+            TabOrder = 14
             TextHint = 'Órgão que expediu a identidadedo(a) paciente'
           end
           object rgexSexo: TRadioGroupEx
@@ -1227,7 +1227,7 @@ object frmCadPaciente: TfrmCadPaciente
               'Masculino'
             )
             ParentFont = False
-            TabOrder = 14
+            TabOrder = 7
           end
           object lblSexo: TLabel
             Left = 68
@@ -2490,9 +2490,8 @@ object frmCadPaciente: TfrmCadPaciente
             Font.Color = 65664
             Font.Height = -12
             Font.Name = 'Segoe UI Semibold'
-            NumbersOnly = True
             ParentFont = False
-            TabOrder = 0
+            TabOrder = 3
             TextHint = 'Nº do endereço'
           end
           object edtLogradEmpresa: TEdit
@@ -2505,7 +2504,7 @@ object frmCadPaciente: TfrmCadPaciente
             Font.Height = -12
             Font.Name = 'Segoe UI Semibold'
             ParentFont = False
-            TabOrder = 1
+            TabOrder = 2
             TextHint = 'Endereço da empresa'
           end
           object lblComplEmpresa: TLabel
@@ -2534,7 +2533,7 @@ object frmCadPaciente: TfrmCadPaciente
             Font.Height = -12
             Font.Name = 'Segoe UI Semibold'
             ParentFont = False
-            TabOrder = 2
+            TabOrder = 4
             TextHint = 'Quadra, lote, fundos, etc'
           end
           object lblBairroEmpresa: TLabel
@@ -2563,7 +2562,7 @@ object frmCadPaciente: TfrmCadPaciente
             Font.Height = -12
             Font.Name = 'Segoe UI Semibold'
             ParentFont = False
-            TabOrder = 3
+            TabOrder = 5
             TextHint = 'Bairro onde fica a empresa'
           end
           object lblCidadeEmpresea: TLabel
@@ -2592,7 +2591,7 @@ object frmCadPaciente: TfrmCadPaciente
             Font.Height = -12
             Font.Name = 'Segoe UI Semibold'
             ParentFont = False
-            TabOrder = 4
+            TabOrder = 6
             TextHint = 'Cidade onde fica a empresa'
           end
           object lblUFEmpresa: TLabel
@@ -2616,6 +2615,7 @@ object frmCadPaciente: TfrmCadPaciente
             Height = 23
             Top = 266
             Width = 70
+            CharCase = ecUppercase
             Color = 14876671
             Font.Color = 65664
             Font.Height = -12
@@ -2653,7 +2653,7 @@ object frmCadPaciente: TfrmCadPaciente
               'TO'
             )
             ParentFont = False
-            TabOrder = 5
+            TabOrder = 7
           end
           object lblCEPEmpresa: TLabel
             Left = 777
@@ -2683,7 +2683,7 @@ object frmCadPaciente: TfrmCadPaciente
             Font.Name = 'Segoe UI Semibold'
             MaxLength = 10
             ParentFont = False
-            TabOrder = 6
+            TabOrder = 8
             EditMask = '!00.000-000;0;_'
             SpaceChar = '_'
           end
@@ -2729,7 +2729,7 @@ object frmCadPaciente: TfrmCadPaciente
             Font.Height = -12
             Font.Name = 'Segoe UI Semibold'
             ParentFont = False
-            TabOrder = 7
+            TabOrder = 0
             TextHint = 'Nome da empresa onde o paciente trabalha'
           end
           object edtCargo: TEdit
@@ -2742,9 +2742,8 @@ object frmCadPaciente: TfrmCadPaciente
             Font.Color = 65664
             Font.Height = -12
             Font.Name = 'Segoe UI Semibold'
-            NumbersOnly = True
             ParentFont = False
-            TabOrder = 8
+            TabOrder = 1
             TextHint = 'Cargo que o paciente exerce'
           end
         end
@@ -2754,7 +2753,7 @@ object frmCadPaciente: TfrmCadPaciente
         ClientHeight = 319
         ClientWidth = 1080
         ImageIndex = 11
-        object ScrollBox1: TScrollBox
+        object scrboxAnamnese: TScrollBox
           Left = 0
           Height = 319
           Top = 0
@@ -2901,7 +2900,7 @@ object frmCadPaciente: TfrmCadPaciente
               ParentColor = False
               ParentFont = False
             end
-            object cboxConsAcucar2: TComboBox
+            object cboxFioDental: TComboBox
               Left = 408
               Height = 23
               Top = 33
@@ -3014,7 +3013,7 @@ object frmCadPaciente: TfrmCadPaciente
               TabOrder = 5
               TextHint = 'Pais, avós, tios ou irmãos sofrem de alguma doença?'
             end
-            object GroupBox1: TGroupBox
+            object gbApreensivoTrat: TGroupBox
               Left = 64
               Height = 70
               Top = 250
@@ -3025,7 +3024,7 @@ object frmCadPaciente: TfrmCadPaciente
               Color = 16049884
               ParentColor = False
               TabOrder = 6
-              object lblAntecFamiliar1: TLabel
+              object lblApreensivoTrat: TLabel
                 Left = 16
                 Height = 15
                 Top = -18
@@ -3041,7 +3040,7 @@ object frmCadPaciente: TfrmCadPaciente
                 ParentColor = False
                 ParentFont = False
               end
-              object lblAntecFamiliar2: TLabel
+              object lblPQApreensivoTrat: TLabel
                 Left = 16
                 Height = 15
                 Top = 24
@@ -3057,7 +3056,7 @@ object frmCadPaciente: TfrmCadPaciente
                 ParentColor = False
                 ParentFont = False
               end
-              object edtNumEndEmpresa1: TEdit
+              object edtApreensivoTratamento: TEdit
                 Left = 72
                 Height = 23
                 Top = 16
@@ -3069,7 +3068,7 @@ object frmCadPaciente: TfrmCadPaciente
                 Font.Name = 'Segoe UI Semibold'
                 NumbersOnly = True
                 ParentFont = False
-                TabOrder = 0
+                TabOrder = 2
                 TextHint = 'Motivo da apreensão (medo)'
               end
               object rbexSimApreesTratDent: TRadioButtonEx
@@ -3086,7 +3085,7 @@ object frmCadPaciente: TfrmCadPaciente
                 Font.Quality = fqDraft
                 Font.Style = [fsBold]
                 ParentFont = False
-                TabOrder = 1
+                TabOrder = 0
                 TabStop = True
                 ThemedCaption = True
               end
@@ -3104,12 +3103,12 @@ object frmCadPaciente: TfrmCadPaciente
                 Font.Quality = fqDraft
                 Font.Style = [fsBold]
                 ParentFont = False
-                TabOrder = 2
+                TabOrder = 1
                 TabStop = True
                 ThemedCaption = True
               end
             end
-            object GroupBox2: TGroupBox
+            object gbTratMedico: TGroupBox
               Left = 551
               Height = 70
               Top = 250
@@ -3120,7 +3119,7 @@ object frmCadPaciente: TfrmCadPaciente
               Color = 16049884
               ParentColor = False
               TabOrder = 7
-              object lblAntecFamiliar3: TLabel
+              object lblTratMedico: TLabel
                 Left = 16
                 Height = 15
                 Top = -18
@@ -3136,7 +3135,7 @@ object frmCadPaciente: TfrmCadPaciente
                 ParentColor = False
                 ParentFont = False
               end
-              object lblAntecFamiliar4: TLabel
+              object lblQualTratMedico: TLabel
                 Left = 16
                 Height = 15
                 Top = 24
@@ -3152,7 +3151,7 @@ object frmCadPaciente: TfrmCadPaciente
                 ParentColor = False
                 ParentFont = False
               end
-              object edtNumEndEmpresa2: TEdit
+              object edtTratamentoMedico: TEdit
                 Left = 72
                 Height = 23
                 Top = 16
@@ -3164,7 +3163,7 @@ object frmCadPaciente: TfrmCadPaciente
                 Font.Name = 'Segoe UI Semibold'
                 NumbersOnly = True
                 ParentFont = False
-                TabOrder = 0
+                TabOrder = 2
                 TextHint = 'Qual(ais) tratamento(s)'
               end
               object rbexSimTratMedico: TRadioButtonEx
@@ -3181,7 +3180,7 @@ object frmCadPaciente: TfrmCadPaciente
                 Font.Quality = fqDraft
                 Font.Style = [fsBold]
                 ParentFont = False
-                TabOrder = 1
+                TabOrder = 0
                 TabStop = True
                 ThemedCaption = True
               end
@@ -3199,12 +3198,12 @@ object frmCadPaciente: TfrmCadPaciente
                 Font.Quality = fqDraft
                 Font.Style = [fsBold]
                 ParentFont = False
-                TabOrder = 2
+                TabOrder = 1
                 TabStop = True
                 ThemedCaption = True
               end
             end
-            object GroupBox3: TGroupBox
+            object gbTomaRemedio: TGroupBox
               Left = 64
               Height = 70
               Top = 332
@@ -3215,7 +3214,7 @@ object frmCadPaciente: TfrmCadPaciente
               Color = 16445670
               ParentColor = False
               TabOrder = 8
-              object lblAntecFamiliar5: TLabel
+              object lblTomaRemedio: TLabel
                 Left = 16
                 Height = 15
                 Top = -18
@@ -3231,7 +3230,7 @@ object frmCadPaciente: TfrmCadPaciente
                 ParentColor = False
                 ParentFont = False
               end
-              object lblAntecFamiliar6: TLabel
+              object lblTomaQualRemedio: TLabel
                 Left = 16
                 Height = 15
                 Top = 24
@@ -3247,7 +3246,7 @@ object frmCadPaciente: TfrmCadPaciente
                 ParentColor = False
                 ParentFont = False
               end
-              object edtNumEndEmpresa3: TEdit
+              object edtTomaRemedio: TEdit
                 Left = 72
                 Height = 23
                 Top = 16
@@ -3259,7 +3258,7 @@ object frmCadPaciente: TfrmCadPaciente
                 Font.Name = 'Segoe UI Semibold'
                 NumbersOnly = True
                 ParentFont = False
-                TabOrder = 0
+                TabOrder = 2
                 TextHint = 'Nome do(s) remédio(s)'
               end
               object rbexSimTomaRemedio: TRadioButtonEx
@@ -3276,7 +3275,7 @@ object frmCadPaciente: TfrmCadPaciente
                 Font.Quality = fqDraft
                 Font.Style = [fsBold]
                 ParentFont = False
-                TabOrder = 1
+                TabOrder = 0
                 TabStop = True
                 ThemedCaption = True
               end
@@ -3294,12 +3293,12 @@ object frmCadPaciente: TfrmCadPaciente
                 Font.Quality = fqDraft
                 Font.Style = [fsBold]
                 ParentFont = False
-                TabOrder = 2
+                TabOrder = 1
                 TabStop = True
                 ThemedCaption = True
               end
             end
-            object GroupBox4: TGroupBox
+            object gbAlergiaAnestesia: TGroupBox
               Left = 551
               Height = 70
               Top = 332
@@ -3310,7 +3309,7 @@ object frmCadPaciente: TfrmCadPaciente
               Color = 16445670
               ParentColor = False
               TabOrder = 9
-              object lblAntecFamiliar7: TLabel
+              object lblAlergiaAnestesia: TLabel
                 Left = 16
                 Height = 15
                 Top = -18
@@ -3326,7 +3325,7 @@ object frmCadPaciente: TfrmCadPaciente
                 ParentColor = False
                 ParentFont = False
               end
-              object lblAntecFamiliar8: TLabel
+              object lblAlergiaQualAnestesia: TLabel
                 Left = 16
                 Height = 15
                 Top = 24
@@ -3342,7 +3341,7 @@ object frmCadPaciente: TfrmCadPaciente
                 ParentColor = False
                 ParentFont = False
               end
-              object edtNumEndEmpresa4: TEdit
+              object edtAlergiaAnestesia: TEdit
                 Left = 72
                 Height = 23
                 Top = 16
@@ -3354,7 +3353,7 @@ object frmCadPaciente: TfrmCadPaciente
                 Font.Name = 'Segoe UI Semibold'
                 NumbersOnly = True
                 ParentFont = False
-                TabOrder = 0
+                TabOrder = 2
                 TextHint = 'Qual(ais) a(s) anestesia(s)?'
               end
               object rbexSimAlergiaAnestesia: TRadioButtonEx
@@ -3371,7 +3370,7 @@ object frmCadPaciente: TfrmCadPaciente
                 Font.Quality = fqDraft
                 Font.Style = [fsBold]
                 ParentFont = False
-                TabOrder = 1
+                TabOrder = 0
                 TabStop = True
                 ThemedCaption = True
               end
@@ -3389,12 +3388,12 @@ object frmCadPaciente: TfrmCadPaciente
                 Font.Quality = fqDraft
                 Font.Style = [fsBold]
                 ParentFont = False
-                TabOrder = 2
+                TabOrder = 1
                 TabStop = True
                 ThemedCaption = True
               end
             end
-            object GroupBox5: TGroupBox
+            object gbAlgumaAlergia: TGroupBox
               Left = 64
               Height = 70
               Top = 412
@@ -3405,7 +3404,7 @@ object frmCadPaciente: TfrmCadPaciente
               Color = 16445670
               ParentColor = False
               TabOrder = 10
-              object lblAntecFamiliar9: TLabel
+              object lblAlgumaAlergia: TLabel
                 Left = 16
                 Height = 15
                 Top = -18
@@ -3421,7 +3420,7 @@ object frmCadPaciente: TfrmCadPaciente
                 ParentColor = False
                 ParentFont = False
               end
-              object lblAntecFamiliar10: TLabel
+              object lblQualAlergia: TLabel
                 Left = 16
                 Height = 15
                 Top = 24
@@ -3437,7 +3436,7 @@ object frmCadPaciente: TfrmCadPaciente
                 ParentColor = False
                 ParentFont = False
               end
-              object edtNumEndEmpresa5: TEdit
+              object edtAlgumaAlergia: TEdit
                 Left = 72
                 Height = 23
                 Top = 16
@@ -3449,7 +3448,7 @@ object frmCadPaciente: TfrmCadPaciente
                 Font.Name = 'Segoe UI Semibold'
                 NumbersOnly = True
                 ParentFont = False
-                TabOrder = 0
+                TabOrder = 2
                 TextHint = 'Qual(ais) o(s) tipo(s) de alergia(s)?'
               end
               object rbexSimAlgumaAlergia: TRadioButtonEx
@@ -3466,7 +3465,7 @@ object frmCadPaciente: TfrmCadPaciente
                 Font.Quality = fqDraft
                 Font.Style = [fsBold]
                 ParentFont = False
-                TabOrder = 1
+                TabOrder = 0
                 TabStop = True
                 ThemedCaption = True
               end
@@ -3484,12 +3483,12 @@ object frmCadPaciente: TfrmCadPaciente
                 Font.Quality = fqDraft
                 Font.Style = [fsBold]
                 ParentFont = False
-                TabOrder = 2
+                TabOrder = 1
                 TabStop = True
                 ThemedCaption = True
               end
             end
-            object GroupBox6: TGroupBox
+            object gbHospitalizado: TGroupBox
               Left = 551
               Height = 70
               Top = 412
@@ -3500,7 +3499,7 @@ object frmCadPaciente: TfrmCadPaciente
               Color = 16445670
               ParentColor = False
               TabOrder = 11
-              object lblAntecFamiliar11: TLabel
+              object lblHospitalizado: TLabel
                 Left = 16
                 Height = 15
                 Top = -18
@@ -3516,7 +3515,7 @@ object frmCadPaciente: TfrmCadPaciente
                 ParentColor = False
                 ParentFont = False
               end
-              object lblAntecFamiliar12: TLabel
+              object lblPQFoiHospitalizado: TLabel
                 Left = 16
                 Height = 15
                 Top = 24
@@ -3532,7 +3531,7 @@ object frmCadPaciente: TfrmCadPaciente
                 ParentColor = False
                 ParentFont = False
               end
-              object edtNumEndEmpresa6: TEdit
+              object edtFoiHospitalizado: TEdit
                 Left = 72
                 Height = 23
                 Top = 16
@@ -3544,7 +3543,7 @@ object frmCadPaciente: TfrmCadPaciente
                 Font.Name = 'Segoe UI Semibold'
                 NumbersOnly = True
                 ParentFont = False
-                TabOrder = 0
+                TabOrder = 2
                 TextHint = 'O motivo pelo qual foi hospitalizado'
               end
               object rbexSimFoiHospitalizado: TRadioButtonEx
@@ -3561,7 +3560,7 @@ object frmCadPaciente: TfrmCadPaciente
                 Font.Quality = fqDraft
                 Font.Style = [fsBold]
                 ParentFont = False
-                TabOrder = 1
+                TabOrder = 0
                 TabStop = True
                 ThemedCaption = True
               end
@@ -3579,12 +3578,12 @@ object frmCadPaciente: TfrmCadPaciente
                 Font.Quality = fqDraft
                 Font.Style = [fsBold]
                 ParentFont = False
-                TabOrder = 2
+                TabOrder = 1
                 TabStop = True
                 ThemedCaption = True
               end
             end
-            object GroupBox7: TGroupBox
+            object gbTaGravida: TGroupBox
               Left = 64
               Height = 70
               Top = 492
@@ -3595,7 +3594,7 @@ object frmCadPaciente: TfrmCadPaciente
               Color = 16445670
               ParentColor = False
               TabOrder = 12
-              object lblAntecFamiliar13: TLabel
+              object lblTaGravida: TLabel
                 Left = 16
                 Height = 15
                 Top = -18
@@ -3611,7 +3610,7 @@ object frmCadPaciente: TfrmCadPaciente
                 ParentColor = False
                 ParentFont = False
               end
-              object lblAntecFamiliar14: TLabel
+              object lblPrevisaoParto: TLabel
                 Left = 16
                 Height = 15
                 Top = 24
@@ -3627,7 +3626,7 @@ object frmCadPaciente: TfrmCadPaciente
                 ParentColor = False
                 ParentFont = False
               end
-              object edtNumEndEmpresa7: TEdit
+              object edtTaGravida: TEdit
                 Left = 136
                 Height = 23
                 Top = 20
@@ -3639,7 +3638,7 @@ object frmCadPaciente: TfrmCadPaciente
                 Font.Name = 'Segoe UI Semibold'
                 NumbersOnly = True
                 ParentFont = False
-                TabOrder = 0
+                TabOrder = 2
                 TextHint = 'Se estiver grávida, para quando é o parto?'
               end
               object rbexSimTaGravida: TRadioButtonEx
@@ -3656,7 +3655,7 @@ object frmCadPaciente: TfrmCadPaciente
                 Font.Quality = fqDraft
                 Font.Style = [fsBold]
                 ParentFont = False
-                TabOrder = 1
+                TabOrder = 0
                 TabStop = True
                 ThemedCaption = True
               end
@@ -3674,12 +3673,12 @@ object frmCadPaciente: TfrmCadPaciente
                 Font.Quality = fqDraft
                 Font.Style = [fsBold]
                 ParentFont = False
-                TabOrder = 2
+                TabOrder = 1
                 TabStop = True
                 ThemedCaption = True
               end
             end
-            object GroupBox8: TGroupBox
+            object gbQtdGravidez: TGroupBox
               Left = 551
               Height = 70
               Top = 492
@@ -3690,7 +3689,7 @@ object frmCadPaciente: TfrmCadPaciente
               Color = 16445670
               ParentColor = False
               TabOrder = 13
-              object lblAntecFamiliar15: TLabel
+              object lblQtdGravidez: TLabel
                 Left = 16
                 Height = 15
                 Top = -18
@@ -3706,7 +3705,7 @@ object frmCadPaciente: TfrmCadPaciente
                 ParentColor = False
                 ParentFont = False
               end
-              object lblAntecFamiliar16: TLabel
+              object lblMaisGravidez: TLabel
                 Left = 370
                 Height = 15
                 Top = 24
@@ -3722,7 +3721,7 @@ object frmCadPaciente: TfrmCadPaciente
                 ParentColor = False
                 ParentFont = False
               end
-              object edtNumEndEmpresa8: TEdit
+              object edtQtdGravidez: TEdit
                 Left = 400
                 Height = 23
                 Top = 16
@@ -3736,17 +3735,17 @@ object frmCadPaciente: TfrmCadPaciente
                 ParentFont = False
                 TabOrder = 0
               end
-              object UpDown1: TUpDown
+              object udQtdGravidez: TUpDown
                 Left = 435
                 Height = 23
                 Top = 16
                 Width = 17
-                Associate = edtNumEndEmpresa8
+                Associate = edtQtdGravidez
                 Min = 0
                 Position = 0
                 TabOrder = 1
               end
-              object GroupBox9: TGroupBox
+              object gbNumGravidez: TGroupBox
                 Left = 16
                 Height = 38
                 Top = 5
@@ -3926,7 +3925,7 @@ object frmCadPaciente: TfrmCadPaciente
                 end
               end
             end
-            object GroupBox10: TGroupBox
+            object gbQtdFilhos: TGroupBox
               Left = 64
               Height = 70
               Top = 572
@@ -3937,7 +3936,7 @@ object frmCadPaciente: TfrmCadPaciente
               Color = 16445670
               ParentColor = False
               TabOrder = 14
-              object lblAntecFamiliar17: TLabel
+              object lblQtdFilhos: TLabel
                 Left = 16
                 Height = 15
                 Top = -18
@@ -3953,7 +3952,7 @@ object frmCadPaciente: TfrmCadPaciente
                 ParentColor = False
                 ParentFont = False
               end
-              object lblAntecFamiliar18: TLabel
+              object lblMaisFilhos: TLabel
                 Left = 370
                 Height = 15
                 Top = 24
@@ -3969,7 +3968,7 @@ object frmCadPaciente: TfrmCadPaciente
                 ParentColor = False
                 ParentFont = False
               end
-              object edtNumEndEmpresa9: TEdit
+              object edtQtdFilhos: TEdit
                 Left = 400
                 Height = 23
                 Top = 16
@@ -3983,17 +3982,17 @@ object frmCadPaciente: TfrmCadPaciente
                 ParentFont = False
                 TabOrder = 0
               end
-              object UpDown2: TUpDown
+              object udQtdFilhos: TUpDown
                 Left = 435
                 Height = 23
                 Top = 16
                 Width = 17
-                Associate = edtNumEndEmpresa9
+                Associate = edtQtdFilhos
                 Min = 0
                 Position = 0
                 TabOrder = 1
               end
-              object GroupBox11: TGroupBox
+              object gbNumFilhos: TGroupBox
                 Left = 16
                 Height = 38
                 Top = 5
@@ -4173,7 +4172,7 @@ object frmCadPaciente: TfrmCadPaciente
                 end
               end
             end
-            object GroupBox12: TGroupBox
+            object gbMenopausa: TGroupBox
               Left = 551
               Height = 70
               Top = 572
@@ -4184,7 +4183,7 @@ object frmCadPaciente: TfrmCadPaciente
               Color = 16445670
               ParentColor = False
               TabOrder = 15
-              object lblAntecFamiliar19: TLabel
+              object lblMenopausa: TLabel
                 Left = 16
                 Height = 15
                 Top = -18
@@ -4200,7 +4199,7 @@ object frmCadPaciente: TfrmCadPaciente
                 ParentColor = False
                 ParentFont = False
               end
-              object lblAntecFamiliar20: TLabel
+              object lblQuandoMenopausa: TLabel
                 Left = 16
                 Height = 15
                 Top = 24
@@ -4216,7 +4215,7 @@ object frmCadPaciente: TfrmCadPaciente
                 ParentColor = False
                 ParentFont = False
               end
-              object edtNumEndEmpresa10: TEdit
+              object edtMenopausa: TEdit
                 Left = 72
                 Height = 23
                 Top = 16
@@ -4228,7 +4227,7 @@ object frmCadPaciente: TfrmCadPaciente
                 Font.Name = 'Segoe UI Semibold'
                 NumbersOnly = True
                 ParentFont = False
-                TabOrder = 0
+                TabOrder = 2
                 TextHint = 'Data/ano/mês aproximado da menopausa'
               end
               object rbexSimMenopausa: TRadioButtonEx
@@ -4245,7 +4244,7 @@ object frmCadPaciente: TfrmCadPaciente
                 Font.Quality = fqDraft
                 Font.Style = [fsBold]
                 ParentFont = False
-                TabOrder = 1
+                TabOrder = 0
                 TabStop = True
                 ThemedCaption = True
               end
@@ -4263,7 +4262,7 @@ object frmCadPaciente: TfrmCadPaciente
                 Font.Quality = fqDraft
                 Font.Style = [fsBold]
                 ParentFont = False
-                TabOrder = 2
+                TabOrder = 1
                 TabStop = True
                 ThemedCaption = True
               end
@@ -5271,354 +5270,6 @@ object frmCadPaciente: TfrmCadPaciente
             BorderSpacing.Around = 10
             Shape = bsFrame
           end
-          object rgFebreReumatica: TRadioGroup
-            Left = 304
-            Height = 44
-            Top = 199
-            Width = 190
-            AutoFill = True
-            Caption = 'Febre Reumática ?'
-            ChildSizing.LeftRightSpacing = 6
-            ChildSizing.EnlargeHorizontal = crsHomogenousChildResize
-            ChildSizing.EnlargeVertical = crsHomogenousChildResize
-            ChildSizing.ShrinkHorizontal = crsScaleChilds
-            ChildSizing.ShrinkVertical = crsScaleChilds
-            ChildSizing.Layout = cclLeftToRightThenTopToBottom
-            ChildSizing.ControlsPerLine = 2
-            ClientHeight = 22
-            ClientWidth = 186
-            Color = 16049884
-            Columns = 2
-            Font.Color = 98304
-            Font.Height = -13
-            Font.Name = 'Segoe UI Semibold'
-            Items.Strings = (
-              'Sim'
-              'Não'
-            )
-            ParentFont = False
-            ParentColor = False
-            TabOrder = 0
-          end
-          object rgGlaucoma: TRadioGroup
-            Left = 304
-            Height = 44
-            Top = 259
-            Width = 190
-            AutoFill = True
-            Caption = 'Glaucoma ?'
-            ChildSizing.LeftRightSpacing = 6
-            ChildSizing.EnlargeHorizontal = crsHomogenousChildResize
-            ChildSizing.EnlargeVertical = crsHomogenousChildResize
-            ChildSizing.ShrinkHorizontal = crsScaleChilds
-            ChildSizing.ShrinkVertical = crsScaleChilds
-            ChildSizing.Layout = cclLeftToRightThenTopToBottom
-            ChildSizing.ControlsPerLine = 2
-            ClientHeight = 22
-            ClientWidth = 186
-            Color = 16445670
-            Columns = 2
-            Font.Color = 98304
-            Font.Height = -13
-            Font.Name = 'Segoe UI Semibold'
-            Items.Strings = (
-              'Sim'
-              'Não'
-            )
-            ParentFont = False
-            ParentColor = False
-            TabOrder = 1
-          end
-          object rgGonorreia: TRadioGroup
-            Left = 580
-            Height = 44
-            Top = 19
-            Width = 190
-            AutoFill = True
-            Caption = 'Gonorréia'
-            ChildSizing.LeftRightSpacing = 6
-            ChildSizing.EnlargeHorizontal = crsHomogenousChildResize
-            ChildSizing.EnlargeVertical = crsHomogenousChildResize
-            ChildSizing.ShrinkHorizontal = crsScaleChilds
-            ChildSizing.ShrinkVertical = crsScaleChilds
-            ChildSizing.Layout = cclLeftToRightThenTopToBottom
-            ChildSizing.ControlsPerLine = 2
-            ClientHeight = 22
-            ClientWidth = 186
-            Color = 16445670
-            Columns = 2
-            Font.Color = 98304
-            Font.Height = -13
-            Font.Name = 'Segoe UI Semibold'
-            Items.Strings = (
-              'Sim'
-              'Não'
-            )
-            ParentFont = False
-            ParentColor = False
-            TabOrder = 2
-          end
-          object rgSinusite: TRadioGroup
-            Left = 854
-            Height = 44
-            Top = 139
-            Width = 190
-            AutoFill = True
-            Caption = 'Sinusite ?'
-            ChildSizing.LeftRightSpacing = 6
-            ChildSizing.EnlargeHorizontal = crsHomogenousChildResize
-            ChildSizing.EnlargeVertical = crsHomogenousChildResize
-            ChildSizing.ShrinkHorizontal = crsScaleChilds
-            ChildSizing.ShrinkVertical = crsScaleChilds
-            ChildSizing.Layout = cclLeftToRightThenTopToBottom
-            ChildSizing.ControlsPerLine = 2
-            ClientHeight = 22
-            ClientWidth = 186
-            Color = 16445670
-            Columns = 2
-            Font.Color = 98304
-            Font.Height = -13
-            Font.Name = 'Segoe UI Semibold'
-            Items.Strings = (
-              'Sim'
-              'Não'
-            )
-            ParentFont = False
-            ParentColor = False
-            TabOrder = 9
-          end
-          object rgHanseniase: TRadioGroup
-            Left = 580
-            Height = 44
-            Top = 79
-            Width = 190
-            AutoFill = True
-            Caption = 'Hanseniase ?'
-            ChildSizing.LeftRightSpacing = 6
-            ChildSizing.EnlargeHorizontal = crsHomogenousChildResize
-            ChildSizing.EnlargeVertical = crsHomogenousChildResize
-            ChildSizing.ShrinkHorizontal = crsScaleChilds
-            ChildSizing.ShrinkVertical = crsScaleChilds
-            ChildSizing.Layout = cclLeftToRightThenTopToBottom
-            ChildSizing.ControlsPerLine = 2
-            ClientHeight = 22
-            ClientWidth = 186
-            Color = 16049884
-            Columns = 2
-            Font.Color = 98304
-            Font.Height = -13
-            Font.Name = 'Segoe UI Semibold'
-            Items.Strings = (
-              'Sim'
-              'Não'
-            )
-            ParentFont = False
-            ParentColor = False
-            TabOrder = 3
-          end
-          object rgHemofilia: TRadioGroup
-            Left = 580
-            Height = 44
-            Top = 139
-            Width = 190
-            AutoFill = True
-            Caption = 'Hemofília ?'
-            ChildSizing.LeftRightSpacing = 6
-            ChildSizing.EnlargeHorizontal = crsHomogenousChildResize
-            ChildSizing.EnlargeVertical = crsHomogenousChildResize
-            ChildSizing.ShrinkHorizontal = crsScaleChilds
-            ChildSizing.ShrinkVertical = crsScaleChilds
-            ChildSizing.Layout = cclLeftToRightThenTopToBottom
-            ChildSizing.ControlsPerLine = 2
-            ClientHeight = 22
-            ClientWidth = 186
-            Color = 16049884
-            Columns = 2
-            Font.Color = 98304
-            Font.Height = -13
-            Font.Name = 'Segoe UI Semibold'
-            Items.Strings = (
-              'Sim'
-              'Não'
-            )
-            ParentFont = False
-            ParentColor = False
-            TabOrder = 4
-          end
-          object rgHepatite: TRadioGroup
-            Left = 580
-            Height = 44
-            Top = 199
-            Width = 190
-            AutoFill = True
-            Caption = 'Hepatíte ?'
-            ChildSizing.LeftRightSpacing = 6
-            ChildSizing.EnlargeHorizontal = crsHomogenousChildResize
-            ChildSizing.EnlargeVertical = crsHomogenousChildResize
-            ChildSizing.ShrinkHorizontal = crsScaleChilds
-            ChildSizing.ShrinkVertical = crsScaleChilds
-            ChildSizing.Layout = cclLeftToRightThenTopToBottom
-            ChildSizing.ControlsPerLine = 2
-            ClientHeight = 22
-            ClientWidth = 186
-            Color = 16049884
-            Columns = 2
-            Font.Color = 98304
-            Font.Height = -13
-            Font.Name = 'Segoe UI Semibold'
-            Items.Strings = (
-              'Sim'
-              'Não'
-            )
-            ParentFont = False
-            ParentColor = False
-            TabOrder = 5
-          end
-          object rgIctericia: TRadioGroup
-            Left = 580
-            Height = 44
-            Top = 259
-            Width = 190
-            AutoFill = True
-            Caption = 'Icterícia ?'
-            ChildSizing.LeftRightSpacing = 6
-            ChildSizing.EnlargeHorizontal = crsHomogenousChildResize
-            ChildSizing.EnlargeVertical = crsHomogenousChildResize
-            ChildSizing.ShrinkHorizontal = crsScaleChilds
-            ChildSizing.ShrinkVertical = crsScaleChilds
-            ChildSizing.Layout = cclLeftToRightThenTopToBottom
-            ChildSizing.ControlsPerLine = 2
-            ClientHeight = 22
-            ClientWidth = 186
-            Color = 16445670
-            Columns = 2
-            Font.Color = 98304
-            Font.Height = -13
-            Font.Name = 'Segoe UI Semibold'
-            Items.Strings = (
-              'Sim'
-              'Não'
-            )
-            ParentFont = False
-            ParentColor = False
-            TabOrder = 6
-          end
-          object rgProblemaHormonal: TRadioGroup
-            Left = 854
-            Height = 44
-            Top = 19
-            Width = 190
-            AutoFill = True
-            Caption = 'Problema Hormonal ?'
-            ChildSizing.LeftRightSpacing = 6
-            ChildSizing.EnlargeHorizontal = crsHomogenousChildResize
-            ChildSizing.EnlargeVertical = crsHomogenousChildResize
-            ChildSizing.ShrinkHorizontal = crsScaleChilds
-            ChildSizing.ShrinkVertical = crsScaleChilds
-            ChildSizing.Layout = cclLeftToRightThenTopToBottom
-            ChildSizing.ControlsPerLine = 2
-            ClientHeight = 22
-            ClientWidth = 186
-            Color = 16445670
-            Columns = 2
-            Font.Color = 98304
-            Font.Height = -13
-            Font.Name = 'Segoe UI Semibold'
-            Items.Strings = (
-              'Sim'
-              'Não'
-            )
-            ParentFont = False
-            ParentColor = False
-            TabOrder = 7
-          end
-          object rgSifilis: TRadioGroup
-            Left = 854
-            Height = 44
-            Top = 79
-            Width = 190
-            AutoFill = True
-            Caption = 'Sífilis ?'
-            ChildSizing.LeftRightSpacing = 6
-            ChildSizing.EnlargeHorizontal = crsHomogenousChildResize
-            ChildSizing.EnlargeVertical = crsHomogenousChildResize
-            ChildSizing.ShrinkHorizontal = crsScaleChilds
-            ChildSizing.ShrinkVertical = crsScaleChilds
-            ChildSizing.Layout = cclLeftToRightThenTopToBottom
-            ChildSizing.ControlsPerLine = 2
-            ClientHeight = 22
-            ClientWidth = 186
-            Color = 16445670
-            Columns = 2
-            Font.Color = 98304
-            Font.Height = -13
-            Font.Name = 'Segoe UI Semibold'
-            Items.Strings = (
-              'Sim'
-              'Não'
-            )
-            ParentFont = False
-            ParentColor = False
-            TabOrder = 8
-          end
-          object rgTuberculose: TRadioGroup
-            Left = 854
-            Height = 44
-            Top = 199
-            Width = 190
-            AutoFill = True
-            Caption = 'Tuberculose ?'
-            ChildSizing.LeftRightSpacing = 6
-            ChildSizing.EnlargeHorizontal = crsHomogenousChildResize
-            ChildSizing.EnlargeVertical = crsHomogenousChildResize
-            ChildSizing.ShrinkHorizontal = crsScaleChilds
-            ChildSizing.ShrinkVertical = crsScaleChilds
-            ChildSizing.Layout = cclLeftToRightThenTopToBottom
-            ChildSizing.ControlsPerLine = 2
-            ClientHeight = 22
-            ClientWidth = 186
-            Color = 16049884
-            Columns = 2
-            Font.Color = 98304
-            Font.Height = -13
-            Font.Name = 'Segoe UI Semibold'
-            Items.Strings = (
-              'Sim'
-              'Não'
-            )
-            ParentFont = False
-            ParentColor = False
-            TabOrder = 10
-          end
-          object rgUlceraHepatica: TRadioGroup
-            Left = 854
-            Height = 44
-            Top = 259
-            Width = 190
-            AutoFill = True
-            Caption = 'Húlcera Hepática ?'
-            ChildSizing.LeftRightSpacing = 6
-            ChildSizing.EnlargeHorizontal = crsHomogenousChildResize
-            ChildSizing.EnlargeVertical = crsHomogenousChildResize
-            ChildSizing.ShrinkHorizontal = crsScaleChilds
-            ChildSizing.ShrinkVertical = crsScaleChilds
-            ChildSizing.Layout = cclLeftToRightThenTopToBottom
-            ChildSizing.ControlsPerLine = 2
-            ClientHeight = 22
-            ClientWidth = 186
-            Color = 16049884
-            Columns = 2
-            Font.Color = 98304
-            Font.Height = -13
-            Font.Name = 'Segoe UI Semibold'
-            Items.Strings = (
-              'Sim'
-              'Não'
-            )
-            ParentFont = False
-            ParentColor = False
-            TabOrder = 11
-          end
           object rgexAids: TRadioGroupEx
             Left = 40
             Height = 45
@@ -5645,7 +5296,7 @@ object frmCadPaciente: TfrmCadPaciente
               'Não'
             )
             ParentFont = False
-            TabOrder = 12
+            TabOrder = 0
           end
           object lblAids: TLabel
             Left = 52
@@ -5689,7 +5340,7 @@ object frmCadPaciente: TfrmCadPaciente
               'Não'
             )
             ParentFont = False
-            TabOrder = 13
+            TabOrder = 1
           end
           object lblAnemia: TLabel
             Left = 52
@@ -5733,7 +5384,7 @@ object frmCadPaciente: TfrmCadPaciente
               'Não'
             )
             ParentFont = False
-            TabOrder = 14
+            TabOrder = 2
           end
           object lblAsma: TLabel
             Left = 52
@@ -5777,7 +5428,7 @@ object frmCadPaciente: TfrmCadPaciente
               'Não'
             )
             ParentFont = False
-            TabOrder = 15
+            TabOrder = 3
           end
           object lblDiabetes: TLabel
             Left = 52
@@ -5821,7 +5472,7 @@ object frmCadPaciente: TfrmCadPaciente
               'Não'
             )
             ParentFont = False
-            TabOrder = 16
+            TabOrder = 4
           end
           object lblDoencaCoracao: TLabel
             Left = 52
@@ -5865,7 +5516,7 @@ object frmCadPaciente: TfrmCadPaciente
               'Não'
             )
             ParentFont = False
-            TabOrder = 17
+            TabOrder = 5
           end
           object lblTumorBoca: TLabel
             Left = 316
@@ -5909,7 +5560,7 @@ object frmCadPaciente: TfrmCadPaciente
               'Não'
             )
             ParentFont = False
-            TabOrder = 18
+            TabOrder = 6
           end
           object lblDoencaRenal: TLabel
             Left = 316
@@ -5953,7 +5604,7 @@ object frmCadPaciente: TfrmCadPaciente
               'Não'
             )
             ParentFont = False
-            TabOrder = 19
+            TabOrder = 7
           end
           object lblDisritmiaEpilepsia: TLabel
             Left = 316
@@ -5961,6 +5612,534 @@ object frmCadPaciente: TfrmCadPaciente
             Top = 135
             Width = 139
             Caption = 'Disritmia ou Epilepsia ?'
+            Font.CharSet = ANSI_CHARSET
+            Font.Color = 98304
+            Font.Height = -13
+            Font.Name = 'Segoe UI Semibold'
+            Font.Pitch = fpVariable
+            Font.Quality = fqDraft
+            Font.Style = [fsBold]
+            ParentColor = False
+            ParentFont = False
+          end
+          object rgexFebreReumatica: TRadioGroupEx
+            Left = 304
+            Height = 45
+            Top = 194
+            Width = 190
+            Caption = '                             '
+            ChildSizing.LeftRightSpacing = 6
+            ChildSizing.EnlargeHorizontal = crsHomogenousChildResize
+            ChildSizing.EnlargeVertical = crsHomogenousChildResize
+            ChildSizing.ShrinkHorizontal = crsScaleChilds
+            ChildSizing.ShrinkVertical = crsScaleChilds
+            ChildSizing.Layout = cclLeftToRightThenTopToBottom
+            ChildSizing.ControlsPerLine = 2
+            Columns = 2
+            Font.CharSet = ANSI_CHARSET
+            Font.Color = 65664
+            Font.Height = -13
+            Font.Name = 'Segoe UI Semibold'
+            Font.Pitch = fpVariable
+            Font.Quality = fqDraft
+            Font.Style = [fsBold]
+            Items.Strings = (
+              'Sim'
+              'Não'
+            )
+            ParentFont = False
+            TabOrder = 8
+          end
+          object lblFebreReumatica: TLabel
+            Left = 316
+            Height = 17
+            Top = 194
+            Width = 111
+            Caption = 'Febre Reumática ?'
+            Font.CharSet = ANSI_CHARSET
+            Font.Color = 98304
+            Font.Height = -13
+            Font.Name = 'Segoe UI Semibold'
+            Font.Pitch = fpVariable
+            Font.Quality = fqDraft
+            Font.Style = [fsBold]
+            ParentColor = False
+            ParentFont = False
+          end
+          object rgexGlaucoma: TRadioGroupEx
+            Left = 304
+            Height = 45
+            Top = 253
+            Width = 190
+            Caption = '                   '
+            ChildSizing.LeftRightSpacing = 6
+            ChildSizing.EnlargeHorizontal = crsHomogenousChildResize
+            ChildSizing.EnlargeVertical = crsHomogenousChildResize
+            ChildSizing.ShrinkHorizontal = crsScaleChilds
+            ChildSizing.ShrinkVertical = crsScaleChilds
+            ChildSizing.Layout = cclLeftToRightThenTopToBottom
+            ChildSizing.ControlsPerLine = 2
+            Columns = 2
+            Font.CharSet = ANSI_CHARSET
+            Font.Color = 65664
+            Font.Height = -13
+            Font.Name = 'Segoe UI Semibold'
+            Font.Pitch = fpVariable
+            Font.Quality = fqDraft
+            Font.Style = [fsBold]
+            Items.Strings = (
+              'Sim'
+              'Não'
+            )
+            ParentFont = False
+            TabOrder = 9
+          end
+          object lblGlaucoma: TLabel
+            Left = 316
+            Height = 17
+            Top = 253
+            Width = 70
+            Caption = 'Glaucoma ?'
+            Font.CharSet = ANSI_CHARSET
+            Font.Color = 98304
+            Font.Height = -13
+            Font.Name = 'Segoe UI Semibold'
+            Font.Pitch = fpVariable
+            Font.Quality = fqDraft
+            Font.Style = [fsBold]
+            ParentColor = False
+            ParentFont = False
+          end
+          object rgexGonorreia: TRadioGroupEx
+            Left = 580
+            Height = 45
+            Top = 18
+            Width = 190
+            Caption = '                                    '
+            ChildSizing.LeftRightSpacing = 6
+            ChildSizing.EnlargeHorizontal = crsHomogenousChildResize
+            ChildSizing.EnlargeVertical = crsHomogenousChildResize
+            ChildSizing.ShrinkHorizontal = crsScaleChilds
+            ChildSizing.ShrinkVertical = crsScaleChilds
+            ChildSizing.Layout = cclLeftToRightThenTopToBottom
+            ChildSizing.ControlsPerLine = 2
+            Columns = 2
+            Font.CharSet = ANSI_CHARSET
+            Font.Color = 65664
+            Font.Height = -13
+            Font.Name = 'Segoe UI Semibold'
+            Font.Pitch = fpVariable
+            Font.Quality = fqDraft
+            Font.Style = [fsBold]
+            Items.Strings = (
+              'Sim'
+              'Não'
+            )
+            ParentFont = False
+            TabOrder = 10
+          end
+          object lblGonorreia: TLabel
+            Left = 592
+            Height = 17
+            Top = 18
+            Width = 70
+            Caption = 'Gonorréia ?'
+            Font.CharSet = ANSI_CHARSET
+            Font.Color = 98304
+            Font.Height = -13
+            Font.Name = 'Segoe UI Semibold'
+            Font.Pitch = fpVariable
+            Font.Quality = fqDraft
+            Font.Style = [fsBold]
+            ParentColor = False
+            ParentFont = False
+          end
+          object rgexHanseniase: TRadioGroupEx
+            Left = 580
+            Height = 45
+            Top = 76
+            Width = 190
+            Caption = '                     '
+            ChildSizing.LeftRightSpacing = 6
+            ChildSizing.EnlargeHorizontal = crsHomogenousChildResize
+            ChildSizing.EnlargeVertical = crsHomogenousChildResize
+            ChildSizing.ShrinkHorizontal = crsScaleChilds
+            ChildSizing.ShrinkVertical = crsScaleChilds
+            ChildSizing.Layout = cclLeftToRightThenTopToBottom
+            ChildSizing.ControlsPerLine = 2
+            Columns = 2
+            Font.CharSet = ANSI_CHARSET
+            Font.Color = 65664
+            Font.Height = -13
+            Font.Name = 'Segoe UI Semibold'
+            Font.Pitch = fpVariable
+            Font.Quality = fqDraft
+            Font.Style = [fsBold]
+            Items.Strings = (
+              'Sim'
+              'Não'
+            )
+            ParentFont = False
+            TabOrder = 11
+          end
+          object lblHanseniase: TLabel
+            Left = 592
+            Height = 17
+            Top = 76
+            Width = 79
+            Caption = 'Hanseníase ?'
+            Font.CharSet = ANSI_CHARSET
+            Font.Color = 98304
+            Font.Height = -13
+            Font.Name = 'Segoe UI Semibold'
+            Font.Pitch = fpVariable
+            Font.Quality = fqDraft
+            Font.Style = [fsBold]
+            ParentColor = False
+            ParentFont = False
+          end
+          object rgexHemofilia: TRadioGroupEx
+            Left = 580
+            Height = 45
+            Top = 135
+            Width = 190
+            Caption = '                   '
+            ChildSizing.LeftRightSpacing = 6
+            ChildSizing.EnlargeHorizontal = crsHomogenousChildResize
+            ChildSizing.EnlargeVertical = crsHomogenousChildResize
+            ChildSizing.ShrinkHorizontal = crsScaleChilds
+            ChildSizing.ShrinkVertical = crsScaleChilds
+            ChildSizing.Layout = cclLeftToRightThenTopToBottom
+            ChildSizing.ControlsPerLine = 2
+            Columns = 2
+            Font.CharSet = ANSI_CHARSET
+            Font.Color = 65664
+            Font.Height = -13
+            Font.Name = 'Segoe UI Semibold'
+            Font.Pitch = fpVariable
+            Font.Quality = fqDraft
+            Font.Style = [fsBold]
+            Items.Strings = (
+              'Sim'
+              'Não'
+            )
+            ParentFont = False
+            TabOrder = 12
+          end
+          object lblHemofilia: TLabel
+            Left = 592
+            Height = 17
+            Top = 135
+            Width = 67
+            Caption = 'Hemofilía ?'
+            Font.CharSet = ANSI_CHARSET
+            Font.Color = 98304
+            Font.Height = -13
+            Font.Name = 'Segoe UI Semibold'
+            Font.Pitch = fpVariable
+            Font.Quality = fqDraft
+            Font.Style = [fsBold]
+            ParentColor = False
+            ParentFont = False
+          end
+          object rgexHepatite: TRadioGroupEx
+            Left = 580
+            Height = 45
+            Top = 194
+            Width = 190
+            Caption = '                 '
+            ChildSizing.LeftRightSpacing = 6
+            ChildSizing.EnlargeHorizontal = crsHomogenousChildResize
+            ChildSizing.EnlargeVertical = crsHomogenousChildResize
+            ChildSizing.ShrinkHorizontal = crsScaleChilds
+            ChildSizing.ShrinkVertical = crsScaleChilds
+            ChildSizing.Layout = cclLeftToRightThenTopToBottom
+            ChildSizing.ControlsPerLine = 2
+            Columns = 2
+            Font.CharSet = ANSI_CHARSET
+            Font.Color = 65664
+            Font.Height = -13
+            Font.Name = 'Segoe UI Semibold'
+            Font.Pitch = fpVariable
+            Font.Quality = fqDraft
+            Font.Style = [fsBold]
+            Items.Strings = (
+              'Sim'
+              'Não'
+            )
+            ParentFont = False
+            TabOrder = 13
+          end
+          object lblHepatite: TLabel
+            Left = 592
+            Height = 17
+            Top = 194
+            Width = 62
+            Caption = 'Hepatite ?'
+            Font.CharSet = ANSI_CHARSET
+            Font.Color = 98304
+            Font.Height = -13
+            Font.Name = 'Segoe UI Semibold'
+            Font.Pitch = fpVariable
+            Font.Quality = fqDraft
+            Font.Style = [fsBold]
+            ParentColor = False
+            ParentFont = False
+          end
+          object rgexIctericia: TRadioGroupEx
+            Left = 580
+            Height = 45
+            Top = 253
+            Width = 190
+            Caption = '                '
+            ChildSizing.LeftRightSpacing = 6
+            ChildSizing.EnlargeHorizontal = crsHomogenousChildResize
+            ChildSizing.EnlargeVertical = crsHomogenousChildResize
+            ChildSizing.ShrinkHorizontal = crsScaleChilds
+            ChildSizing.ShrinkVertical = crsScaleChilds
+            ChildSizing.Layout = cclLeftToRightThenTopToBottom
+            ChildSizing.ControlsPerLine = 2
+            Columns = 2
+            Font.CharSet = ANSI_CHARSET
+            Font.Color = 65664
+            Font.Height = -13
+            Font.Name = 'Segoe UI Semibold'
+            Font.Pitch = fpVariable
+            Font.Quality = fqDraft
+            Font.Style = [fsBold]
+            Items.Strings = (
+              'Sim'
+              'Não'
+            )
+            ParentFont = False
+            TabOrder = 14
+          end
+          object lblIctericia: TLabel
+            Left = 592
+            Height = 17
+            Top = 253
+            Width = 56
+            Caption = 'Icterícia ?'
+            Font.CharSet = ANSI_CHARSET
+            Font.Color = 98304
+            Font.Height = -13
+            Font.Name = 'Segoe UI Semibold'
+            Font.Pitch = fpVariable
+            Font.Quality = fqDraft
+            Font.Style = [fsBold]
+            ParentColor = False
+            ParentFont = False
+          end
+          object rgexProblemaHormonal: TRadioGroupEx
+            Left = 854
+            Height = 45
+            Top = 18
+            Width = 190
+            Caption = '                                '
+            ChildSizing.LeftRightSpacing = 6
+            ChildSizing.EnlargeHorizontal = crsHomogenousChildResize
+            ChildSizing.EnlargeVertical = crsHomogenousChildResize
+            ChildSizing.ShrinkHorizontal = crsScaleChilds
+            ChildSizing.ShrinkVertical = crsScaleChilds
+            ChildSizing.Layout = cclLeftToRightThenTopToBottom
+            ChildSizing.ControlsPerLine = 2
+            Columns = 2
+            Font.CharSet = ANSI_CHARSET
+            Font.Color = 65664
+            Font.Height = -13
+            Font.Name = 'Segoe UI Semibold'
+            Font.Pitch = fpVariable
+            Font.Quality = fqDraft
+            Font.Style = [fsBold]
+            Items.Strings = (
+              'Sim'
+              'Não'
+            )
+            ParentFont = False
+            TabOrder = 15
+          end
+          object lblProblemaHormonal: TLabel
+            Left = 866
+            Height = 17
+            Top = 18
+            Width = 127
+            Caption = 'Problema Hormonal '
+            Font.CharSet = ANSI_CHARSET
+            Font.Color = 98304
+            Font.Height = -13
+            Font.Name = 'Segoe UI Semibold'
+            Font.Pitch = fpVariable
+            Font.Quality = fqDraft
+            Font.Style = [fsBold]
+            ParentColor = False
+            ParentFont = False
+          end
+          object rgexSifilis: TRadioGroupEx
+            Left = 854
+            Height = 45
+            Top = 76
+            Width = 190
+            Caption = '           '
+            ChildSizing.LeftRightSpacing = 6
+            ChildSizing.EnlargeHorizontal = crsHomogenousChildResize
+            ChildSizing.EnlargeVertical = crsHomogenousChildResize
+            ChildSizing.ShrinkHorizontal = crsScaleChilds
+            ChildSizing.ShrinkVertical = crsScaleChilds
+            ChildSizing.Layout = cclLeftToRightThenTopToBottom
+            ChildSizing.ControlsPerLine = 2
+            Columns = 2
+            Font.CharSet = ANSI_CHARSET
+            Font.Color = 65664
+            Font.Height = -13
+            Font.Name = 'Segoe UI Semibold'
+            Font.Pitch = fpVariable
+            Font.Quality = fqDraft
+            Font.Style = [fsBold]
+            Items.Strings = (
+              'Sim'
+              'Não'
+            )
+            ParentFont = False
+            TabOrder = 16
+          end
+          object lblSifilis: TLabel
+            Left = 866
+            Height = 17
+            Top = 76
+            Width = 39
+            Caption = 'Sífilis ?'
+            Font.CharSet = ANSI_CHARSET
+            Font.Color = 98304
+            Font.Height = -13
+            Font.Name = 'Segoe UI Semibold'
+            Font.Pitch = fpVariable
+            Font.Quality = fqDraft
+            Font.Style = [fsBold]
+            ParentColor = False
+            ParentFont = False
+          end
+          object rgexSinusite: TRadioGroupEx
+            Left = 854
+            Height = 45
+            Top = 135
+            Width = 190
+            Caption = '                 '
+            ChildSizing.LeftRightSpacing = 6
+            ChildSizing.EnlargeHorizontal = crsHomogenousChildResize
+            ChildSizing.EnlargeVertical = crsHomogenousChildResize
+            ChildSizing.ShrinkHorizontal = crsScaleChilds
+            ChildSizing.ShrinkVertical = crsScaleChilds
+            ChildSizing.Layout = cclLeftToRightThenTopToBottom
+            ChildSizing.ControlsPerLine = 2
+            Columns = 2
+            Font.CharSet = ANSI_CHARSET
+            Font.Color = 65664
+            Font.Height = -13
+            Font.Name = 'Segoe UI Semibold'
+            Font.Pitch = fpVariable
+            Font.Quality = fqDraft
+            Font.Style = [fsBold]
+            Items.Strings = (
+              'Sim'
+              'Não'
+            )
+            ParentFont = False
+            TabOrder = 17
+          end
+          object lblSinusite: TLabel
+            Left = 866
+            Height = 17
+            Top = 135
+            Width = 57
+            Caption = 'Sinusite ?'
+            Font.CharSet = ANSI_CHARSET
+            Font.Color = 98304
+            Font.Height = -13
+            Font.Name = 'Segoe UI Semibold'
+            Font.Pitch = fpVariable
+            Font.Quality = fqDraft
+            Font.Style = [fsBold]
+            ParentColor = False
+            ParentFont = False
+          end
+          object rgexTuberculose: TRadioGroupEx
+            Left = 854
+            Height = 45
+            Top = 194
+            Width = 190
+            Caption = '                      '
+            ChildSizing.LeftRightSpacing = 6
+            ChildSizing.EnlargeHorizontal = crsHomogenousChildResize
+            ChildSizing.EnlargeVertical = crsHomogenousChildResize
+            ChildSizing.ShrinkHorizontal = crsScaleChilds
+            ChildSizing.ShrinkVertical = crsScaleChilds
+            ChildSizing.Layout = cclLeftToRightThenTopToBottom
+            ChildSizing.ControlsPerLine = 2
+            Columns = 2
+            Font.CharSet = ANSI_CHARSET
+            Font.Color = 65664
+            Font.Height = -13
+            Font.Name = 'Segoe UI Semibold'
+            Font.Pitch = fpVariable
+            Font.Quality = fqDraft
+            Font.Style = [fsBold]
+            Items.Strings = (
+              'Sim'
+              'Não'
+            )
+            ParentFont = False
+            TabOrder = 18
+          end
+          object lblTuberculose: TLabel
+            Left = 866
+            Height = 17
+            Top = 194
+            Width = 82
+            Caption = 'Tuberculose ?'
+            Font.CharSet = ANSI_CHARSET
+            Font.Color = 98304
+            Font.Height = -13
+            Font.Name = 'Segoe UI Semibold'
+            Font.Pitch = fpVariable
+            Font.Quality = fqDraft
+            Font.Style = [fsBold]
+            ParentColor = False
+            ParentFont = False
+          end
+          object rgexUlceraHepatica: TRadioGroupEx
+            Left = 854
+            Height = 45
+            Top = 253
+            Width = 190
+            Caption = '                              '
+            ChildSizing.LeftRightSpacing = 6
+            ChildSizing.EnlargeHorizontal = crsHomogenousChildResize
+            ChildSizing.EnlargeVertical = crsHomogenousChildResize
+            ChildSizing.ShrinkHorizontal = crsScaleChilds
+            ChildSizing.ShrinkVertical = crsScaleChilds
+            ChildSizing.Layout = cclLeftToRightThenTopToBottom
+            ChildSizing.ControlsPerLine = 2
+            Columns = 2
+            Font.CharSet = ANSI_CHARSET
+            Font.Color = 65664
+            Font.Height = -13
+            Font.Name = 'Segoe UI Semibold'
+            Font.Pitch = fpVariable
+            Font.Quality = fqDraft
+            Font.Style = [fsBold]
+            Items.Strings = (
+              'Sim'
+              'Não'
+            )
+            ParentFont = False
+            TabOrder = 19
+          end
+          object lblUlceraHepatica: TLabel
+            Left = 866
+            Height = 17
+            Top = 253
+            Width = 104
+            Caption = 'Úlcera Hepática ?'
             Font.CharSet = ANSI_CHARSET
             Font.Color = 98304
             Font.Height = -13

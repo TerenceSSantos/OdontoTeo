@@ -1,9 +1,9 @@
 object dmCadPaciente: TdmCadPaciente
   OldCreateOrder = False
   Height = 449
-  HorizontalOffset = 551
+  HorizontalOffset = 216
   VerticalOffset = 126
-  Width = 898
+  Width = 1233
   PPI = 96
   object qryTblPaciente: TZQuery
     Connection = dmConexao.zConexao
@@ -304,8 +304,8 @@ object dmCadPaciente: TdmCadPaciente
         ParamType = ptInput
       end>
     StoredProcName = 'PROC_CAD_TBLRESPONSAVEL'
-    left = 245
-    top = 100
+    left = 144
+    top = 336
     ParamData = <    
       item
         DataType = ftString
@@ -351,8 +351,8 @@ object dmCadPaciente: TdmCadPaciente
         Name = 'id_paciente'
         ParamType = ptInput
       end>
-    left = 245
-    top = 32
+    left = 144
+    top = 280
     ParamData = <    
       item
         DataType = ftInteger
@@ -391,100 +391,12 @@ object dmCadPaciente: TdmCadPaciente
   end
   object qryTblEndereco: TZQuery
     Params = <>
-    left = 399
+    left = 248
     top = 32
-  end
-  object strprocGravarEndereco: TZStoredProc
-    Connection = dmConexao.zConexao
-    Params = <    
-      item
-        DataType = ftString
-        Name = 'LOGRADOURO'
-        ParamType = ptInput
-      end    
-      item
-        DataType = ftString
-        Name = 'NUMERO'
-        ParamType = ptInput
-      end    
-      item
-        DataType = ftString
-        Name = 'COMPLEMENTO'
-        ParamType = ptInput
-      end    
-      item
-        DataType = ftString
-        Name = 'BAIRRO'
-        ParamType = ptInput
-      end    
-      item
-        DataType = ftString
-        Name = 'CIDADE'
-        ParamType = ptInput
-      end    
-      item
-        DataType = ftString
-        Name = 'ESTADO'
-        ParamType = ptInput
-      end    
-      item
-        DataType = ftString
-        Name = 'CEP'
-        ParamType = ptInput
-      end    
-      item
-        DataType = ftInteger
-        Name = 'ID_TBLPACIENTE'
-        ParamType = ptInput
-      end>
-    StoredProcName = 'PROC_CAD_TBLENDERECO'
-    left = 399
-    top = 100
-    ParamData = <    
-      item
-        DataType = ftString
-        Name = 'LOGRADOURO'
-        ParamType = ptInput
-      end    
-      item
-        DataType = ftString
-        Name = 'NUMERO'
-        ParamType = ptInput
-      end    
-      item
-        DataType = ftString
-        Name = 'COMPLEMENTO'
-        ParamType = ptInput
-      end    
-      item
-        DataType = ftString
-        Name = 'BAIRRO'
-        ParamType = ptInput
-      end    
-      item
-        DataType = ftString
-        Name = 'CIDADE'
-        ParamType = ptInput
-      end    
-      item
-        DataType = ftString
-        Name = 'ESTADO'
-        ParamType = ptInput
-      end    
-      item
-        DataType = ftString
-        Name = 'CEP'
-        ParamType = ptInput
-      end    
-      item
-        DataType = ftInteger
-        Name = 'ID_TBLPACIENTE'
-        ParamType = ptInput
-      end>
   end
   object qryContatos: TZQuery
     Params = <>
-    left = 565
+    left = 414
     top = 32
   end
   object strprocGravarSinaisSintomas: TZStoredProc
@@ -596,7 +508,7 @@ object dmCadPaciente: TdmCadPaciente
         ParamType = ptInput
       end>
     StoredProcName = 'PROC_CAD_TBLSINAISSINTOMAS'
-    left = 751
+    left = 841
     top = 100
     ParamData = <    
       item
@@ -814,7 +726,7 @@ object dmCadPaciente: TdmCadPaciente
         ParamType = ptInput
       end>
     StoredProcName = 'PROC_CAD_TBLENFERMIDADES'
-    left = 918
+    left = 1008
     top = 100
     ParamData = <    
       item
@@ -1017,7 +929,7 @@ object dmCadPaciente: TdmCadPaciente
         ParamType = ptInput
       end>
     StoredProcName = 'PROC_CAD_TBLCONTATOS'
-    left = 565
+    left = 414
     top = 100
     ParamData = <    
       item
@@ -1103,6 +1015,410 @@ object dmCadPaciente: TdmCadPaciente
       item
         DataType = ftString
         Name = 'EMAIL'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftInteger
+        Name = 'ID_TBLPACIENTE'
+        ParamType = ptInput
+      end>
+  end
+  object strprocGravarEndereco: TZStoredProc
+    Connection = dmConexao.zConexao
+    Params = <    
+      item
+        DataType = ftString
+        Name = 'LOGRADOURO'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'NUMERO'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'COMPLEMENTO'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'BAIRRO'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'CIDADE'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'ESTADO'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'CEP'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftInteger
+        Name = 'ID_TBLPACIENTE'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftInteger
+        Name = 'COD_ENDERECO'
+        ParamType = ptOutput
+      end>
+    StoredProcName = 'PROC_CAD_TBLENDERECO'
+    left = 248
+    top = 100
+    ParamData = <    
+      item
+        DataType = ftString
+        Name = 'LOGRADOURO'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'NUMERO'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'COMPLEMENTO'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'BAIRRO'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'CIDADE'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'ESTADO'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'CEP'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftInteger
+        Name = 'ID_TBLPACIENTE'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftInteger
+        Name = 'COD_ENDERECO'
+        ParamType = ptOutput
+      end>
+  end
+  object strprocAnamnese: TZStoredProc
+    Connection = dmConexao.zConexao
+    Params = <    
+      item
+        DataType = ftString
+        Name = 'CONSUMO_ACUCAR'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'ESCOVACAO'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'USO_FIO_DENTAL'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'OBS_ANATOMO_HISTO'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'HABITOS_VICIOSOS'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'ANTECEDENTES_FAMILIARES'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'APREENSIVO_TRAT_DENTARIO'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'PORQUE_APREENSIVO'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'TRATAMENTO_MEDICO'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'QUAL_TRAT_MEDICO'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'TOMA_MEDICAMENTO'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'TOMA_QUAL_MEDICAMENTO'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'ALERGIA_ANESTESIA'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'ALERGIA_QUAL_ANESTESIA'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'ALGUMA_ALERGIA'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'QUAL_ALERGIA'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'FOI_HOSPITALIZADO'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'PORQUE_HOSPITALIZADO'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'ESTA_GRAVIDA'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'PREVISAO_PARTO'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftSmallint
+        Name = 'TEVE_QUANTAS_GRAVIDEZ'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftSmallint
+        Name = 'QUANTOS_FILHOS'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'CHEGOU_MENOPAUSA'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'QUANDO_CHEGOU_MENOPAUSA'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftInteger
+        Name = 'ID_TBLPACIENTE'
+        ParamType = ptInput
+      end>
+    StoredProcName = 'PROC_CAD_TBLANAMNESE'
+    left = 697
+    top = 100
+    ParamData = <    
+      item
+        DataType = ftString
+        Name = 'CONSUMO_ACUCAR'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'ESCOVACAO'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'USO_FIO_DENTAL'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'OBS_ANATOMO_HISTO'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'HABITOS_VICIOSOS'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'ANTECEDENTES_FAMILIARES'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'APREENSIVO_TRAT_DENTARIO'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'PORQUE_APREENSIVO'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'TRATAMENTO_MEDICO'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'QUAL_TRAT_MEDICO'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'TOMA_MEDICAMENTO'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'TOMA_QUAL_MEDICAMENTO'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'ALERGIA_ANESTESIA'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'ALERGIA_QUAL_ANESTESIA'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'ALGUMA_ALERGIA'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'QUAL_ALERGIA'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'FOI_HOSPITALIZADO'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'PORQUE_HOSPITALIZADO'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'ESTA_GRAVIDA'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'PREVISAO_PARTO'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftSmallint
+        Name = 'TEVE_QUANTAS_GRAVIDEZ'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftSmallint
+        Name = 'QUANTOS_FILHOS'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'CHEGOU_MENOPAUSA'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'QUANDO_CHEGOU_MENOPAUSA'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftInteger
+        Name = 'ID_TBLPACIENTE'
+        ParamType = ptInput
+      end>
+  end
+  object strprocDadosProfissionais: TZStoredProc
+    Connection = dmConexao.zConexao
+    Params = <    
+      item
+        DataType = ftString
+        Name = 'NOME_EMPRESA'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'CARGO'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftInteger
+        Name = 'ID_TBLENDERECO'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftInteger
+        Name = 'ID_TBLPACIENTE'
+        ParamType = ptInput
+      end>
+    StoredProcName = 'PROC_CAD_DADOPROFISSIONAL'
+    left = 571
+    top = 99
+    ParamData = <    
+      item
+        DataType = ftString
+        Name = 'NOME_EMPRESA'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'CARGO'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftInteger
+        Name = 'ID_TBLENDERECO'
         ParamType = ptInput
       end    
       item

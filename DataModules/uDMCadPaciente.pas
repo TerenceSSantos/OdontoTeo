@@ -6,7 +6,8 @@ interface
 
 uses
    Classes, SysUtils, db, ZDataset, dialogs, uClassPaciente, ZStoredProcedure, uClassResponsavelPaciente, {uClassDocumentos,}
-   uClassSinaisSintomas, uClassEnfermidades, uClassEndereco, uClassContatos, uClassAnamnese;
+   uClassSinaisSintomas, uClassEnfermidades, uClassEndereco, uClassContatos,
+   uClassAnamnese, uClassDadosProfissionais;
 
 type
 
@@ -20,10 +21,12 @@ type
       qryTblResponsavelID_RESPONSAVEL: TLongintField;
       qryTblResponsavelNOME_RESPONSAVEL: TStringField;
       qryTblResponsavelPARENTESCO: TStringField;
+      strprocAnamnese: TZStoredProc;
+      strprocDadosProfissionais: TZStoredProc;
       strprocEditarDadosBasicos: TZStoredProc;
       strprocGravarContatos: TZStoredProc;
-      strprocGravarEndereco: TZStoredProc;
       strprocGravarDadosBasicos: TZStoredProc;
+      strprocGravarEndereco: TZStoredProc;
       strprocGravarEnfermidades: TZStoredProc;
       strprocGravarResponsavel: TZStoredProc;
       strprocGravarSinaisSintomas: TZStoredProc;
@@ -41,9 +44,11 @@ type
       function InclusaoResponsavel(objResponsavel: TResponsavelPaciente): boolean;
       function SelectResponsavel(idTblPaciente: integer; objResponsavel: TResponsavelPaciente): TResponsavelPaciente;
 
-      function InclusaoEndereco(objEndereco: TEndereco): boolean;
+      function InclusaoEndereco(objEndereco: TEndereco): integer;
 
       function InclusaoContatos(objContatos: TContatos): boolean;
+
+      function InclusaoDadosProfissionais(objDadosProf: TDadosProfissionais): boolean;
 
       function InclusaoSinaisSintomas(objSinaisSintomas: TSinaisSintomas): boolean;
 
@@ -234,7 +239,7 @@ begin
    result := objResponsavel;
 end;
 
-function TdmCadPaciente.InclusaoEndereco(objEndereco: TEndereco): boolean;
+function TdmCadPaciente.InclusaoEndereco(objEndereco: TEndereco): integer;
 begin
    with strprocGravarEndereco do
    begin
@@ -248,7 +253,7 @@ begin
       Params[7].AsInteger := objEndereco.idTblPaciente;
       try
          ExecProc;
-         result := true;
+         result := Params[8].AsInteger;
       except on E: Exception do
          begin
             try
@@ -258,7 +263,7 @@ begin
             finally
                FreeAndNil(frmMensagem);
             end;
-            result := false;
+            result := 0;
          end;
       end;
    end;
@@ -295,6 +300,32 @@ begin
             try
                frmMensagem := TfrmMensagem.Create(Self);
                frmMensagem.InfoFormMensagem('Inclusão dos contatos do Paciente', tiErro, 'Erro ao tentar gravar o registro ' +
+                                            ' com a seguinte mensagem de erro:' + LineEnding + LineEnding + E.Message);
+            finally
+               FreeAndNil(frmMensagem);
+            end;
+            result := false;
+         end;
+      end;
+   end;
+end;
+
+function TdmCadPaciente.InclusaoDadosProfissionais(objDadosProf: TDadosProfissionais): boolean;
+begin
+   with strprocDadosProfissionais do
+   begin
+      Params[0].AsString := objDadosProf.nomeEmpresa;
+      Params[1].AsString := objDadosProf.cargo;
+      Params[3].AsInteger := objDadosProf.idTblPaciente;
+      Params[2].AsInteger := InclusaoEndereco(objDadosProf.enderecoEmpresa);
+      try
+      ExecProc;
+      result := true;
+      except on E: Exception do
+         begin
+            try
+               frmMensagem := TfrmMensagem.Create(Self);
+               frmMensagem.InfoFormMensagem('Inclusão de Dados Profissionais', tiErro, 'Erro ao tentar gravar o registro ' +
                                             ' com a seguinte mensagem de erro:' + LineEnding + LineEnding + E.Message);
             finally
                FreeAndNil(frmMensagem);
