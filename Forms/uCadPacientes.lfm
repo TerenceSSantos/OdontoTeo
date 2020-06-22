@@ -321,7 +321,7 @@ object frmCadPaciente: TfrmCadPaciente
     object btnNovoCadastro: TBitBtn
       Left = 8
       Height = 80
-      Top = 2
+      Top = 0
       Width = 125
       Caption = 'Novo Cadastro'
       Font.CharSet = ANSI_CHARSET
@@ -2763,6 +2763,7 @@ object frmCadPaciente: TfrmCadPaciente
           HorzScrollBar.Smooth = True
           HorzScrollBar.Tracking = True
           VertScrollBar.Page = 302
+          VertScrollBar.Position = 348
           Align = alClient
           BorderStyle = bsNone
           ClientHeight = 302
@@ -3682,10 +3683,10 @@ object frmCadPaciente: TfrmCadPaciente
               Left = 551
               Height = 70
               Top = 492
-              Width = 465
+              Width = 220
               Caption = '                                                              '
               ClientHeight = 50
-              ClientWidth = 461
+              ClientWidth = 216
               Color = 16445670
               ParentColor = False
               TabOrder = 13
@@ -3705,234 +3706,28 @@ object frmCadPaciente: TfrmCadPaciente
                 ParentColor = False
                 ParentFont = False
               end
-              object lblMaisGravidez: TLabel
-                Left = 370
-                Height = 15
-                Top = 24
-                Width = 25
-                Caption = 'Mais'
-                Font.CharSet = ANSI_CHARSET
-                Font.Color = 98304
-                Font.Height = -12
-                Font.Name = 'Segoe UI Semibold'
-                Font.Pitch = fpVariable
-                Font.Quality = fqDraft
-                Font.Style = [fsBold]
-                ParentColor = False
-                ParentFont = False
-              end
-              object edtQtdGravidez: TEdit
-                Left = 400
+              object spedtQtdGravidez: TSpinEdit
+                Left = 16
                 Height = 23
                 Top = 16
-                Width = 35
-                AutoSize = False
+                Width = 50
                 Color = 14876671
                 Font.Color = 65664
                 Font.Height = -12
                 Font.Name = 'Segoe UI Semibold'
-                NumbersOnly = True
+                MaxValue = 50
                 ParentFont = False
                 TabOrder = 0
               end
-              object udQtdGravidez: TUpDown
-                Left = 435
-                Height = 23
-                Top = 16
-                Width = 17
-                Associate = edtQtdGravidez
-                Min = 0
-                Position = 0
-                TabOrder = 1
-              end
-              object gbNumGravidez: TGroupBox
-                Left = 16
-                Height = 38
-                Top = 5
-                Width = 343
-                ClientHeight = 18
-                ClientWidth = 339
-                Font.CharSet = ANSI_CHARSET
-                Font.Color = 65664
-                Font.Height = -12
-                Font.Name = 'Segoe UI Semibold'
-                Font.Pitch = fpVariable
-                Font.Quality = fqDraft
-                Font.Style = [fsBold]
-                ParentFont = False
-                TabOrder = 2
-                object rbex9Gravidez: TRadioButtonEx
-                  Left = 306
-                  Height = 19
-                  Top = -6
-                  Width = 27
-                  Caption = '9'
-                  Font.CharSet = ANSI_CHARSET
-                  Font.Color = 65664
-                  Font.Height = -12
-                  Font.Name = 'Segoe UI Semibold'
-                  Font.Pitch = fpVariable
-                  Font.Quality = fqDraft
-                  Font.Style = [fsBold]
-                  ParentFont = False
-                  TabOrder = 0
-                  TabStop = True
-                  ThemedCaption = True
-                end
-                object rbex1Gravidez: TRadioButtonEx
-                  Left = 5
-                  Height = 19
-                  Top = -8
-                  Width = 25
-                  Caption = '1'
-                  Font.CharSet = ANSI_CHARSET
-                  Font.Color = 65664
-                  Font.Height = -12
-                  Font.Name = 'Segoe UI Semibold'
-                  Font.Pitch = fpVariable
-                  Font.Quality = fqDraft
-                  Font.Style = [fsBold]
-                  ParentFont = False
-                  TabOrder = 1
-                  TabStop = True
-                  ThemedCaption = True
-                end
-                object rbex2Gravidez: TRadioButtonEx
-                  Left = 41
-                  Height = 19
-                  Top = -6
-                  Width = 27
-                  Caption = '2'
-                  Font.CharSet = ANSI_CHARSET
-                  Font.Color = 65664
-                  Font.Height = -12
-                  Font.Name = 'Segoe UI Semibold'
-                  Font.Pitch = fpVariable
-                  Font.Quality = fqDraft
-                  Font.Style = [fsBold]
-                  ParentFont = False
-                  TabOrder = 2
-                  TabStop = True
-                  ThemedCaption = True
-                end
-                object rbex3Gravidez: TRadioButtonEx
-                  Left = 79
-                  Height = 19
-                  Top = -6
-                  Width = 27
-                  Caption = '3'
-                  Font.CharSet = ANSI_CHARSET
-                  Font.Color = 65664
-                  Font.Height = -12
-                  Font.Name = 'Segoe UI Semibold'
-                  Font.Pitch = fpVariable
-                  Font.Quality = fqDraft
-                  Font.Style = [fsBold]
-                  ParentFont = False
-                  TabOrder = 3
-                  TabStop = True
-                  ThemedCaption = True
-                end
-                object rbex4Gravidez: TRadioButtonEx
-                  Left = 117
-                  Height = 19
-                  Top = -6
-                  Width = 27
-                  Caption = '4'
-                  Font.CharSet = ANSI_CHARSET
-                  Font.Color = 65664
-                  Font.Height = -12
-                  Font.Name = 'Segoe UI Semibold'
-                  Font.Pitch = fpVariable
-                  Font.Quality = fqDraft
-                  Font.Style = [fsBold]
-                  ParentFont = False
-                  TabOrder = 4
-                  TabStop = True
-                  ThemedCaption = True
-                end
-                object rbex5Gravidez: TRadioButtonEx
-                  Left = 155
-                  Height = 19
-                  Top = -6
-                  Width = 27
-                  Caption = '5'
-                  Font.CharSet = ANSI_CHARSET
-                  Font.Color = 65664
-                  Font.Height = -12
-                  Font.Name = 'Segoe UI Semibold'
-                  Font.Pitch = fpVariable
-                  Font.Quality = fqDraft
-                  Font.Style = [fsBold]
-                  ParentFont = False
-                  TabOrder = 5
-                  TabStop = True
-                  ThemedCaption = True
-                end
-                object rbex6Gravidez: TRadioButtonEx
-                  Left = 193
-                  Height = 19
-                  Top = -6
-                  Width = 27
-                  Caption = '6'
-                  Font.CharSet = ANSI_CHARSET
-                  Font.Color = 65664
-                  Font.Height = -12
-                  Font.Name = 'Segoe UI Semibold'
-                  Font.Pitch = fpVariable
-                  Font.Quality = fqDraft
-                  Font.Style = [fsBold]
-                  ParentFont = False
-                  TabOrder = 6
-                  TabStop = True
-                  ThemedCaption = True
-                end
-                object rbex7Gravidez: TRadioButtonEx
-                  Left = 231
-                  Height = 19
-                  Top = -6
-                  Width = 26
-                  Caption = '7'
-                  Font.CharSet = ANSI_CHARSET
-                  Font.Color = 65664
-                  Font.Height = -12
-                  Font.Name = 'Segoe UI Semibold'
-                  Font.Pitch = fpVariable
-                  Font.Quality = fqDraft
-                  Font.Style = [fsBold]
-                  ParentFont = False
-                  TabOrder = 7
-                  TabStop = True
-                  ThemedCaption = True
-                end
-                object rbex8Gravidez: TRadioButtonEx
-                  Left = 268
-                  Height = 19
-                  Top = -6
-                  Width = 27
-                  Caption = '8'
-                  Font.CharSet = ANSI_CHARSET
-                  Font.Color = 65664
-                  Font.Height = -12
-                  Font.Name = 'Segoe UI Semibold'
-                  Font.Pitch = fpVariable
-                  Font.Quality = fqDraft
-                  Font.Style = [fsBold]
-                  ParentFont = False
-                  TabOrder = 8
-                  TabStop = True
-                  ThemedCaption = True
-                end
-              end
             end
             object gbQtdFilhos: TGroupBox
-              Left = 64
+              Left = 796
               Height = 70
-              Top = 572
-              Width = 465
+              Top = 492
+              Width = 220
               Caption = '                                        '
               ClientHeight = 50
-              ClientWidth = 461
+              ClientWidth = 216
               Color = 16445670
               ParentColor = False
               TabOrder = 14
@@ -3952,228 +3747,22 @@ object frmCadPaciente: TfrmCadPaciente
                 ParentColor = False
                 ParentFont = False
               end
-              object lblMaisFilhos: TLabel
-                Left = 370
-                Height = 15
-                Top = 24
-                Width = 25
-                Caption = 'Mais'
-                Font.CharSet = ANSI_CHARSET
-                Font.Color = 98304
-                Font.Height = -12
-                Font.Name = 'Segoe UI Semibold'
-                Font.Pitch = fpVariable
-                Font.Quality = fqDraft
-                Font.Style = [fsBold]
-                ParentColor = False
-                ParentFont = False
-              end
-              object edtQtdFilhos: TEdit
-                Left = 400
+              object spedtQtdFilhos: TSpinEdit
+                Left = 16
                 Height = 23
                 Top = 16
-                Width = 35
-                AutoSize = False
+                Width = 50
                 Color = 14876671
                 Font.Color = 65664
                 Font.Height = -12
                 Font.Name = 'Segoe UI Semibold'
-                NumbersOnly = True
+                MaxValue = 50
                 ParentFont = False
                 TabOrder = 0
               end
-              object udQtdFilhos: TUpDown
-                Left = 435
-                Height = 23
-                Top = 16
-                Width = 17
-                Associate = edtQtdFilhos
-                Min = 0
-                Position = 0
-                TabOrder = 1
-              end
-              object gbNumFilhos: TGroupBox
-                Left = 16
-                Height = 38
-                Top = 5
-                Width = 343
-                ClientHeight = 18
-                ClientWidth = 339
-                Font.CharSet = ANSI_CHARSET
-                Font.Color = 65664
-                Font.Height = -12
-                Font.Name = 'Segoe UI Semibold'
-                Font.Pitch = fpVariable
-                Font.Quality = fqDraft
-                Font.Style = [fsBold]
-                ParentFont = False
-                TabOrder = 2
-                object rbex1Filho: TRadioButtonEx
-                  Left = 7
-                  Height = 19
-                  Top = -5
-                  Width = 25
-                  Caption = '1'
-                  Font.CharSet = ANSI_CHARSET
-                  Font.Color = 65664
-                  Font.Height = -12
-                  Font.Name = 'Segoe UI Semibold'
-                  Font.Pitch = fpVariable
-                  Font.Quality = fqDraft
-                  Font.Style = [fsBold]
-                  ParentFont = False
-                  TabOrder = 0
-                  TabStop = True
-                  ThemedCaption = True
-                end
-                object rbex2Filho: TRadioButtonEx
-                  Left = 43
-                  Height = 19
-                  Top = -5
-                  Width = 27
-                  Caption = '2'
-                  Font.CharSet = ANSI_CHARSET
-                  Font.Color = 65664
-                  Font.Height = -12
-                  Font.Name = 'Segoe UI Semibold'
-                  Font.Pitch = fpVariable
-                  Font.Quality = fqDraft
-                  Font.Style = [fsBold]
-                  ParentFont = False
-                  TabOrder = 1
-                  TabStop = True
-                  ThemedCaption = True
-                end
-                object rbex3Filho: TRadioButtonEx
-                  Left = 81
-                  Height = 19
-                  Top = -5
-                  Width = 27
-                  Caption = '3'
-                  Font.CharSet = ANSI_CHARSET
-                  Font.Color = 65664
-                  Font.Height = -12
-                  Font.Name = 'Segoe UI Semibold'
-                  Font.Pitch = fpVariable
-                  Font.Quality = fqDraft
-                  Font.Style = [fsBold]
-                  ParentFont = False
-                  TabOrder = 2
-                  TabStop = True
-                  ThemedCaption = True
-                end
-                object rbex4Filho: TRadioButtonEx
-                  Left = 119
-                  Height = 19
-                  Top = -5
-                  Width = 27
-                  Caption = '4'
-                  Font.CharSet = ANSI_CHARSET
-                  Font.Color = 65664
-                  Font.Height = -12
-                  Font.Name = 'Segoe UI Semibold'
-                  Font.Pitch = fpVariable
-                  Font.Quality = fqDraft
-                  Font.Style = [fsBold]
-                  ParentFont = False
-                  TabOrder = 3
-                  TabStop = True
-                  ThemedCaption = True
-                end
-                object rbex5Filho: TRadioButtonEx
-                  Left = 157
-                  Height = 19
-                  Top = -5
-                  Width = 27
-                  Caption = '5'
-                  Font.CharSet = ANSI_CHARSET
-                  Font.Color = 65664
-                  Font.Height = -12
-                  Font.Name = 'Segoe UI Semibold'
-                  Font.Pitch = fpVariable
-                  Font.Quality = fqDraft
-                  Font.Style = [fsBold]
-                  ParentFont = False
-                  TabOrder = 4
-                  TabStop = True
-                  ThemedCaption = True
-                end
-                object rbex6Filho: TRadioButtonEx
-                  Left = 195
-                  Height = 19
-                  Top = -5
-                  Width = 27
-                  Caption = '6'
-                  Font.CharSet = ANSI_CHARSET
-                  Font.Color = 65664
-                  Font.Height = -12
-                  Font.Name = 'Segoe UI Semibold'
-                  Font.Pitch = fpVariable
-                  Font.Quality = fqDraft
-                  Font.Style = [fsBold]
-                  ParentFont = False
-                  TabOrder = 5
-                  TabStop = True
-                  ThemedCaption = True
-                end
-                object rbex7Filho: TRadioButtonEx
-                  Left = 233
-                  Height = 19
-                  Top = -5
-                  Width = 26
-                  Caption = '7'
-                  Font.CharSet = ANSI_CHARSET
-                  Font.Color = 65664
-                  Font.Height = -12
-                  Font.Name = 'Segoe UI Semibold'
-                  Font.Pitch = fpVariable
-                  Font.Quality = fqDraft
-                  Font.Style = [fsBold]
-                  ParentFont = False
-                  TabOrder = 6
-                  TabStop = True
-                  ThemedCaption = True
-                end
-                object rbex8Filho: TRadioButtonEx
-                  Left = 270
-                  Height = 19
-                  Top = -5
-                  Width = 27
-                  Caption = '8'
-                  Font.CharSet = ANSI_CHARSET
-                  Font.Color = 65664
-                  Font.Height = -12
-                  Font.Name = 'Segoe UI Semibold'
-                  Font.Pitch = fpVariable
-                  Font.Quality = fqDraft
-                  Font.Style = [fsBold]
-                  ParentFont = False
-                  TabOrder = 7
-                  TabStop = True
-                  ThemedCaption = True
-                end
-                object rbex9Filho: TRadioButtonEx
-                  Left = 308
-                  Height = 19
-                  Top = -5
-                  Width = 27
-                  Caption = '9'
-                  Font.CharSet = ANSI_CHARSET
-                  Font.Color = 65664
-                  Font.Height = -12
-                  Font.Name = 'Segoe UI Semibold'
-                  Font.Pitch = fpVariable
-                  Font.Quality = fqDraft
-                  Font.Style = [fsBold]
-                  ParentFont = False
-                  TabOrder = 8
-                  TabStop = True
-                  ThemedCaption = True
-                end
-              end
             end
             object gbMenopausa: TGroupBox
-              Left = 551
+              Left = 64
               Height = 70
               Top = 572
               Width = 465

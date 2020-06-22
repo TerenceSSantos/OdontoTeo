@@ -5,9 +5,11 @@ unit uCadPacientes;
 interface
 
 uses
-   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, ExtCtrls, Buttons, StdCtrls, ComCtrls, MaskEdit, ECGroupCtrls, rxctrls,
-   DateTimePicker, BCPanel, BCButton, RTTICtrls, ExCheckCtrls, uClassPaciente, uClassResponsavelPaciente, uClassSinaisSintomas,
-   uClassEnfermidades, uClassEndereco, uClassContatos, uClassAnamnese, uClassDadosProfissionais;
+   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, ExtCtrls, Buttons,
+   StdCtrls, ComCtrls, MaskEdit, Spin, ECGroupCtrls, rxctrls, DateTimePicker,
+   BCPanel, BCButton, RTTICtrls, ExCheckCtrls, uClassPaciente,
+   uClassResponsavelPaciente, uClassSinaisSintomas, uClassEnfermidades,
+   uClassEndereco, uClassContatos, uClassAnamnese, uClassDadosProfissionais;
 
 type
 
@@ -73,8 +75,6 @@ type
       edtAlgumaAlergia: TEdit;
       edtFoiHospitalizado: TEdit;
       edtTaGravida: TEdit;
-      edtQtdGravidez: TEdit;
-      edtQtdFilhos: TEdit;
       edtNumEndereco: TEdit;
       edtOrgaoExpedidorResp1: TEdit;
       edtOrgaoExpedPaciente: TEdit;
@@ -83,7 +83,6 @@ type
       edtPessoaRecado: TEdit;
       gbApreensivoTrat: TGroupBox;
       gbQtdFilhos: TGroupBox;
-      gbNumFilhos: TGroupBox;
       gbMenopausa: TGroupBox;
       gbTratMedico: TGroupBox;
       gbTomaRemedio: TGroupBox;
@@ -92,7 +91,6 @@ type
       gbHospitalizado: TGroupBox;
       gbTaGravida: TGroupBox;
       gbQtdGravidez: TGroupBox;
-      gbNumGravidez: TGroupBox;
       lblAids: TLabel;
       lblDisritmiaEpilepsia: TLabel;
       lblUlceraHepatica: TLabel;
@@ -139,9 +137,7 @@ type
       lblTaGravida: TLabel;
       lblPrevisaoParto: TLabel;
       lblQtdGravidez: TLabel;
-      lblMaisGravidez: TLabel;
       lblQtdFilhos: TLabel;
-      lblMaisFilhos: TLabel;
       lblMenopausa: TLabel;
       lblPQApreensivoTrat: TLabel;
       lblQuandoMenopausa: TLabel;
@@ -265,24 +261,6 @@ type
       rbexNaoApreesTratDent: TRadioButtonEx;
       rbexSimMenopausa: TRadioButtonEx;
       rbexSimTaGravida: TRadioButtonEx;
-      rbex1Filho: TRadioButtonEx;
-      rbex9Gravidez: TRadioButtonEx;
-      rbex1Gravidez: TRadioButtonEx;
-      rbex2Gravidez: TRadioButtonEx;
-      rbex3Gravidez: TRadioButtonEx;
-      rbex4Gravidez: TRadioButtonEx;
-      rbex5Gravidez: TRadioButtonEx;
-      rbex6Gravidez: TRadioButtonEx;
-      rbex7Gravidez: TRadioButtonEx;
-      rbex8Gravidez: TRadioButtonEx;
-      rbex2Filho: TRadioButtonEx;
-      rbex3Filho: TRadioButtonEx;
-      rbex4Filho: TRadioButtonEx;
-      rbex5Filho: TRadioButtonEx;
-      rbex6Filho: TRadioButtonEx;
-      rbex7Filho: TRadioButtonEx;
-      rbex8Filho: TRadioButtonEx;
-      rbex9Filho: TRadioButtonEx;
       rbexSimTomaRemedio: TRadioButtonEx;
       rbexSimAlergiaAnestesia: TRadioButtonEx;
       rbexSimAlgumaAlergia: TRadioButtonEx;
@@ -330,6 +308,8 @@ type
       rgexCalorExagerado: TRadioGroupEx;
       rgexSexo: TRadioGroupEx;
       scrboxAnamnese: TScrollBox;
+      spedtQtdGravidez: TSpinEdit;
+      spedtQtdFilhos: TSpinEdit;
       tabAnamnese: TTabSheet;
       tabContatos: TTabSheet;
       tabDadosBasicos: TTabSheet;
@@ -338,8 +318,6 @@ type
       tabEnfermidades: TTabSheet;
       tabResponsavel: TTabSheet;
       tabSinaisSintomas: TTabSheet;
-      udQtdGravidez: TUpDown;
-      udQtdFilhos: TUpDown;
       procedure btnAlteraCadastroClick(Sender: TObject);
       procedure btnApagaCadastroClick(Sender: TObject);
       procedure btnCancelaCadastroClick(Sender: TObject);
@@ -379,6 +357,8 @@ type
       function RetornoMascaraContatos(tamanho: integer): string;
 
       procedure DesabilitaTemaRadioButtonEX(Sender: TObject);
+
+      procedure CasoHomem;
 
       {================================= FUNÇÕES E PROCEDIMENTOS DE CADASTRO  ====================================================}
 
@@ -476,10 +456,13 @@ begin
 
       4 : begin
              if estado in [teInclusao] then
-             InclusaoDadoProfissional;
+                InclusaoDadoProfissional;
           end;
 
-//      5 : Anamnese
+      5 : begin
+          if estado in [teInclusao] then
+             InclusaoAnamnese;
+          end;
 
       6 : begin
              if estado in [teInclusao] then
@@ -565,7 +548,8 @@ begin
          edtNomePaciente.SetFocus;
       end;
    end;
-
+   if rgexSexo.ItemIndex = 1 then
+      CasoHomem;
 end;
 
 procedure TfrmCadPaciente.btnProcuraPacienteClick(Sender: TObject);
@@ -933,13 +917,21 @@ end;
 
 procedure TfrmCadPaciente.DesabilitaTemaRadioButtonEX(Sender: TObject);
 var
-   i : integer;
+   i : integer = 0;
 begin
    for i := 0 to ComponentCount - 1 do
    begin
       if Components[i] is TRadioButtonEx then
          (Components[i] as TRadioButtonEx).ThemedCaption := false;
    end;
+end;
+
+procedure TfrmCadPaciente.CasoHomem;
+begin
+   gbTaGravida.Enabled := false;
+   gbQtdGravidez.Enabled := false;
+   gbQtdFilhos.Enabled := false;
+   gbMenopausa.Enabled := false;
 end;
 
 procedure TfrmCadPaciente.InclusaoDadosBasicos;
@@ -1205,22 +1197,113 @@ end;
 
 function TfrmCadPaciente.CarregaObjAnamnese(objAnamnese: TAnamnese): TAnamnese;
 begin
-   with objAnamnese do    { TODO -oTerence -cCadastro : Continuar com o cadastro da Anamnese };
-   begin
-      idTblPaciente := StrToInt(edtCodPaciente.Text);
-      consumoAcucar := cboxConsAcucar.Text;
-      escovacao := cboxEscovacao.Text;
-      usoFioDental := cboxFioDental;
-      obsAnatomoHisto := memoObsAnatHistPatol.Text;
-      habitosViciosos := edtHabitosViciosos;
-      antecedentesFamiliares := edtAntecFamiliar.Text;
-      apreensivoTratDentario := edtApreensivoTratamento.Text;
-   end;
+   objAnamnese.idTblPaciente := StrToInt(edtCodPaciente.Text);
+   objAnamnese.consumoAcucar := cboxConsAcucar.Text;
+   objAnamnese.escovacao := cboxEscovacao.Text;
+   objAnamnese.usoFioDental := cboxFioDental.Text;
+   objAnamnese.obsAnatomoHisto := memoObsAnatHistPatol.Text;
+   objAnamnese.habitosViciosos := edtHabitosViciosos.Text;
+   objAnamnese.antecedentesFamiliares := edtAntecFamiliar.Text;
+
+   if rbexSimApreesTratDent.Checked then
+    begin
+      objAnamnese.apreensivoTratDentario := 'S';
+      objAnamnese.porqueApreensivo := edtApreensivoTratamento.Text;
+    end;
+   if rbexNaoApreesTratDent.Checked then
+      objAnamnese.apreensivoTratDentario := 'N';
+
+
+   if rbexSimTratMedico.Checked then
+    begin
+      objAnamnese.tratamentoMedico := 'S';
+      objAnamnese.qualTratMedico := edtTratamentoMedico.Text;
+    end;
+   if rbexNaoTratMedico.Checked then
+      objAnamnese.tratamentoMedico := 'N';
+
+   if rbexSimTomaRemedio.Checked then
+    begin
+       objAnamnese.tomaMedicamento := 'S';
+       objAnamnese.tomaQualMedicamento := edtTomaRemedio.Text;
+    end;
+   if rbexNaoTomaRemedio.Checked then
+      objAnamnese.tomaMedicamento := 'N';
+
+   if rbexSimAlergiaAnestesia.Checked then
+    begin
+       objAnamnese.alergiaAnestesia := 'S';
+       objAnamnese.alergiaQualAnestesia := edtAlergiaAnestesia.Text;
+    end;
+   if rbexNaoAlergiaAnestesia.Checked then
+      objAnamnese.alergiaAnestesia := 'N';
+
+   if rbexSimAlgumaAlergia.Checked then
+    begin
+       objAnamnese.algumaAlergia := 'S';
+       objAnamnese.qualAlergia := edtAlgumaAlergia.Text;
+    end;
+   if rbexNaoAlgumaAlergia.Checked then
+      objAnamnese.algumaAlergia := 'N';
+
+   if rbexSimFoiHospitalizado.Checked then
+    begin
+       objAnamnese.foiHospitalizado := 'S';
+       objAnamnese.porqueHospitalizado := edtFoiHospitalizado.Text;
+    end;
+   if rbexNaoFoiHospitalizado.Checked then
+      objAnamnese.foiHospitalizado := 'N';
+
+   if rgexSexo.ItemIndex = 0 then
+    begin
+      if rbexSimTaGravida.Checked then
+       begin
+          objAnamnese.estaGravida := 'S';
+          objAnamnese.previsaoParto := edtTaGravida.Text;
+       end;
+      if rbexNaoTaGravida.Checked then
+         objAnamnese.estaGravida := 'N';
+
+      objAnamnese.teveQuantasGravidez := StrToInt(spedtQtdGravidez.Text);
+      objAnamnese.quantosFilhos := StrToInt(spedtQtdFilhos.Text);
+
+      if rbexSimMenopausa.Checked then
+       begin
+         objAnamnese.chegouMenopausa := 'S';
+         objAnamnese.quandoChegouMenopausa := edtMenopausa.Text;
+       end;
+      if rbexNaoMenopausa.Checked then
+         objAnamnese.chegouMenopausa := 'N';
+
+    end;
+   result := objAnamnese;
 end;
 
 procedure TfrmCadPaciente.InclusaoAnamnese;
+var
+   objAnamnese : TAnamnese;
+   objControlePaciente : TControlePaciente;
 begin
+   objAnamnese := TAnamnese.Create;
+   objControlePaciente := TControlePaciente.Create;
+   try
+      if objControlePaciente.InclusaoAnamnese(CarregaObjAnamnese(objAnamnese))then
+       begin
+          try
+             frmMensagem := TfrmMensagem.Create(Self);
+             frmMensagem.InfoFormMensagem('Cadastro da Anamnese', tiInformacao, 'Cadastro da Anamnese realizado com sucesso!');
+          finally
+             FreeAndNil(frmMensagem);
+          end;
+       end;
 
+      DesabilitaControles(pcCadPaciente.ActivePage);
+      estado := teNavegacao;
+      EstadoBotoes;
+   finally
+      FreeAndNil(objControlePaciente);
+      FreeAndNil(objAnamnese);
+   end;
 end;
 
 function TfrmCadPaciente.CarregaObjSinaisSintomas(objSinaisSintomas: TSinaisSintomas): TSinaisSintomas;

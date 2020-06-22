@@ -33,6 +33,8 @@ type
 
         function InclusaoDadosProfissionais(objDadosProf: TDadosProfissionais): boolean;
 
+        function InclusaoAnamnese(objAnamnese: TAnamnese): boolean;
+
         function InclusaoSinaisSintomas(objSinaisSintomas: TSinaisSintomas): boolean;
         function InclusaoEnfermidades(objEnfermidades: TEnfermidades): boolean;
 
@@ -110,6 +112,11 @@ end;
 function TControlePaciente.InclusaoDadosProfissionais(objDadosProf: TDadosProfissionais): boolean;
 begin
    result := dmCadPaciente.InclusaoDadosProfissionais(objDadosProf);
+end;
+
+function TControlePaciente.InclusaoAnamnese(objAnamnese: TAnamnese): boolean;
+begin
+   result := dmCadPaciente.InclusaoAnamnese(objAnamnese);
 end;
 
 function TControlePaciente.InclusaoSinaisSintomas(objSinaisSintomas: TSinaisSintomas): boolean;

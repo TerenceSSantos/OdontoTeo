@@ -50,6 +50,8 @@ type
 
       function InclusaoDadosProfissionais(objDadosProf: TDadosProfissionais): boolean;
 
+      function InclusaoAnamnese(objAnamnese: TAnamnese): boolean;
+
       function InclusaoSinaisSintomas(objSinaisSintomas: TSinaisSintomas): boolean;
 
       function InclusaoEnfermidades(objEnfermidades: TEnfermidades): boolean;
@@ -333,6 +335,55 @@ begin
             result := false;
          end;
       end;
+   end;
+end;
+
+function TdmCadPaciente.InclusaoAnamnese(objAnamnese: TAnamnese): boolean;
+begin
+   with dmCadPaciente.strprocAnamnese do
+   begin
+      Params[0].AsString := objAnamnese.consumoAcucar;
+      Params[1].AsString := objAnamnese.escovacao;
+      Params[2].AsString := objAnamnese.usoFioDental;
+      Params[3].AsString := objAnamnese.obsAnatomoHisto;
+      Params[4].AsString := objAnamnese.habitosViciosos;
+      Params[5].AsString := objAnamnese.antecedentesFamiliares;
+      Params[6].AsString := objAnamnese.apreensivoTratDentario;
+      Params[7].AsString := objAnamnese.porqueApreensivo;
+      Params[8].AsString := objAnamnese.tratamentoMedico;
+      Params[9].AsString := objAnamnese.qualTratMedico;
+      Params[10].AsString := objAnamnese.tomaMedicamento;
+      Params[11].AsString := objAnamnese.tomaQualMedicamento;
+      Params[12].AsString := objAnamnese.alergiaAnestesia;
+      Params[13].AsString := objAnamnese.alergiaQualAnestesia;
+      Params[14].AsString := objAnamnese.algumaAlergia;
+      Params[15].AsString := objAnamnese.qualAlergia;
+      Params[16].AsString := objAnamnese.foiHospitalizado;
+      Params[17].AsString := objAnamnese.porqueHospitalizado;
+      Params[18].AsString := objAnamnese.estaGravida;
+      Params[19].AsString := objAnamnese.previsaoParto;
+      Params[20].AsSmallInt := objAnamnese.teveQuantasGravidez;
+      Params[21].AsSmallInt := objAnamnese.quantosFilhos;
+      Params[22].AsString := objAnamnese.chegouMenopausa;
+      Params[23].AsString := objAnamnese.quandoChegouMenopausa;
+      Params[24].AsInteger := objAnamnese.idTblPaciente;
+
+      try
+         ExecProc;
+         result := true;
+      except on E: Exception do
+         begin
+            try
+               frmMensagem := TfrmMensagem.Create(Self);
+               frmMensagem.InfoFormMensagem('Inclusão da Anamnese', tiErro, 'Erro ao tentar gravar o registro ' +
+                                            ' com a seguinte mensagem de erro:' + LineEnding + LineEnding + E.Message);
+            finally
+               FreeAndNil(frmMensagem);
+            end;
+            result := false;
+         end;
+      end;
+
    end;
 end;
 
