@@ -344,7 +344,6 @@ object frmCadPaciente: TfrmCadPaciente
       Top = 2
       Width = 125
       Caption = 'Alterar Cadastro'
-      Enabled = False
       Font.CharSet = ANSI_CHARSET
       Font.Color = 65664
       Font.Height = -13
@@ -365,7 +364,6 @@ object frmCadPaciente: TfrmCadPaciente
       Top = 2
       Width = 125
       Caption = 'Apagar Cadastro'
-      Enabled = False
       Font.CharSet = ANSI_CHARSET
       Font.Color = 65664
       Font.Height = -13
@@ -387,7 +385,6 @@ object frmCadPaciente: TfrmCadPaciente
       Width = 125
       Caption = 'Gravar Cadastro'
       Default = True
-      Enabled = False
       Font.CharSet = ANSI_CHARSET
       Font.Color = 65664
       Font.Height = -13
@@ -408,7 +405,6 @@ object frmCadPaciente: TfrmCadPaciente
       Top = 2
       Width = 125
       Caption = 'Cancelar Cadastro'
-      Enabled = False
       Font.CharSet = ANSI_CHARSET
       Font.Color = 65664
       Font.Height = -13
@@ -615,10 +611,10 @@ object frmCadPaciente: TfrmCadPaciente
       Height = 362
       Top = 2
       Width = 1088
-      ActivePage = tabAnamnese
+      ActivePage = tabResponsavel
       Align = alClient
       Images = miglstCadPaciente
-      TabIndex = 5
+      TabIndex = 1
       TabOrder = 0
       OnChange = pcCadPacienteChange
       OnChanging = pcCadPacienteChanging
@@ -1139,7 +1135,7 @@ object frmCadPaciente: TfrmCadPaciente
             MaxLength = 14
             ParentFont = False
             TabOrder = 12
-            EditMask = '!000.000.000-00;0;_'
+            EditMask = '!999.999.999-99;0;_'
             TextHint = 'CPF do(a) paciente'
             SpaceChar = '_'
           end
@@ -1228,6 +1224,7 @@ object frmCadPaciente: TfrmCadPaciente
             )
             ParentFont = False
             TabOrder = 7
+            TabStop = True
           end
           object lblSexo: TLabel
             Left = 68

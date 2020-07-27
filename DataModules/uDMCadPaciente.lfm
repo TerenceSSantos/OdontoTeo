@@ -1,8 +1,8 @@
 object dmCadPaciente: TdmCadPaciente
   OldCreateOrder = False
   Height = 449
-  HorizontalOffset = 216
-  VerticalOffset = 126
+  HorizontalOffset = 317
+  VerticalOffset = 145
   Width = 1233
   PPI = 96
   object qryTblPaciente: TZQuery
@@ -65,6 +65,21 @@ object dmCadPaciente: TdmCadPaciente
       item
         DataType = ftString
         Name = 'NACIONALIDADE'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'CPF_PACIENTE'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'IDENTIDADE_PACIENTE'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'ORGAO_EXPEDIDOR_ID'
         ParamType = ptInput
       end    
       item
@@ -134,6 +149,21 @@ object dmCadPaciente: TdmCadPaciente
       item
         DataType = ftString
         Name = 'NACIONALIDADE'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'CPF_PACIENTE'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'IDENTIDADE_PACIENTE'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'ORGAO_EXPEDIDOR_ID'
         ParamType = ptInput
       end    
       item

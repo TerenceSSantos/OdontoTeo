@@ -28,6 +28,12 @@ type
       procedure btnCancelarClick(Sender: TObject);
       procedure btnOkClick(Sender: TObject);
       procedure lblMensagemResize(Sender: TObject);
+      procedure pnlTituloMouseDown(Sender: TObject; Button: TMouseButton;
+         Shift: TShiftState; X, Y: Integer);
+      procedure pnlTituloMouseMove(Sender: TObject; Shift: TShiftState; X,
+         Y: Integer);
+      procedure pnlTituloMouseUp(Sender: TObject; Button: TMouseButton;
+         Shift: TShiftState; X, Y: Integer);
    private
 
    public
@@ -38,6 +44,8 @@ type
 
 var
    frmMensagem: TfrmMensagem;
+   capitura : boolean = false;
+   px, py : integer;
 
 implementation
 
@@ -59,6 +67,30 @@ procedure TfrmMensagem.lblMensagemResize(Sender: TObject);
 begin
      if lblMensagem.Height > 70 then
        Self.Height := Self.Height + (lblMensagem.Height - 70);
+end;
+
+procedure TfrmMensagem.pnlTituloMouseDown(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
+begin
+   capitura := true;
+   if capitura then
+   begin
+      px := X;
+      py := Y;
+   end;
+end;
+
+procedure TfrmMensagem.pnlTituloMouseMove(Sender: TObject; Shift: TShiftState; X, Y: Integer);
+begin
+   if capitura then
+   begin
+      Left := (Left + X) - px;
+      Top := (Top + Y) - py;
+   end;
+end;
+
+procedure TfrmMensagem.pnlTituloMouseUp(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
+begin
+   capitura := false;
 end;
 
 procedure TfrmMensagem.InfoFormMensagem(titulo: string; icone: TIcone; mensagem: string);

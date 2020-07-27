@@ -5,11 +5,9 @@ unit uCadPacientes;
 interface
 
 uses
-   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, ExtCtrls, Buttons,
-   StdCtrls, ComCtrls, MaskEdit, Spin, ECGroupCtrls, rxctrls, DateTimePicker,
-   BCPanel, BCButton, RTTICtrls, ExCheckCtrls, uClassPaciente,
-   uClassResponsavelPaciente, uClassSinaisSintomas, uClassEnfermidades,
-   uClassEndereco, uClassContatos, uClassAnamnese, uClassDadosProfissionais;
+   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, ExtCtrls, Buttons, StdCtrls, ComCtrls, MaskEdit, Spin, ECGroupCtrls,
+   rxctrls, DateTimePicker, BCPanel, BCButton, RTTICtrls, ExCheckCtrls, uClassPaciente, uClassResponsavelPaciente,
+   uClassSinaisSintomas, uClassEnfermidades, uClassEndereco, uClassContatos, uClassAnamnese, uClassDadosProfissionais;
 
 type
 
@@ -405,7 +403,7 @@ var
 implementation
 
 uses
-   uClassControlePaciente, uFrmMensagem;
+   uClassControlePaciente, uFrmMensagem, uDadosBasicos, uResponsavel;
 
 
 {$R *.lfm}
@@ -432,7 +430,7 @@ begin
    case pcCadPaciente.ActivePageIndex of
       0 : begin
              if estado in [teInclusao] then
-                InclusaoDadosBasicos
+                DadosBasicos.InclusaoDadosBasicos(Self)
              else if estado in [teEdicao] then
              begin
                 objDadosBasicos := CarregaObjDadosBasicos(objDadosBasicos);
@@ -441,7 +439,7 @@ begin
           end;
       1 : begin
              if estado in [teInclusao] then
-                InclusaoResponsavel;
+                Responsavel.InclusaoResponsavel(Self);
           end;
 
       2 : begin
@@ -490,14 +488,14 @@ begin
       LimpaControles(pcCadPaciente.ActivePage);
 
    estado := teNavegacao;
-   EstadoBotoes;
+   //EstadoBotoes;
    DesabilitaControles(pcCadPaciente.ActivePage);
 end;
 
 procedure TfrmCadPaciente.btnAlteraCadastroClick(Sender: TObject);
 begin
    estado := teEdicao;
-   EstadoBotoes;
+   //EstadoBotoes;
    HabilitaControles(pcCadPaciente.ActivePage);
    objDadosBasicosAntesAlteracao := TPaciente.Create;
    objDadosBasicosAntesAlteracao := CarregaObjDadosBasicos(objDadosBasicosAntesAlteracao);
@@ -521,7 +519,7 @@ begin
              frmMensagem.InfoFormMensagem('I N F O R M A Ç Ã O',tiInformacao, 'O Cadastro foi apagado com sucesso.');
 
              LimpaControles(pcCadPaciente.ActivePage);
-             EstadoBotoes;
+             //EstadoBotoes;
              DesabilitaControles(pcCadPaciente.ActivePage);
            end;
        finally
@@ -535,7 +533,7 @@ procedure TfrmCadPaciente.btnNovoCadastroClick(Sender: TObject);
 begin
    estado := teInclusao;
    HabilitaControles(pcCadPaciente.ActivePage);
-   EstadoBotoes;
+   //EstadoBotoes;
    LimpaControles(pcCadPaciente.ActivePage);
    if pcCadPaciente.PageIndex = 0 then
    begin
@@ -725,7 +723,7 @@ begin
        frmCadPaciente.Height := 547;
        frmCadPaciente.Top := (Screen.WorkAreaHeight div 2 - frmCadPaciente.Height div 2) + 14;
    end;
-   EstadoBotoes;
+   //EstadoBotoes;
 end;
 
 procedure TfrmCadPaciente.pcCadPacienteChanging(Sender: TObject; var AllowChange: Boolean);
@@ -838,38 +836,6 @@ begin
        end;
 end;
 
-function TfrmCadPaciente.CarregaObjDadosBasicos(objDados: TPaciente): TPaciente;
-begin
-   with objDados do               {** PREENCHER O OBJETO PACIENTE COM OS SEUS DADOS BASÍCOS QUE ESTÃO NO FORM **}
-   begin
-      if chkboxAtivo.Checked then
-         ativo := 'A'
-      else
-         ativo := 'I';
-      idPaciente := StrToInt(edtCodPaciente.Text);
-      nomePaciente := edtNomePaciente.Text;
-      nomePai := edtNomePai.Text;
-      nomeMae := edtNomeMae.Text;
-      estadoCivil := cboxEstCivil.Text;
-      nomeConjuge := edtNomeConjuge.Text;
-      //if rbtnFeminino.Checked then
-      //   sexo := 'F'
-      //else if rbtnMasculino.Checked then
-      //   sexo := 'M';
-
-      case rgexSexo.ItemIndex of
-         0 : sexo := 'F';
-         1 : sexo := 'M';
-      end;
-      if not(IsNullDate(dtpkNascimento.Date)) then
-         dataNascimento := dtpkNascimento.Date;
-      naturalidade := edtNaturalidade.Text;
-      ufNascimento := cboxUFNascimento.Text;
-      nacionalidade := edtNacionalidade.Text;
-   end;
-   result := objDados;
-end;
-
 procedure TfrmCadPaciente.LimpaControles(controle: TWinControl);
 var
    i : integer;
@@ -934,49 +900,81 @@ begin
    gbMenopausa.Enabled := false;
 end;
 
+function TfrmCadPaciente.CarregaObjDadosBasicos(objDados: TPaciente): TPaciente;
+begin
+   //with objDados do               {** PREENCHER O OBJETO PACIENTE COM OS SEUS DADOS BASÍCOS QUE ESTÃO NO FORM **}
+   //begin
+   //   if chkboxAtivo.Checked then
+   //      ativo := 'A'
+   //   else
+   //      ativo := 'I';
+   //   idPaciente := StrToInt(edtCodPaciente.Text);
+   //   nomePaciente := edtNomePaciente.Text;
+   //   nomePai := edtNomePai.Text;
+   //   nomeMae := edtNomeMae.Text;
+   //   estadoCivil := cboxEstCivil.Text;
+   //   nomeConjuge := edtNomeConjuge.Text;
+   //   //if rbtnFeminino.Checked then
+   //   //   sexo := 'F'
+   //   //else if rbtnMasculino.Checked then
+   //   //   sexo := 'M';
+   //
+   //   case rgexSexo.ItemIndex of
+   //      0 : sexo := 'F';
+   //      1 : sexo := 'M';
+   //   end;
+   //   if not(IsNullDate(dtpkNascimento.Date)) then
+   //      dataNascimento := dtpkNascimento.Date;
+   //   naturalidade := edtNaturalidade.Text;
+   //   ufNascimento := cboxUFNascimento.Text;
+   //   nacionalidade := edtNacionalidade.Text;
+   //end;
+   //result := objDados;
+end;
+
 procedure TfrmCadPaciente.InclusaoDadosBasicos;
 var
    objControlePaciente : TControlePaciente;
    codigo : integer;
 begin
-   if Trim(edtNomePaciente.Text) = '' then
-   begin
-      try
-         frmMensagem := TfrmMensagem.Create(Self);
-         frmMensagem.InfoFormMensagem('A T E N Ç Ã O', tiAviso, 'O nome do paciente deve ser preenchido!');
-      finally
-         FreeAndNil(frmMensagem);
-      end;
-      edtNomePaciente.SetFocus;
-      exit;
-   end;
-   try
-      objControlePaciente := TControlePaciente.Create;
-      objDadosBasicos := CarregaObjDadosBasicos(objDadosBasicos);
-      codigo := objControlePaciente.InclusaoDadosBasicos(objDadosBasicos);
-      if codigo > 0 then
-      begin
-         try
-            frmMensagem := TfrmMensagem.Create(Self);
-            frmMensagem.InfoFormMensagem('Cadastro do paciente', tiInformacao, 'Paciente cadastrado com sucesso!');
-         finally
-            FreeAndNil(frmMensagem);
-         end;
-         lblCodPaciente.Caption := 'Código: ' + IntToStr(codigo);
-         lblNomePaciente.Caption := 'Nome do Paciente: ' + edtNomePaciente.Text;
-         if objDadosBasicos.dataNascimento <> StrToDate('30/12/1899')then
-            lblIdade.Caption := objDadosBasicos.RetornoIdadeCompleta;
-         edtCodPaciente.Text := IntToStr(codigo);
-
+   //if Trim(edtNomePaciente.Text) = '' then
+   //begin
+   //   try
+   //      frmMensagem := TfrmMensagem.Create(Self);
+   //      frmMensagem.InfoFormMensagem('A T E N Ç Ã O', tiAviso, 'O nome do paciente deve ser preenchido!');
+   //   finally
+   //      FreeAndNil(frmMensagem);
+   //   end;
+   //   edtNomePaciente.SetFocus;
+   //   exit;
+   //end;
+   //try
+   //   objControlePaciente := TControlePaciente.Create;
+   //   objDadosBasicos := DadosBasicos.CarregaObjDadosBasicos(objDadosBasicos, Self);
+   //   codigo := objControlePaciente.InclusaoDadosBasicos(objDadosBasicos);
+   //   if codigo > 0 then
+   //   begin
+   //      try
+   //         frmMensagem := TfrmMensagem.Create(Self);
+   //         frmMensagem.InfoFormMensagem('Cadastro do paciente', tiInformacao, 'Paciente cadastrado com sucesso!');
+   //      finally
+   //         FreeAndNil(frmMensagem);
+   //      end;
+   //      lblCodPaciente.Caption := 'Código: ' + IntToStr(codigo);
+   //      lblNomePaciente.Caption := 'Nome do Paciente: ' + edtNomePaciente.Text;
+   //      if objDadosBasicos.dataNascimento <> StrToDate('30/12/1899')then
+   //         lblIdade.Caption := objDadosBasicos.RetornoIdadeCompleta;
+   //      edtCodPaciente.Text := IntToStr(codigo);
+   //
          DesabilitaControles(pcCadPaciente.ActivePage);
          estado := teNavegacao;
-         EstadoBotoes;
-      end
-      else
-         lblCodPaciente.Caption := 'Código: ';
-   finally
-      FreeAndNil(objControlePaciente);
-   end;
+         //EstadoBotoes;
+   //   end
+   //   else
+   //      lblCodPaciente.Caption := 'Código: ';
+   //finally
+   //   FreeAndNil(objControlePaciente);
+   //end;
 end;
 
 procedure TfrmCadPaciente.EdicaoDadosBasicos(objPaciente: TPaciente);
@@ -1008,7 +1006,7 @@ begin
 
       DesabilitaControles(pcCadPaciente.ActivePage);
       estado := teNavegacao;
-      EstadoBotoes;
+      //EstadoBotoes;
    finally
       FreeAndNil(objControlePaciente);
    end;
@@ -1016,13 +1014,13 @@ end;
 
 function TfrmCadPaciente.CarregaObjResponsavel(objResponsavel: TResponsavelPaciente): TResponsavelPaciente;
 begin
-   objResponsavel.idPaciente := StrToInt(edtCodPaciente.Text);
-   objResponsavel.nomeResponsavel := edtNomeResp.Text;
-   objResponsavel.parentesco := edtParentesco.Text;
-   objResponsavel.cpfResponsavel := mskedtCPFResp.Text;
-   objResponsavel.identidadeResponsavel := edtIdentidadeResp.Text;
-   objResponsavel.orgaoExpedidorID := edtOrgaoExpedResp.Text;
-   result := objResponsavel;
+   //objResponsavel.idPaciente := StrToInt(edtCodPaciente.Text);
+   //objResponsavel.nomeResponsavel := edtNomeResp.Text;
+   //objResponsavel.parentesco := edtParentesco.Text;
+   //objResponsavel.cpfResponsavel := mskedtCPFResp.Text;
+   //objResponsavel.identidadeResponsavel := edtIdentidadeResp.Text;
+   //objResponsavel.orgaoExpedidorID := edtOrgaoExpedResp.Text;
+   //result := objResponsavel;
 end;
 
 procedure TfrmCadPaciente.InclusaoResponsavel;
@@ -1030,26 +1028,26 @@ var
    objResponsavel : TResponsavelPaciente;
    objControlePaciente : TControlePaciente;
 begin
-   try
-      objResponsavel := TResponsavelPaciente.Create;
-      objControlePaciente := TControlePaciente.Create;
-      if objControlePaciente.InclusaoResponsavel(CarregaObjResponsavel(objResponsavel))then
-       begin
-          try
-             frmMensagem := TfrmMensagem.Create(Self);
-             frmMensagem.InfoFormMensagem('Cadastro do Responsável', tiInformacao, 'Cadastrado do Responsável realizado com sucesso!');
-          finally
-             FreeAndNil(frmMensagem);
-          end;
-       end;
-
-      DesabilitaControles(pcCadPaciente.ActivePage);
-      estado := teNavegacao;
-      EstadoBotoes;
-   finally
-      FreeAndNil(objControlePaciente);
-      FreeAndNil(objResponsavel);
-   end;
+   //try
+   //   objResponsavel := TResponsavelPaciente.Create;
+   //   objControlePaciente := TControlePaciente.Create;
+   //   if objControlePaciente.InclusaoResponsavel(CarregaObjResponsavel(objResponsavel))then
+   //    begin
+   //       try
+   //          frmMensagem := TfrmMensagem.Create(Self);
+   //          frmMensagem.InfoFormMensagem('Cadastro do Responsável', tiInformacao, 'Cadastrado do Responsável realizado com sucesso!');
+   //       finally
+   //          FreeAndNil(frmMensagem);
+   //       end;
+   //    end;
+   //
+   //   DesabilitaControles(pcCadPaciente.ActivePage);
+   //   estado := teNavegacao;
+   //   //EstadoBotoes;
+   //finally
+   //   FreeAndNil(objControlePaciente);
+   //   FreeAndNil(objResponsavel);
+   //end;
 
 end;
 
@@ -1089,7 +1087,7 @@ begin
 
       DesabilitaControles(pcCadPaciente.ActivePage);
       estado := teNavegacao;
-      EstadoBotoes;
+      //EstadoBotoes;
    finally
       FreeAndNil(objControlePaciente);
       FreeAndNil(objEndereco);
@@ -1142,7 +1140,7 @@ begin
 
       DesabilitaControles(pcCadPaciente.ActivePage);
       estado := teNavegacao;
-      EstadoBotoes;
+      //EstadoBotoes;
    finally
       FreeAndNil(objControlePaciente);
       FreeAndNil(objContatos);
@@ -1188,7 +1186,7 @@ begin
 
       DesabilitaControles(pcCadPaciente.ActivePage);
       estado := teNavegacao;
-      EstadoBotoes;
+      //EstadoBotoes;
    finally
       FreeAndNil(objControlePaciente);
       FreeAndNil(objDadoProf);
@@ -1299,7 +1297,7 @@ begin
 
       DesabilitaControles(pcCadPaciente.ActivePage);
       estado := teNavegacao;
-      EstadoBotoes;
+      //EstadoBotoes;
    finally
       FreeAndNil(objControlePaciente);
       FreeAndNil(objAnamnese);
@@ -1355,7 +1353,7 @@ begin
 
       DesabilitaControles(pcCadPaciente.ActivePage);
       estado := teNavegacao;
-      EstadoBotoes;
+      //EstadoBotoes;
    finally
       FreeAndNil(objControlePaciente);
       FreeAndNil(objSinaisSintomas);
@@ -1410,7 +1408,7 @@ begin
 
       DesabilitaControles(pcCadPaciente.ActivePage);
       estado := teNavegacao;
-      EstadoBotoes;
+      //EstadoBotoes;
    finally
       FreeAndNil(objControlePaciente);
       FreeAndNil(objEnfermidades);
@@ -1456,6 +1454,9 @@ begin
    edtNaturalidade.Text := objDados.naturalidade;
    cboxUFNascimento.Text := objDados.ufNascimento;
    edtNacionalidade.Text := objDados.nacionalidade;
+   mskedtCPFPaciente.Text := objDados.CPF;
+   edtIdentidadePaciente.Text := objDados.identidadePaciente;
+   edtOrgaoExpedPaciente.Text := objDados.orgaoExpedidorID;
 
    lblCodPaciente.Caption := 'Código: ' + edtCodPaciente.Text;
    lblNomePaciente.Caption := 'Nome do Paciente: ' + edtNomePaciente.Text;

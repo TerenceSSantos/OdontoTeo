@@ -33,7 +33,7 @@
           </Target>
           <SearchPaths>
             <IncludeFiles Value="$(ProjOutDir)"/>
-            <OtherUnitFiles Value="Forms;DataModules;Classes"/>
+            <OtherUnitFiles Value="Forms;DataModules;Classes;CadPaciente"/>
             <UnitOutputDirectory Value="lib\$(TargetCPU)-$(TargetOS)"/>
           </SearchPaths>
           <Linking>
@@ -92,7 +92,7 @@
         <PackageName Value="LCL"/>
       </Item12>
     </RequiredPackages>
-    <Units Count="17">
+    <Units Count="19">
       <Unit0>
         <Filename Value="prjOdontoTeo.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -112,76 +112,84 @@
         <ResourceBaseClass Value="DataModule"/>
       </Unit2>
       <Unit3>
-        <Filename Value="Forms\uCadPacientes.pas"/>
-        <IsPartOfProject Value="True"/>
-        <ComponentName Value="frmCadPaciente"/>
-        <HasResources Value="True"/>
-        <ResourceBaseClass Value="Form"/>
-      </Unit3>
-      <Unit4>
         <Filename Value="Forms\uLocalizarPaciente.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="frmLocalizaPaciente"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-      </Unit4>
-      <Unit5>
+      </Unit3>
+      <Unit4>
         <Filename Value="DataModules\uDMCadPaciente.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="dmCadPaciente"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
+      </Unit4>
+      <Unit5>
+        <Filename Value="Classes\uClassPaciente.pas"/>
+        <IsPartOfProject Value="True"/>
       </Unit5>
       <Unit6>
-        <Filename Value="Classes\uClassPaciente.pas"/>
+        <Filename Value="Classes\uClassControlePaciente.pas"/>
         <IsPartOfProject Value="True"/>
       </Unit6>
       <Unit7>
-        <Filename Value="Classes\uClassControlePaciente.pas"/>
+        <Filename Value="Classes\uClassResponsavelPaciente.pas"/>
         <IsPartOfProject Value="True"/>
       </Unit7>
       <Unit8>
-        <Filename Value="Classes\uClassResponsavelPaciente.pas"/>
+        <Filename Value="Classes\uClassContatos.pas"/>
         <IsPartOfProject Value="True"/>
       </Unit8>
       <Unit9>
-        <Filename Value="Classes\uClassContatos.pas"/>
+        <Filename Value="Classes\uClassSinaisSintomas.pas"/>
         <IsPartOfProject Value="True"/>
       </Unit9>
       <Unit10>
-        <Filename Value="Classes\uClassSinaisSintomas.pas"/>
-        <IsPartOfProject Value="True"/>
-      </Unit10>
-      <Unit11>
         <Filename Value="Forms\uSobre.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="frmSobre"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-      </Unit11>
-      <Unit12>
+      </Unit10>
+      <Unit11>
         <Filename Value="Classes\uClassEnfermidades.pas"/>
         <IsPartOfProject Value="True"/>
-      </Unit12>
-      <Unit13>
+      </Unit11>
+      <Unit12>
         <Filename Value="Forms\uFrmMensagem.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="frmMensagem"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
+      </Unit12>
+      <Unit13>
+        <Filename Value="Classes\uClassEndereco.pas"/>
+        <IsPartOfProject Value="True"/>
       </Unit13>
       <Unit14>
-        <Filename Value="Classes\uClassEndereco.pas"/>
+        <Filename Value="Classes\uClassAnamnese.pas"/>
         <IsPartOfProject Value="True"/>
       </Unit14>
       <Unit15>
-        <Filename Value="Classes\uClassAnamnese.pas"/>
+        <Filename Value="Classes\uClassDadosProfissionais.pas"/>
         <IsPartOfProject Value="True"/>
       </Unit15>
       <Unit16>
-        <Filename Value="Classes\uClassDadosProfissionais.pas"/>
+        <Filename Value="CadPaciente\uCadPacientes.pas"/>
         <IsPartOfProject Value="True"/>
+        <ComponentName Value="frmCadPaciente"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
       </Unit16>
+      <Unit17>
+        <Filename Value="CadPaciente\uDadosBasicos.pas"/>
+        <IsPartOfProject Value="True"/>
+      </Unit17>
+      <Unit18>
+        <Filename Value="CadPaciente\uResponsavel.pas"/>
+        <IsPartOfProject Value="True"/>
+      </Unit18>
     </Units>
   </ProjectOptions>
   <CompilerOptions>

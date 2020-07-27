@@ -58,6 +58,9 @@ object frmMensagem: TfrmMensagem
     Rounding.RoundY = 10
     Rounding.RoundOptions = [rrBottomRightSquare, rrBottomLeftSquare, rrDefault]
     TabOrder = 1
+    OnMouseDown = pnlTituloMouseDown
+    OnMouseMove = pnlTituloMouseMove
+    OnMouseUp = pnlTituloMouseUp
     object imgLogoTitulo: TImage
       Left = 8
       Height = 24
