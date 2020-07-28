@@ -12,7 +12,8 @@ uses
    uDMCadPaciente, uClassPaciente, uClassControlePaciente,
    uClassResponsavelPaciente, uClassContatos, uClassSinaisSintomas, uSobre,
    uClassEnfermidades, uFrmMensagem, uClassEndereco, uClassAnamnese,
-   uClassDadosProfissionais, uDadosBasicos, uResponsavel;
+   uClassDadosProfissionais, uDadosBasicos, uResponsavel, uEndereco, uContatos,
+   uDadoProfissional, uAnamnese, uSinaisSintomas, uEnfermidades;
 
 {$R *.res}
 

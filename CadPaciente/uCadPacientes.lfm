@@ -611,10 +611,10 @@ object frmCadPaciente: TfrmCadPaciente
       Height = 362
       Top = 2
       Width = 1088
-      ActivePage = tabResponsavel
+      ActivePage = tabDadosBasicos
       Align = alClient
       Images = miglstCadPaciente
-      TabIndex = 1
+      TabIndex = 0
       TabOrder = 0
       OnChange = pcCadPacienteChange
       OnChanging = pcCadPacienteChanging
@@ -940,6 +940,7 @@ object frmCadPaciente: TfrmCadPaciente
               'Solteiro(a)'
               'Viúvo(a)'
             )
+            OnChange = cboxEstCivilChange
             ParentFont = False
             TabOrder = 5
           end
