@@ -23,6 +23,7 @@ type
     public
       class function CarregaObjDadosBasicos(objDados: TPaciente; frm: TfrmCadPaciente): TPaciente;
       class procedure InclusaoDadosBasicos(frm: TfrmCadPaciente);
+      class procedure EditarDadosBasicos(objDadosBasicos: TPaciente);
    end;
 
 
@@ -39,7 +40,9 @@ begin
          ativo := 'A'
       else
          ativo := 'I';
-//      idPaciente := StrToInt(frm.edtCodPaciente.Text);
+
+      if (StrToInt(frm.edtCodPaciente.Text)) > 0 then  // Caso haja um ID maior que zero é uma alteração
+         idPaciente := StrToInt(frm.edtCodPaciente.Text);
       nomePaciente := frm.edtNomePaciente.Text;
       nomePai := frm.edtNomePai.Text;
       nomeMae := frm.edtNomeMae.Text;
@@ -105,6 +108,42 @@ begin
    finally
       FreeAndNil(objControlePaciente);
    end;
+end;
+
+class procedure DadosBasicos.EditarDadosBasicos(objDadosBasicos: TPaciente);
+var
+   objControlePaciente : TControlePaciente;   { TODO : Caso cancele a alteração, voltar com os dados originais }
+begin
+   if Trim(frmCadPaciente.edtNomePaciente.Text) = '' then
+    begin
+       try
+          frmMensagem := TfrmMensagem.Create(nil);
+          frmMensagem.InfoFormMensagem('Alteração no cadastro do paciente', tiInformacao, 'O nome do paciente deve ser preenchido!');
+       finally
+          FreeAndNil(frmMensagem);
+       end;
+       frmCadPaciente.edtNomePaciente.SetFocus;
+       exit;
+    end;
+   try
+      objControlePaciente := TControlePaciente.Create;
+      if objControlePaciente.EdicaoDadosBasicos(objDadosBasicos) then
+       begin
+         try
+            frmMensagem := TfrmMensagem.Create(nil);
+            frmMensagem.InfoFormMensagem('Alteração no cadastro do paciente', tiInformacao, 'Paciente alterado com sucesso!');
+         finally
+            FreeAndNil(frmMensagem);
+         end;
+       end;
+
+      //DesabilitaControles(frmCadPaciente.pcCadPaciente.ActivePage);
+      estado := teNavegacao;
+      //EstadoBotoes;
+   finally
+      FreeAndNil(objControlePaciente);
+   end;
+
 end;
 
 end.

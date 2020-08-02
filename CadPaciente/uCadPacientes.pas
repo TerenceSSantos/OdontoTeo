@@ -411,10 +411,12 @@ begin
                 DadosBasicos.InclusaoDadosBasicos(Self)
              else if estado in [teEdicao] then
              begin
+                objDadosBasicosAntesAlteracao := objDadosBasicos;
                 objDadosBasicos := DadosBasicos.CarregaObjDadosBasicos(objDadosBasicos, Self);
                 EdicaoDadosBasicos(objDadosBasicos);
              end;
           end;
+
       1 : begin
              if estado in [teInclusao] then
                 Responsavel.InclusaoResponsavel(Self);
@@ -891,7 +893,7 @@ end;
 
 procedure TfrmCadPaciente.EdicaoDadosBasicos(objPaciente: TPaciente);
 var
-   objControlePaciente : TControlePaciente;
+   objControlePaciente : TControlePaciente;   { TODO : Caso cancele a alteração, voltar com os dados originais }
 begin
    if Trim(edtNomePaciente.Text) = '' then
     begin
@@ -937,10 +939,6 @@ begin
    edtNomeMae.Text := objDados.nomeMae;
    cboxEstCivil.Text := objDados.estadoCivil;
    edtNomeConjuge.Text := objDados.nomeConjuge;
-   //if objDados.sexo = 'F' then
-   //   rbtnFeminino.Checked := true
-   //else if objDados.sexo = 'M' then
-   //   rbtnMasculino.Checked := true;
 
    case objDados.sexo of
       'F' : rgexSexo.ItemIndex := 0;
