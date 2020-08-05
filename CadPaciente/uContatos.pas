@@ -23,6 +23,7 @@ type
     public
        class function CarregaObjContatos(objContatos: TContatos; frm: TfrmCadPaciente) : TContatos;
        class procedure InclusaoContatos(frm: TfrmCadPaciente);
+       class procedure EdicaoContatos(frm: TfrmCadPaciente);
    end;
 
 implementation
@@ -80,6 +81,34 @@ begin
       FreeAndNil(objControlePaciente);
       FreeAndNil(objContatos);
    end;
+end;
+
+class procedure Contatos.EdicaoContatos(frm: TfrmCadPaciente);
+var
+   objContatos : TContatos;
+   objControlePaciente : TControlePaciente;
+begin
+   try
+    objContatos := TContatos.Create;
+    objControlePaciente := TControlePaciente.Create;
+    objContatos := CarregaObjContatos(objContatos, frm);
+    if objControlePaciente.EdicaoContatos(objContatos) then
+     begin
+       try
+          frmMensagem := TfrmMensagem.Create(nil);
+          frmMensagem.InfoFormMensagem('Alteração no cadastro de Contatos', tiInformacao, 'Cadastro de Contatos alterado com sucesso!');
+       finally
+          FreeAndNil(frmMensagem);
+       end;
+     end;
+
+    //DesabilitaControles(frmCadPaciente.pcCadPaciente.ActivePage);
+    estado := teNavegacao;
+    //EstadoBotoes;
+    finally
+       FreeAndNil(objControlePaciente);
+       FreeAndNil(objContatos);
+    end;
 end;
 
 end.

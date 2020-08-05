@@ -25,11 +25,14 @@ type
         class procedure EnviaDadosBasicos(objPaciente: TPaciente);
 
         function InclusaoResponsavel(objResponsavel: TResponsavelPaciente): boolean;
+        function EdicaoResponsavel(objResponsavel: TResponsavelPaciente): boolean;
         function SelectResponsavel(idTblPaciente: integer; objResponsavel: TResponsavelPaciente): TResponsavelPaciente;
 
         function InclusaoEndereco(objEndereco: TEndereco): integer;
+        function EdicaoEndereco(objEndereco: TEndereco): boolean;
 
         function InclusaoContatos(objContatos: TContatos): boolean;
+        function EdicaoContatos(objContatos: TContatos): boolean;
 
         function InclusaoDadosProfissionais(objDadosProf: TDadosProfissionais): boolean;
 
@@ -94,6 +97,11 @@ begin
    result := dmCadPaciente.InclusaoResponsavel(objResponsavel);
 end;
 
+function TControlePaciente.EdicaoResponsavel(objResponsavel: TResponsavelPaciente): boolean;
+begin
+   dmCadPaciente.EdicaoResponsavel(objResponsavel);
+end;
+
 function TControlePaciente.SelectResponsavel(idTblPaciente: integer; objResponsavel: TResponsavelPaciente): TResponsavelPaciente;
 begin
    dmCadPaciente.SelectResponsavel(idTblPaciente, objResponsavel);
@@ -104,9 +112,19 @@ begin
    result := dmCadPaciente.InclusaoEndereco(objEndereco);
 end;
 
+function TControlePaciente.EdicaoEndereco(objEndereco: TEndereco): boolean;
+begin
+   result := dmCadPaciente.EdicaoEndereco(objEndereco);
+end;
+
 function TControlePaciente.InclusaoContatos(objContatos: TContatos): boolean;
 begin
    result := dmCadPaciente.InclusaoContatos(objContatos);
+end;
+
+function TControlePaciente.EdicaoContatos(objContatos: TContatos): boolean;
+begin
+   result := dmCadPaciente.EdicaoContatos(objContatos);
 end;
 
 function TControlePaciente.InclusaoDadosProfissionais(objDadosProf: TDadosProfissionais): boolean;

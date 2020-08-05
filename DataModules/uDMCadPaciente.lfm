@@ -334,8 +334,8 @@ object dmCadPaciente: TdmCadPaciente
         ParamType = ptInput
       end>
     StoredProcName = 'PROC_CAD_TBLRESPONSAVEL'
-    left = 144
-    top = 336
+    left = 240
+    top = 100
     ParamData = <    
       item
         DataType = ftString
@@ -381,8 +381,8 @@ object dmCadPaciente: TdmCadPaciente
         Name = 'id_paciente'
         ParamType = ptInput
       end>
-    left = 144
-    top = 280
+    left = 240
+    top = 32
     ParamData = <    
       item
         DataType = ftInteger
@@ -421,12 +421,12 @@ object dmCadPaciente: TdmCadPaciente
   end
   object qryTblEndereco: TZQuery
     Params = <>
-    left = 248
+    left = 416
     top = 32
   end
   object qryContatos: TZQuery
     Params = <>
-    left = 414
+    left = 582
     top = 32
   end
   object strprocGravarSinaisSintomas: TZStoredProc
@@ -538,8 +538,8 @@ object dmCadPaciente: TdmCadPaciente
         ParamType = ptInput
       end>
     StoredProcName = 'PROC_CAD_TBLSINAISSINTOMAS'
-    left = 841
-    top = 100
+    left = 840
+    top = 328
     ParamData = <    
       item
         DataType = ftString
@@ -756,8 +756,8 @@ object dmCadPaciente: TdmCadPaciente
         ParamType = ptInput
       end>
     StoredProcName = 'PROC_CAD_TBLENFERMIDADES'
-    left = 1008
-    top = 100
+    left = 1007
+    top = 328
     ParamData = <    
       item
         DataType = ftString
@@ -959,7 +959,7 @@ object dmCadPaciente: TdmCadPaciente
         ParamType = ptInput
       end>
     StoredProcName = 'PROC_CAD_TBLCONTATOS'
-    left = 414
+    left = 582
     top = 100
     ParamData = <    
       item
@@ -1102,7 +1102,7 @@ object dmCadPaciente: TdmCadPaciente
         ParamType = ptOutput
       end>
     StoredProcName = 'PROC_CAD_TBLENDERECO'
-    left = 248
+    left = 416
     top = 100
     ParamData = <    
       item
@@ -1280,8 +1280,8 @@ object dmCadPaciente: TdmCadPaciente
         ParamType = ptInput
       end>
     StoredProcName = 'PROC_CAD_TBLANAMNESE'
-    left = 697
-    top = 100
+    left = 696
+    top = 328
     ParamData = <    
       item
         DataType = ftString
@@ -1433,9 +1433,441 @@ object dmCadPaciente: TdmCadPaciente
         ParamType = ptInput
       end>
     StoredProcName = 'PROC_CAD_DADOPROFISSIONAL'
-    left = 571
+    left = 739
     top = 99
     ParamData = <    
+      item
+        DataType = ftString
+        Name = 'NOME_EMPRESA'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'CARGO'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftInteger
+        Name = 'ID_TBLENDERECO'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftInteger
+        Name = 'ID_TBLPACIENTE'
+        ParamType = ptInput
+      end>
+  end
+  object strprocEditarResponsavel: TZStoredProc
+    Connection = dmConexao.zConexao
+    Params = <    
+      item
+        DataType = ftInteger
+        Name = 'ID_RESPONSAVEL'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'NOME_RESPONSAVEL'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'PARENTESCO'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftInteger
+        Name = 'ID_TBLPACIENTE'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'CPF_RESPONSAVEL'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'IDENTIDADE_RESPONSAVEL'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'ORGAO_EXPEDIDOR_ID'
+        ParamType = ptInput
+      end>
+    StoredProcName = 'PROC_EDIT_TBLRESPONSAVEL'
+    left = 240
+    top = 176
+    ParamData = <    
+      item
+        DataType = ftInteger
+        Name = 'ID_RESPONSAVEL'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'NOME_RESPONSAVEL'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'PARENTESCO'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftInteger
+        Name = 'ID_TBLPACIENTE'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'CPF_RESPONSAVEL'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'IDENTIDADE_RESPONSAVEL'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'ORGAO_EXPEDIDOR_ID'
+        ParamType = ptInput
+      end>
+  end
+  object strprocEditarEndereco: TZStoredProc
+    Connection = dmConexao.zConexao
+    Params = <    
+      item
+        DataType = ftInteger
+        Name = 'ID_ENDERECO'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'LOGRADOURO'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'NUMERO'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'COMPLEMENTO'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'BAIRRO'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'CIDADE'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'ESTADO'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'CEP'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftInteger
+        Name = 'ID_TBLPACIENTE'
+        ParamType = ptInput
+      end>
+    StoredProcName = 'PROC_EDIT_TBLENDERECO'
+    left = 416
+    top = 176
+    ParamData = <    
+      item
+        DataType = ftInteger
+        Name = 'ID_ENDERECO'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'LOGRADOURO'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'NUMERO'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'COMPLEMENTO'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'BAIRRO'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'CIDADE'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'ESTADO'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'CEP'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftInteger
+        Name = 'ID_TBLPACIENTE'
+        ParamType = ptInput
+      end>
+  end
+  object strprocEditarContatos: TZStoredProc
+    Connection = dmConexao.zConexao
+    Params = <    
+      item
+        DataType = ftInteger
+        Name = 'ID_CONTATOS'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'DDD_TEL_CASA'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'TEL_CASA'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'OPERADORA_TEL_CASA'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'DDD_CELULAR1'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'CELULAR1'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'OPERADORA_CEL1'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'DDD_CELULAR2'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'CELULAR2'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'OPERADORA_CEL2'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'DDD_TEL_TRABALHO'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'TEL_TRABALHO'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'OPERADORA_TEL_TRABALHO'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'DDD_TEL_RECADO'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'TELEFONE_RECADO'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'OPERADORA_TEL_RECADO'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'NOME_PESSOA_TEL_RECADO'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'EMAIL'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftInteger
+        Name = 'ID_TBLPACIENTE'
+        ParamType = ptInput
+      end>
+    StoredProcName = 'PROC_EDIT_TBLCONTATOS'
+    left = 582
+    top = 176
+    ParamData = <    
+      item
+        DataType = ftInteger
+        Name = 'ID_CONTATOS'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'DDD_TEL_CASA'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'TEL_CASA'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'OPERADORA_TEL_CASA'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'DDD_CELULAR1'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'CELULAR1'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'OPERADORA_CEL1'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'DDD_CELULAR2'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'CELULAR2'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'OPERADORA_CEL2'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'DDD_TEL_TRABALHO'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'TEL_TRABALHO'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'OPERADORA_TEL_TRABALHO'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'DDD_TEL_RECADO'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'TELEFONE_RECADO'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'OPERADORA_TEL_RECADO'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'NOME_PESSOA_TEL_RECADO'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'EMAIL'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftInteger
+        Name = 'ID_TBLPACIENTE'
+        ParamType = ptInput
+      end>
+  end
+  object strprocEditarDadosProf: TZStoredProc
+    Connection = dmConexao.zConexao
+    Params = <    
+      item
+        DataType = ftInteger
+        Name = 'ID_DADO_PROFISSIONAL'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'NOME_EMPRESA'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'CARGO'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftInteger
+        Name = 'ID_TBLENDERECO'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftInteger
+        Name = 'ID_TBLPACIENTE'
+        ParamType = ptInput
+      end>
+    StoredProcName = 'PROC_EDIT_TBLDADOPROFISSIONAL'
+    left = 739
+    top = 176
+    ParamData = <    
+      item
+        DataType = ftInteger
+        Name = 'ID_DADO_PROFISSIONAL'
+        ParamType = ptInput
+      end    
       item
         DataType = ftString
         Name = 'NOME_EMPRESA'

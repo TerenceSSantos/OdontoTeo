@@ -23,7 +23,11 @@ type
       qryTblResponsavelPARENTESCO: TStringField;
       strprocAnamnese: TZStoredProc;
       strprocDadosProfissionais: TZStoredProc;
+      strprocEditarContatos: TZStoredProc;
       strprocEditarDadosBasicos: TZStoredProc;
+      strprocEditarDadosProf: TZStoredProc;
+      strprocEditarEndereco: TZStoredProc;
+      strprocEditarResponsavel: TZStoredProc;
       strprocGravarContatos: TZStoredProc;
       strprocGravarDadosBasicos: TZStoredProc;
       strprocGravarEndereco: TZStoredProc;
@@ -34,21 +38,25 @@ type
 
    public
       function TblPacienteVazia : boolean;
-      function InclusaoDadosBasicos(objPaciente: TPaciente): integer;
-      function EdicaoDadosBasicos(objPaciente: TPaciente): boolean;
+
       function EnviaDadosBasicos(objPaciente: TPaciente) : TPaciente;
       function ApagarCadastroBasico(codigo: integer): boolean;
 
-      function ConvertePraBoolean(s: string): boolean;
+      function InclusaoDadosBasicos(objPaciente: TPaciente): integer;
+      function EdicaoDadosBasicos(objPaciente: TPaciente): boolean;
 
       function InclusaoResponsavel(objResponsavel: TResponsavelPaciente): boolean;
+      function EdicaoResponsavel(objResponsavel: TResponsavelPaciente): boolean;
       function SelectResponsavel(idTblPaciente: integer; objResponsavel: TResponsavelPaciente): TResponsavelPaciente;
 
       function InclusaoEndereco(objEndereco: TEndereco): integer;
+      function EdicaoEndereco(objEndereco: TEndereco): boolean;
 
       function InclusaoContatos(objContatos: TContatos): boolean;
+      function EdicaoContatos(objContatos: TContatos): boolean;
 
       function InclusaoDadosProfissionais(objDadosProf: TDadosProfissionais): boolean;
+      function EdicaoDadosProfissionais(objDadosProf: TDadosProfissionais): boolean;
 
       function InclusaoAnamnese(objAnamnese: TAnamnese): boolean;
 
@@ -202,14 +210,6 @@ begin
    end;
 end;
 
-function TdmCadPaciente.ConvertePraBoolean(s: string): boolean;
-begin
-   if s = 'true' then
-      result := true
-   else if s ='false' then
-      result := false;
-end;
-
 function TdmCadPaciente.InclusaoResponsavel(objResponsavel: TResponsavelPaciente): boolean;
 begin
    strprocGravarResponsavel.Params[0].AsString := objResponsavel.nomeResponsavel;
@@ -227,6 +227,35 @@ begin
          frmMensagem := TfrmMensagem.Create(Self);
          frmMensagem.InfoFormMensagem('Cadastro do Responsável', tiErro, 'Erro ao tentar gravar a inclusão do registro ' +
                                       ' com a seguinte mensagem de erro:' + LineEnding + LineEnding + E.Message);
+       finally
+          FreeAndNil(frmMensagem);
+       end;
+       result := false;
+    end;
+   end;
+end;
+
+function TdmCadPaciente.EdicaoResponsavel(objResponsavel: TResponsavelPaciente): boolean;
+begin
+   with strprocEditarResponsavel do
+   begin
+      Params[0].AsInteger := objResponsavel.idResponsavel;
+      Params[1].AsString := objResponsavel.nomeResponsavel;
+      Params[2].AsString := objResponsavel.parentesco;
+      Params[3].AsInteger := objResponsavel.idPaciente;
+      Params[4].AsString := objResponsavel.cpfResponsavel;
+      Params[5].AsString := objResponsavel.identidadeResponsavel;
+      Params[6].AsString := objResponsavel.orgaoExpedidorID;
+   end;
+   try
+      strprocEditarResponsavel.ExecProc;
+      result := true;
+   except on E: Exception do
+    begin
+       try
+         frmMensagem := TfrmMensagem.Create(Self);
+         frmMensagem.InfoFormMensagem('Alteração de dados do Responsável', tiErro, 'Erro ao tentar gravar a alteração do registro ' +
+                                      'com a seguinte mensagem de erro:' + LineEnding + LineEnding + E.Message);
        finally
           FreeAndNil(frmMensagem);
        end;
@@ -277,6 +306,37 @@ begin
    end;
 end;
 
+function TdmCadPaciente.EdicaoEndereco(objEndereco: TEndereco): boolean;
+begin
+   with strprocEditarEndereco do
+   begin
+      Params[0].AsInteger := objEndereco.idEndereco;
+      Params[1].AsString := objEndereco.logradouro;
+      Params[2].AsString := objEndereco.numero;
+      Params[3].AsString := objEndereco.complemento;
+      Params[4].AsString := objEndereco.bairro;
+      Params[5].AsString := objEndereco.cidade;
+      Params[6].AsString := objEndereco.estado;
+      Params[7].AsString := objEndereco.cep;
+      Params[8].AsInteger := objEndereco.idTblPaciente;
+   end;
+   try
+      strprocEditarEndereco.ExecProc;
+      result := true;
+   except on E: Exception do
+    begin
+       try
+         frmMensagem := TfrmMensagem.Create(Self);
+         frmMensagem.InfoFormMensagem('Alteração de dados do Endereço', tiErro, 'Erro ao tentar gravar a alteração do registro ' +
+                                      'com a seguinte mensagem de erro:' + LineEnding + LineEnding + E.Message);
+       finally
+          FreeAndNil(frmMensagem);
+       end;
+       result := false;
+    end;
+   end;
+end;
+
 function TdmCadPaciente.InclusaoContatos(objContatos: TContatos): boolean;
 begin
    with strprocGravarContatos do
@@ -318,6 +378,47 @@ begin
    end;
 end;
 
+function TdmCadPaciente.EdicaoContatos(objContatos: TContatos): boolean;
+begin
+   with strprocEditarContatos do
+   begin
+      Params[0].AsInteger := objContatos.idContatos;
+      Params[1].AsString := objContatos.dddTelCasa;
+      Params[2].AsString := objContatos.telefoneCasa;
+      Params[3].AsString := objContatos.operadoraTelCasa;
+      Params[4].AsString := objContatos.dddCelular1;
+      Params[5].AsString := objContatos.NumeroCelular1;
+      Params[6].AsString := objContatos.operadoraCelular1;
+      Params[7].AsString := objContatos.dddCelular2;
+      Params[8].AsString := objContatos.numeroCelular2;
+      Params[9].AsString := objContatos.operadoraCelular2;
+      Params[10].AsString := objContatos.dddTelTrabalho;
+      Params[11].AsString := objContatos.telefoneTrabalho;
+      Params[12].AsString := objContatos.operadoraTelTrabalho;
+      Params[13].AsString := objContatos.dddTelRecado;
+      Params[14].AsString := objContatos.telefoneRecado;
+      Params[15].AsString := objContatos.operadoraTelRecado;
+      Params[16].AsString := objContatos.nomePessoaTelRecado;
+      Params[17].AsString := objContatos.email;
+      Params[18].AsInteger := objContatos.idTblPaciente;
+   end;
+   try
+      strprocEditarContatos.ExecProc;
+      result := true;
+   except on E: Exception do
+    begin
+       try
+         frmMensagem := TfrmMensagem.Create(Self);
+         frmMensagem.InfoFormMensagem('Alteração de dados de Contato', tiErro, 'Erro ao tentar gravar a alteração do registro ' +
+                                      'com a seguinte mensagem de erro:' + LineEnding + LineEnding + E.Message);
+       finally
+          FreeAndNil(frmMensagem);
+       end;
+       result := false;
+    end;
+   end;
+end;
+
 function TdmCadPaciente.InclusaoDadosProfissionais(objDadosProf: TDadosProfissionais): boolean;
 begin
    with strprocDadosProfissionais do
@@ -341,6 +442,18 @@ begin
             result := false;
          end;
       end;
+   end;
+end;
+
+function TdmCadPaciente.EdicaoDadosProfissionais(objDadosProf: TDadosProfissionais): boolean;
+begin
+   with strprocEditarDadosProf do
+   begin
+      Params[0].AsInteger := objDadosProf.idDadoProfissional;
+      Params[1].AsString := objDadosProf.nomeEmpresa;
+      Params[2].AsString := objDadosProf.cargo;
+      Params[3].AsInteger := objDadosProf  { TODO : Como será feito esta inserção }
+      Params[4].AsInteger := objDadosProf.idTblPaciente;
    end;
 end;
 

@@ -23,7 +23,7 @@ type
     public
       class function CarregaObjDadosBasicos(objDados: TPaciente; frm: TfrmCadPaciente): TPaciente;
       class procedure InclusaoDadosBasicos(frm: TfrmCadPaciente);
-      class procedure EditarDadosBasicos(objDadosBasicos: TPaciente);
+      class procedure EditarDadosBasicos(frm: TfrmCadPaciente);
    end;
 
 
@@ -41,8 +41,11 @@ begin
       else
          ativo := 'I';
 
-      if (StrToInt(frm.edtCodPaciente.Text)) > 0 then  // Caso haja um ID maior que zero é uma alteração
+      if frm.edtCodPaciente.Text = EmptyStr then  // Caso vazio o ID recebe zero, senão preenche a instancia com o ID exisstente
+         idPaciente := 0
+      else
          idPaciente := StrToInt(frm.edtCodPaciente.Text);
+
       nomePaciente := frm.edtNomePaciente.Text;
       nomePai := frm.edtNomePai.Text;
       nomeMae := frm.edtNomeMae.Text;
@@ -67,6 +70,7 @@ end;
 
 class procedure DadosBasicos.InclusaoDadosBasicos(frm: TfrmCadPaciente);
 var
+   objDadosBasicos : TPaciente;
    objControlePaciente : TControlePaciente;
    codigo : integer;
 begin
@@ -82,6 +86,7 @@ begin
       exit;
    end;
    try
+      objDadosBasicos := TPaciente.Create;
       objControlePaciente := TControlePaciente.Create;
       objDadosBasicos := CarregaObjDadosBasicos(objDadosBasicos, frm);
       codigo := objControlePaciente.InclusaoDadosBasicos(objDadosBasicos);
@@ -107,12 +112,14 @@ begin
          frm.lblCodPaciente.Caption := 'Código: ';
    finally
       FreeAndNil(objControlePaciente);
+      FreeAndNil(objDadosBasicos);
    end;
 end;
 
-class procedure DadosBasicos.EditarDadosBasicos(objDadosBasicos: TPaciente);
+class procedure DadosBasicos.EditarDadosBasicos(frm: TfrmCadPaciente);
 var
    objControlePaciente : TControlePaciente;   { TODO : Caso cancele a alteração, voltar com os dados originais }
+   objDadosBasicos : TPaciente;
 begin
    if Trim(frmCadPaciente.edtNomePaciente.Text) = '' then
     begin
@@ -126,7 +133,9 @@ begin
        exit;
     end;
    try
+      objDadosBasicos := TPaciente.Create;
       objControlePaciente := TControlePaciente.Create;
+      objDadosBasicos := CarregaObjDadosBasicos(objDadosBasicos, frm);
       if objControlePaciente.EdicaoDadosBasicos(objDadosBasicos) then
        begin
          try
@@ -142,6 +151,7 @@ begin
       //EstadoBotoes;
    finally
       FreeAndNil(objControlePaciente);
+      FreeAndNil(objDadosBasicos);
    end;
 
 end;

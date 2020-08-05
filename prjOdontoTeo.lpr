@@ -13,7 +13,7 @@ uses
    uClassResponsavelPaciente, uClassContatos, uClassSinaisSintomas, uSobre,
    uClassEnfermidades, uFrmMensagem, uClassEndereco, uClassAnamnese,
    uClassDadosProfissionais, uDadosBasicos, uResponsavel, uEndereco, uContatos,
-   uDadoProfissional, uAnamnese, uSinaisSintomas, uEnfermidades;
+   uDadoProfissional, uAnamnese, uSinaisSintomas, uEnfermidades, unit1;
 
 {$R *.res}
 

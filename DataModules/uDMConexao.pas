@@ -35,6 +35,8 @@ begin
    try
      {$IFDEF LINUX}
      zConexao.Database := Application.Location + '/Banco/OdontoTeo.fdb';
+     zConexao.LibraryLocation := EmptyStr;
+     zConexao.Protocol := 'firebird-4.0'
      {$ENDIF}
      {$IFDEF WINDOWS}
      zConexao.Database := Application.Location + '\Banco\OdontoTeo.fdb';

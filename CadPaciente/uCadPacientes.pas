@@ -364,7 +364,7 @@ type
    public
       function RetornoRadioGroup(ItemIndex: integer): string;
       procedure PreencheFormDadosBasicos(objDados: TPaciente);
-      procedure PreencheFormResponsavel(idPaciente: integer);
+      procedure PreencheAbaResponsavel(idPaciente: integer);
    end;
 
    TipoEstado = (teNavegacao, teInclusao, teEdicao);
@@ -374,7 +374,7 @@ var
    capitura : boolean = false;
    px, py : integer;
    estado : TipoEstado = teNavegacao;    // teNavegacao, teInclusao, teEdicao
-   objDadosBasicos : TPaciente;
+//   objDadosBasicos : TPaciente;
    objDadosBasicosAntesAlteracao : TPaciente;
 
 implementation
@@ -410,26 +410,28 @@ begin
              if estado in [teInclusao] then
                 DadosBasicos.InclusaoDadosBasicos(Self)
              else if estado in [teEdicao] then
-             begin
-                objDadosBasicosAntesAlteracao := objDadosBasicos;
-                objDadosBasicos := DadosBasicos.CarregaObjDadosBasicos(objDadosBasicos, Self);
-                EdicaoDadosBasicos(objDadosBasicos);
-             end;
+                DadosBasicos.EditarDadosBasicos(Self);
           end;
 
       1 : begin
              if estado in [teInclusao] then
-                Responsavel.InclusaoResponsavel(Self);
+                Responsavel.InclusaoResponsavel(Self)
+             else if estado in [teEdicao] then
+                Responsavel.EdicaoResponsavel(Self);
           end;
 
       2 : begin
              if estado in [teInclusao] then
-                Endereco.InclusaoEndereco(Self);
+                Endereco.InclusaoEndereco(Self)
+             else if estado in [teEdicao] then
+                Endereco.EdicaoEndereco(Self);
           end;
 
       3 : begin
              if estado in [teInclusao] then
-                Contatos.InclusaoContatos(Self);
+                Contatos.InclusaoContatos(Self)
+             else if estado in [teEdicao] then
+                Contatos.EdicaoContatos(Self);
           end;
 
       4 : begin
@@ -544,7 +546,7 @@ end;
 
 procedure TfrmCadPaciente.cboxEstCivilChange(Sender: TObject);
 begin
-   if cboxEstCivil.Text = 'Solteiro(a)' then
+   if cboxEstCivil.Text = 'Casado(a)' then
       edtNomeConjuge.Enabled := true
    else
     begin
@@ -580,12 +582,12 @@ end;
 
 procedure TfrmCadPaciente.FormClose(Sender: TObject; var CloseAction: TCloseAction);
 begin
-   FreeAndNil(objDadosBasicos);
+//   FreeAndNil(objDadosBasicos);
 end;
 
 procedure TfrmCadPaciente.FormCreate(Sender: TObject);
 begin
-   objDadosBasicos := TPaciente.Create;
+//   objDadosBasicos := TPaciente.Create;
 end;
 
 procedure TfrmCadPaciente.FormShow(Sender: TObject);
@@ -892,38 +894,8 @@ begin
 end;
 
 procedure TfrmCadPaciente.EdicaoDadosBasicos(objPaciente: TPaciente);
-var
-   objControlePaciente : TControlePaciente;   { TODO : Caso cancele a alteração, voltar com os dados originais }
 begin
-   if Trim(edtNomePaciente.Text) = '' then
-    begin
-       try
-          frmMensagem := TfrmMensagem.Create(Self);
-          frmMensagem.InfoFormMensagem('Alteração no cadastro do paciente', tiInformacao, 'O nome do paciente deve ser preenchido!');
-       finally
-          FreeAndNil(frmMensagem);
-       end;
-       edtNomePaciente.SetFocus;
-       exit;
-    end;
-   try
-      objControlePaciente := TControlePaciente.Create;
-      if objControlePaciente.EdicaoDadosBasicos(objDadosBasicos) then
-       begin
-         try
-            frmMensagem := TfrmMensagem.Create(Self);
-            frmMensagem.InfoFormMensagem('Alteração no cadastro do paciente', tiInformacao, 'Paciente alterado com sucesso!');
-         finally
-            FreeAndNil(frmMensagem);
-         end;
-       end;
 
-      DesabilitaControles(pcCadPaciente.ActivePage);
-      estado := teNavegacao;
-      //EstadoBotoes;
-   finally
-      FreeAndNil(objControlePaciente);
-   end;
 end;
 
 procedure TfrmCadPaciente.PreencheFormDadosBasicos(objDados: TPaciente);
@@ -969,10 +941,10 @@ begin
    lblNomePaciente.Caption := 'Nome do Paciente: ' + edtNomePaciente.Text;
 
  {--------------------------------------------CHAMAR SELECT DO RESPONSAVEL-----------------------------------------------------------}
-   PreencheFormResponsavel(objDados.idPaciente);
+   PreencheAbaResponsavel(objDados.idPaciente);
 end;
 
-procedure TfrmCadPaciente.PreencheFormResponsavel(idPaciente: integer);
+procedure TfrmCadPaciente.PreencheAbaResponsavel(idPaciente: integer);
 var
    objResponsavel : TResponsavelPaciente;
    objControlePaciente : TControlePaciente;
@@ -981,7 +953,7 @@ begin
    objControlePaciente := TControlePaciente.Create;
    try
       objResponsavel := objControlePaciente.SelectResponsavel(idPaciente, objResponsavel);
-      objDadosBasicos.idResponsavel := objResponsavel.idResponsavel;
+//      objDadosBasicos.idResponsavel := objResponsavel.idResponsavel;
       edtNomeResp.Text := objResponsavel.nomeResponsavel;
       edtParentesco.Text := objResponsavel.parentesco;
    finally

@@ -23,6 +23,7 @@ type
     public
        class function CarregaObjEndereco(objEndereco: TEndereco; frm: TfrmCadPaciente): TEndereco;
        class procedure InclusaoEndereco(frm: TfrmCadPaciente);
+       class procedure EdicaoEndereco(frm: TfrmCadPaciente);
 
    end;
 
@@ -72,6 +73,34 @@ begin
       FreeAndNil(objEndereco);
    end;
 
+end;
+
+class procedure Endereco.EdicaoEndereco(frm: TfrmCadPaciente);
+var
+   objControlePaciente : TControlePaciente;
+   objEndereco : TEndereco;
+begin
+   try
+      objEndereco := TEndereco.Create;
+      objControlePaciente := TControlePaciente.Create;
+      objEndereco := CarregaObjEndereco(objEndereco, frm);
+      if objControlePaciente.EdicaoEndereco(objEndereco) then
+       begin
+         try
+            frmMensagem := TfrmMensagem.Create(nil);
+            frmMensagem.InfoFormMensagem('Alteração no cadastro de Endereço', tiInformacao, 'Endereço alterado com sucesso!');
+         finally
+            FreeAndNil(frmMensagem);
+         end;
+       end;
+
+      //DesabilitaControles(frmCadPaciente.pcCadPaciente.ActivePage);
+      estado := teNavegacao;
+      //EstadoBotoes;
+   finally
+      FreeAndNil(objControlePaciente);
+      FreeAndNil(objEndereco);
+   end;
 end;
 
 end.
