@@ -1,9 +1,9 @@
 object dmCadPaciente: TdmCadPaciente
   OldCreateOrder = False
   Height = 449
-  HorizontalOffset = 317
+  HorizontalOffset = 190
   VerticalOffset = 145
-  Width = 1233
+  Width = 1360
   PPI = 96
   object qryTblPaciente: TZQuery
     Connection = dmConexao.zConexao
@@ -538,8 +538,8 @@ object dmCadPaciente: TdmCadPaciente
         ParamType = ptInput
       end>
     StoredProcName = 'PROC_CAD_TBLSINAISSINTOMAS'
-    left = 840
-    top = 328
+    left = 1048
+    top = 99
     ParamData = <    
       item
         DataType = ftString
@@ -756,8 +756,8 @@ object dmCadPaciente: TdmCadPaciente
         ParamType = ptInput
       end>
     StoredProcName = 'PROC_CAD_TBLENFERMIDADES'
-    left = 1007
-    top = 328
+    left = 1227
+    top = 100
     ParamData = <    
       item
         DataType = ftString
@@ -1280,8 +1280,8 @@ object dmCadPaciente: TdmCadPaciente
         ParamType = ptInput
       end>
     StoredProcName = 'PROC_CAD_TBLANAMNESE'
-    left = 696
-    top = 328
+    left = 888
+    top = 100
     ParamData = <    
       item
         DataType = ftString
@@ -1881,6 +1881,730 @@ object dmCadPaciente: TdmCadPaciente
       item
         DataType = ftInteger
         Name = 'ID_TBLENDERECO'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftInteger
+        Name = 'ID_TBLPACIENTE'
+        ParamType = ptInput
+      end>
+  end
+  object strprocEditarAnamnese: TZStoredProc
+    Connection = dmConexao.zConexao
+    Params = <    
+      item
+        DataType = ftInteger
+        Name = 'ID_ANAMNESE'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'CONSUMO_ACUCAR'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'ESCOVACAO'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'USO_FIO_DENTAL'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'OBS_ANATOMO_HISTO'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'HABITOS_VICIOSOS'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'ANTECEDENTES_FAMILIARES'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'APREENSIVO_TRAT_DENTARIO'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'PORQUE_APREENSIVO'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'TRATAMENTO_MEDICO'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'QUAL_TRAT_MEDICO'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'TOMA_MEDICAMENTO'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'TOMA_QUAL_MEDICAMENTO'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'ALERGIA_ANESTESIA'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'ALERGIA_QUAL_ANESTESIA'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'ALGUMA_ALERGIA'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'QUAL_ALERGIA'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'FOI_HOSPITALIZADO'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'PORQUE_HOSPITALIZADO'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'ESTA_GRAVIDA'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'PREVISAO_PARTO'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftSmallint
+        Name = 'TEVE_QUANTAS_GRAVIDEZ'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftSmallint
+        Name = 'QUANTOS_FILHOS'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'CHEGOU_MENOPAUSA'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'QUANDO_CHEGOU_MENOPAUSA'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftInteger
+        Name = 'ID_TBLPACIENTE'
+        ParamType = ptInput
+      end>
+    StoredProcName = 'PROC_EDIT_TBLANAMNESE'
+    left = 888
+    top = 176
+    ParamData = <    
+      item
+        DataType = ftInteger
+        Name = 'ID_ANAMNESE'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'CONSUMO_ACUCAR'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'ESCOVACAO'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'USO_FIO_DENTAL'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'OBS_ANATOMO_HISTO'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'HABITOS_VICIOSOS'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'ANTECEDENTES_FAMILIARES'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'APREENSIVO_TRAT_DENTARIO'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'PORQUE_APREENSIVO'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'TRATAMENTO_MEDICO'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'QUAL_TRAT_MEDICO'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'TOMA_MEDICAMENTO'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'TOMA_QUAL_MEDICAMENTO'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'ALERGIA_ANESTESIA'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'ALERGIA_QUAL_ANESTESIA'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'ALGUMA_ALERGIA'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'QUAL_ALERGIA'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'FOI_HOSPITALIZADO'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'PORQUE_HOSPITALIZADO'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'ESTA_GRAVIDA'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'PREVISAO_PARTO'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftSmallint
+        Name = 'TEVE_QUANTAS_GRAVIDEZ'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftSmallint
+        Name = 'QUANTOS_FILHOS'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'CHEGOU_MENOPAUSA'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'QUANDO_CHEGOU_MENOPAUSA'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftInteger
+        Name = 'ID_TBLPACIENTE'
+        ParamType = ptInput
+      end>
+  end
+  object strprocEditarSinaisSintomas: TZStoredProc
+    Connection = dmConexao.zConexao
+    Params = <    
+      item
+        DataType = ftInteger
+        Name = 'ID_SINAIS_SINTOMAS'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'ALTERACAO_APETITE'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'CALOR_EXAGERADO'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'CANSA_FACIL'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'COCEIRA_ANORMAL'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'DIFICULDADE_ENGOLIR'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'DIFICULDADE_MASTIGAR'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'DOR_FACIAL'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'DOR_CABECA_FREQUENTE'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'DOR_OUVIDO_FREQUENTE'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'EMAGRECIMENTO_ACENTUADO'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'ESTALO_MANDIBULA'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'FEBRE_FREQUENTE'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'INDIGESTAO_FREQUENTE'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'MA_CICATRIZACAO'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'MICCAO_FREQUENTE'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'RANGE_DENTES'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'RESPIRA_BOCA'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'SANGRAMENTO_ANORMAL'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'TONTURA_DESMAIOS'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'POUCA_SALIVA'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftInteger
+        Name = 'ID_TBLPACIENTE'
+        ParamType = ptInput
+      end>
+    StoredProcName = 'PROC_EDIT_TBLSINAISSINTOMAS'
+    left = 1048
+    top = 176
+    ParamData = <    
+      item
+        DataType = ftInteger
+        Name = 'ID_SINAIS_SINTOMAS'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'ALTERACAO_APETITE'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'CALOR_EXAGERADO'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'CANSA_FACIL'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'COCEIRA_ANORMAL'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'DIFICULDADE_ENGOLIR'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'DIFICULDADE_MASTIGAR'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'DOR_FACIAL'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'DOR_CABECA_FREQUENTE'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'DOR_OUVIDO_FREQUENTE'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'EMAGRECIMENTO_ACENTUADO'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'ESTALO_MANDIBULA'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'FEBRE_FREQUENTE'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'INDIGESTAO_FREQUENTE'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'MA_CICATRIZACAO'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'MICCAO_FREQUENTE'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'RANGE_DENTES'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'RESPIRA_BOCA'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'SANGRAMENTO_ANORMAL'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'TONTURA_DESMAIOS'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'POUCA_SALIVA'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftInteger
+        Name = 'ID_TBLPACIENTE'
+        ParamType = ptInput
+      end>
+  end
+  object strprocEditarEnfermidades: TZStoredProc
+    Connection = dmConexao.zConexao
+    Params = <    
+      item
+        DataType = ftInteger
+        Name = 'ID_ENFERMIDADES'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'AIDS'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'ANEMIA'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'ASMA'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'DIABETE'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'DOENCA_CORACAO'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'TUMOR_BOCA'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'DOENCA_RENAL'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'DISRITMIA_EPILEPSIA'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'FEBRE_REUMATICA'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'GLAUCOMA'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'GONORREIA'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'HANSENIASE'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'HEMOFILIA'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'HEPATITE'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'ICTERICIA'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'PROBLEMA_HORMONAL'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'SIFILIS'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'SINUSITE'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'TUBERCULOSE'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'ULCERA_HEPATICA'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftInteger
+        Name = 'ID_TBLPACIENTE'
+        ParamType = ptInput
+      end>
+    StoredProcName = 'PROC_EDIT_TBLENFERMIDADES'
+    left = 1227
+    top = 176
+    ParamData = <    
+      item
+        DataType = ftInteger
+        Name = 'ID_ENFERMIDADES'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'AIDS'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'ANEMIA'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'ASMA'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'DIABETE'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'DOENCA_CORACAO'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'TUMOR_BOCA'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'DOENCA_RENAL'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'DISRITMIA_EPILEPSIA'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'FEBRE_REUMATICA'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'GLAUCOMA'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'GONORREIA'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'HANSENIASE'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'HEMOFILIA'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'HEPATITE'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'ICTERICIA'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'PROBLEMA_HORMONAL'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'SIFILIS'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'SINUSITE'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'TUBERCULOSE'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'ULCERA_HEPATICA'
         ParamType = ptInput
       end    
       item

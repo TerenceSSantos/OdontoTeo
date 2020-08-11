@@ -23,11 +23,14 @@ type
       qryTblResponsavelPARENTESCO: TStringField;
       strprocAnamnese: TZStoredProc;
       strprocDadosProfissionais: TZStoredProc;
+      strprocEditarAnamnese: TZStoredProc;
       strprocEditarContatos: TZStoredProc;
       strprocEditarDadosBasicos: TZStoredProc;
       strprocEditarDadosProf: TZStoredProc;
       strprocEditarEndereco: TZStoredProc;
+      strprocEditarEnfermidades: TZStoredProc;
       strprocEditarResponsavel: TZStoredProc;
+      strprocEditarSinaisSintomas: TZStoredProc;
       strprocGravarContatos: TZStoredProc;
       strprocGravarDadosBasicos: TZStoredProc;
       strprocGravarEndereco: TZStoredProc;
@@ -59,10 +62,13 @@ type
       function EdicaoDadosProfissionais(objDadosProf: TDadosProfissionais): boolean;
 
       function InclusaoAnamnese(objAnamnese: TAnamnese): boolean;
+      function EdicaoAnamnese(objAnamnese: TAnamnese): boolean;
 
       function InclusaoSinaisSintomas(objSinaisSintomas: TSinaisSintomas): boolean;
+      function EdicaoSinaisSintomas(objSinaisSintomas: TSinaisSintomas): boolean;
 
       function InclusaoEnfermidades(objEnfermidades: TEnfermidades): boolean;
+      function EdicaoEnfermidades(objEnfermidades: TEnfermidades): boolean;
 
       var ativo : string;
       var nome : string;
@@ -452,7 +458,7 @@ begin
       Params[0].AsInteger := objDadosProf.idDadoProfissional;
       Params[1].AsString := objDadosProf.nomeEmpresa;
       Params[2].AsString := objDadosProf.cargo;
-      Params[3].AsInteger := objDadosProf  { TODO : Como será feito esta inserção }
+{      Params[3].AsInteger := objDadosProf }  { TODO : Como será feito esta inserção }
       Params[4].AsInteger := objDadosProf.idTblPaciente;
    end;
 end;
@@ -506,6 +512,54 @@ begin
    end;
 end;
 
+function TdmCadPaciente.EdicaoAnamnese(objAnamnese: TAnamnese): boolean;
+begin
+   with strprocEditarAnamnese do
+   begin
+      Params[0].AsInteger := objAnamnese.idAnamnese;
+      Params[1].AsString := objAnamnese.consumoAcucar;
+      Params[2].AsString := objAnamnese.escovacao;
+      Params[3].AsString := objAnamnese.usoFioDental;
+      Params[4].AsString := objAnamnese.obsAnatomoHisto;
+      Params[5].AsString := objAnamnese.habitosViciosos;
+      Params[6].AsString := objAnamnese.antecedentesFamiliares;
+      Params[7].AsString := objAnamnese.apreensivoTratDentario;
+      Params[8].AsString := objAnamnese.porqueApreensivo;
+      Params[9].AsString := objAnamnese.tratamentoMedico;
+      Params[10].AsString := objAnamnese.qualTratMedico;
+      Params[11].AsString := objAnamnese.tomaMedicamento;
+      Params[12].AsString := objAnamnese.tomaQualMedicamento;
+      Params[13].AsString := objAnamnese.alergiaAnestesia;
+      Params[14].AsString := objAnamnese.qualAlergia;
+      Params[15].AsString := objAnamnese.algumaAlergia;
+      Params[16].AsString := objAnamnese.qualAlergia;
+      Params[17].AsString := objAnamnese.foiHospitalizado;
+      Params[18].AsString := objAnamnese.porqueHospitalizado;
+      Params[19].AsString := objAnamnese.estaGravida;
+      Params[20].AsString := objAnamnese.previsaoParto;
+      Params[21].AsSmallInt := objAnamnese.teveQuantasGravidez;
+      Params[22].AsSmallInt := objAnamnese.quantosFilhos;
+      Params[23].AsString := objAnamnese.chegouMenopausa;
+      Params[24].AsString := objAnamnese.quandoChegouMenopausa;
+      Params[25].AsInteger := objAnamnese.idTblPaciente;
+   end;
+   try
+      strprocEditarAnamnese.ExecProc;
+      result := true;
+   except on E: Exception do
+    begin
+       try
+         frmMensagem := TfrmMensagem.Create(Self);
+         frmMensagem.InfoFormMensagem('Alteração de dados da Anamnese', tiErro, 'Erro ao tentar gravar a alteração do registro ' +
+                                      'com a seguinte mensagem de erro:' + LineEnding + LineEnding + E.Message);
+       finally
+          FreeAndNil(frmMensagem);
+       end;
+       result := false;
+    end;
+   end;
+end;
+
 function TdmCadPaciente.InclusaoSinaisSintomas(objSinaisSintomas: TSinaisSintomas): boolean;
 begin
    with strprocGravarSinaisSintomas do
@@ -546,6 +600,50 @@ begin
             result := false;
          end;
       end;
+   end;
+end;
+
+function TdmCadPaciente.EdicaoSinaisSintomas(objSinaisSintomas: TSinaisSintomas): boolean;
+begin
+   with strprocEditarSinaisSintomas do
+   begin
+      Params[0].AsInteger := objSinaisSintomas.idSinaisSintomas;
+      Params[1].AsString := objSinaisSintomas.alteracaoApetite;
+      Params[2].AsString := objSinaisSintomas.calorExagerado;
+      Params[3].AsString := objSinaisSintomas.cansaFacil;
+      Params[4].AsString := objSinaisSintomas.coceiraAnormal;
+      Params[5].AsString := objSinaisSintomas.dificuldadeEngolir;
+      Params[6].AsString := objSinaisSintomas.dificuldadeMastigar;
+      Params[7].AsString := objSinaisSintomas.dorFacial;
+      Params[8].AsString := objSinaisSintomas.dorFrequenteCabeca;
+      Params[9].AsString := objSinaisSintomas.dorOuvidoFrequente;
+      Params[10].AsString := objSinaisSintomas.emagrecimentoAcentuado;
+      Params[11].AsString := objSinaisSintomas.estaloMandibula;
+      Params[12].AsString := objSinaisSintomas.febreFrequente;
+      Params[13].AsString := objSinaisSintomas.indigestaoFrequente;
+      Params[14].AsString := objSinaisSintomas.maCicatrizacao;
+      Params[15].AsString := objSinaisSintomas.miccaoFrequente;
+      Params[16].AsString := objSinaisSintomas.rangeDentes;
+      Params[17].AsString := objSinaisSintomas.respiraPelaBoca;
+      Params[18].AsString := objSinaisSintomas.sangramentoAnormal;
+      Params[19].AsString := objSinaisSintomas.tonturaDesmaio;
+      Params[20].AsString := objSinaisSintomas.poucaSaliva;
+      Params[21].AsInteger := objSinaisSintomas.idTblPaciente;
+   end;
+   try
+      strprocEditarSinaisSintomas.ExecProc;
+      result := true;
+   except on E: Exception do
+    begin
+       try
+         frmMensagem := TfrmMensagem.Create(Self);
+         frmMensagem.InfoFormMensagem('Alteração de dados dos Sinais & Sintomas', tiErro, 'Erro ao tentar gravar a alteração do registro ' +
+                                      'com a seguinte mensagem de erro:' + LineEnding + LineEnding + E.Message);
+       finally
+          FreeAndNil(frmMensagem);
+       end;
+       result := false;
+    end;
    end;
 end;
 
@@ -591,6 +689,51 @@ begin
       end;
    end;
 end;
+
+function TdmCadPaciente.EdicaoEnfermidades(objEnfermidades: TEnfermidades): boolean;
+begin
+   with strprocEditarEnfermidades do
+   begin
+      Params[0].AsInteger := objEnfermidades.idEnfermidade;
+      Params[1].AsString := objEnfermidades.aids;
+      Params[2].AsString := objEnfermidades.anemia;
+      Params[3].AsString := objEnfermidades.asma;
+      Params[4].AsString := objEnfermidades.diabete;
+      Params[5].AsString := objEnfermidades.doencaCoracao;
+      Params[6].AsString := objEnfermidades.tumorBoca;
+      Params[7].AsString := objEnfermidades.doencaRenal;
+      Params[8].AsString := objEnfermidades.disritmiaEpilepsia;
+      Params[9].AsString := objEnfermidades.febreReumatica;
+      Params[10].AsString := objEnfermidades.glaucoma;
+      Params[11].AsString := objEnfermidades.gonorreia;
+      Params[12].AsString := objEnfermidades.hanseniase;
+      Params[13].AsString := objEnfermidades.hemofilia;
+      Params[14].AsString := objEnfermidades.hepatite;
+      Params[15].AsString := objEnfermidades.ictericia;
+      Params[16].AsString := objEnfermidades.problemaHormonal;
+      Params[17].AsString := objEnfermidades.sifilis;
+      Params[18].AsString := objEnfermidades.sinusite;
+      Params[19].AsString := objEnfermidades.tuberculose;
+      Params[20].AsString := objEnfermidades.ulceraHepatica;
+      Params[21].AsInteger := objEnfermidades.idTblPaciente;
+   end;
+   try
+      strprocEditarEnfermidades.ExecProc;
+      result := true;
+   except on E: Exception do
+    begin
+       try
+         frmMensagem := TfrmMensagem.Create(Self);
+         frmMensagem.InfoFormMensagem('Alteração de dados de Enfermidades', tiErro, 'Erro ao tentar gravar a alteração do registro ' +
+                                      'com a seguinte mensagem de erro:' + LineEnding + LineEnding + E.Message);
+       finally
+          FreeAndNil(frmMensagem);
+       end;
+       result := false;
+    end;
+   end;
+end;
+
 {
 function TdmCadPaciente.SelectDocumentos(id: integer): TDocumento;
 begin

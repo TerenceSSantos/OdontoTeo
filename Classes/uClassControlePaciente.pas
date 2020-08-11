@@ -37,9 +37,13 @@ type
         function InclusaoDadosProfissionais(objDadosProf: TDadosProfissionais): boolean;
 
         function InclusaoAnamnese(objAnamnese: TAnamnese): boolean;
+        function EdicaoAnamnese(objAnamnese: TAnamnese): boolean;
 
         function InclusaoSinaisSintomas(objSinaisSintomas: TSinaisSintomas): boolean;
+        function EdicaoSinaisSintomas(objSinaisSintomas: TSinaisSintomas): boolean;
+
         function InclusaoEnfermidades(objEnfermidades: TEnfermidades): boolean;
+        function EdicaoEnfermidades(objEnfermidades: TEnfermidades): boolean;
 
         constructor Create;
         destructor Destroy; override;
@@ -137,14 +141,29 @@ begin
    result := dmCadPaciente.InclusaoAnamnese(objAnamnese);
 end;
 
+function TControlePaciente.EdicaoAnamnese(objAnamnese: TAnamnese): boolean;
+begin
+   result := dmCadPaciente.EdicaoAnamnese(objAnamnese);
+end;
+
 function TControlePaciente.InclusaoSinaisSintomas(objSinaisSintomas: TSinaisSintomas): boolean;
 begin
    result := dmCadPaciente.InclusaoSinaisSintomas(objSinaisSintomas);
 end;
 
+function TControlePaciente.EdicaoSinaisSintomas(objSinaisSintomas: TSinaisSintomas): boolean;
+begin
+   result := dmCadPaciente.EdicaoSinaisSintomas(objSinaisSintomas);
+end;
+
 function TControlePaciente.InclusaoEnfermidades(objEnfermidades: TEnfermidades): boolean;
 begin
    result := dmCadPaciente.InclusaoEnfermidades(objEnfermidades);
+end;
+
+function TControlePaciente.EdicaoEnfermidades(objEnfermidades: TEnfermidades): boolean;
+begin
+   result := dmCadPaciente.EdicaoEnfermidades(objEnfermidades);
 end;
 
 constructor TControlePaciente.Create;

@@ -441,12 +441,16 @@ begin
 
       5 : begin
           if estado in [teInclusao] then
-             Anamnese.InclusaoAnamnese(Self);
+             Anamnese.InclusaoAnamnese(Self)
+          else if estado in [teEdicao] then
+             Anamnese.EdicaoAnamnese(Self);
           end;
 
       6 : begin
              if estado in [teInclusao] then
-                SinaisSintomas.InclusaoSinaisSintomas(Self);
+                SinaisSintomas.InclusaoSinaisSintomas(Self)
+             else if estado in [teEdicao] then
+                SinaisSintomas.EdicaoSinaisSintomas(Self);
           end;
 
       7 : begin
@@ -813,7 +817,7 @@ begin
          btnProcuraPaciente.Enabled := true;
       end
       else if pcCadPaciente.PageIndex <> 0 then
-       begin           { TODO 1 -oTerence -cCadastro de Paciente : Incluir verificação de ID para saber se já existe cadastro ou não }
+       begin           { TODO -oTerence -cCadastro de Paciente : Incluir verificação de ID para saber se já existe cadastro ou não }
           if edtNomePaciente.Text = EmptyStr then
            begin
               btnNovoCadastro.Enabled := false;

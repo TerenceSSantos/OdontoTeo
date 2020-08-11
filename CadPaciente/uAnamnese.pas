@@ -23,6 +23,7 @@ type
     public
        class function CarregaObjAnamnese(objAnamnese: TAnamnese; frm: TfrmCadPaciente): TAnamnese;
        class procedure InclusaoAnamnese(frm: TfrmCadPaciente);
+       class procedure EdicaoAnamnese(frm: TfrmCadPaciente);
    end;
 
 implementation
@@ -139,6 +140,34 @@ begin
       FreeAndNil(objAnamnese);
    end;
 
+end;
+
+class procedure Anamnese.EdicaoAnamnese(frm: TfrmCadPaciente);
+var
+   objAnamnese : TAnamnese;
+   objControlePaciente : TControlePaciente;
+begin
+   try
+      objAnamnese := TAnamnese.Create;
+      objControlePaciente := TControlePaciente.Create;
+      objAnamnese := CarregaObjAnamnese(objAnamnese, frm);
+      if objControlePaciente.EdicaoAnamnese(objAnamnese) then
+       begin
+         try
+            frmMensagem := TfrmMensagem.Create(nil);
+            frmMensagem.InfoFormMensagem('Alteração no cadastro de Anamnese', tiInformacao, 'Cadastro da Anamnese alterado com sucesso!');
+         finally
+            FreeAndNil(frmMensagem);
+         end;
+       end;
+
+      //DesabilitaControles(frmCadPaciente.pcCadPaciente.ActivePage);
+      estado := teNavegacao;
+      //EstadoBotoes;
+   finally
+      FreeAndNil(objControlePaciente);
+      FreeAndNil(objAnamnese);
+   end;
 end;
 
 end.

@@ -23,6 +23,7 @@ type
     public
        class function CarregaObjSinaisSintomas(objSinaisSintomas: TSinaisSintomas; frm: TfrmCadPaciente): TSinaisSintomas;
        class procedure InclusaoSinaisSintomas(frm: TfrmCadPaciente);
+       class procedure EdicaoSinaisSintomas(frm: TfrmCadPaciente);
    end;
 
 implementation
@@ -83,6 +84,35 @@ begin
       FreeAndNil(objControlePaciente);
       FreeAndNil(objSinaisSintomas);
    end;
+end;
+
+class procedure SinaisSintomas.EdicaoSinaisSintomas(frm: TfrmCadPaciente);
+var
+   objSinaisSintomas : TSinaisSintomas;
+   objControlePaciente : TControlePaciente;
+begin
+   try
+      objSinaisSintomas := TSinaisSintomas.Create;
+      objControlePaciente := TControlePaciente.Create;
+      objSinaisSintomas := CarregaObjSinaisSintomas(objSinaisSintomas, frm);
+      if objControlePaciente.EdicaoSinaisSintomas(objSinaisSintomas) then
+       begin
+         try
+            frmMensagem := TfrmMensagem.Create(nil);
+            frmMensagem.InfoFormMensagem('Alteração no cadastro de Sinais & Sintomas', tiInformacao, 'Cadastro de Sinias e Sintomas alterado com sucesso!');
+         finally
+            FreeAndNil(frmMensagem);
+         end;
+       end;
+
+      //DesabilitaControles(frmCadPaciente.pcCadPaciente.ActivePage);
+      estado := teNavegacao;
+      //EstadoBotoes;
+   finally
+      FreeAndNil(objControlePaciente);
+      FreeAndNil(objSinaisSintomas);
+   end;
+
 end;
 
 end.
