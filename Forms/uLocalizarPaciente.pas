@@ -117,12 +117,12 @@ end;
 
 procedure TfrmLocalizaPaciente.LocalizarPaciente;
 begin
-   dmCadPaciente.ativo := AtivosInativos;     //** FUNÇÃO RETORNANDO SE TRAZ OS ATIVOS, INATIVOS OU TODOS PARA VARIAVEL DE dmCadPaciente.
+   dmCadPaciente.ativo := AtivosInativos;     // ** FUNÇÃO RETORNANDO SE TRAZ OS ATIVOS, INATIVOS OU TODOS PARA VARIAVEL DE dmCadPaciente.
    dmCadPaciente.nome := edtLocalizarPaciente.Text;
 
    dmCadPaciente.MontaSelect;
 
-   if dmCadPaciente.qryTblPaciente.IsEmpty then   //** DESABILITAR O BOTÃO EM CASO DE DATASET VAZIO OU HABILITAR EM CASO DE DADOS
+   if dmCadPaciente.qryTblPaciente.IsEmpty then   // ** DESABILITAR O BOTÃO EM CASO DE DATASET VAZIO OU HABILITAR EM CASO DE DADOS
       btnLocalizarPaciente.Enabled := false
    else
       btnLocalizarPaciente.Enabled := true;
@@ -133,7 +133,7 @@ function TfrmLocalizaPaciente.AtivosInativos: string;
 begin
    case rgAtivosInativos.ItemIndex of
       0 : result := 'A';
-      1 : result := 'I';           {* RETORNA A=ATIVOS I=INATIVOS T=TODOS *}
+      1 : result := 'I';           { RETORNA A=ATIVOS I=INATIVOS T=TODOS }
       else
          result := 'T';
    end;

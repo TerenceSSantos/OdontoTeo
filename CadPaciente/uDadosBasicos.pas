@@ -24,6 +24,7 @@ type
       class function CarregaObjDadosBasicos(objDados: TPaciente; frm: TfrmCadPaciente): TPaciente;
       class procedure InclusaoDadosBasicos(frm: TfrmCadPaciente);
       class procedure EditarDadosBasicos(frm: TfrmCadPaciente);
+      class procedure ApagarDadosBasico(codigo: integer);
    end;
 
 
@@ -73,6 +74,7 @@ var
    objDadosBasicos : TPaciente;
    objControlePaciente : TControlePaciente;
    codigo : integer;
+   frmMensagem : TfrmMensagem;
 begin
    if Trim(frm.edtNomePaciente.Text) = '' then
    begin
@@ -118,7 +120,7 @@ end;
 
 class procedure DadosBasicos.EditarDadosBasicos(frm: TfrmCadPaciente);
 var
-   objControlePaciente : TControlePaciente;   { TODO : Caso cancele a alteração, voltar com os dados originais }
+   objControlePaciente : TControlePaciente;
    objDadosBasicos : TPaciente;
 begin
    if Trim(frmCadPaciente.edtNomePaciente.Text) = '' then
@@ -154,6 +156,23 @@ begin
       FreeAndNil(objDadosBasicos);
    end;
 
+end;
+
+class procedure DadosBasicos.ApagarDadosBasico(codigo: integer);
+var
+   frmMensagem : TfrmMensagem;
+   objControlePaciente : TControlePaciente;
+begin
+   objControlePaciente := TControlePaciente.Create;
+   if objControlePaciente.ApagarCadastroBasico(codigo) then
+   begin
+      try
+            frmMensagem := TfrmMensagem.Create(nil);
+            frmMensagem.InfoFormMensagem('Remoção do cadastro do paciente', tiInformacao, 'Paciente removido com sucesso!');
+         finally
+            FreeAndNil(frmMensagem);
+         end;
+   end;
 end;
 
 end.

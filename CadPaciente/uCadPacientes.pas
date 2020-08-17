@@ -455,7 +455,9 @@ begin
 
       7 : begin
              if estado in [teInclusao] then
-                Enfermidades.InclusaoEnfermidades(Self);
+                Enfermidades.InclusaoEnfermidades(Self)
+             else if estado in [teEdicao] then
+                Enfermidades.EdicaoEnfermidades(Self);
           end;
    end;
 
@@ -489,30 +491,16 @@ end;
 
 procedure TfrmCadPaciente.btnApagaCadastroClick(Sender: TObject);
 var
-   objControlePaciente : TControlePaciente;
    frmMensagem : TfrmMensagem;
 begin
-   frmMensagem := TfrmMensagem.Create(Self);
+   frmMensagem := TfrmMensagem.Create(nil);
    frmMensagem.InfoFormMensagem('Apagar Registro?', tiDuvida, 'Tem certeza que você deseja apagar o cadastro de:' + LineEnding +
                   edtNomePaciente.Text + '?');
 
-   if frmMensagem.resultadoBtn = mrOK then
-    begin
-       objControlePaciente := TControlePaciente.Create;
-       try
-          if objControlePaciente.ApagarCadastroBasico(StrToInt(edtCodPaciente.Text)) then
-           begin
-             frmMensagem.InfoFormMensagem('I N F O R M A Ç Ã O',tiInformacao, 'O Cadastro foi apagado com sucesso.');
+   if frmMensagem.resultadoBtn = mrOK then //Caso o resultado da mensagem seja SIM transmite o código para deleção
+      DadosBasicos.ApagarDadosBasico(StrToInt(frmCadPaciente.edtCodPaciente.Text));
 
-             LimpaControles(pcCadPaciente.ActivePage);
-             //EstadoBotoes;
-             DesabilitaControles(pcCadPaciente.ActivePage);
-           end;
-       finally
-          FreeAndNil(objControlePaciente);
-       end;
-    end;
-    FreeAndNil(frmMensagem);
+   FreeAndNil(frmMensagem);
 end;
 
 procedure TfrmCadPaciente.btnNovoCadastroClick(Sender: TObject);
@@ -817,7 +805,7 @@ begin
          btnProcuraPaciente.Enabled := true;
       end
       else if pcCadPaciente.PageIndex <> 0 then
-       begin           { TODO -oTerence -cCadastro de Paciente : Incluir verificação de ID para saber se já existe cadastro ou não }
+       begin
           if edtNomePaciente.Text = EmptyStr then
            begin
               btnNovoCadastro.Enabled := false;

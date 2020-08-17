@@ -70,7 +70,7 @@ begin
 end;
 
 class procedure Responsavel.EdicaoResponsavel(frm: TfrmCadPaciente);
-var  { TODO -oTerence -cCadastro : Iniciar o código para alteração de cadastro do Responsável }
+var
    objResponsavel : TResponsavelPaciente;
    objControlePaciente : TControlePaciente;
 begin

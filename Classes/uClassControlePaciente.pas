@@ -28,13 +28,13 @@ type
         function EdicaoResponsavel(objResponsavel: TResponsavelPaciente): boolean;
         function SelectResponsavel(idTblPaciente: integer; objResponsavel: TResponsavelPaciente): TResponsavelPaciente;
 
-        function InclusaoEndereco(objEndereco: TEndereco): integer;
+        function InclusaoEndereco(objEndereco: TEndereco): boolean;
         function EdicaoEndereco(objEndereco: TEndereco): boolean;
 
         function InclusaoContatos(objContatos: TContatos): boolean;
         function EdicaoContatos(objContatos: TContatos): boolean;
 
-        function InclusaoDadosProfissionais(objDadosProf: TDadosProfissionais): boolean;
+        function InclusaoDadosProfissionais(objDadosProf: TDadosProfissionais): integer;
 
         function InclusaoAnamnese(objAnamnese: TAnamnese): boolean;
         function EdicaoAnamnese(objAnamnese: TAnamnese): boolean;
@@ -83,7 +83,7 @@ end;
 
 function TControlePaciente.ApagarCadastroBasico(codigo: integer): boolean;
 begin
-   result := dmCadPaciente.ApagarCadastroBasico(codigo);
+   result := dmCadPaciente.ApagarDadosBasico(codigo);
 end;
 
 function TControlePaciente.TblPacienteVazia: boolean;
@@ -111,7 +111,7 @@ begin
    dmCadPaciente.SelectResponsavel(idTblPaciente, objResponsavel);
 end;
 
-function TControlePaciente.InclusaoEndereco(objEndereco: TEndereco): integer;
+function TControlePaciente.InclusaoEndereco(objEndereco: TEndereco): boolean;
 begin
    result := dmCadPaciente.InclusaoEndereco(objEndereco);
 end;
@@ -131,7 +131,7 @@ begin
    result := dmCadPaciente.EdicaoContatos(objContatos);
 end;
 
-function TControlePaciente.InclusaoDadosProfissionais(objDadosProf: TDadosProfissionais): boolean;
+function TControlePaciente.InclusaoDadosProfissionais(objDadosProf: TDadosProfissionais): integer;
 begin
    result := dmCadPaciente.InclusaoDadosProfissionais(objDadosProf);
 end;

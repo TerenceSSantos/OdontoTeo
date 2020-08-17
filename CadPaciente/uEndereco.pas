@@ -55,7 +55,7 @@ begin
    try
       objEndereco := TEndereco.Create;
       objControlePaciente := TControlePaciente.Create;
-      if objControlePaciente.InclusaoEndereco(CarregaObjEndereco(objEndereco, frm)) > 0 then
+      if objControlePaciente.InclusaoEndereco(CarregaObjEndereco(objEndereco, frm)) then
        begin
           try
              frmMensagem := TfrmMensagem.Create(nil);

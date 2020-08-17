@@ -3,7 +3,7 @@ object dmCadPaciente: TdmCadPaciente
   Height = 449
   HorizontalOffset = 190
   VerticalOffset = 145
-  Width = 1360
+  Width = 1326
   PPI = 96
   object qryTblPaciente: TZQuery
     Connection = dmConexao.zConexao
@@ -421,12 +421,12 @@ object dmCadPaciente: TdmCadPaciente
   end
   object qryTblEndereco: TZQuery
     Params = <>
-    left = 416
+    left = 404
     top = 32
   end
   object qryContatos: TZQuery
     Params = <>
-    left = 582
+    left = 560
     top = 32
   end
   object strprocGravarSinaisSintomas: TZStoredProc
@@ -538,7 +538,7 @@ object dmCadPaciente: TdmCadPaciente
         ParamType = ptInput
       end>
     StoredProcName = 'PROC_CAD_TBLSINAISSINTOMAS'
-    left = 1048
+    left = 1033
     top = 99
     ParamData = <    
       item
@@ -756,7 +756,7 @@ object dmCadPaciente: TdmCadPaciente
         ParamType = ptInput
       end>
     StoredProcName = 'PROC_CAD_TBLENFERMIDADES'
-    left = 1227
+    left = 1204
     top = 100
     ParamData = <    
       item
@@ -959,7 +959,7 @@ object dmCadPaciente: TdmCadPaciente
         ParamType = ptInput
       end>
     StoredProcName = 'PROC_CAD_TBLCONTATOS'
-    left = 582
+    left = 560
     top = 100
     ParamData = <    
       item
@@ -1098,11 +1098,11 @@ object dmCadPaciente: TdmCadPaciente
       end    
       item
         DataType = ftInteger
-        Name = 'COD_ENDERECO'
-        ParamType = ptOutput
+        Name = 'ID_TBLDADOSPROF'
+        ParamType = ptInput
       end>
     StoredProcName = 'PROC_CAD_TBLENDERECO'
-    left = 416
+    left = 404
     top = 100
     ParamData = <    
       item
@@ -1147,8 +1147,8 @@ object dmCadPaciente: TdmCadPaciente
       end    
       item
         DataType = ftInteger
-        Name = 'COD_ENDERECO'
-        ParamType = ptOutput
+        Name = 'ID_TBLDADOSPROF'
+        ParamType = ptInput
       end>
   end
   object strprocAnamnese: TZStoredProc
@@ -1280,7 +1280,7 @@ object dmCadPaciente: TdmCadPaciente
         ParamType = ptInput
       end>
     StoredProcName = 'PROC_CAD_TBLANAMNESE'
-    left = 888
+    left = 874
     top = 100
     ParamData = <    
       item
@@ -1409,7 +1409,7 @@ object dmCadPaciente: TdmCadPaciente
         ParamType = ptInput
       end>
   end
-  object strprocDadosProfissionais: TZStoredProc
+  object strprocGravarDadosProfissionais: TZStoredProc
     Connection = dmConexao.zConexao
     Params = <    
       item
@@ -1424,16 +1424,16 @@ object dmCadPaciente: TdmCadPaciente
       end    
       item
         DataType = ftInteger
-        Name = 'ID_TBLENDERECO'
+        Name = 'ID_TBLPACIENTE'
         ParamType = ptInput
       end    
       item
         DataType = ftInteger
-        Name = 'ID_TBLPACIENTE'
-        ParamType = ptInput
+        Name = 'COD_DADO_PROFISSIONAL'
+        ParamType = ptOutput
       end>
     StoredProcName = 'PROC_CAD_DADOPROFISSIONAL'
-    left = 739
+    left = 721
     top = 99
     ParamData = <    
       item
@@ -1448,13 +1448,13 @@ object dmCadPaciente: TdmCadPaciente
       end    
       item
         DataType = ftInteger
-        Name = 'ID_TBLENDERECO'
+        Name = 'ID_TBLPACIENTE'
         ParamType = ptInput
       end    
       item
         DataType = ftInteger
-        Name = 'ID_TBLPACIENTE'
-        ParamType = ptInput
+        Name = 'COD_DADO_PROFISSIONAL'
+        ParamType = ptOutput
       end>
   end
   object strprocEditarResponsavel: TZStoredProc
@@ -1582,9 +1582,14 @@ object dmCadPaciente: TdmCadPaciente
         DataType = ftInteger
         Name = 'ID_TBLPACIENTE'
         ParamType = ptInput
+      end    
+      item
+        DataType = ftInteger
+        Name = 'ID_TBLDADOSPROF'
+        ParamType = ptInput
       end>
     StoredProcName = 'PROC_EDIT_TBLENDERECO'
-    left = 416
+    left = 404
     top = 176
     ParamData = <    
       item
@@ -1630,6 +1635,11 @@ object dmCadPaciente: TdmCadPaciente
       item
         DataType = ftInteger
         Name = 'ID_TBLPACIENTE'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftInteger
+        Name = 'ID_TBLDADOSPROF'
         ParamType = ptInput
       end>
   end
@@ -1732,7 +1742,7 @@ object dmCadPaciente: TdmCadPaciente
         ParamType = ptInput
       end>
     StoredProcName = 'PROC_EDIT_TBLCONTATOS'
-    left = 582
+    left = 560
     top = 176
     ParamData = <    
       item
@@ -1860,7 +1870,7 @@ object dmCadPaciente: TdmCadPaciente
         ParamType = ptInput
       end>
     StoredProcName = 'PROC_EDIT_TBLDADOPROFISSIONAL'
-    left = 739
+    left = 721
     top = 176
     ParamData = <    
       item
@@ -2023,7 +2033,7 @@ object dmCadPaciente: TdmCadPaciente
         ParamType = ptInput
       end>
     StoredProcName = 'PROC_EDIT_TBLANAMNESE'
-    left = 888
+    left = 874
     top = 176
     ParamData = <    
       item
@@ -2271,7 +2281,7 @@ object dmCadPaciente: TdmCadPaciente
         ParamType = ptInput
       end>
     StoredProcName = 'PROC_EDIT_TBLSINAISSINTOMAS'
-    left = 1048
+    left = 1033
     top = 176
     ParamData = <    
       item
@@ -2499,7 +2509,7 @@ object dmCadPaciente: TdmCadPaciente
         ParamType = ptInput
       end>
     StoredProcName = 'PROC_EDIT_TBLENFERMIDADES'
-    left = 1227
+    left = 1204
     top = 176
     ParamData = <    
       item
@@ -2610,6 +2620,24 @@ object dmCadPaciente: TdmCadPaciente
       item
         DataType = ftInteger
         Name = 'ID_TBLPACIENTE'
+        ParamType = ptInput
+      end>
+  end
+  object strprocApagarDadosBasicos: TZStoredProc
+    Connection = dmConexao.zConexao
+    Params = <    
+      item
+        DataType = ftInteger
+        Name = 'ID_PACIENTE'
+        ParamType = ptInput
+      end>
+    StoredProcName = 'PROC_DEL_TBLPACIENTE'
+    left = 80
+    top = 268
+    ParamData = <    
+      item
+        DataType = ftInteger
+        Name = 'ID_PACIENTE'
         ParamType = ptInput
       end>
   end

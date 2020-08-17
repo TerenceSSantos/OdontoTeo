@@ -56,7 +56,7 @@ begin
    try
       objDadoProf := TDadosProfissionais.Create;
       objControlePaciente := TControlePaciente.Create;
-      if objControlePaciente.InclusaoDadosProfissionais(CarregaObjDadoProfissional(objDadoProf, frm)) then
+      if objControlePaciente.InclusaoDadosProfissionais(CarregaObjDadoProfissional(objDadoProf, frm)) > 0 then
        begin
           try
              frmMensagem := TfrmMensagem.Create(nil);
