@@ -26,6 +26,7 @@ type
 
         function InclusaoResponsavel(objResponsavel: TResponsavelPaciente): boolean;
         function EdicaoResponsavel(objResponsavel: TResponsavelPaciente): boolean;
+        function ApagarResponsavel(codigo: integer): boolean;
         function SelectResponsavel(idTblPaciente: integer; objResponsavel: TResponsavelPaciente): TResponsavelPaciente;
 
         function InclusaoEndereco(objEndereco: TEndereco): boolean;
@@ -104,6 +105,11 @@ end;
 function TControlePaciente.EdicaoResponsavel(objResponsavel: TResponsavelPaciente): boolean;
 begin
    dmCadPaciente.EdicaoResponsavel(objResponsavel);
+end;
+
+function TControlePaciente.ApagarResponsavel(codigo: integer): boolean;
+begin
+   dmCadPaciente.ApagarResponsavel(codigo);
 end;
 
 function TControlePaciente.SelectResponsavel(idTblPaciente: integer; objResponsavel: TResponsavelPaciente): TResponsavelPaciente;

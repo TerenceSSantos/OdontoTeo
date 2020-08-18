@@ -24,6 +24,7 @@ type
        class function CarregaObjEndereco(objEndereco: TEndereco; frm: TfrmCadPaciente): TEndereco;
        class procedure InclusaoEndereco(frm: TfrmCadPaciente);
        class procedure EdicaoEndereco(frm: TfrmCadPaciente);
+       class procedure ApagarEndereco(codigo: integer);
 
    end;
 
@@ -100,6 +101,23 @@ begin
    finally
       FreeAndNil(objControlePaciente);
       FreeAndNil(objEndereco);
+   end;
+end;
+
+class procedure Endereco.ApagarEndereco(codigo: integer);
+var
+   objControlePaciente : TControlePaciente;
+   frmMensagem : TfrmMensagem;
+begin
+   objControlePaciente := TControlePaciente.Create;
+   if objControlePaciente.(codigo) then
+   begin
+      try
+            frmMensagem := TfrmMensagem.Create(nil);
+            frmMensagem.InfoFormMensagem('Remoção do cadastro do paciente', tiInformacao, 'Paciente removido com sucesso!');
+         finally
+            FreeAndNil(frmMensagem);
+         end;
    end;
 end;
 

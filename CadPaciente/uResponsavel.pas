@@ -24,6 +24,7 @@ type
        class function CarregaObjResponsavel(objResponsavel: TResponsavelPaciente; frm: TfrmCadPaciente): TResponsavelPaciente;
        class procedure InclusaoResponsavel(frm: TfrmCadPaciente);
        class procedure EdicaoResponsavel(frm: TfrmCadPaciente);
+       class procedure ApagarResponsavel(codigo: integer);
    end;
 
 implementation
@@ -73,6 +74,7 @@ class procedure Responsavel.EdicaoResponsavel(frm: TfrmCadPaciente);
 var
    objResponsavel : TResponsavelPaciente;
    objControlePaciente : TControlePaciente;
+   frmMensagem : TfrmMensagem
 begin
    if Trim(frmCadPaciente.edtNomeResp.Text) = '' then
     begin
@@ -107,6 +109,28 @@ begin
       FreeAndNil(objControlePaciente);
       FreeAndNil(objResponsavel);
    end;
+end;
+
+class procedure Responsavel.ApagarResponsavel(codigo: integer);
+var
+   frmMensagem : TfrmMensagem;
+   objControlePaciente : TControlePaciente;
+begin
+   try
+      objControlePaciente := TControlePaciente.Create;
+      if objControlePaciente.ApagarResponsavel(codigo) then
+      begin
+         try
+            frmMensagem := TfrmMensagem.Create(nil);
+            frmMensagem.InfoFormMensagem('Remoção do Responsável do paciente', tiInformacao, 'Responsável removido com sucesso!');
+         finally
+            FreeAndNil(frmMensagem);
+         end;
+      end;
+   finally
+      FreeAndNil(objControlePaciente);
+   end;
+
 end;
 
 end.

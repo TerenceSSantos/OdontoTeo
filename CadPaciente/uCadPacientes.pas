@@ -494,11 +494,21 @@ var
    frmMensagem : TfrmMensagem;
 begin
    frmMensagem := TfrmMensagem.Create(nil);
-   frmMensagem.InfoFormMensagem('Apagar Registro?', tiDuvida, 'Tem certeza que você deseja apagar o cadastro de:' + LineEnding +
-                  edtNomePaciente.Text + '?');
+   frmMensagem.InfoFormMensagem('Apagar Registro?', tiDuvida, 'Tem certeza que você deseja apagar o cadastro de ' +
+                                pcCadPaciente.ActivePage.Caption + 'do:' + LineEnding + edtNomePaciente.Text + '?');
+   case pcCadPaciente.ActivePageIndex of
+      0 : if frmMensagem.resultadoBtn = mrOK then //Caso o resultado da mensagem seja SIM transmite o código para deleção
+             DadosBasicos.ApagarDadosBasico(StrToInt(frmCadPaciente.edtCodPaciente.Text));
 
-   if frmMensagem.resultadoBtn = mrOK then //Caso o resultado da mensagem seja SIM transmite o código para deleção
-      DadosBasicos.ApagarDadosBasico(StrToInt(frmCadPaciente.edtCodPaciente.Text));
+      1 : if frmMensagem.resultadoBtn = mrOK then
+             Responsavel.ApagarResponsavel(); { TODO 10 -oTerence -cCadastro : Deleção de Responsável }
+      2 : ;
+      3 : ;
+      4 : ;
+      5 : ;
+      6 : ;
+      7 : ;
+   end;
 
    FreeAndNil(frmMensagem);
 end;

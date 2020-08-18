@@ -2641,4 +2641,22 @@ object dmCadPaciente: TdmCadPaciente
         ParamType = ptInput
       end>
   end
+  object strprocApagarResponsavel: TZStoredProc
+    Connection = dmConexao.zConexao
+    Params = <    
+      item
+        DataType = ftInteger
+        Name = 'ID_RESPONSAVEL'
+        ParamType = ptInput
+      end>
+    StoredProcName = 'PROC_DEL_TBLRESPONSAVEL'
+    left = 240
+    top = 268
+    ParamData = <    
+      item
+        DataType = ftInteger
+        Name = 'ID_RESPONSAVEL'
+        ParamType = ptInput
+      end>
+  end
 end

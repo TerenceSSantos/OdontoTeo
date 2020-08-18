@@ -23,6 +23,7 @@ type
       qryTblResponsavelPARENTESCO: TStringField;
       strprocAnamnese: TZStoredProc;
       strprocApagarDadosBasicos: TZStoredProc;
+      strprocApagarResponsavel: TZStoredProc;
       strprocGravarDadosProfissionais: TZStoredProc;
       strprocEditarAnamnese: TZStoredProc;
       strprocEditarContatos: TZStoredProc;
@@ -52,6 +53,7 @@ type
 
       function InclusaoResponsavel(objResponsavel: TResponsavelPaciente): boolean;
       function EdicaoResponsavel(objResponsavel: TResponsavelPaciente): boolean;
+      function ApagarResponsavel(codigo: intger): boolean;
       function SelectResponsavel(idTblPaciente: integer; objResponsavel: TResponsavelPaciente): TResponsavelPaciente;
 
       function InclusaoEndereco(objEndereco: TEndereco): boolean;
@@ -295,6 +297,26 @@ begin
          frmMensagem := TfrmMensagem.Create(Self);
          frmMensagem.InfoFormMensagem('Alteração de dados do Responsável', tiErro, 'Erro ao tentar gravar a alteração do registro ' +
                                       'com a seguinte mensagem de erro:' + LineEnding + LineEnding + E.Message);
+       finally
+          FreeAndNil(frmMensagem);
+       end;
+       result := false;
+    end;
+   end;
+end;
+
+function TdmCadPaciente.ApagarResponsavel(codigo: intger): boolean;
+begin
+   try
+      strprocApagarResponsavel.Params[0].AsInteger := codigo;
+      strprocApagarResponsavel.ExecProc;
+      result := true;
+   except on E: Exception do
+    begin
+       try
+         frmMensagem := TfrmMensagem.Create(Self);
+         frmMensagem.InfoFormMensagem('Apagar Cadastro', tiErro, 'Erro ao tentar apagar o registro ' +
+                                      ' com a seguinte mensagem de erro:' + LineEnding + LineEnding + E.Message);
        finally
           FreeAndNil(frmMensagem);
        end;
