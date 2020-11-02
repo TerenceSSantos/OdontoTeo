@@ -74,7 +74,7 @@ class procedure Responsavel.EdicaoResponsavel(frm: TfrmCadPaciente);
 var
    objResponsavel : TResponsavelPaciente;
    objControlePaciente : TControlePaciente;
-   frmMensagem : TfrmMensagem
+   frmMensagem : TfrmMensagem;
 begin
    if Trim(frmCadPaciente.edtNomeResp.Text) = '' then
     begin

@@ -6,8 +6,7 @@ interface
 
 uses
    Classes, SysUtils, db, ZDataset, dialogs, uClassPaciente, ZStoredProcedure, uClassResponsavelPaciente, {uClassDocumentos,}
-   uClassSinaisSintomas, uClassEnfermidades, uClassEndereco, uClassContatos,
-   uClassAnamnese, uClassDadosProfissionais;
+   uClassSinaisSintomas, uClassEnfermidades, uClassEndereco, uClassContatos, uClassAnamnese, uClassDadosProfissionais, uClassDocumentos;
 
 type
 
@@ -39,6 +38,7 @@ type
       strprocGravarEnfermidades: TZStoredProc;
       strprocGravarResponsavel: TZStoredProc;
       strprocGravarSinaisSintomas: TZStoredProc;
+      strprocInsertEditDocumentos: TZStoredProc;
    private
 
    public
@@ -51,9 +51,11 @@ type
       function EdicaoDadosBasicos(objPaciente: TPaciente): boolean;
       function ApagarDadosBasico(codigo: integer): boolean;
 
+      function InclusaoOuEdicaoDocumentos(objDocumentos: TDocumentos): boolean;
+
       function InclusaoResponsavel(objResponsavel: TResponsavelPaciente): boolean;
       function EdicaoResponsavel(objResponsavel: TResponsavelPaciente): boolean;
-      function ApagarResponsavel(codigo: intger): boolean;
+      function ApagarResponsavel(codigo: integer): boolean;
       function SelectResponsavel(idTblPaciente: integer; objResponsavel: TResponsavelPaciente): TResponsavelPaciente;
 
       function InclusaoEndereco(objEndereco: TEndereco): boolean;
@@ -203,6 +205,37 @@ begin
    end;
 end;
 
+function TdmCadPaciente.InclusaoOuEdicaoDocumentos(objDocumentos: TDocumentos): boolean;
+var
+   frmMensagem: TfrmMensagem;
+begin
+   with strprocInsertEditDocumentos do
+   begin
+      Params[0].AsString := objDocumentos.identidade;
+      Params[1].AsString := objDocumentos.orgaoExpedidor;
+      Params[2].AsString := objDocumentos.cpf;
+      Params[3].AsInteger := objDocumentos.idTblPaciente;
+      Params[4].AsInteger := objDocumentos.idTblResponsavel;
+      Params[5].AsInteger := objDocumentos.idTblDentista;
+   end;
+   try
+      strprocInsertEditDocumentos.ExecProc;
+      result := true;
+   except E: Exception do
+    begin
+       try
+         frmMensagem := TfrmMensagem.Create(Self);
+         frmMensagem.InfoFormMensagem('Cadastro do Documentos', tiErro, 'Erro ao tentar gravar Documentos ' +
+                                      'com a seguinte mensagem de erro:' + LineEnding + LineEnding + E.Message);
+       finally
+          FreeAndNil(frmMensagem);
+       end;
+       result := false;
+    end;
+
+   end;
+end;
+
 function TdmCadPaciente.EnviaDadosBasicos(objPaciente: TPaciente): TPaciente;
 begin
                               // PREENCHER O OBJETO PACIENTE COM OS DADOS RECEBIDOS DA QUERY DEPOIS DE OPEN NA TABELA
@@ -305,7 +338,7 @@ begin
    end;
 end;
 
-function TdmCadPaciente.ApagarResponsavel(codigo: intger): boolean;
+function TdmCadPaciente.ApagarResponsavel(codigo: integer): boolean;
 begin
    try
       strprocApagarResponsavel.Params[0].AsInteger := codigo;

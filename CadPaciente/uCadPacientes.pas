@@ -376,6 +376,7 @@ var
    estado : TipoEstado = teNavegacao;    // teNavegacao, teInclusao, teEdicao
 //   objDadosBasicos : TPaciente;
    objDadosBasicosAntesAlteracao : TPaciente;
+   topPosition : integer;
 
 implementation
 
@@ -596,6 +597,7 @@ procedure TfrmCadPaciente.FormShow(Sender: TObject);
 var
    objControlePaciente : TControlePaciente;
 begin
+   topPosition := frmCadPaciente.Top;
    pcCadPaciente.TabIndex := 0;
    try
       objControlePaciente := TControlePaciente.Create;
@@ -716,7 +718,7 @@ begin
    else
    begin
        frmCadPaciente.Height := 547;
-       frmCadPaciente.Top := (Screen.WorkAreaHeight div 2 - frmCadPaciente.Height div 2) + 14;
+       frmCadPaciente.Top := topPosition;
    end;
    //EstadoBotoes;
 end;

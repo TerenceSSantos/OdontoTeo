@@ -110,15 +110,15 @@ var
    frmMensagem : TfrmMensagem;
 begin
    objControlePaciente := TControlePaciente.Create;
-   if objControlePaciente.(codigo) then
-   begin
-      try
-            frmMensagem := TfrmMensagem.Create(nil);
-            frmMensagem.InfoFormMensagem('Remoção do cadastro do paciente', tiInformacao, 'Paciente removido com sucesso!');
-         finally
-            FreeAndNil(frmMensagem);
-         end;
-   end;
+   //if objControlePaciente(codigo) then
+   //begin
+   //   try
+   //         frmMensagem := TfrmMensagem.Create(nil);
+   //         frmMensagem.InfoFormMensagem('Remoção do cadastro do paciente', tiInformacao, 'Paciente removido com sucesso!');
+   //      finally
+   //         FreeAndNil(frmMensagem);
+   //      end;
+   //end;
 end;
 
 end.

@@ -2659,4 +2659,72 @@ object dmCadPaciente: TdmCadPaciente
         ParamType = ptInput
       end>
   end
+  object strprocInsertEditDocumentos: TZStoredProc
+    Connection = dmConexao.zConexao
+    Params = <    
+      item
+        DataType = ftString
+        Name = 'IDENTIDADE'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'ORGAO_EXPEDIDOR'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'CPF'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftInteger
+        Name = 'ID_TBLPACIENTE'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftInteger
+        Name = 'ID_TBLRESPONSAVEL'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftInteger
+        Name = 'ID_TBLDENTISTA'
+        ParamType = ptInput
+      end>
+    StoredProcName = 'PROC_CAD_E_EDIT_TBLDOCUMENTOS'
+    left = 404
+    top = 352
+    ParamData = <    
+      item
+        DataType = ftString
+        Name = 'IDENTIDADE'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'ORGAO_EXPEDIDOR'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'CPF'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftInteger
+        Name = 'ID_TBLPACIENTE'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftInteger
+        Name = 'ID_TBLRESPONSAVEL'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftInteger
+        Name = 'ID_TBLDENTISTA'
+        ParamType = ptInput
+      end>
+  end
 end

@@ -1,7 +1,7 @@
 object frmCadPaciente: TfrmCadPaciente
-  Left = 323
+  Left = 451
   Height = 547
-  Top = 123
+  Top = 174
   Width = 1092
   BorderStyle = bsNone
   Caption = 'Cadastro de Pacientes'
