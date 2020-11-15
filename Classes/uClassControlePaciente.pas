@@ -6,7 +6,7 @@ interface
 
 uses
    Classes, SysUtils, uClassPaciente, uClassResponsavelPaciente, uClassSinaisSintomas, uDMCadPaciente, uLocalizarPaciente,
-   uClassEnfermidades, uClassEndereco, uClassContatos, uClassAnamnese, uClassDadosProfissionais;
+   uClassEnfermidades, uClassEndereco, uClassContatos, uClassAnamnese, uClassDadosProfissionais, uClassDocumentos;
 
 type
 
@@ -23,6 +23,8 @@ type
         function ApagarCadastroBasico(codigo: integer): boolean;
         function TblPacienteVazia : boolean;
         class procedure EnviaDadosBasicos(objPaciente: TPaciente);
+
+        function InclusaoOuEdicaoDocumentos(objDocumentos: TDocumentos): boolean;
 
         function InclusaoResponsavel(objResponsavel: TResponsavelPaciente): boolean;
         function EdicaoResponsavel(objResponsavel: TResponsavelPaciente): boolean;
@@ -95,6 +97,11 @@ end;
 class procedure TControlePaciente.EnviaDadosBasicos(objPaciente: TPaciente);
 begin
    frmCadPaciente.PreencheFormDadosBasicos(objPaciente);
+end;
+
+function TControlePaciente.InclusaoOuEdicaoDocumentos(objDocumentos: TDocumentos): boolean;
+begin
+   result := dmCadPaciente.InclusaoOuEdicaoDocumentos(objDocumentos);
 end;
 
 function TControlePaciente.InclusaoResponsavel(objResponsavel: TResponsavelPaciente): boolean;

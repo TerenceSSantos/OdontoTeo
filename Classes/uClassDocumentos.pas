@@ -30,8 +30,8 @@ type
       property idTblResponsavel: integer read FIdTblResponsavel write FIdTblResponsavel;
       property idTblDentista: integer read FIdTblDentista write FIdTblDentista;
 
-      constructor Create;
-      destructor Destroy; override;
+   //   constructor Create;
+   //   destructor Destroy; override;
    end;
 
 implementation

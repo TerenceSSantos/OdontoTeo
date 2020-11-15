@@ -123,15 +123,12 @@ begin
       Params[7].AsString := objPaciente.naturalidade;
       Params[8].AsString := objPaciente.ufNascimento;
       Params[9].AsString := objPaciente.nacionalidade;
-      Params[10].AsString := objPaciente.CPF;
-      Params[11].AsString := objPaciente.identidadePaciente;
-      Params[12].AsString := objPaciente.orgaoExpedidorID;
-      Params[13].AsString := objPaciente.ativo;
+      Params[10].AsString := objPaciente.ativo;
    end;
 
    try
       strprocGravarDadosBasicos.ExecProc;
-      result := strprocGravarDadosBasicos.Params[15].AsInteger;
+      result := strprocGravarDadosBasicos.Params[12].AsInteger;
    except on E: Exception do
     begin
        try
@@ -214,14 +211,14 @@ begin
       Params[0].AsString := objDocumentos.identidade;
       Params[1].AsString := objDocumentos.orgaoExpedidor;
       Params[2].AsString := objDocumentos.cpf;
-      Params[3].AsInteger := objDocumentos.idTblPaciente;
-      Params[4].AsInteger := objDocumentos.idTblResponsavel;
-      Params[5].AsInteger := objDocumentos.idTblDentista;
+      Params[3].AsInteger := objDocumentos.idTblPaciente;        // 3 = TBLPACIENTE
+      Params[4].AsInteger := objDocumentos.idTblResponsavel;     // 4 = TBLRESPONSAVEL
+      Params[5].AsInteger := objDocumentos.idTblDentista;        // 5 = TBLDENTISTA
    end;
    try
       strprocInsertEditDocumentos.ExecProc;
       result := true;
-   except E: Exception do
+   except on E: Exception do
     begin
        try
          frmMensagem := TfrmMensagem.Create(Self);
@@ -252,9 +249,9 @@ begin
       objPaciente.ufNascimento := qryTblPaciente.FieldByName('UF_NASCIMENTO').AsString;
       objPaciente.nacionalidade := qryTblPaciente.FieldByName('NACIONALIDADE').AsString;
       objPaciente.ativo := qryTblPaciente.FieldByName('ATIVO').AsString;
-      objPaciente.CPF := qryTblPaciente.FieldByName('CPF_PACIENTE').AsString;
+{      objPaciente.CPF := qryTblPaciente.FieldByName('CPF_PACIENTE').AsString;
       objPaciente.identidadePaciente := qryTblPaciente.FieldByName('IDENTIDADE_PACIENTE').AsString;
-      objPaciente.orgaoExpedidorID := qryTblPaciente.FieldByName('ORGAO_EXPEDIDOR_ID').AsString;
+      objPaciente.orgaoExpedidorID := qryTblPaciente.FieldByName('ORGAO_EXPEDIDOR_ID').AsString;   }
       result := objPaciente;
 end;
 {

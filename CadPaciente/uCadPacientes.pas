@@ -382,7 +382,7 @@ implementation
 
 uses
    uClassControlePaciente, uFrmMensagem, uDadosBasicos, uResponsavel, uEndereco, uContatos, uDadoProfissional, uAnamnese,
-   uSinaisSintomas, uEnfermidades;
+   uSinaisSintomas, uEnfermidades, uDocumentos;
 
 
 {$R *.lfm}
@@ -409,15 +409,23 @@ begin
    case pcCadPaciente.ActivePageIndex of
       0 : begin
              if estado in [teInclusao] then
-                DadosBasicos.InclusaoDadosBasicos(Self)
-             else if estado in [teEdicao] then
+             begin
+                DadosBasicos.InclusaoDadosBasicos(Self);
+                if (mskedtCPFPaciente.Text <> EmptyStr) or (edtIdentidadePaciente.Text <> EmptyStr) then
+                    Documentos.InclusaoOuEdicaoDocumentos(Self, 3); // 3 = TBLPACIENTE
+             end                                                    // 4 = TBLRESPONSAVEL
+             else if estado in [teEdicao] then                      // 5 = TBLDENTISTA
                 DadosBasicos.EditarDadosBasicos(Self);
           end;
 
       1 : begin
              if estado in [teInclusao] then
-                Responsavel.InclusaoResponsavel(Self)
-             else if estado in [teEdicao] then
+             begin
+                Responsavel.InclusaoResponsavel(Self);
+                if (mskedtCPFResp.Text <> EmptyStr) or (edtIdentidadeResp.Text <> EmptyStr) then
+                   Documentos.InclusaoOuEdicaoDocumentos(Self, 4);   // 3 = TBLPACIENTE
+             end                                                     // 4 = TBLRESPONSAVEL
+             else if estado in [teEdicao] then                       // 5 = TBLDENTISTA
                 Responsavel.EdicaoResponsavel(Self);
           end;
 
@@ -501,14 +509,14 @@ begin
       0 : if frmMensagem.resultadoBtn = mrOK then //Caso o resultado da mensagem seja SIM transmite o código para deleção
              DadosBasicos.ApagarDadosBasico(StrToInt(frmCadPaciente.edtCodPaciente.Text));
 
-      1 : if frmMensagem.resultadoBtn = mrOK then
-             Responsavel.ApagarResponsavel(); { TODO 10 -oTerence -cCadastro : Deleção de Responsável }
-      2 : ;
-      3 : ;
-      4 : ;
-      5 : ;
-      6 : ;
-      7 : ;
+      //1 : if frmMensagem.resultadoBtn = mrOK then
+      //       Responsavel.ApagarResponsavel(); { TODO 10 -oTerence -cCadastro : Deleção de Responsável }
+      //2 : ;
+      //3 : ;
+      //4 : ;
+      //5 : ;
+      //6 : ;
+      //7 : ;
    end;
 
    FreeAndNil(frmMensagem);
@@ -937,9 +945,9 @@ begin
    edtNaturalidade.Text := objDados.naturalidade;
    cboxUFNascimento.Text := objDados.ufNascimento;
    edtNacionalidade.Text := objDados.nacionalidade;
-   mskedtCPFPaciente.Text := objDados.CPF;
-   edtIdentidadePaciente.Text := objDados.identidadePaciente;
-   edtOrgaoExpedPaciente.Text := objDados.orgaoExpedidorID;
+   //mskedtCPFPaciente.Text := objDados.CPF;
+   //edtIdentidadePaciente.Text := objDados.identidadePaciente;
+   //edtOrgaoExpedPaciente.Text := objDados.orgaoExpedidorID;
 
    lblCodPaciente.Caption := 'Código: ' + edtCodPaciente.Text;
    lblNomePaciente.Caption := 'Nome do Paciente: ' + edtNomePaciente.Text;

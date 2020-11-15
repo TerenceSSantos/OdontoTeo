@@ -69,21 +69,6 @@ object dmCadPaciente: TdmCadPaciente
       end    
       item
         DataType = ftString
-        Name = 'CPF_PACIENTE'
-        ParamType = ptInput
-      end    
-      item
-        DataType = ftString
-        Name = 'IDENTIDADE_PACIENTE'
-        ParamType = ptInput
-      end    
-      item
-        DataType = ftString
-        Name = 'ORGAO_EXPEDIDOR_ID'
-        ParamType = ptInput
-      end    
-      item
-        DataType = ftString
         Name = 'ATIVO'
         ParamType = ptInput
       end    
@@ -149,21 +134,6 @@ object dmCadPaciente: TdmCadPaciente
       item
         DataType = ftString
         Name = 'NACIONALIDADE'
-        ParamType = ptInput
-      end    
-      item
-        DataType = ftString
-        Name = 'CPF_PACIENTE'
-        ParamType = ptInput
-      end    
-      item
-        DataType = ftString
-        Name = 'IDENTIDADE_PACIENTE'
-        ParamType = ptInput
-      end    
-      item
-        DataType = ftString
-        Name = 'ORGAO_EXPEDIDOR_ID'
         ParamType = ptInput
       end    
       item

@@ -62,9 +62,9 @@ begin
       naturalidade := frm.edtNaturalidade.Text;
       ufNascimento := frm.cboxUFNascimento.Text;
       nacionalidade := frm.edtNacionalidade.Text;
-      CPF := frm.mskedtCPFPaciente.Text;
-      identidadePaciente := frm.edtIdentidadePaciente.Text;
-      orgaoExpedidorID := frm.edtOrgaoExpedPaciente.Text;
+      //CPF := frm.mskedtCPFPaciente.Text;
+      //identidadePaciente := frm.edtIdentidadePaciente.Text;
+      //orgaoExpedidorID := frm.edtOrgaoExpedPaciente.Text;
    end;
    result := objDados;
 end;

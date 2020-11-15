@@ -18,11 +18,11 @@ type
    TPaciente = class
    private
       Fativo: string;
-      FCPF: string;
+//      FCPF: string;
       FdataNascimento: TDate;
       FestadoCivil: string;
       Fidade: integer;
-      FidentidadePaciente: string;
+//      FidentidadePaciente: string;
       FidPaciente: integer;
       FidResponsavel: integer;
       Fnacionalidade: string;
@@ -31,7 +31,7 @@ type
       FnomeMae: string;
       FnomePaciente: string;
       FnomePai: string;
-      ForgaoExpedidorID: string;
+//      ForgaoExpedidorID: string;
       Fsexo: string;
       FufNascimento: string;
 
@@ -47,9 +47,9 @@ type
       property naturalidade : string read Fnaturalidade write Fnaturalidade;
       property ufNascimento : string read FufNascimento write FufNascimento;
       property nacionalidade : string read Fnacionalidade write Fnacionalidade;
-      property CPF : string read FCPF write FCPF;
-      property identidadePaciente : string read FidentidadePaciente write FidentidadePaciente;
-      property orgaoExpedidorID : string read ForgaoExpedidorID write ForgaoExpedidorID;
+//      property CPF : string read FCPF write FCPF;
+//      property identidadePaciente : string read FidentidadePaciente write FidentidadePaciente;
+//      property orgaoExpedidorID : string read ForgaoExpedidorID write ForgaoExpedidorID;
       property ativo : string read Fativo write Fativo;
       property idade: integer read Fidade write Fidade;
       property idResponsavel: integer read FidResponsavel write FidResponsavel;
