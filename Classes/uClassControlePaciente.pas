@@ -18,8 +18,7 @@ type
      public
         procedure ChamaLocalizar; //(frmLocalizaPaciente: TfrmLocalizaPaciente);
 
-        function InclusaoDadosBasicos(objPaciente: TPaciente): integer;
-        function EdicaoDadosBasicos(objPaciente: TPaciente): boolean;
+        function InsertEditDadosBasicos(objPaciente: TPaciente): integer;
         function ApagarCadastroBasico(codigo: integer): boolean;
         function TblPacienteVazia : boolean;
         class procedure EnviaDadosBasicos(objPaciente: TPaciente);
@@ -74,14 +73,9 @@ begin                                                {** CHAMAR A TELA DE PESQUI
    end;
 end;
 
-function TControlePaciente.InclusaoDadosBasicos(objPaciente: TPaciente): integer;
+function TControlePaciente.InsertEditDadosBasicos(objPaciente: TPaciente): integer;
 begin
-   result :=  dmCadPaciente.InclusaoDadosBasicos(objPaciente);
-end;
-
-function TControlePaciente.EdicaoDadosBasicos(objPaciente: TPaciente): boolean;
-begin
-   result := dmCadPaciente.EdicaoDadosBasicos(objPaciente);
+   result := dmCadPaciente.InsertEditDadosBasicos(objPaciente);
 end;
 
 function TControlePaciente.ApagarCadastroBasico(codigo: integer): boolean;

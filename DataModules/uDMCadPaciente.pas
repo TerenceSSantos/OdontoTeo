@@ -23,17 +23,16 @@ type
       strprocAnamnese: TZStoredProc;
       strprocApagarDadosBasicos: TZStoredProc;
       strprocApagarResponsavel: TZStoredProc;
+      strprocCadEditDadosBasicos: TZStoredProc;
       strprocGravarDadosProfissionais: TZStoredProc;
       strprocEditarAnamnese: TZStoredProc;
       strprocEditarContatos: TZStoredProc;
-      strprocEditarDadosBasicos: TZStoredProc;
       strprocEditarDadosProf: TZStoredProc;
       strprocEditarEndereco: TZStoredProc;
       strprocEditarEnfermidades: TZStoredProc;
       strprocEditarResponsavel: TZStoredProc;
       strprocEditarSinaisSintomas: TZStoredProc;
       strprocGravarContatos: TZStoredProc;
-      strprocGravarDadosBasicos: TZStoredProc;
       strprocGravarEndereco: TZStoredProc;
       strprocGravarEnfermidades: TZStoredProc;
       strprocGravarResponsavel: TZStoredProc;
@@ -47,8 +46,7 @@ type
       function EnviaDadosBasicos(objPaciente: TPaciente) : TPaciente;
 //      function ApagarCadastroBasico(codigo: integer): boolean;
 
-      function InclusaoDadosBasicos(objPaciente: TPaciente): integer;
-      function EdicaoDadosBasicos(objPaciente: TPaciente): boolean;
+      function InsertEditDadosBasicos(objPaciente: TPaciente): integer;
       function ApagarDadosBasico(codigo: integer): boolean;
 
       function InclusaoOuEdicaoDocumentos(objDocumentos: TDocumentos): boolean;
@@ -106,29 +104,30 @@ begin
       result := false;
 end;
 
-function TdmCadPaciente.InclusaoDadosBasicos(objPaciente: TPaciente): integer;
+function TdmCadPaciente.InsertEditDadosBasicos(objPaciente: TPaciente): integer;
 var
    frmMensagem : TfrmMensagem;
 begin
-   with strprocGravarDadosBasicos do     //** UTILIZAÇÃO DA STORED PROCEDURE PARA SALVAR OS DADOS BÁSICOS NO BANCO DE DADOS *****
+   with strprocCadEditDadosBasicos do     //** UTILIZAÇÃO DA STORED PROCEDURE PARA SALVAR OS DADOS BÁSICOS NO BANCO DE DADOS *****
    begin
-      Params[0].AsString := objPaciente.nomePaciente;
-      Params[1].AsString := objPaciente.nomePai;
-      Params[2].AsString := objPaciente.nomeMae;
-      Params[3].AsString := objPaciente.estadoCivil;
-      Params[4].AsString := objPaciente.nomeConjuge;
-      Params[5].AsString := objPaciente.sexo;
+      Params[0].AsInteger := objPaciente.idPaciente;
+      Params[1].AsString := objPaciente.nomePaciente;
+      Params[2].AsString := objPaciente.nomePai;
+      Params[3].AsString := objPaciente.nomeMae;
+      Params[4].AsString := objPaciente.estadoCivil;
+      Params[5].AsString := objPaciente.nomeConjuge;
+      Params[6].AsString := objPaciente.sexo;
       if not(objPaciente.dataNascimento = StrToDate('30/12/1899')) then
-         Params[6].AsDate := objPaciente.dataNascimento;
-      Params[7].AsString := objPaciente.naturalidade;
-      Params[8].AsString := objPaciente.ufNascimento;
-      Params[9].AsString := objPaciente.nacionalidade;
-      Params[10].AsString := objPaciente.ativo;
+         Params[7].AsDate := objPaciente.dataNascimento;
+      Params[8].AsString := objPaciente.naturalidade;
+      Params[9].AsString := objPaciente.ufNascimento;
+      Params[10].AsString := objPaciente.nacionalidade;
+      Params[11].AsString := objPaciente.ativo;
    end;
 
    try
-      strprocGravarDadosBasicos.ExecProc;
-      result := strprocGravarDadosBasicos.Params[12].AsInteger;
+      strprocCadEditDadosBasicos.ExecProc;
+      result := strprocCadEditDadosBasicos.Params[12].AsInteger;
    except on E: Exception do
     begin
        try
@@ -141,43 +140,6 @@ begin
        result := 0;
     end;
    end;
-end;
-
-function TdmCadPaciente.EdicaoDadosBasicos(objPaciente: TPaciente): boolean;
-var
-   frmMensagem : TfrmMensagem;
-begin
-   with strprocEditarDadosBasicos do
-   begin
-      Params[0].AsInteger := objPaciente.idPaciente;
-      Params[1].AsString := objPaciente.nomePaciente;
-      Params[2].AsString := objPaciente.nomePai;
-      Params[3].AsString := objPaciente.nomeMae;
-      Params[4].AsString := objPaciente.estadoCivil;
-      Params[5].AsString := objPaciente.nomeConjuge;
-      Params[6].AsString := objPaciente.sexo;
-      if not(objPaciente.dataNascimento = StrToDate('30/12/1899')) then
-         Params[7].AsDate := objPaciente.dataNascimento;
-      Params[8].AsString := objPaciente.naturalidade;
-      Params[9].AsString := objPaciente.nacionalidade;
-      Params[10].AsString := objPaciente.ativo;
-   end;
-   try
-      strprocEditarDadosBasicos.ExecProc;
-      result := true;
-   except on E: Exception do
-    begin
-       try
-         frmMensagem := TfrmMensagem.Create(Self);
-         frmMensagem.InfoFormMensagem('Alteração dos Dados Básicos', tiErro, 'Erro ao tentar gravar a alteração do registro ' +
-                                      'com a seguinte mensagem de erro:' + LineEnding + LineEnding + E.Message);
-       finally
-          FreeAndNil(frmMensagem);
-       end;
-       result := false;
-    end;
-   end;
-
 end;
 
 function TdmCadPaciente.ApagarDadosBasico(codigo: integer): boolean;
@@ -211,9 +173,20 @@ begin
       Params[0].AsString := objDocumentos.identidade;
       Params[1].AsString := objDocumentos.orgaoExpedidor;
       Params[2].AsString := objDocumentos.cpf;
-      Params[3].AsInteger := objDocumentos.idTblPaciente;        // 3 = TBLPACIENTE
-      Params[4].AsInteger := objDocumentos.idTblResponsavel;     // 4 = TBLRESPONSAVEL
-      Params[5].AsInteger := objDocumentos.idTblDentista;        // 5 = TBLDENTISTA
+      if objDocumentos.idTblPaciente = 0 then
+         Params[3].Value := Null
+      else
+         Params[3].AsInteger := objDocumentos.idTblPaciente;        // 3 = TBLPACIENTE
+                                                                    // 4 = TBLRESPONSAVEL
+      if objDocumentos.idTblResponsavel = 0 then                    // 5 = TBLDENTISTA
+         Params[4].Value := null
+      else
+         Params[4].AsInteger := objDocumentos.idTblResponsavel;
+
+      if objDocumentos.idTblDentista = 0 then
+         Params[5].Value := null
+      else
+         Params[5].AsInteger := objDocumentos.idTblDentista;
    end;
    try
       strprocInsertEditDocumentos.ExecProc;

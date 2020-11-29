@@ -29,6 +29,7 @@ begin
       cpf := frm.mskedtCPFPaciente.Text;
       case qualTabela of
          3 : idTblPaciente := StrToInt(frm.edtCodPaciente.Text);
+
 {       4 : idTblResponsavel : ;
          5 : idTblDentista : ; }
       end;

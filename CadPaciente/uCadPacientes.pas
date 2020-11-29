@@ -408,15 +408,13 @@ procedure TfrmCadPaciente.btnGravaCadastroClick(Sender: TObject);
 begin
    case pcCadPaciente.ActivePageIndex of
       0 : begin
-             if estado in [teInclusao] then
-             begin
-                DadosBasicos.InclusaoDadosBasicos(Self);
-                if (mskedtCPFPaciente.Text <> EmptyStr) or (edtIdentidadePaciente.Text <> EmptyStr) then
-                    Documentos.InclusaoOuEdicaoDocumentos(Self, 3); // 3 = TBLPACIENTE
-             end                                                    // 4 = TBLRESPONSAVEL
-             else if estado in [teEdicao] then                      // 5 = TBLDENTISTA
-                DadosBasicos.EditarDadosBasicos(Self);
-          end;
+             DadosBasicos.InsertEditDadosBasicos(Self);
+             //Caso o CPF ou o Nº de identidade não estejam vazios, proceder a inserção/edição
+             if (trim(mskedtCPFPaciente.Text) <> EmptyStr) or (trim(edtIdentidadePaciente.Text) <> EmptyStr) then
+                Documentos.InclusaoOuEdicaoDocumentos(Self, 3); // 3 = TBLPACIENTE
+          end;                                                  // 4 = TBLRESPONSAVEL
+                                                                // 5 = TBLDENTISTA
+
 
       1 : begin
              if estado in [teInclusao] then

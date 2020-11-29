@@ -21,9 +21,8 @@ type
 
    DadosBasicos = class
     public
+      class procedure InsertEditDadosBasicos(frm: TfrmCadPaciente);
       class function CarregaObjDadosBasicos(objDados: TPaciente; frm: TfrmCadPaciente): TPaciente;
-      class procedure InclusaoDadosBasicos(frm: TfrmCadPaciente);
-      class procedure EditarDadosBasicos(frm: TfrmCadPaciente);
       class procedure ApagarDadosBasico(codigo: integer);
    end;
 
@@ -32,6 +31,55 @@ type
 implementation
 
 { DadosBasicos }
+
+class procedure DadosBasicos.InsertEditDadosBasicos(frm: TfrmCadPaciente);
+var
+   objDadosBasicos : TPaciente;
+   objControlePaciente : TControlePaciente;
+   codigo : integer;
+   frmMensagem : TfrmMensagem;
+begin
+   if Trim(frm.edtNomePaciente.Text) = '' then
+   begin
+      try
+         frmMensagem := TfrmMensagem.Create(nil);
+         frmMensagem.InfoFormMensagem('A T E N Ç Ã O', tiAviso, 'O nome do paciente deve ser preenchido!');
+      finally
+         FreeAndNil(frmMensagem);
+      end;
+      frm.edtNomePaciente.SetFocus;
+      exit;
+   end;
+   try
+      objDadosBasicos := TPaciente.Create;
+      objControlePaciente := TControlePaciente.Create;
+      objDadosBasicos := CarregaObjDadosBasicos(objDadosBasicos, frm);
+      codigo := objControlePaciente.InsertEditDadosBasicos(objDadosBasicos);
+      if codigo > 0 then
+      begin
+         try
+            frmMensagem := TfrmMensagem.Create(nil);
+            frmMensagem.InfoFormMensagem('Cadastro do paciente', tiInformacao, 'Paciente cadastrado com sucesso!');
+         finally
+            FreeAndNil(frmMensagem);
+         end;
+         frm.lblCodPaciente.Caption := 'Código: ' + IntToStr(codigo);
+         frm.lblNomePaciente.Caption := 'Nome do Paciente: ' + frm.edtNomePaciente.Text;
+         if objDadosBasicos.dataNascimento <> StrToDate('30/12/1899')then
+            frm.lblIdade.Caption := objDadosBasicos.RetornoIdadeCompleta;
+         frm.edtCodPaciente.Text := IntToStr(codigo);
+
+         //DesabilitaControles(pcCadPaciente.ActivePage);
+         //estado := teNavegacao;
+         //EstadoBotoes;
+      end
+      else
+         frm.lblCodPaciente.Caption := 'Código: ';
+   finally
+      FreeAndNil(objControlePaciente);
+      FreeAndNil(objDadosBasicos);
+   end;
+end;
 
 class function DadosBasicos.CarregaObjDadosBasicos(objDados: TPaciente; frm: TfrmCadPaciente): TPaciente;
 begin
@@ -67,95 +115,6 @@ begin
       //orgaoExpedidorID := frm.edtOrgaoExpedPaciente.Text;
    end;
    result := objDados;
-end;
-
-class procedure DadosBasicos.InclusaoDadosBasicos(frm: TfrmCadPaciente);
-var
-   objDadosBasicos : TPaciente;
-   objControlePaciente : TControlePaciente;
-   codigo : integer;
-   frmMensagem : TfrmMensagem;
-begin
-   if Trim(frm.edtNomePaciente.Text) = '' then
-   begin
-      try
-         frmMensagem := TfrmMensagem.Create(nil);
-         frmMensagem.InfoFormMensagem('A T E N Ç Ã O', tiAviso, 'O nome do paciente deve ser preenchido!');
-      finally
-         FreeAndNil(frmMensagem);
-      end;
-      frm.edtNomePaciente.SetFocus;
-      exit;
-   end;
-   try
-      objDadosBasicos := TPaciente.Create;
-      objControlePaciente := TControlePaciente.Create;
-      objDadosBasicos := CarregaObjDadosBasicos(objDadosBasicos, frm);
-      codigo := objControlePaciente.InclusaoDadosBasicos(objDadosBasicos);
-      if codigo > 0 then
-      begin
-         try
-            frmMensagem := TfrmMensagem.Create(nil);
-            frmMensagem.InfoFormMensagem('Cadastro do paciente', tiInformacao, 'Paciente cadastrado com sucesso!');
-         finally
-            FreeAndNil(frmMensagem);
-         end;
-         frm.lblCodPaciente.Caption := 'Código: ' + IntToStr(codigo);
-         frm.lblNomePaciente.Caption := 'Nome do Paciente: ' + frm.edtNomePaciente.Text;
-         if objDadosBasicos.dataNascimento <> StrToDate('30/12/1899')then
-            frm.lblIdade.Caption := objDadosBasicos.RetornoIdadeCompleta;
-         frm.edtCodPaciente.Text := IntToStr(codigo);
-
-         //DesabilitaControles(pcCadPaciente.ActivePage);
-         //estado := teNavegacao;
-         //EstadoBotoes;
-      end
-      else
-         frm.lblCodPaciente.Caption := 'Código: ';
-   finally
-      FreeAndNil(objControlePaciente);
-      FreeAndNil(objDadosBasicos);
-   end;
-end;
-
-class procedure DadosBasicos.EditarDadosBasicos(frm: TfrmCadPaciente);
-var
-   objControlePaciente : TControlePaciente;
-   objDadosBasicos : TPaciente;
-begin
-   if Trim(frmCadPaciente.edtNomePaciente.Text) = '' then
-    begin
-       try
-          frmMensagem := TfrmMensagem.Create(nil);
-          frmMensagem.InfoFormMensagem('Alteração no cadastro do paciente', tiInformacao, 'O nome do paciente deve ser preenchido!');
-       finally
-          FreeAndNil(frmMensagem);
-       end;
-       frmCadPaciente.edtNomePaciente.SetFocus;
-       exit;
-    end;
-   try
-      objDadosBasicos := TPaciente.Create;
-      objControlePaciente := TControlePaciente.Create;
-      objDadosBasicos := CarregaObjDadosBasicos(objDadosBasicos, frm);
-      if objControlePaciente.EdicaoDadosBasicos(objDadosBasicos) then
-       begin
-         try
-            frmMensagem := TfrmMensagem.Create(nil);
-            frmMensagem.InfoFormMensagem('Alteração no cadastro do paciente', tiInformacao, 'Paciente alterado com sucesso!');
-         finally
-            FreeAndNil(frmMensagem);
-         end;
-       end;
-
-      //DesabilitaControles(frmCadPaciente.pcCadPaciente.ActivePage);
-      estado := teNavegacao;
-      //EstadoBotoes;
-   finally
-      FreeAndNil(objControlePaciente);
-      FreeAndNil(objDadosBasicos);
-   end;
-
 end;
 
 class procedure DadosBasicos.ApagarDadosBasico(codigo: integer);
