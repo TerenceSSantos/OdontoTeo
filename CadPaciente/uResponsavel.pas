@@ -22,8 +22,8 @@ type
    Responsavel = class
     public
        class function CarregaObjResponsavel(objResponsavel: TResponsavelPaciente; frm: TfrmCadPaciente): TResponsavelPaciente;
-       class procedure InclusaoResponsavel(frm: TfrmCadPaciente);
-       class procedure EdicaoResponsavel(frm: TfrmCadPaciente);
+       class procedure InclusaoOuEdicaoResponsavel(frm: TfrmCadPaciente);
+
        class procedure ApagarResponsavel(codigo: integer);
    end;
 
@@ -33,7 +33,8 @@ implementation
 
 class function Responsavel.CarregaObjResponsavel(objResponsavel: TResponsavelPaciente; frm: TfrmCadPaciente): TResponsavelPaciente;
 begin
-   objResponsavel.idPaciente := StrToInt(frm.edtCodPaciente.Text);
+   objResponsavel.idResponsavel := StrToInt(frm.edtCodResponsavel.Text);
+   objResponsavel.idTblPaciente := StrToInt(frm.edtCodPaciente.Text);
    objResponsavel.nomeResponsavel := frm.edtNomeResp.Text;
    objResponsavel.parentesco := frm.edtParentesco.Text;
    objResponsavel.cpfResponsavel := frm.mskedtCPFResp.Text;
@@ -42,15 +43,17 @@ begin
    result := objResponsavel;
 end;
 
-class procedure Responsavel.InclusaoResponsavel(frm: TfrmCadPaciente);
+class procedure Responsavel.InclusaoOuEdicaoResponsavel(frm: TfrmCadPaciente);
 var
-   objResponsavel : TResponsavelPaciente;
+   objResponsavel: TResponsavelPaciente;
    objControlePaciente : TControlePaciente;
+   codResponsavel : integer;
 begin
    try
       objResponsavel := TResponsavelPaciente.Create;
       objControlePaciente := TControlePaciente.Create;
-      if objControlePaciente.InclusaoResponsavel(CarregaObjResponsavel(objResponsavel, frm))then
+      codResponsavel := objControlePaciente.InclusaoOuEdicaoResponsavel(CarregaObjResponsavel(objResponsavel, frm));
+      if codResponsavel > 0 then;
        begin
           try
              frmMensagem := TfrmMensagem.Create(nil);
@@ -58,51 +61,10 @@ begin
           finally
              FreeAndNil(frmMensagem);
           end;
+          frm.edtCodResponsavel.Text := IntToStr(codResponsavel);
        end;
 
       //DesabilitaControles(pcCadPaciente.ActivePage);
-      estado := teNavegacao;
-      //EstadoBotoes;
-   finally
-      FreeAndNil(objControlePaciente);
-      FreeAndNil(objResponsavel);
-   end;
-
-end;
-
-class procedure Responsavel.EdicaoResponsavel(frm: TfrmCadPaciente);
-var
-   objResponsavel : TResponsavelPaciente;
-   objControlePaciente : TControlePaciente;
-   frmMensagem : TfrmMensagem;
-begin
-   if Trim(frmCadPaciente.edtNomeResp.Text) = '' then
-    begin
-       try
-          frmMensagem := TfrmMensagem.Create(nil);
-          frmMensagem.InfoFormMensagem('Alteração no cadastro do Responsável', tiInformacao, 'O nome do Responsável deve ser preenchido!');
-       finally
-          FreeAndNil(frmMensagem);
-       end;
-       frmCadPaciente.edtNomeResp.SetFocus;
-       exit;
-    end;
-   try
-      objResponsavel := TResponsavelPaciente.Create;
-      objControlePaciente := TControlePaciente.Create;
-      objResponsavel := CarregaObjResponsavel(objResponsavel, frm);
-      if objControlePaciente.EdicaoResponsavel(objResponsavel) then
-       begin
-         try
-            frmMensagem := TfrmMensagem.Create(nil);
-            frmMensagem.InfoFormMensagem('Alteração no cadastro do Responsável', tiInformacao, 'Alteração no cadastro do Responsável' +
-                                         ' realizado com sucesso!');
-         finally
-            FreeAndNil(frmMensagem);
-         end;
-       end;
-
-      //DesabilitaControles(frmCadPaciente.pcCadPaciente.ActivePage);
       estado := teNavegacao;
       //EstadoBotoes;
    finally

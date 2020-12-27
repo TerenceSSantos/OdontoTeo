@@ -34,6 +34,15 @@ type
       cboxUFEmpresa: TComboBox;
       cboxUFNascimento: TComboBox;
       chkboxAtivo: TCheckBox;
+      edtCodContatos: TEdit;
+      edtCodDadosProf: TEdit;
+      edtCodAnamnese: TEdit;
+      edtCodEnfermidades: TEdit;
+      edtCodSinaisSintomas: TEdit;
+      edtCodDocPaciente: TEdit;
+      edtCodDocResp: TEdit;
+      edtCodEndPaciente: TEdit;
+      edtCodResponsavel: TEdit;
       dtpkNascimento: TDateTimePicker;
       edtAntecFamiliar: TEdit;
       edtBairro: TEdit;
@@ -52,7 +61,7 @@ type
       edtHabitosViciosos: TEdit;
       edtIdentidadePaciente: TEdit;
       edtIdentidadeResp: TEdit;
-      edtIdentidadeResp1: TEdit;
+//      edtIdentidadeResp1: TEdit;
       edtLogradEmpresa: TEdit;
       edtLogradouro: TEdit;
       edtEmail: TEdit;
@@ -408,30 +417,26 @@ procedure TfrmCadPaciente.btnGravaCadastroClick(Sender: TObject);
 begin
    case pcCadPaciente.ActivePageIndex of
       0 : begin
-             DadosBasicos.InsertEditDadosBasicos(Self);
+             DadosBasicos.InclusaoOuEdicaoDadosBasicos(Self);
              //Caso o CPF ou o Nº de identidade não estejam vazios, proceder a inserção/edição
              if (trim(mskedtCPFPaciente.Text) <> EmptyStr) or (trim(edtIdentidadePaciente.Text) <> EmptyStr) then
                 Documentos.InclusaoOuEdicaoDocumentos(Self, 3); // 3 = TBLPACIENTE
           end;                                                  // 4 = TBLRESPONSAVEL
                                                                 // 5 = TBLDENTISTA
-
-
       1 : begin
-             if estado in [teInclusao] then
-             begin
-                Responsavel.InclusaoResponsavel(Self);
-                if (mskedtCPFResp.Text <> EmptyStr) or (edtIdentidadeResp.Text <> EmptyStr) then
-                   Documentos.InclusaoOuEdicaoDocumentos(Self, 4);   // 3 = TBLPACIENTE
-             end                                                     // 4 = TBLRESPONSAVEL
-             else if estado in [teEdicao] then                       // 5 = TBLDENTISTA
-                Responsavel.EdicaoResponsavel(Self);
-          end;
-
+             Responsavel.InclusaoOuEdicaoResponsavel(Self);
+             //Caso o CPF ou o Nº de identidade não estejam vazios, proceder a inserção/edição
+             if (Trim(mskedtCPFResp.Text) <> EmptyStr) or (Trim(edtIdentidadeResp.Text) <> EmptyStr) then
+                Documentos.InclusaoOuEdicaoDocumentos(Self, 4);      // 3 = TBLPACIENTE
+          end;                                                       // 4 = TBLRESPONSAVEL
+                                                                     // 5 = TBLDENTISTA
       2 : begin
-             if estado in [teInclusao] then
+             Endereco.InclusaoOuEdicaoEndereco(Self, 8);          // 8 = TBLPACIENTE
+                                                                  // 9 = TBLDADOSPROF
+            { if estado in [teInclusao] then
                 Endereco.InclusaoEndereco(Self)
              else if estado in [teEdicao] then
-                Endereco.EdicaoEndereco(Self);
+                Endereco.EdicaoEndereco(Self); }
           end;
 
       3 : begin
@@ -966,6 +971,7 @@ begin
 //      objDadosBasicos.idResponsavel := objResponsavel.idResponsavel;
       edtNomeResp.Text := objResponsavel.nomeResponsavel;
       edtParentesco.Text := objResponsavel.parentesco;
+      edtCodResponsavel.Text := IntToStr(objResponsavel.idResponsavel);
    finally
       FreeAndNil(objResponsavel);
    end;

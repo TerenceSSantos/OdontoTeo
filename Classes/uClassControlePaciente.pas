@@ -18,19 +18,18 @@ type
      public
         procedure ChamaLocalizar; //(frmLocalizaPaciente: TfrmLocalizaPaciente);
 
-        function InsertEditDadosBasicos(objPaciente: TPaciente): integer;
+        function InclusaoOuEdicaoDadosBasicos(objPaciente: TPaciente): integer;
         function ApagarCadastroBasico(codigo: integer): boolean;
         function TblPacienteVazia : boolean;
         class procedure EnviaDadosBasicos(objPaciente: TPaciente);
 
-        function InclusaoOuEdicaoDocumentos(objDocumentos: TDocumentos): boolean;
+        function InclusaoOuEdicaoDocumentos(objDocumentos: TDocumentos): integer;
+        function InclusaoOuEdicaoResponsavel(objResponsavel: TResponsavelPaciente): integer;
 
-        function InclusaoResponsavel(objResponsavel: TResponsavelPaciente): boolean;
-        function EdicaoResponsavel(objResponsavel: TResponsavelPaciente): boolean;
         function ApagarResponsavel(codigo: integer): boolean;
         function SelectResponsavel(idTblPaciente: integer; objResponsavel: TResponsavelPaciente): TResponsavelPaciente;
 
-        function InclusaoEndereco(objEndereco: TEndereco): boolean;
+        function InclusaoOuEdicaoEndereco(objEndereco: TEndereco): integer;
         function EdicaoEndereco(objEndereco: TEndereco): boolean;
 
         function InclusaoContatos(objContatos: TContatos): boolean;
@@ -73,9 +72,9 @@ begin                                                {** CHAMAR A TELA DE PESQUI
    end;
 end;
 
-function TControlePaciente.InsertEditDadosBasicos(objPaciente: TPaciente): integer;
+function TControlePaciente.InclusaoOuEdicaoDadosBasicos(objPaciente: TPaciente): integer;
 begin
-   result := dmCadPaciente.InsertEditDadosBasicos(objPaciente);
+   result := dmCadPaciente.InclusaoOuEdicaoDadosBasicos(objPaciente);
 end;
 
 function TControlePaciente.ApagarCadastroBasico(codigo: integer): boolean;
@@ -93,19 +92,14 @@ begin
    frmCadPaciente.PreencheFormDadosBasicos(objPaciente);
 end;
 
-function TControlePaciente.InclusaoOuEdicaoDocumentos(objDocumentos: TDocumentos): boolean;
+function TControlePaciente.InclusaoOuEdicaoDocumentos(objDocumentos: TDocumentos): integer;
 begin
    result := dmCadPaciente.InclusaoOuEdicaoDocumentos(objDocumentos);
 end;
 
-function TControlePaciente.InclusaoResponsavel(objResponsavel: TResponsavelPaciente): boolean;
+function TControlePaciente.InclusaoOuEdicaoResponsavel(objResponsavel: TResponsavelPaciente): integer;
 begin
-   result := dmCadPaciente.InclusaoResponsavel(objResponsavel);
-end;
-
-function TControlePaciente.EdicaoResponsavel(objResponsavel: TResponsavelPaciente): boolean;
-begin
-   dmCadPaciente.EdicaoResponsavel(objResponsavel);
+   result := dmCadPaciente.InclusaoOuEdicaoResponsavel(objResponsavel);
 end;
 
 function TControlePaciente.ApagarResponsavel(codigo: integer): boolean;
@@ -118,9 +112,9 @@ begin
    dmCadPaciente.SelectResponsavel(idTblPaciente, objResponsavel);
 end;
 
-function TControlePaciente.InclusaoEndereco(objEndereco: TEndereco): boolean;
+function TControlePaciente.InclusaoOuEdicaoEndereco(objEndereco: TEndereco): integer;
 begin
-   result := dmCadPaciente.InclusaoEndereco(objEndereco);
+   result := dmCadPaciente.InclusaoOuEdicaoEndereco(objEndereco);
 end;
 
 function TControlePaciente.EdicaoEndereco(objEndereco: TEndereco): boolean;

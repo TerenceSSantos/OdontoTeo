@@ -1243,6 +1243,18 @@ object frmCadPaciente: TfrmCadPaciente
             ParentColor = False
             ParentFont = False
           end
+          object edtCodDocPaciente: TEdit
+            Left = 500
+            Height = 23
+            Top = 245
+            Width = 40
+            NumbersOnly = True
+            TabStop = False
+            TabOrder = 15
+            Text = '0'
+            TextHint = 'Cód. doc. Paciente'
+            Visible = False
+          end
         end
       end
       object tabResponsavel: TTabSheet
@@ -1377,23 +1389,6 @@ object frmCadPaciente: TfrmCadPaciente
             ParentColor = False
             ParentFont = False
           end
-          object mskedtCPFResp: TMaskEdit
-            Left = 152
-            Height = 23
-            Top = 204
-            Width = 132
-            CharCase = ecNormal
-            Color = 14876671
-            Font.Color = 65664
-            Font.Height = -12
-            Font.Name = 'Segoe UI Semibold'
-            MaxLength = 14
-            ParentFont = False
-            TabOrder = 2
-            EditMask = '!000.000.000-00;0;_'
-            TextHint = 'Nº do CPF do responsável'
-            SpaceChar = '_'
-          end
           object lblIdentidadeResp: TLabel
             Left = 340
             Height = 15
@@ -1420,7 +1415,7 @@ object frmCadPaciente: TfrmCadPaciente
             Font.Height = -12
             Font.Name = 'Segoe UI Semibold'
             ParentFont = False
-            TabOrder = 3
+            TabOrder = 2
             TextHint = 'Nº da identidade do responsável'
           end
           object lblOrgaoExpResp: TLabel
@@ -1449,8 +1444,48 @@ object frmCadPaciente: TfrmCadPaciente
             Font.Height = -12
             Font.Name = 'Segoe UI Semibold'
             ParentFont = False
-            TabOrder = 4
+            TabOrder = 3
             TextHint = 'Entidade que expediu a identidade do responsável'
+          end
+          object edtCodResponsavel: TEdit
+            Left = 73
+            Height = 23
+            Top = 73
+            Width = 40
+            NumbersOnly = True
+            TabStop = False
+            TabOrder = 4
+            Text = '0'
+            TextHint = 'Código do Responsável'
+          end
+          object edtCodDocResp: TEdit
+            Left = 73
+            Height = 23
+            Top = 160
+            Width = 40
+            NumbersOnly = True
+            TabStop = False
+            TabOrder = 5
+            Text = '0'
+            TextHint = 'Cód. doc. Responsável'
+            Visible = False
+          end
+          object mskedtCPFResp: TMaskEdit
+            Left = 152
+            Height = 23
+            Top = 204
+            Width = 132
+            CharCase = ecNormal
+            Color = 14876671
+            Font.Color = 65664
+            Font.Height = -12
+            Font.Name = 'Segoe UI Semibold'
+            MaxLength = 14
+            ParentFont = False
+            TabOrder = 6
+            EditMask = '!999.999.999-99;0;_'
+            TextHint = 'CPF do(a) paciente'
+            SpaceChar = '_'
           end
         end
       end
@@ -1754,6 +1789,18 @@ object frmCadPaciente: TfrmCadPaciente
             EditMask = '!00.000-000;0;_'
             TextHint = 'CEP do endereço'
             SpaceChar = '_'
+          end
+          object edtCodEndPaciente: TEdit
+            Left = 87
+            Height = 23
+            Top = 45
+            Width = 40
+            NumbersOnly = True
+            TabStop = False
+            TabOrder = 7
+            Text = '0'
+            TextHint = 'Cód. ender. Paciente'
+            Visible = False
           end
         end
       end
@@ -2386,6 +2433,16 @@ object frmCadPaciente: TfrmCadPaciente
             TabOrder = 16
             TextHint = 'Informar o(s) email(s)'
           end
+          object edtCodContatos: TEdit
+            Left = 40
+            Height = 23
+            Top = 35
+            Width = 120
+            TabStop = False
+            TabOrder = 17
+            TextHint = 'ID Contatos'
+            Visible = False
+          end
         end
       end
       object tabDadosProfissionais: TTabSheet
@@ -2744,6 +2801,16 @@ object frmCadPaciente: TfrmCadPaciente
             TabOrder = 1
             TextHint = 'Cargo que o paciente exerce'
           end
+          object edtCodDadosProf: TEdit
+            Left = 27
+            Height = 23
+            Top = 22
+            Width = 120
+            TabStop = False
+            TabOrder = 9
+            TextHint = 'ID Dados Profissionais'
+            Visible = False
+          end
         end
       end
       object tabAnamnese: TTabSheet
@@ -2761,7 +2828,6 @@ object frmCadPaciente: TfrmCadPaciente
           HorzScrollBar.Smooth = True
           HorzScrollBar.Tracking = True
           VertScrollBar.Page = 302
-          VertScrollBar.Position = 348
           Align = alClient
           BorderStyle = bsNone
           ClientHeight = 302
@@ -3854,6 +3920,16 @@ object frmCadPaciente: TfrmCadPaciente
                 ThemedCaption = True
               end
             end
+            object edtCodAnamnese: TEdit
+              Left = 904
+              Height = 23
+              Top = 33
+              Width = 120
+              TabStop = False
+              TabOrder = 16
+              TextHint = 'ID Anamnese'
+              Visible = False
+            end
           end
         end
       end
@@ -4796,6 +4872,16 @@ object frmCadPaciente: TfrmCadPaciente
             ParentColor = False
             ParentFont = False
           end
+          object edtCodSinaisSintomas: TEdit
+            Left = 191
+            Height = 23
+            Top = 18
+            Width = 120
+            TabStop = False
+            TabOrder = 20
+            TextHint = 'ID Sinais e Sintomas'
+            Visible = False
+          end
         end
       end
       object tabEnfermidades: TTabSheet
@@ -5736,6 +5822,16 @@ object frmCadPaciente: TfrmCadPaciente
             Font.Style = [fsBold]
             ParentColor = False
             ParentFont = False
+          end
+          object edtCodEnfermidades: TEdit
+            Left = 191
+            Height = 23
+            Top = 13
+            Width = 120
+            TabStop = False
+            TabOrder = 20
+            TextHint = 'ID Enfermidades'
+            Visible = False
           end
         end
       end

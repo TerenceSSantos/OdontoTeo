@@ -19,6 +19,7 @@ type
        Fcomplemento: string;
        Festado: string;
        FidEndereco: integer;
+       FidTblDadosProf: integer;
        FidTblPaciente: integer;
        Flogradouro: string;
        Fnumero: string;
@@ -32,11 +33,13 @@ type
        property estado: string read Festado write Festado;
        property cep: string read Fcep write Fcep;
        property idTblPaciente: integer read FidTblPaciente write FidTblPaciente;
+       property idTblDadosProf: integer read FidTblDadosProf write FidTblDadosProf;
    end;
 
 implementation
 
 { TEndereco }
+
 
 end.
 

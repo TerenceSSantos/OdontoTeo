@@ -13,7 +13,7 @@ type
 
    TResponsavelPaciente = class
    private
-      FidPaciente: integer;
+      FidTblPaciente: integer;
       FidResponsavel: integer;
       FnomeResponsavel: string;
       Fparentesco: string;
@@ -27,7 +27,7 @@ type
       property cpfResponsavel : string read FcpfResponsavel write FcpfResponsavel;
       property identidadeResponsavel : string read FidentidadeResponsavel write FidentidadeResponsavel;
       property orgaoExpedidorID : string read ForgaoExpedidorID write ForgaoExpedidorID;
-      property idPaciente : integer read FidPaciente write FidPaciente;
+      property idTblPaciente : integer read FidTblPaciente write FidTblPaciente;
 
       //constructor Create;
       //destructor Destroy; override;

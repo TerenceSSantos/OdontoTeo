@@ -24,20 +24,20 @@ type
       strprocApagarDadosBasicos: TZStoredProc;
       strprocApagarResponsavel: TZStoredProc;
       strprocCadEditDadosBasicos: TZStoredProc;
+      strprocCadEditEndereco: TZStoredProc;
       strprocGravarDadosProfissionais: TZStoredProc;
       strprocEditarAnamnese: TZStoredProc;
       strprocEditarContatos: TZStoredProc;
       strprocEditarDadosProf: TZStoredProc;
       strprocEditarEndereco: TZStoredProc;
       strprocEditarEnfermidades: TZStoredProc;
-      strprocEditarResponsavel: TZStoredProc;
       strprocEditarSinaisSintomas: TZStoredProc;
       strprocGravarContatos: TZStoredProc;
       strprocGravarEndereco: TZStoredProc;
       strprocGravarEnfermidades: TZStoredProc;
-      strprocGravarResponsavel: TZStoredProc;
       strprocGravarSinaisSintomas: TZStoredProc;
       strprocInsertEditDocumentos: TZStoredProc;
+      strprocCadEditResponsavel: TZStoredProc;
    private
 
    public
@@ -46,17 +46,16 @@ type
       function EnviaDadosBasicos(objPaciente: TPaciente) : TPaciente;
 //      function ApagarCadastroBasico(codigo: integer): boolean;
 
-      function InsertEditDadosBasicos(objPaciente: TPaciente): integer;
+      function InclusaoOuEdicaoDadosBasicos(objPaciente: TPaciente): integer;
       function ApagarDadosBasico(codigo: integer): boolean;
 
-      function InclusaoOuEdicaoDocumentos(objDocumentos: TDocumentos): boolean;
+      function InclusaoOuEdicaoDocumentos(objDocumentos: TDocumentos): integer;
 
-      function InclusaoResponsavel(objResponsavel: TResponsavelPaciente): boolean;
-      function EdicaoResponsavel(objResponsavel: TResponsavelPaciente): boolean;
+      function InclusaoOuEdicaoResponsavel(objResponsavel: TResponsavelPaciente): integer;
       function ApagarResponsavel(codigo: integer): boolean;
       function SelectResponsavel(idTblPaciente: integer; objResponsavel: TResponsavelPaciente): TResponsavelPaciente;
 
-      function InclusaoEndereco(objEndereco: TEndereco): boolean;
+      function InclusaoOuEdicaoEndereco(objEndereco: TEndereco): integer;
       function EdicaoEndereco(objEndereco: TEndereco): boolean;
 
       function InclusaoContatos(objContatos: TContatos): boolean;
@@ -104,7 +103,7 @@ begin
       result := false;
 end;
 
-function TdmCadPaciente.InsertEditDadosBasicos(objPaciente: TPaciente): integer;
+function TdmCadPaciente.InclusaoOuEdicaoDadosBasicos(objPaciente: TPaciente): integer;
 var
    frmMensagem : TfrmMensagem;
 begin
@@ -164,33 +163,33 @@ begin
    end;
 end;
 
-function TdmCadPaciente.InclusaoOuEdicaoDocumentos(objDocumentos: TDocumentos): boolean;
+function TdmCadPaciente.InclusaoOuEdicaoDocumentos(objDocumentos: TDocumentos): integer;
 var
    frmMensagem: TfrmMensagem;
 begin
    with strprocInsertEditDocumentos do
    begin
-      Params[0].AsString := objDocumentos.identidade;
-      Params[1].AsString := objDocumentos.orgaoExpedidor;
-      Params[2].AsString := objDocumentos.cpf;
+      Params[1].AsString := objDocumentos.identidade;
+      Params[2].AsString := objDocumentos.orgaoExpedidor;
+      Params[3].AsString := objDocumentos.cpf;
       if objDocumentos.idTblPaciente = 0 then
-         Params[3].Value := Null
+         Params[4].Value := Null
       else
-         Params[3].AsInteger := objDocumentos.idTblPaciente;        // 3 = TBLPACIENTE
+         Params[4].AsInteger := objDocumentos.idTblPaciente;        // 3 = TBLPACIENTE
                                                                     // 4 = TBLRESPONSAVEL
       if objDocumentos.idTblResponsavel = 0 then                    // 5 = TBLDENTISTA
-         Params[4].Value := null
-      else
-         Params[4].AsInteger := objDocumentos.idTblResponsavel;
-
-      if objDocumentos.idTblDentista = 0 then
          Params[5].Value := null
       else
-         Params[5].AsInteger := objDocumentos.idTblDentista;
+         Params[5].AsInteger := objDocumentos.idTblResponsavel;
+
+      if objDocumentos.idTblDentista = 0 then
+         Params[6].Value := null
+      else
+         Params[6].AsInteger := objDocumentos.idTblDentista;
    end;
    try
       strprocInsertEditDocumentos.ExecProc;
-      result := true;
+      result := strprocInsertEditDocumentos.Params[7].AsInteger;
    except on E: Exception do
     begin
        try
@@ -200,10 +199,36 @@ begin
        finally
           FreeAndNil(frmMensagem);
        end;
-       result := false;
+       result := 0;
     end;
 
    end;
+end;
+
+function TdmCadPaciente.InclusaoOuEdicaoResponsavel(objResponsavel: TResponsavelPaciente): integer;
+var
+   frmMensagem : TfrmMensagem;
+begin
+   strprocCadEditResponsavel.Params[0].AsInteger := objResponsavel.idResponsavel;
+   strprocCadEditResponsavel.Params[1].AsString := objResponsavel.nomeResponsavel;
+   strprocCadEditResponsavel.Params[2].AsString := objResponsavel.parentesco;
+   strprocCadEditResponsavel.Params[3].AsInteger := objResponsavel.idTblPaciente;
+   try
+      strprocCadEditResponsavel.ExecProc;
+      result := strprocCadEditResponsavel.Params[4].AsInteger;
+   except on E: Exception do
+    begin
+       try
+         frmMensagem := TfrmMensagem.Create(Self);
+         frmMensagem.InfoFormMensagem('Cadastro do Responsável', tiErro, 'Erro ao tentar gravar a inclusão do registro ' +
+                                      ' com a seguinte mensagem de erro:' + LineEnding + LineEnding + E.Message);
+       finally
+          FreeAndNil(frmMensagem);
+       end;
+       result := 0;
+    end;
+   end;
+
 end;
 
 function TdmCadPaciente.EnviaDadosBasicos(objPaciente: TPaciente): TPaciente;
@@ -250,64 +275,6 @@ begin
    end;
 end;
  }
-function TdmCadPaciente.InclusaoResponsavel(objResponsavel: TResponsavelPaciente): boolean;
-var
-   frmMensagem : TfrmMensagem;
-begin
-   strprocGravarResponsavel.Params[0].AsString := objResponsavel.nomeResponsavel;
-   strprocGravarResponsavel.Params[1].AsString := objResponsavel.parentesco;
-   strprocGravarResponsavel.Params[2].AsString := objResponsavel.cpfResponsavel;
-   strprocGravarResponsavel.Params[3].AsString := objResponsavel.identidadeResponsavel;
-   strprocGravarResponsavel.Params[4].AsString := objResponsavel.orgaoExpedidorID;
-   strprocGravarResponsavel.Params[5].AsInteger := objResponsavel.idPaciente;
-   try
-      strprocGravarResponsavel.ExecProc;
-      result := true;
-   except on E: Exception do
-    begin
-       try
-         frmMensagem := TfrmMensagem.Create(Self);
-         frmMensagem.InfoFormMensagem('Cadastro do Responsável', tiErro, 'Erro ao tentar gravar a inclusão do registro ' +
-                                      ' com a seguinte mensagem de erro:' + LineEnding + LineEnding + E.Message);
-       finally
-          FreeAndNil(frmMensagem);
-       end;
-       result := false;
-    end;
-   end;
-end;
-
-function TdmCadPaciente.EdicaoResponsavel(objResponsavel: TResponsavelPaciente): boolean;
-var
-   frmMensagem : TfrmMensagem;
-begin
-   with strprocEditarResponsavel do
-   begin
-      Params[0].AsInteger := objResponsavel.idResponsavel;
-      Params[1].AsString := objResponsavel.nomeResponsavel;
-      Params[2].AsString := objResponsavel.parentesco;
-      Params[3].AsInteger := objResponsavel.idPaciente;
-      Params[4].AsString := objResponsavel.cpfResponsavel;
-      Params[5].AsString := objResponsavel.identidadeResponsavel;
-      Params[6].AsString := objResponsavel.orgaoExpedidorID;
-   end;
-   try
-      strprocEditarResponsavel.ExecProc;
-      result := true;
-   except on E: Exception do
-    begin
-       try
-         frmMensagem := TfrmMensagem.Create(Self);
-         frmMensagem.InfoFormMensagem('Alteração de dados do Responsável', tiErro, 'Erro ao tentar gravar a alteração do registro ' +
-                                      'com a seguinte mensagem de erro:' + LineEnding + LineEnding + E.Message);
-       finally
-          FreeAndNil(frmMensagem);
-       end;
-       result := false;
-    end;
-   end;
-end;
-
 function TdmCadPaciente.ApagarResponsavel(codigo: integer): boolean;
 begin
    try
@@ -340,24 +307,34 @@ begin
    result := objResponsavel;
 end;
 
-function TdmCadPaciente.InclusaoEndereco(objEndereco: TEndereco): boolean;
+function TdmCadPaciente.InclusaoOuEdicaoEndereco(objEndereco: TEndereco): integer;
 var
-   frmMensagem : TfrmMensagem;
-begin
+   frmMensagem : TfrmMensagem;                                 // 8 = TBLPACIENTE
+begin                                                          // 9 = TBLDADOSPROF
    with strprocGravarEndereco do
    begin
-      Params[0].AsString := objEndereco.logradouro;
-      Params[1].AsString := objEndereco.numero;
-      Params[2].AsString := objEndereco.complemento;
-      Params[3].AsString := objEndereco.bairro;
-      Params[4].AsString := objEndereco.cidade;
-      Params[5].AsString := objEndereco.estado;
-      Params[6].AsString := objEndereco.cep;
-      Params[7].AsInteger := objEndereco.idTblPaciente;           { TODO : INSERIR O CADASTRO DE ENDEREÇO DOS DADOS PROFISSIONAIS }
-//      Params[8].AsInteger :=
+      Params[0].AsInteger := objEndereco.idEndereco;
+      Params[1].AsString := objEndereco.logradouro;
+      Params[2].AsString := objEndereco.numero;
+      Params[3].AsString := objEndereco.complemento;
+      Params[4].AsString := objEndereco.bairro;
+      Params[5].AsString := objEndereco.cidade;
+      Params[6].AsString := objEndereco.estado;
+      Params[7].AsString := objEndereco.cep;
+
+      if objEndereco.idTblPaciente = 0 then
+         Params[8].Value := Null
+      else
+         Params[8].AsInteger := objEndereco.idTblPaciente;
+
+      IF objEndereco.idTblDadosProf = 0 then
+         Params[9].Value := null
+      else
+         Params[9].AsInteger := objEndereco.idTblDadosProf;
+
       try
          ExecProc;
-         result := true;
+         result := Params[10].AsInteger;
       except on E: Exception do
          begin
             try
@@ -367,7 +344,7 @@ begin
             finally
                FreeAndNil(frmMensagem);
             end;
-            result := false;
+            result := 0;
          end;
       end;
    end;
@@ -387,7 +364,7 @@ begin
       Params[5].AsString := objEndereco.cidade;
       Params[6].AsString := objEndereco.estado;
       Params[7].AsString := objEndereco.cep;
-      Params[8].AsInteger := objEndereco.idTblPaciente;   { TODO : EDIÇÃO DO CADASTRO DE ENDEREÇO DOS DADOS PROFISSIONAIS }
+      Params[8].AsInteger := objEndereco.idTblPaciente;
 //      Params[9].AsInteger :=
    end;
    try
@@ -501,7 +478,7 @@ begin
    begin
       Params[0].AsString := objDadosProf.nomeEmpresa;
       Params[1].AsString := objDadosProf.cargo;
-      Params[2].AsInteger := objDadosProf.idTblPaciente;        { TODO : RESOLVER INCLUSÃO DOS DADOS PROFISSIONAIS }
+      Params[2].AsInteger := objDadosProf.idTblPaciente;
       try
       ExecProc;
       result := Params[3].AsInteger;

@@ -39,7 +39,7 @@ type
       procedure spkbtnCadPacientesClick(Sender: TObject);
       procedure Timer1Timer(Sender: TObject);
    private
-       var oldTab: integer;
+
    public
 
    end;

@@ -21,33 +21,42 @@ implementation
 { Documentos }
 
 class function Documentos.CarregaObjDocumentos(objDocumentos: TDocumentos; frm: TFrmCadPaciente; qualTabela: integer): TDocumentos;
+var
+   codigo : integer = 0;
 begin
    with objDocumentos do
    begin
-      identidade := frm.edtIdentidadePaciente.Text;
-      orgaoExpedidor := frm.edtOrgaoExpedPaciente.Text;
-      cpf := frm.mskedtCPFPaciente.Text;
       case qualTabela of
-         3 : idTblPaciente := StrToInt(frm.edtCodPaciente.Text);
-
-{       4 : idTblResponsavel : ;
-         5 : idTblDentista : ; }
+         3 : begin
+                identidade := frm.edtIdentidadePaciente.Text;
+                orgaoExpedidor := frm.edtOrgaoExpedPaciente.Text;
+                cpf := frm.mskedtCPFPaciente.Text;
+                codigo := StrToInt(frm.edtCodPaciente.Text);
+                idTblPaciente := codigo;
+             end;
+         4 : begin
+                identidade := frm.edtIdentidadeResp.Text;
+                orgaoExpedidor := frm.edtOrgaoExpedResp.Text;
+                cpf := frm.mskedtCPFResp.Text;                     { TODO -oTerence -cCadastro : Ajustar }
+                codigo := StrToInt(frm.edtCodResponsavel.Text);
+                idTblResponsavel := codigo;
+             end;
       end;
-
    end;
    result := objDocumentos;
 end;
 
-class procedure Documentos.InclusaoOuEdicaoDocumentos(frm: TfrmCadPaciente;
-   qualTabela: integer);
+class procedure Documentos.InclusaoOuEdicaoDocumentos(frm: TfrmCadPaciente; qualTabela: integer);
 var
   objDocumentos : TDocumentos;
   objControlePaciente : TControlePaciente;
+  codDocumento : integer;
 begin                                                              // 3 = TBLPACIENTE
    try                                                             // 4 = TBLRESPONSAVEL
       objDocumentos := TDocumentos.Create;                         // 5 = TBLDENTISTA
       objControlePaciente := TControlePaciente.Create;
-      if objControlePaciente.InclusaoOuEdicaoDocumentos(CarregaObjDocumentos(objDocumentos, frm, qualTabela)) then
+      codDocumento := objControlePaciente.InclusaoOuEdicaoDocumentos(CarregaObjDocumentos(objDocumentos, frm, qualTabela));
+      if codDocumento > 0 then
        begin
           try
              frmMensagem := TfrmMensagem.Create(nil);
@@ -55,6 +64,11 @@ begin                                                              // 3 = TBLPAC
           finally
              FreeAndNil(frmMensagem);
           end;
+          case qualTabela of
+             3 : frm.edtCodDocPaciente.Text := IntToStr(codDocumento);
+             4 : frm.edtCodDocResp.Text := IntToStr(codDocumento);
+          end;
+
        end;
 
       //DesabilitaControles(pcCadPaciente.ActivePage);

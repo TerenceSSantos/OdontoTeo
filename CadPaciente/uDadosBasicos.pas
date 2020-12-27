@@ -21,7 +21,7 @@ type
 
    DadosBasicos = class
     public
-      class procedure InsertEditDadosBasicos(frm: TfrmCadPaciente);
+      class procedure InclusaoOuEdicaoDadosBasicos(frm: TfrmCadPaciente);
       class function CarregaObjDadosBasicos(objDados: TPaciente; frm: TfrmCadPaciente): TPaciente;
       class procedure ApagarDadosBasico(codigo: integer);
    end;
@@ -32,7 +32,7 @@ implementation
 
 { DadosBasicos }
 
-class procedure DadosBasicos.InsertEditDadosBasicos(frm: TfrmCadPaciente);
+class procedure DadosBasicos.InclusaoOuEdicaoDadosBasicos(frm: TfrmCadPaciente);
 var
    objDadosBasicos : TPaciente;
    objControlePaciente : TControlePaciente;
@@ -54,7 +54,7 @@ begin
       objDadosBasicos := TPaciente.Create;
       objControlePaciente := TControlePaciente.Create;
       objDadosBasicos := CarregaObjDadosBasicos(objDadosBasicos, frm);
-      codigo := objControlePaciente.InsertEditDadosBasicos(objDadosBasicos);
+      codigo := objControlePaciente.InclusaoOuEdicaoDadosBasicos(objDadosBasicos);
       if codigo > 0 then
       begin
          try
@@ -110,9 +110,6 @@ begin
       naturalidade := frm.edtNaturalidade.Text;
       ufNascimento := frm.cboxUFNascimento.Text;
       nacionalidade := frm.edtNacionalidade.Text;
-      //CPF := frm.mskedtCPFPaciente.Text;
-      //identidadePaciente := frm.edtIdentidadePaciente.Text;
-      //orgaoExpedidorID := frm.edtOrgaoExpedPaciente.Text;
    end;
    result := objDados;
 end;
