@@ -37,6 +37,7 @@ type
       edtCodContatos: TEdit;
       edtCodDadosProf: TEdit;
       edtCodAnamnese: TEdit;
+      edtCodEndDadosProf: TEdit;
       edtCodEnfermidades: TEdit;
       edtCodSinaisSintomas: TEdit;
       edtCodDocPaciente: TEdit;
@@ -353,6 +354,8 @@ type
       procedure pnlTituloMouseDown(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
       procedure pnlTituloMouseMove(Sender: TObject; Shift: TShiftState; X, Y: Integer);
       procedure pnlTituloMouseUp(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
+      procedure rbexNaoApreesTratDentClick(Sender: TObject);
+      procedure rbexSimApreesTratDentClick(Sender: TObject);
    private
       procedure HabilitaControles(controle: TWinControl);
       procedure DesabilitaControles(controle: TWinControl);
@@ -366,9 +369,9 @@ type
 
       procedure CasoHomem;
 
-      {================================= FUNÇÕES E PROCEDIMENTOS DE CADASTRO  ====================================================}
+      procedure DesabilitaEditsSimNaoAnamnese;
 
-      procedure EdicaoDadosBasicos(objPaciente: TPaciente);
+      {================================= FUNÇÕES E PROCEDIMENTOS DE CADASTRO  ====================================================}
 
    public
       function RetornoRadioGroup(ItemIndex: integer): string;
@@ -427,42 +430,32 @@ begin
              Responsavel.InclusaoOuEdicaoResponsavel(Self);
              //Caso o CPF ou o Nº de identidade não estejam vazios, proceder a inserção/edição
              if (Trim(mskedtCPFResp.Text) <> EmptyStr) or (Trim(edtIdentidadeResp.Text) <> EmptyStr) then
-                Documentos.InclusaoOuEdicaoDocumentos(Self, 4);      // 3 = TBLPACIENTE
-          end;                                                       // 4 = TBLRESPONSAVEL
-                                                                     // 5 = TBLDENTISTA
+                Documentos.InclusaoOuEdicaoDocumentos(Self, 4);   // 3 = TBLPACIENTE
+          end;                                                    // 4 = TBLRESPONSAVEL
+                                                                  // 5 = TBLDENTISTA
       2 : begin
-             Endereco.InclusaoOuEdicaoEndereco(Self, 8);          // 8 = TBLPACIENTE
-                                                                  // 9 = TBLDADOSPROF
-            { if estado in [teInclusao] then
-                Endereco.InclusaoEndereco(Self)
-             else if estado in [teEdicao] then
-                Endereco.EdicaoEndereco(Self); }
+             Endereco.InclusaoOuEdicaoEndereco(Self, 8);  // 8 = TBL_PACIENTE
+                                                          // 9 = TBL_DADOSPROF
           end;
 
       3 : begin
-             if estado in [teInclusao] then
-                Contatos.InclusaoContatos(Self)
-             else if estado in [teEdicao] then
-                Contatos.EdicaoContatos(Self);
+             Contatos.InclusaoOuEdicaoContatos(Self);
           end;
 
       4 : begin
-             if estado in [teInclusao] then
-                DadosProfissionais.InclusaoDadoProfissional(Self);
+             DadosProfissionais.InclusaoOuEdicaoDadoProf(Self);
+             if (Trim(edtLogradEmpresa.Text) <> EmptyStr) then      // 8 = TBL_PACIENTE
+                Endereco.InclusaoOuEdicaoEndereco(Self, 9);;       // 9 = TBL_DADOSPROF
+             //if estado in [teInclusao] then
+             //   DadosProfissionais.InclusaoDadoProfissional(Self);
           end;
 
       5 : begin
-          if estado in [teInclusao] then
-             Anamnese.InclusaoAnamnese(Self)
-          else if estado in [teEdicao] then
-             Anamnese.EdicaoAnamnese(Self);
+          Anamnese.InclusaoOuEdicaoAnamnese(Self)
           end;
 
       6 : begin
-             if estado in [teInclusao] then
-                SinaisSintomas.InclusaoSinaisSintomas(Self)
-             else if estado in [teEdicao] then
-                SinaisSintomas.EdicaoSinaisSintomas(Self);
+             SinaisSintomas.InclusaoOuEdicaoSinaisSintomas(Self)
           end;
 
       7 : begin
@@ -508,6 +501,7 @@ begin
    frmMensagem := TfrmMensagem.Create(nil);
    frmMensagem.InfoFormMensagem('Apagar Registro?', tiDuvida, 'Tem certeza que você deseja apagar o cadastro de ' +
                                 pcCadPaciente.ActivePage.Caption + 'do:' + LineEnding + edtNomePaciente.Text + '?');
+
    case pcCadPaciente.ActivePageIndex of
       0 : if frmMensagem.resultadoBtn = mrOK then //Caso o resultado da mensagem seja SIM transmite o código para deleção
              DadosBasicos.ApagarDadosBasico(StrToInt(frmCadPaciente.edtCodPaciente.Text));
@@ -544,6 +538,36 @@ begin
    end;
    if rgexSexo.ItemIndex = 1 then
       CasoHomem;
+
+   if pcCadPaciente.PageIndex = 1 then
+   begin
+      edtCodResponsavel.Text := '0';
+      edtCodDocResp.Text := '0';
+   end;
+
+   if pcCadPaciente.PageIndex = 2 then
+    begin
+       edtCodEndPaciente.Text := '0';
+    end;
+
+   if pcCadPaciente.PageIndex = 3 then;
+      edtCodContatos.Text := '0';
+
+   if pcCadPaciente.PageIndex = 4 then
+      begin
+         edtCodDadosProf.Text := '0';
+         edtCodEndDadosProf.Text := '0';
+      end;
+
+   if pcCadPaciente.PageIndex = 5 then
+   begin
+      edtCodAnamnese.Text := '0';
+      DesabilitaEditsSimNaoAnamnese;
+   end;
+
+   if pcCadPaciente.PageIndex = 6 then
+      edtCodSinaisSintomas.Text := '0';
+
 end;
 
 procedure TfrmCadPaciente.btnProcuraPacienteClick(Sender: TObject);
@@ -773,6 +797,21 @@ begin
    capitura := false;
 end;
 
+procedure TfrmCadPaciente.rbexNaoApreesTratDentClick(Sender: TObject);
+begin
+   if rbexNaoApreesTratDent.State in [cbChecked, cbUnchecked] then
+    edtApreensivoTratamento.Enabled := false;
+end;
+
+procedure TfrmCadPaciente.rbexSimApreesTratDentClick(Sender: TObject);
+begin        { TODO -oTerence -cCadastro : Continuar daqui }
+   ShowMessage('Teste');
+{   if rbexSimApreesTratDent.State in [cbChecked] then
+      edtApreensivoTratamento.Enabled := true
+   else if rbexSimApreesTratDent.State in[cbUnchecked] then
+      edtApreensivoTratamento.Enabled := false;  }
+end;
+
 procedure TfrmCadPaciente.HabilitaControles(controle: TWinControl);
 begin
     if controle is TTabSheet then
@@ -857,7 +896,7 @@ begin
    if controle is TBCPanel then
       for i := 0 to controle.ControlCount -1 do
       begin
-         if controle.Controls[i] is TEdit then
+         if controle.Controls[i] is TEdit and Visible = true then
             (controle.Controls[i] as TCustomEdit).Clear;
          if controle.Controls[i] is TComboBox then
             (controle.Controls[i] as TComboBox).ItemIndex := -1;
@@ -908,9 +947,16 @@ begin
    gbMenopausa.Enabled := false;
 end;
 
-procedure TfrmCadPaciente.EdicaoDadosBasicos(objPaciente: TPaciente);
+procedure TfrmCadPaciente.DesabilitaEditsSimNaoAnamnese;
 begin
-
+   edtApreensivoTratamento.Enabled := false;
+   edtTratamentoMedico.Enabled := false;
+   edtTomaRemedio.Enabled := false;
+   edtAlergiaAnestesia.Enabled := false;
+   edtAlgumaAlergia.Enabled := false;
+   edtFoiHospitalizado.Enabled := false;
+   edtTaGravida.Enabled := false;
+   edtMenopausa.Enabled := false;
 end;
 
 procedure TfrmCadPaciente.PreencheFormDadosBasicos(objDados: TPaciente);

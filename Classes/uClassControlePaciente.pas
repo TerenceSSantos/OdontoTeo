@@ -24,24 +24,21 @@ type
         class procedure EnviaDadosBasicos(objPaciente: TPaciente);
 
         function InclusaoOuEdicaoDocumentos(objDocumentos: TDocumentos): integer;
+
         function InclusaoOuEdicaoResponsavel(objResponsavel: TResponsavelPaciente): integer;
 
         function ApagarResponsavel(codigo: integer): boolean;
         function SelectResponsavel(idTblPaciente: integer; objResponsavel: TResponsavelPaciente): TResponsavelPaciente;
 
         function InclusaoOuEdicaoEndereco(objEndereco: TEndereco): integer;
-        function EdicaoEndereco(objEndereco: TEndereco): boolean;
 
-        function InclusaoContatos(objContatos: TContatos): boolean;
-        function EdicaoContatos(objContatos: TContatos): boolean;
+        function InclusaoOuEdicaoContatos(objContatos : TContatos): integer;
 
-        function InclusaoDadosProfissionais(objDadosProf: TDadosProfissionais): integer;
+        function InclusaoOuEdicaoDadosProf(objDadosProf: TDadosProfissionais): integer;
 
-        function InclusaoAnamnese(objAnamnese: TAnamnese): boolean;
-        function EdicaoAnamnese(objAnamnese: TAnamnese): boolean;
+        function InclusaoOuEdicaoAnamnese(objAnamnese: TAnamnese): integer;
 
-        function InclusaoSinaisSintomas(objSinaisSintomas: TSinaisSintomas): boolean;
-        function EdicaoSinaisSintomas(objSinaisSintomas: TSinaisSintomas): boolean;
+        function InclusaoOuEdicaoSinaisSintomas(objSinaisSintomas: TSinaisSintomas): integer;
 
         function InclusaoEnfermidades(objEnfermidades: TEnfermidades): boolean;
         function EdicaoEnfermidades(objEnfermidades: TEnfermidades): boolean;
@@ -117,44 +114,24 @@ begin
    result := dmCadPaciente.InclusaoOuEdicaoEndereco(objEndereco);
 end;
 
-function TControlePaciente.EdicaoEndereco(objEndereco: TEndereco): boolean;
+function TControlePaciente.InclusaoOuEdicaoContatos(objContatos: TContatos): integer;
 begin
-   result := dmCadPaciente.EdicaoEndereco(objEndereco);
+   result := dmCadPaciente.InclusaoOuEdicaoContatos(objContatos);
 end;
 
-function TControlePaciente.InclusaoContatos(objContatos: TContatos): boolean;
+function TControlePaciente.InclusaoOuEdicaoDadosProf(objDadosProf: TDadosProfissionais): integer;
 begin
-   result := dmCadPaciente.InclusaoContatos(objContatos);
+   result := dmCadPaciente.InclusaoOuEdicaoDadosProf(objDadosProf);
 end;
 
-function TControlePaciente.EdicaoContatos(objContatos: TContatos): boolean;
+function TControlePaciente.InclusaoOuEdicaoAnamnese(objAnamnese: TAnamnese): integer;
 begin
-   result := dmCadPaciente.EdicaoContatos(objContatos);
+   result := dmCadPaciente.InclusaoOuEdicaoAnamnese(objAnamnese);
 end;
 
-function TControlePaciente.InclusaoDadosProfissionais(objDadosProf: TDadosProfissionais): integer;
+function TControlePaciente.InclusaoOuEdicaoSinaisSintomas(objSinaisSintomas: TSinaisSintomas): integer;
 begin
-   result := dmCadPaciente.InclusaoDadosProfissionais(objDadosProf);
-end;
-
-function TControlePaciente.InclusaoAnamnese(objAnamnese: TAnamnese): boolean;
-begin
-   result := dmCadPaciente.InclusaoAnamnese(objAnamnese);
-end;
-
-function TControlePaciente.EdicaoAnamnese(objAnamnese: TAnamnese): boolean;
-begin
-   result := dmCadPaciente.EdicaoAnamnese(objAnamnese);
-end;
-
-function TControlePaciente.InclusaoSinaisSintomas(objSinaisSintomas: TSinaisSintomas): boolean;
-begin
-   result := dmCadPaciente.InclusaoSinaisSintomas(objSinaisSintomas);
-end;
-
-function TControlePaciente.EdicaoSinaisSintomas(objSinaisSintomas: TSinaisSintomas): boolean;
-begin
-   result := dmCadPaciente.EdicaoSinaisSintomas(objSinaisSintomas);
+   result := dmCadPaciente.InclusaoOuEdicaoSinaisSintomas(objSinaisSintomas);
 end;
 
 function TControlePaciente.InclusaoEnfermidades(objEnfermidades: TEnfermidades): boolean;

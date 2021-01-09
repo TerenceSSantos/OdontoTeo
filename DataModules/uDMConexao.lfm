@@ -23,7 +23,7 @@ object dmConexao: TdmConexao
     Password = 'masterkey'
     Protocol = 'firebird-3.0'
     LibraryLocation = 'D:\Projetos\Lazarus\OdontoTeo\fbclient.dll'
-    left = 57
+    left = 56
     top = 48
   end
 end

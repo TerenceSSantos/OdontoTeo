@@ -611,10 +611,10 @@ object frmCadPaciente: TfrmCadPaciente
       Height = 362
       Top = 2
       Width = 1088
-      ActivePage = tabResponsavel
+      ActivePage = tabSinaisSintomas
       Align = alClient
       Images = miglstCadPaciente
-      TabIndex = 1
+      TabIndex = 6
       TabOrder = 0
       OnChange = pcCadPacienteChange
       OnChanging = pcCadPacienteChanging
@@ -1415,7 +1415,7 @@ object frmCadPaciente: TfrmCadPaciente
             Font.Height = -12
             Font.Name = 'Segoe UI Semibold'
             ParentFont = False
-            TabOrder = 2
+            TabOrder = 3
             TextHint = 'Nº da identidade do responsável'
           end
           object lblOrgaoExpResp: TLabel
@@ -1444,7 +1444,7 @@ object frmCadPaciente: TfrmCadPaciente
             Font.Height = -12
             Font.Name = 'Segoe UI Semibold'
             ParentFont = False
-            TabOrder = 3
+            TabOrder = 4
             TextHint = 'Entidade que expediu a identidade do responsável'
           end
           object edtCodResponsavel: TEdit
@@ -1454,9 +1454,10 @@ object frmCadPaciente: TfrmCadPaciente
             Width = 40
             NumbersOnly = True
             TabStop = False
-            TabOrder = 4
+            TabOrder = 5
             Text = '0'
             TextHint = 'Código do Responsável'
+            Visible = False
           end
           object edtCodDocResp: TEdit
             Left = 73
@@ -1465,7 +1466,7 @@ object frmCadPaciente: TfrmCadPaciente
             Width = 40
             NumbersOnly = True
             TabStop = False
-            TabOrder = 5
+            TabOrder = 6
             Text = '0'
             TextHint = 'Cód. doc. Responsável'
             Visible = False
@@ -1482,7 +1483,7 @@ object frmCadPaciente: TfrmCadPaciente
             Font.Name = 'Segoe UI Semibold'
             MaxLength = 14
             ParentFont = False
-            TabOrder = 6
+            TabOrder = 2
             EditMask = '!999.999.999-99;0;_'
             TextHint = 'CPF do(a) paciente'
             SpaceChar = '_'
@@ -2437,9 +2438,10 @@ object frmCadPaciente: TfrmCadPaciente
             Left = 40
             Height = 23
             Top = 35
-            Width = 120
+            Width = 40
             TabStop = False
             TabOrder = 17
+            Text = '0'
             TextHint = 'ID Contatos'
             Visible = False
           end
@@ -2811,6 +2813,16 @@ object frmCadPaciente: TfrmCadPaciente
             TextHint = 'ID Dados Profissionais'
             Visible = False
           end
+          object edtCodEndDadosProf: TEdit
+            Left = 27
+            Height = 23
+            Top = 60
+            Width = 120
+            TabStop = False
+            TabOrder = 10
+            TextHint = 'ID EndereçoDados Profissionais'
+            Visible = False
+          end
         end
       end
       object tabAnamnese: TTabSheet
@@ -2828,6 +2840,7 @@ object frmCadPaciente: TfrmCadPaciente
           HorzScrollBar.Smooth = True
           HorzScrollBar.Tracking = True
           VertScrollBar.Page = 302
+          VertScrollBar.Position = 250
           Align = alClient
           BorderStyle = bsNone
           ClientHeight = 302
@@ -3131,7 +3144,6 @@ object frmCadPaciente: TfrmCadPaciente
                 Font.Color = 65664
                 Font.Height = -12
                 Font.Name = 'Segoe UI Semibold'
-                NumbersOnly = True
                 ParentFont = False
                 TabOrder = 2
                 TextHint = 'Motivo da apreensão (medo)'
@@ -3153,6 +3165,7 @@ object frmCadPaciente: TfrmCadPaciente
                 TabOrder = 0
                 TabStop = True
                 ThemedCaption = True
+                OnClick = rbexSimApreesTratDentClick
               end
               object rbexNaoApreesTratDent: TRadioButtonEx
                 Left = 170
@@ -3171,6 +3184,7 @@ object frmCadPaciente: TfrmCadPaciente
                 TabOrder = 1
                 TabStop = True
                 ThemedCaption = True
+                OnClick = rbexNaoApreesTratDentClick
               end
             end
             object gbTratMedico: TGroupBox
@@ -3226,7 +3240,6 @@ object frmCadPaciente: TfrmCadPaciente
                 Font.Color = 65664
                 Font.Height = -12
                 Font.Name = 'Segoe UI Semibold'
-                NumbersOnly = True
                 ParentFont = False
                 TabOrder = 2
                 TextHint = 'Qual(ais) tratamento(s)'
@@ -3321,7 +3334,6 @@ object frmCadPaciente: TfrmCadPaciente
                 Font.Color = 65664
                 Font.Height = -12
                 Font.Name = 'Segoe UI Semibold'
-                NumbersOnly = True
                 ParentFont = False
                 TabOrder = 2
                 TextHint = 'Nome do(s) remédio(s)'
@@ -3416,7 +3428,6 @@ object frmCadPaciente: TfrmCadPaciente
                 Font.Color = 65664
                 Font.Height = -12
                 Font.Name = 'Segoe UI Semibold'
-                NumbersOnly = True
                 ParentFont = False
                 TabOrder = 2
                 TextHint = 'Qual(ais) a(s) anestesia(s)?'
@@ -3511,7 +3522,6 @@ object frmCadPaciente: TfrmCadPaciente
                 Font.Color = 65664
                 Font.Height = -12
                 Font.Name = 'Segoe UI Semibold'
-                NumbersOnly = True
                 ParentFont = False
                 TabOrder = 2
                 TextHint = 'Qual(ais) o(s) tipo(s) de alergia(s)?'
@@ -3606,7 +3616,6 @@ object frmCadPaciente: TfrmCadPaciente
                 Font.Color = 65664
                 Font.Height = -12
                 Font.Name = 'Segoe UI Semibold'
-                NumbersOnly = True
                 ParentFont = False
                 TabOrder = 2
                 TextHint = 'O motivo pelo qual foi hospitalizado'
@@ -3701,7 +3710,6 @@ object frmCadPaciente: TfrmCadPaciente
                 Font.Color = 65664
                 Font.Height = -12
                 Font.Name = 'Segoe UI Semibold'
-                NumbersOnly = True
                 ParentFont = False
                 TabOrder = 2
                 TextHint = 'Se estiver grávida, para quando é o parto?'
@@ -3921,9 +3929,9 @@ object frmCadPaciente: TfrmCadPaciente
               end
             end
             object edtCodAnamnese: TEdit
-              Left = 904
+              Left = 600
               Height = 23
-              Top = 33
+              Top = 5
               Width = 120
               TabStop = False
               TabOrder = 16

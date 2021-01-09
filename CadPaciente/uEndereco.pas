@@ -22,8 +22,7 @@ type
    Endereco = class
     public
        class function CarregaObjEndereco(objEndereco: TEndereco; frm: TfrmCadPaciente; qualTabela: byte): TEndereco;
-       class procedure InclusaoOuEdicaoEndereco(frm: TfrmCadPaciente;
-          qualTabela: byte);
+       class procedure InclusaoOuEdicaoEndereco(frm: TfrmCadPaciente; qualTabela: byte);
        class procedure EdicaoEndereco(frm: TfrmCadPaciente);
        class procedure ApagarEndereco(codigo: integer);
 
@@ -34,20 +33,33 @@ implementation
 { Endereco }
 
 class function Endereco.CarregaObjEndereco(objEndereco: TEndereco; frm: TfrmCadPaciente; qualTabela: byte): TEndereco;
+var
+   codigo : integer = 0;
 begin
-   with objEndereco do                                                                 // 8 = TBLPACIENTE
-   begin                                                                               // 9 = TBLDADOSPROF
-      idTblPaciente := StrToInt(frm.edtCodPaciente.Text);
-      logradouro := frm.edtLogradouro.Text;
-      numero := frm.edtNumEndereco.Text;
-      complemento := frm.edtComplemento.Text;
-      bairro := frm.edtBairro.Text;
-      cidade := frm.edtCidade.Text;
-      objEndereco.estado := frm.cboxUFCasa.Text;
-      cep := frm.mskedtCEPCasa.Text;
+   with objEndereco do                // 8 = TBL_PACIENTE
+   begin                              // 9 = TBL_DADOSPROF
       case qualTabela of
-         8 : idTblPaciente := StrToInt(frm.edtCodEndPaciente.Text);
-         9 : idTblDadosProf := StrToInt(frm.edtCodEndPaciente.Text);
+         8 : begin
+                codigo := StrToInt(frm.edtCodEndPaciente.Text);
+                logradouro := frm.edtLogradouro.Text;
+                numero := frm.edtNumEndereco.Text;
+                complemento := frm.edtComplemento.Text;
+                bairro := frm.edtBairro.Text;
+                cidade := frm.edtCidade.Text;
+                objEndereco.estado := frm.cboxUFCasa.Text;
+                cep := frm.mskedtCEPCasa.Text;
+                idTblPaciente := StrToInt(frm.edtCodPaciente.Text);
+             end;
+         9 : begin
+                logradouro := frm.edtLogradEmpresa.Text;
+                numero := frm.edtNumEndEmpresa.Text;
+                complemento := frm.edtComplEmpresa.Text;
+                bairro := frm.edtBairroEmpresa.Text;
+                cidade := frm.edtCidadeEmpresa.Text;
+                estado := frm.cboxUFEmpresa.Text;
+                cep := frm.mskedtCEPEmpresa.Text;
+                idTblDadosProf := StrToInt(frm.edtCodEndDadosProf.Text);
+             end;
       end;
    end;
    result := objEndereco;
@@ -71,7 +83,11 @@ begin
           finally
              FreeAndNil(frmMensagem);
           end;
-          frm.edtCodEndPaciente.Text := IntToStr(codEndereco);
+          case qualTabela of
+             8 : frm.edtCodEndPaciente.Text := IntToStr(codEndereco);
+             9 : frm.edtCodEndDadosProf.Text := IntToStr(codEndereco);
+          end;
+
        end;
 
       //DesabilitaControles(pcCadPaciente.ActivePage);
@@ -88,12 +104,14 @@ class procedure Endereco.EdicaoEndereco(frm: TfrmCadPaciente);
 var
    objControlePaciente : TControlePaciente;
    objEndereco : TEndereco;
+   codigo : integer = 0;
 begin
    try
       objEndereco := TEndereco.Create;
       objControlePaciente := TControlePaciente.Create;
     //  objEndereco := CarregaObjEndereco(objEndereco, frm);
-      if objControlePaciente.EdicaoEndereco(objEndereco) then
+      codigo := objControlePaciente.InclusaoOuEdicaoEndereco(objEndereco);
+      if codigo > 0 then
        begin
          try
             frmMensagem := TfrmMensagem.Create(nil);

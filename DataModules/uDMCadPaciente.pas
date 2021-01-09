@@ -20,22 +20,16 @@ type
       qryTblResponsavelID_RESPONSAVEL: TLongintField;
       qryTblResponsavelNOME_RESPONSAVEL: TStringField;
       qryTblResponsavelPARENTESCO: TStringField;
-      strprocAnamnese: TZStoredProc;
       strprocApagarDadosBasicos: TZStoredProc;
       strprocApagarResponsavel: TZStoredProc;
+      strprocCadEditAnamnese: TZStoredProc;
+      strprocCadEditContatos: TZStoredProc;
       strprocCadEditDadosBasicos: TZStoredProc;
       strprocCadEditEndereco: TZStoredProc;
-      strprocGravarDadosProfissionais: TZStoredProc;
-      strprocEditarAnamnese: TZStoredProc;
-      strprocEditarContatos: TZStoredProc;
-      strprocEditarDadosProf: TZStoredProc;
-      strprocEditarEndereco: TZStoredProc;
+      strprocCadEditDadosProf: TZStoredProc;
+      strprocCadEditSiniasSintomas: TZStoredProc;
       strprocEditarEnfermidades: TZStoredProc;
-      strprocEditarSinaisSintomas: TZStoredProc;
-      strprocGravarContatos: TZStoredProc;
-      strprocGravarEndereco: TZStoredProc;
       strprocGravarEnfermidades: TZStoredProc;
-      strprocGravarSinaisSintomas: TZStoredProc;
       strprocInsertEditDocumentos: TZStoredProc;
       strprocCadEditResponsavel: TZStoredProc;
    private
@@ -56,19 +50,14 @@ type
       function SelectResponsavel(idTblPaciente: integer; objResponsavel: TResponsavelPaciente): TResponsavelPaciente;
 
       function InclusaoOuEdicaoEndereco(objEndereco: TEndereco): integer;
-      function EdicaoEndereco(objEndereco: TEndereco): boolean;
 
-      function InclusaoContatos(objContatos: TContatos): boolean;
-      function EdicaoContatos(objContatos: TContatos): boolean;
+      function InclusaoOuEdicaoContatos(objContatos: TContatos): integer;
 
-      function InclusaoDadosProfissionais(objDadosProf: TDadosProfissionais): integer;
-      function EdicaoDadosProfissionais(objDadosProf: TDadosProfissionais): boolean;
+      function InclusaoOuEdicaoDadosProf(objDadosProf: TDadosProfissionais): integer;
 
-      function InclusaoAnamnese(objAnamnese: TAnamnese): boolean;
-      function EdicaoAnamnese(objAnamnese: TAnamnese): boolean;
+      function InclusaoOuEdicaoAnamnese(objAnamnese: TAnamnese): integer;
 
-      function InclusaoSinaisSintomas(objSinaisSintomas: TSinaisSintomas): boolean;
-      function EdicaoSinaisSintomas(objSinaisSintomas: TSinaisSintomas): boolean;
+      function InclusaoOuEdicaoSinaisSintomas(objSinaisSintomas: TSinaisSintomas): integer;
 
       function InclusaoEnfermidades(objEnfermidades: TEnfermidades): boolean;
       function EdicaoEnfermidades(objEnfermidades: TEnfermidades): boolean;
@@ -169,6 +158,7 @@ var
 begin
    with strprocInsertEditDocumentos do
    begin
+      Params[0].AsInteger := objDocumentos.idIdentidade;
       Params[1].AsString := objDocumentos.identidade;
       Params[2].AsString := objDocumentos.orgaoExpedidor;
       Params[3].AsString := objDocumentos.cpf;
@@ -311,7 +301,7 @@ function TdmCadPaciente.InclusaoOuEdicaoEndereco(objEndereco: TEndereco): intege
 var
    frmMensagem : TfrmMensagem;                                 // 8 = TBLPACIENTE
 begin                                                          // 9 = TBLDADOSPROF
-   with strprocGravarEndereco do
+   with strprocCadEditEndereco do
    begin
       Params[0].AsInteger := objEndereco.idEndereco;
       Params[1].AsString := objEndereco.logradouro;
@@ -350,88 +340,11 @@ begin                                                          // 9 = TBLDADOSPR
    end;
 end;
 
-function TdmCadPaciente.EdicaoEndereco(objEndereco: TEndereco): boolean;
+function TdmCadPaciente.InclusaoOuEdicaoContatos(objContatos: TContatos): integer;
 var
    frmMensagem : TfrmMensagem;
 begin
-   with strprocEditarEndereco do
-   begin
-      Params[0].AsInteger := objEndereco.idEndereco;
-      Params[1].AsString := objEndereco.logradouro;
-      Params[2].AsString := objEndereco.numero;
-      Params[3].AsString := objEndereco.complemento;
-      Params[4].AsString := objEndereco.bairro;
-      Params[5].AsString := objEndereco.cidade;
-      Params[6].AsString := objEndereco.estado;
-      Params[7].AsString := objEndereco.cep;
-      Params[8].AsInteger := objEndereco.idTblPaciente;
-//      Params[9].AsInteger :=
-   end;
-   try
-      strprocEditarEndereco.ExecProc;
-      result := true;
-   except on E: Exception do
-    begin
-       try
-         frmMensagem := TfrmMensagem.Create(Self);
-         frmMensagem.InfoFormMensagem('Alteração de dados do Endereço', tiErro, 'Erro ao tentar gravar a alteração do registro ' +
-                                      'com a seguinte mensagem de erro:' + LineEnding + LineEnding + E.Message);
-       finally
-          FreeAndNil(frmMensagem);
-       end;
-       result := false;
-    end;
-   end;
-end;
-
-function TdmCadPaciente.InclusaoContatos(objContatos: TContatos): boolean;
-var
-   frmMensagem : TfrmMensagem;
-begin
-   with strprocGravarContatos do
-   begin
-      Params[0].AsString := objContatos.dddTelCasa;
-      Params[1].AsString := objContatos.telefoneCasa;
-      Params[2].AsString := objContatos.operadoraTelCasa;
-      Params[3].AsString := objContatos.dddCelular1;
-      Params[4].AsString := objContatos.NumeroCelular1;
-      Params[5].AsString := objContatos.operadoraCelular1;
-      Params[6].AsString := objContatos.dddCelular2;
-      Params[7].AsString := objContatos.numeroCelular2;
-      Params[8].AsString := objContatos.operadoraCelular2;
-      Params[9].AsString := objContatos.dddTelTrabalho;
-      Params[10].AsString := objContatos.telefoneTrabalho;
-      Params[11].AsString := objContatos.operadoraTelTrabalho;
-      Params[12].AsString := objContatos.dddTelRecado;
-      Params[13].AsString := objContatos.telefoneRecado;
-      Params[14].AsString := objContatos.operadoraTelRecado;
-      Params[15].AsString := objContatos.nomePessoaTelRecado;
-      Params[16].AsString := objContatos.email;
-      Params[17].AsInteger := objContatos.idTblPaciente;
-
-      try
-         ExecProc;
-         result := true;
-      except on E: Exception do
-         begin
-            try
-               frmMensagem := TfrmMensagem.Create(Self);
-               frmMensagem.InfoFormMensagem('Inclusão dos contatos do Paciente', tiErro, 'Erro ao tentar gravar o registro ' +
-                                            ' com a seguinte mensagem de erro:' + LineEnding + LineEnding + E.Message);
-            finally
-               FreeAndNil(frmMensagem);
-            end;
-            result := false;
-         end;
-      end;
-   end;
-end;
-
-function TdmCadPaciente.EdicaoContatos(objContatos: TContatos): boolean;
-var
-   frmMensagem : TfrmMensagem;
-begin
-   with strprocEditarContatos do
+   with strprocCadEditContatos do
    begin
       Params[0].AsInteger := objContatos.idContatos;
       Params[1].AsString := objContatos.dddTelCasa;
@@ -454,117 +367,53 @@ begin
       Params[18].AsInteger := objContatos.idTblPaciente;
    end;
    try
-      strprocEditarContatos.ExecProc;
-      result := true;
+      strprocCadEditContatos.ExecProc;
+      result := strprocCadEditContatos.Params[19].AsInteger;
    except on E: Exception do
-    begin
-       try
+      begin
+         try
          frmMensagem := TfrmMensagem.Create(Self);
-         frmMensagem.InfoFormMensagem('Alteração de dados de Contato', tiErro, 'Erro ao tentar gravar a alteração do registro ' +
+         frmMensagem.InfoFormMensagem('Cadastro de Contatos', tiErro, 'Erro ao tentar gravação do registro ' +
                                       'com a seguinte mensagem de erro:' + LineEnding + LineEnding + E.Message);
-       finally
-          FreeAndNil(frmMensagem);
-       end;
-       result := false;
-    end;
-   end;
-end;
-
-function TdmCadPaciente.InclusaoDadosProfissionais(objDadosProf: TDadosProfissionais): integer;
-var
-   frmMensagem : TfrmMensagem;
-begin
-   with strprocGravarDadosProfissionais do
-   begin
-      Params[0].AsString := objDadosProf.nomeEmpresa;
-      Params[1].AsString := objDadosProf.cargo;
-      Params[2].AsInteger := objDadosProf.idTblPaciente;
-      try
-      ExecProc;
-      result := Params[3].AsInteger;
-      except on E: Exception do
-         begin
-            try
-               frmMensagem := TfrmMensagem.Create(Self);
-               frmMensagem.InfoFormMensagem('Inclusão de Dados Profissionais', tiErro, 'Erro ao tentar gravar o registro ' +
-                                            ' com a seguinte mensagem de erro:' + LineEnding + LineEnding + E.Message);
-            finally
-               FreeAndNil(frmMensagem);
-            end;
-            result := 0;
+         finally
+            FreeAndNil(frmMensagem);
          end;
+         result := 0;
       end;
    end;
 end;
 
-function TdmCadPaciente.EdicaoDadosProfissionais(objDadosProf: TDadosProfissionais): boolean;
+function TdmCadPaciente.InclusaoOuEdicaoDadosProf(objDadosProf: TDadosProfissionais): integer;
 begin
-   with strprocEditarDadosProf do
+   with strprocCadEditDadosProf do
    begin
       Params[0].AsInteger := objDadosProf.idDadoProfissional;
       Params[1].AsString := objDadosProf.nomeEmpresa;
       Params[2].AsString := objDadosProf.cargo;
-//      Params[3].AsInteger := objDadosProf
-      Params[4].AsInteger := objDadosProf.idTblPaciente;
+      Params[3].AsInteger := objDadosProf.idTblPaciente;
    end;
-end;
-
-function TdmCadPaciente.InclusaoAnamnese(objAnamnese: TAnamnese): boolean;
-var
-   frmMensagem : TfrmMensagem;
-begin
-   with dmCadPaciente.strprocAnamnese do
-   begin
-      Params[0].AsString := objAnamnese.consumoAcucar;
-      Params[1].AsString := objAnamnese.escovacao;
-      Params[2].AsString := objAnamnese.usoFioDental;
-      Params[3].AsString := objAnamnese.obsAnatomoHisto;
-      Params[4].AsString := objAnamnese.habitosViciosos;
-      Params[5].AsString := objAnamnese.antecedentesFamiliares;
-      Params[6].AsString := objAnamnese.apreensivoTratDentario;
-      Params[7].AsString := objAnamnese.porqueApreensivo;
-      Params[8].AsString := objAnamnese.tratamentoMedico;
-      Params[9].AsString := objAnamnese.qualTratMedico;
-      Params[10].AsString := objAnamnese.tomaMedicamento;
-      Params[11].AsString := objAnamnese.tomaQualMedicamento;
-      Params[12].AsString := objAnamnese.alergiaAnestesia;
-      Params[13].AsString := objAnamnese.alergiaQualAnestesia;
-      Params[14].AsString := objAnamnese.algumaAlergia;
-      Params[15].AsString := objAnamnese.qualAlergia;
-      Params[16].AsString := objAnamnese.foiHospitalizado;
-      Params[17].AsString := objAnamnese.porqueHospitalizado;
-      Params[18].AsString := objAnamnese.estaGravida;
-      Params[19].AsString := objAnamnese.previsaoParto;
-      Params[20].AsSmallInt := objAnamnese.teveQuantasGravidez;
-      Params[21].AsSmallInt := objAnamnese.quantosFilhos;
-      Params[22].AsString := objAnamnese.chegouMenopausa;
-      Params[23].AsString := objAnamnese.quandoChegouMenopausa;
-      Params[24].AsInteger := objAnamnese.idTblPaciente;
-
-      try
-         ExecProc;
-         result := true;
-      except on E: Exception do
-         begin
-            try
-               frmMensagem := TfrmMensagem.Create(Self);
-               frmMensagem.InfoFormMensagem('Inclusão da Anamnese', tiErro, 'Erro ao tentar gravar o registro ' +
-                                            ' com a seguinte mensagem de erro:' + LineEnding + LineEnding + E.Message);
-            finally
-               FreeAndNil(frmMensagem);
-            end;
-            result := false;
+   try
+      strprocCadEditDadosProf.ExecProc;
+      result := strprocCadEditDadosProf.Params[4].AsInteger;
+   except on E: Exception do
+      begin
+         try
+            frmMensagem := TfrmMensagem.Create(Self);
+            frmMensagem.InfoFormMensagem('Cadastro de Dados Profissionais', tiErro, 'Erro ao tentar gravar o registro ' +
+                                         ' com a seguinte mensagem de erro:' + LineEnding + LineEnding + E.Message);
+         finally
+            FreeAndNil(frmMensagem);
          end;
+         result := 0;
       end;
-
    end;
 end;
 
-function TdmCadPaciente.EdicaoAnamnese(objAnamnese: TAnamnese): boolean;
+function TdmCadPaciente.InclusaoOuEdicaoAnamnese(objAnamnese: TAnamnese): integer;
 var
    frmMensagem : TfrmMensagem;
 begin
-   with strprocEditarAnamnese do
+   with strprocCadEditAnamnese do
    begin
       Params[0].AsInteger := objAnamnese.idAnamnese;
       Params[1].AsString := objAnamnese.consumoAcucar;
@@ -580,7 +429,7 @@ begin
       Params[11].AsString := objAnamnese.tomaMedicamento;
       Params[12].AsString := objAnamnese.tomaQualMedicamento;
       Params[13].AsString := objAnamnese.alergiaAnestesia;
-      Params[14].AsString := objAnamnese.qualAlergia;
+      Params[14].AsString := objAnamnese.alergiaQualAnestesia;
       Params[15].AsString := objAnamnese.algumaAlergia;
       Params[16].AsString := objAnamnese.qualAlergia;
       Params[17].AsString := objAnamnese.foiHospitalizado;
@@ -592,74 +441,29 @@ begin
       Params[23].AsString := objAnamnese.chegouMenopausa;
       Params[24].AsString := objAnamnese.quandoChegouMenopausa;
       Params[25].AsInteger := objAnamnese.idTblPaciente;
-   end;
-   try
-      strprocEditarAnamnese.ExecProc;
-      result := true;
-   except on E: Exception do
-    begin
-       try
-         frmMensagem := TfrmMensagem.Create(Self);
-         frmMensagem.InfoFormMensagem('Alteração de dados da Anamnese', tiErro, 'Erro ao tentar gravar a alteração do registro ' +
-                                      'com a seguinte mensagem de erro:' + LineEnding + LineEnding + E.Message);
-       finally
-          FreeAndNil(frmMensagem);
-       end;
-       result := false;
-    end;
-   end;
-end;
 
-function TdmCadPaciente.InclusaoSinaisSintomas(objSinaisSintomas: TSinaisSintomas): boolean;
-var
-   frmMensagem : TfrmMensagem;
-begin
-   with strprocGravarSinaisSintomas do
-   begin
-      Params[0].Value := objSinaisSintomas.alteracaoApetite;
-      Params[1].Value := objSinaisSintomas.calorExagerado;
-      Params[2].Value := objSinaisSintomas.cansaFacil;
-      Params[3].Value := objSinaisSintomas.coceiraAnormal;
-      Params[4].Value := objSinaisSintomas.dificuldadeEngolir;
-      Params[5].Value := objSinaisSintomas.dificuldadeMastigar;
-      Params[6].Value := objSinaisSintomas.dorFacial;
-      Params[7].Value := objSinaisSintomas.dorFrequenteCabeca;
-      Params[8].Value := objSinaisSintomas.dorOuvidoFrequente;
-      Params[9].Value := objSinaisSintomas.emagrecimentoAcentuado;
-      Params[10].Value := objSinaisSintomas.estaloMandibula;
-      Params[11].Value := objSinaisSintomas.febreFrequente;
-      Params[12].Value := objSinaisSintomas.indigestaoFrequente;
-      Params[13].Value := objSinaisSintomas.maCicatrizacao;
-      Params[14].Value := objSinaisSintomas.miccaoFrequente;
-      Params[15].Value := objSinaisSintomas.rangeDentes;
-      Params[16].Value := objSinaisSintomas.respiraPelaBoca;
-      Params[17].Value := objSinaisSintomas.sangramentoAnormal;
-      Params[18].Value := objSinaisSintomas.tonturaDesmaio;
-      Params[19].Value := objSinaisSintomas.poucaSaliva;
-      Params[20].AsInteger := objSinaisSintomas.idTblPaciente;
       try
          ExecProc;
-         result := true;
+         result := Params[26].AsInteger;
       except on E: Exception do
          begin
             try
                frmMensagem := TfrmMensagem.Create(Self);
-               frmMensagem.InfoFormMensagem('Inclusão de Sinais & Sintomas', tiErro, 'Erro ao tentar gravar o registro ' +
+               frmMensagem.InfoFormMensagem('Cadastro de Anamnese', tiErro, 'Erro ao tentar gravar o registro ' +
                                             ' com a seguinte mensagem de erro:' + LineEnding + LineEnding + E.Message);
             finally
                FreeAndNil(frmMensagem);
             end;
-            result := false;
+            result := 0;
          end;
+
       end;
    end;
 end;
 
-function TdmCadPaciente.EdicaoSinaisSintomas(objSinaisSintomas: TSinaisSintomas): boolean;
-var
-   frmMensagem : TfrmMensagem;
+function TdmCadPaciente.InclusaoOuEdicaoSinaisSintomas(objSinaisSintomas: TSinaisSintomas): integer;
 begin
-   with strprocEditarSinaisSintomas do
+   with strprocCadEditSiniasSintomas do
    begin
       Params[0].AsInteger := objSinaisSintomas.idSinaisSintomas;
       Params[1].AsString := objSinaisSintomas.alteracaoApetite;
@@ -683,21 +487,21 @@ begin
       Params[19].AsString := objSinaisSintomas.tonturaDesmaio;
       Params[20].AsString := objSinaisSintomas.poucaSaliva;
       Params[21].AsInteger := objSinaisSintomas.idTblPaciente;
-   end;
-   try
-      strprocEditarSinaisSintomas.ExecProc;
-      result := true;
-   except on E: Exception do
-    begin
-       try
-         frmMensagem := TfrmMensagem.Create(Self);
-         frmMensagem.InfoFormMensagem('Alteração de dados dos Sinais & Sintomas', tiErro, 'Erro ao tentar gravar a alteração do registro ' +
-                                      'com a seguinte mensagem de erro:' + LineEnding + LineEnding + E.Message);
-       finally
-          FreeAndNil(frmMensagem);
-       end;
-       result := false;
-    end;
+      try
+         ExecProc;
+         result := Params[22].AsInteger;
+      except on E: Exception do
+         begin
+            try
+               frmMensagem := TfrmMensagem.Create(Self);
+               frmMensagem.InfoFormMensagem('Cadastro de Sinais & Sintomas', tiErro, 'Erro ao tentar gravar o registro ' +
+                                            ' com a seguinte mensagem de erro:' + LineEnding + LineEnding + E.Message);
+            finally
+               FreeAndNil(frmMensagem);
+            end;
+            result := 0;
+         end;
+      end;
    end;
 end;
 

@@ -32,8 +32,11 @@ implementation
 { Responsavel }
 
 class function Responsavel.CarregaObjResponsavel(objResponsavel: TResponsavelPaciente; frm: TfrmCadPaciente): TResponsavelPaciente;
+var
+   codigo : integer;
 begin
-   objResponsavel.idResponsavel := StrToInt(frm.edtCodResponsavel.Text);
+   codigo := StrToInt(frm.edtCodResponsavel.Text);
+   objResponsavel.idResponsavel := codigo;
    objResponsavel.idTblPaciente := StrToInt(frm.edtCodPaciente.Text);
    objResponsavel.nomeResponsavel := frm.edtNomeResp.Text;
    objResponsavel.parentesco := frm.edtParentesco.Text;

@@ -22,8 +22,7 @@ type
    Contatos = class
     public
        class function CarregaObjContatos(objContatos: TContatos; frm: TfrmCadPaciente) : TContatos;
-       class procedure InclusaoContatos(frm: TfrmCadPaciente);
-       class procedure EdicaoContatos(frm: TfrmCadPaciente);
+       class procedure InclusaoOuEdicaoContatos(frm: TfrmCadPaciente);
    end;
 
 implementation
@@ -31,10 +30,15 @@ implementation
 { Contatos }
 
 class function Contatos.CarregaObjContatos(objContatos: TContatos; frm: TfrmCadPaciente): TContatos;
+var
+   codigo : integer = 0;
 begin
    with objContatos do
    begin
-      idTblPaciente := StrToInt(Frm.edtCodPaciente.Text);
+      codigo := StrToInt(frm.edtCodContatos.Text);
+      idContatos := codigo;
+      codigo := StrToInt(Frm.edtCodPaciente.Text);
+      idTblPaciente := codigo;
       dddTelCasa := Frm.edtDDDCasa.Text;
       telefoneCasa := Frm.mskedtTelCasa.Text;
       operadoraTelCasa := Frm.cboxOperadoraCasa.Text;
@@ -56,15 +60,17 @@ begin
    result := objContatos;
 end;
 
-class procedure Contatos.InclusaoContatos(frm: TfrmCadPaciente);
+class procedure Contatos.InclusaoOuEdicaoContatos(frm: TfrmCadPaciente);
 var
    objContatos : TContatos;
    objControlePaciente : TControlePaciente;
+   codigo : integer = 0;
 begin
    try
       objContatos := TContatos.Create;
       objControlePaciente := TControlePaciente.Create;
-      if objControlePaciente.InclusaoContatos(CarregaObjContatos(objContatos, frm))then
+      codigo := objControlePaciente.InclusaoOuEdicaoContatos(CarregaObjContatos(objContatos, frm));
+      if codigo > 0 then
        begin
           try
              frmMensagem := TfrmMensagem.Create(nil);
@@ -81,34 +87,6 @@ begin
       FreeAndNil(objControlePaciente);
       FreeAndNil(objContatos);
    end;
-end;
-
-class procedure Contatos.EdicaoContatos(frm: TfrmCadPaciente);
-var
-   objContatos : TContatos;
-   objControlePaciente : TControlePaciente;
-begin
-   try
-    objContatos := TContatos.Create;
-    objControlePaciente := TControlePaciente.Create;
-    objContatos := CarregaObjContatos(objContatos, frm);
-    if objControlePaciente.EdicaoContatos(objContatos) then
-     begin
-       try
-          frmMensagem := TfrmMensagem.Create(nil);
-          frmMensagem.InfoFormMensagem('Alteração no cadastro de Contatos', tiInformacao, 'Cadastro de Contatos alterado com sucesso!');
-       finally
-          FreeAndNil(frmMensagem);
-       end;
-     end;
-
-    //DesabilitaControles(frmCadPaciente.pcCadPaciente.ActivePage);
-    estado := teNavegacao;
-    //EstadoBotoes;
-    finally
-       FreeAndNil(objControlePaciente);
-       FreeAndNil(objContatos);
-    end;
 end;
 
 end.

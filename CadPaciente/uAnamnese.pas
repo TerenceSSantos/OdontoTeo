@@ -22,8 +22,7 @@ type
    Anamnese = class
     public
        class function CarregaObjAnamnese(objAnamnese: TAnamnese; frm: TfrmCadPaciente): TAnamnese;
-       class procedure InclusaoAnamnese(frm: TfrmCadPaciente);
-       class procedure EdicaoAnamnese(frm: TfrmCadPaciente);
+       class procedure InclusaoOuEdicaoAnamnese(frm: TfrmCadPaciente);
    end;
 
 implementation
@@ -114,54 +113,27 @@ begin
   result := objAnamnese;
 end;
 
-class procedure Anamnese.InclusaoAnamnese(frm: TfrmCadPaciente);
+class procedure Anamnese.InclusaoOuEdicaoAnamnese(frm: TfrmCadPaciente);
 var
    objAnamnese : TAnamnese;
    objControlePaciente : TControlePaciente;
+   codIDAnamnese :  integer = 0;
 begin
    objAnamnese := TAnamnese.Create;
    objControlePaciente := TControlePaciente.Create;
    try
-      if objControlePaciente.InclusaoAnamnese(CarregaObjAnamnese(objAnamnese,frm))then
+      codIDAnamnese := objControlePaciente.InclusaoOuEdicaoAnamnese(CarregaObjAnamnese(objAnamnese,frm));
+      if codIDAnamnese > 0 then
        begin
           try
              frmMensagem := TfrmMensagem.Create(nil);
-             frmMensagem.InfoFormMensagem('Cadastro da Anamnese', tiInformacao, 'Cadastro da Anamnese realizado com sucesso!');
+             frmMensagem.InfoFormMensagem('Cadastro de Anamnese', tiInformacao, 'Cadastro da Anamnese realizado com sucesso!');
           finally
              FreeAndNil(frmMensagem);
           end;
        end;
 
 //      DesabilitaControles(pcCadPaciente.ActivePage);
-      estado := teNavegacao;
-      //EstadoBotoes;
-   finally
-      FreeAndNil(objControlePaciente);
-      FreeAndNil(objAnamnese);
-   end;
-
-end;
-
-class procedure Anamnese.EdicaoAnamnese(frm: TfrmCadPaciente);
-var
-   objAnamnese : TAnamnese;
-   objControlePaciente : TControlePaciente;
-begin
-   try
-      objAnamnese := TAnamnese.Create;
-      objControlePaciente := TControlePaciente.Create;
-      objAnamnese := CarregaObjAnamnese(objAnamnese, frm);
-      if objControlePaciente.EdicaoAnamnese(objAnamnese) then
-       begin
-         try
-            frmMensagem := TfrmMensagem.Create(nil);
-            frmMensagem.InfoFormMensagem('Alteração no cadastro de Anamnese', tiInformacao, 'Cadastro da Anamnese alterado com sucesso!');
-         finally
-            FreeAndNil(frmMensagem);
-         end;
-       end;
-
-      //DesabilitaControles(frmCadPaciente.pcCadPaciente.ActivePage);
       estado := teNavegacao;
       //EstadoBotoes;
    finally

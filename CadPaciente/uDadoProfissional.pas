@@ -22,7 +22,7 @@ type
    DadosProfissionais = class
     public
        class function CarregaObjDadoProfissional(objDadoProf: TDadosProfissionais; frm: TfrmCadPaciente) : TDadosProfissionais;
-       class procedure InclusaoDadoProfissional(frm: TfrmCadPaciente);
+       class procedure InclusaoOuEdicaoDadoProf(frm: TfrmCadPaciente);
    end;
 
 implementation
@@ -30,33 +30,33 @@ implementation
 { DadosProfissionais }
 
 class function DadosProfissionais.CarregaObjDadoProfissional(objDadoProf: TDadosProfissionais; frm: TfrmCadPaciente): TDadosProfissionais;
+var
+   codigo : integer = 0;
 begin
   with objDadoProf do
   begin
+     codigo := StrToInt(frm.edtCodDadosProf.Text);
+     idDadoProfissional := codigo;
      nomeEmpresa := frm.edtNomeEmpresa.Text;
      cargo := frm.edtCargo.Text;
      idTblPaciente := StrToInt(frm.edtCodPaciente.Text);
-     enderecoEmpresa.idTblPaciente := StrToInt(frm.edtCodPaciente.Text);
-     enderecoEmpresa.logradouro := frm.edtLogradEmpresa.Text;
-     enderecoEmpresa.numero := frm.edtNumEndEmpresa.Text;
-     enderecoEmpresa.complemento := frm.edtComplEmpresa.Text;
-     enderecoEmpresa.bairro := frm.edtBairroEmpresa.Text;
-     enderecoEmpresa.cidade := frm.edtCidadeEmpresa.Text;
-     enderecoEmpresa.estado := frm.cboxUFEmpresa.Text;
-     enderecoEmpresa.cep := frm.mskedtCEPEmpresa.Text;
+     codigo := StrToInt(frm.edtCodEndDadosProf.Text);
+     idTblEndereco := codigo;
   end;
   result := objDadoProf;
 end;
 
-class procedure DadosProfissionais.InclusaoDadoProfissional(frm: TfrmCadPaciente);
+class procedure DadosProfissionais.InclusaoOuEdicaoDadoProf(frm: TfrmCadPaciente);
 var
    objDadoProf : TDadosProfissionais;
    objControlePaciente : TControlePaciente;
+   codigo : integer = 0;
 begin
    try
       objDadoProf := TDadosProfissionais.Create;
       objControlePaciente := TControlePaciente.Create;
-      if objControlePaciente.InclusaoDadosProfissionais(CarregaObjDadoProfissional(objDadoProf, frm)) > 0 then
+      codigo := objControlePaciente.InclusaoOuEdicaoDadosProf(CarregaObjDadoProfissional(objDadoProf, frm));
+      if codigo > 0 then
        begin
           try
              frmMensagem := TfrmMensagem.Create(nil);
@@ -64,6 +64,7 @@ begin
           finally
              FreeAndNil(frmMensagem);
           end;
+          frm.edtCodEndDadosProf.Text := IntToStr(codigo);
        end;
 
 //      DesabilitaControles(pcCadPaciente.ActivePage);

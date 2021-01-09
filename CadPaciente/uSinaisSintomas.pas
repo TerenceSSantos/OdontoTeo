@@ -22,8 +22,7 @@ type
    SinaisSintomas = class
     public
        class function CarregaObjSinaisSintomas(objSinaisSintomas: TSinaisSintomas; frm: TfrmCadPaciente): TSinaisSintomas;
-       class procedure InclusaoSinaisSintomas(frm: TfrmCadPaciente);
-       class procedure EdicaoSinaisSintomas(frm: TfrmCadPaciente);
+       class procedure InclusaoOuEdicaoSinaisSintomas(frm: TfrmCadPaciente);
    end;
 
 implementation
@@ -34,6 +33,7 @@ class function SinaisSintomas.CarregaObjSinaisSintomas(objSinaisSintomas: TSinai
 begin
   with objSinaisSintomas do
   begin
+     idSinaisSintomas := StrToInt(frm.edtCodSinaisSintomas.Text);
      idTblPaciente := StrToInt(frm.edtCodPaciente.Text);
      alteracaoApetite := frm.RetornoRadioGroup(frm.rgexAlteracaoApetite.ItemIndex);
      calorExagerado := frm.RetornoRadioGroup(frm.rgexCalorExagerado.ItemIndex);
@@ -59,15 +59,17 @@ begin
   result := objSinaisSintomas;
 end;
 
-class procedure SinaisSintomas.InclusaoSinaisSintomas(frm: TfrmCadPaciente);
+class procedure SinaisSintomas.InclusaoOuEdicaoSinaisSintomas(frm: TfrmCadPaciente);
 var
    objSinaisSintomas : TSinaisSintomas;
    objControlePaciente : TControlePaciente;
+   codSinaisSintomas : integer = 0;
 begin
    objSinaisSintomas := TSinaisSintomas.Create;
    objControlePaciente := TControlePaciente.Create;
    try
-      if objControlePaciente.InclusaoSinaisSintomas(CarregaObjSinaisSintomas(objSinaisSintomas, frm))then
+      codSinaisSintomas := objControlePaciente.InclusaoOuEdicaoSinaisSintomas(CarregaObjSinaisSintomas(objSinaisSintomas, frm));
+      if codSinaisSintomas > 0 then
        begin
           try
              frmMensagem := TfrmMensagem.Create(nil);
@@ -86,34 +88,6 @@ begin
    end;
 end;
 
-class procedure SinaisSintomas.EdicaoSinaisSintomas(frm: TfrmCadPaciente);
-var
-   objSinaisSintomas : TSinaisSintomas;
-   objControlePaciente : TControlePaciente;
-begin
-   try
-      objSinaisSintomas := TSinaisSintomas.Create;
-      objControlePaciente := TControlePaciente.Create;
-      objSinaisSintomas := CarregaObjSinaisSintomas(objSinaisSintomas, frm);
-      if objControlePaciente.EdicaoSinaisSintomas(objSinaisSintomas) then
-       begin
-         try
-            frmMensagem := TfrmMensagem.Create(nil);
-            frmMensagem.InfoFormMensagem('Alteração no cadastro de Sinais & Sintomas', tiInformacao, 'Cadastro de Sinias e Sintomas alterado com sucesso!');
-         finally
-            FreeAndNil(frmMensagem);
-         end;
-       end;
-
-      //DesabilitaControles(frmCadPaciente.pcCadPaciente.ActivePage);
-      estado := teNavegacao;
-      //EstadoBotoes;
-   finally
-      FreeAndNil(objControlePaciente);
-      FreeAndNil(objSinaisSintomas);
-   end;
-
-end;
 
 end.
 

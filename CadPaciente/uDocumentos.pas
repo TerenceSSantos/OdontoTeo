@@ -28,6 +28,7 @@ begin
    begin
       case qualTabela of
          3 : begin
+                idIdentidade := StrToInt(frm.edtCodDocPaciente.Text);
                 identidade := frm.edtIdentidadePaciente.Text;
                 orgaoExpedidor := frm.edtOrgaoExpedPaciente.Text;
                 cpf := frm.mskedtCPFPaciente.Text;
@@ -35,9 +36,10 @@ begin
                 idTblPaciente := codigo;
              end;
          4 : begin
+                idIdentidade := StrToInt(frm.edtCodDocResp.Text);
                 identidade := frm.edtIdentidadeResp.Text;
                 orgaoExpedidor := frm.edtOrgaoExpedResp.Text;
-                cpf := frm.mskedtCPFResp.Text;                     { TODO -oTerence -cCadastro : Ajustar }
+                cpf := frm.mskedtCPFResp.Text;
                 codigo := StrToInt(frm.edtCodResponsavel.Text);
                 idTblResponsavel := codigo;
              end;
