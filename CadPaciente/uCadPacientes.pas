@@ -354,8 +354,14 @@ type
       procedure pnlTituloMouseDown(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
       procedure pnlTituloMouseMove(Sender: TObject; Shift: TShiftState; X, Y: Integer);
       procedure pnlTituloMouseUp(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
-      procedure rbexNaoApreesTratDentClick(Sender: TObject);
-      procedure rbexSimApreesTratDentClick(Sender: TObject);
+      procedure rbexSimAlergiaAnestesiaChange(Sender: TObject);
+      procedure rbexSimAlgumaAlergiaChange(Sender: TObject);
+      procedure rbexSimApreesTratDentChange(Sender: TObject);
+      procedure rbexSimFoiHospitalizadoChange(Sender: TObject);
+      procedure rbexSimMenopausaChange(Sender: TObject);
+      procedure rbexSimTaGravidaChange(Sender: TObject);
+      procedure rbexSimTomaRemedioChange(Sender: TObject);
+      procedure rbexSimTratMedicoChange(Sender: TObject);
    private
       procedure HabilitaControles(controle: TWinControl);
       procedure DesabilitaControles(controle: TWinControl);
@@ -563,6 +569,20 @@ begin
    begin
       edtCodAnamnese.Text := '0';
       DesabilitaEditsSimNaoAnamnese;
+      if (rgexSexo.ItemIndex = 1) or (rgexSexo.ItemIndex = -1) then
+       begin
+          gbTaGravida.Enabled := false;
+          gbQtdGravidez.Enabled := false;
+          gbQtdFilhos.Enabled := false;
+          gbMenopausa.Enabled := false;
+       end
+      else
+       begin
+          gbTaGravida.Enabled := true;
+          gbQtdGravidez.Enabled := true;
+          gbQtdFilhos.Enabled := true;
+          gbMenopausa.Enabled := true;
+       end;
    end;
 
    if pcCadPaciente.PageIndex = 6 then
@@ -797,19 +817,68 @@ begin
    capitura := false;
 end;
 
-procedure TfrmCadPaciente.rbexNaoApreesTratDentClick(Sender: TObject);
+procedure TfrmCadPaciente.rbexSimAlergiaAnestesiaChange(Sender: TObject);
 begin
-   if rbexNaoApreesTratDent.State in [cbChecked, cbUnchecked] then
-    edtApreensivoTratamento.Enabled := false;
+   if rbexSimAlergiaAnestesia.Checked then
+      edtAlergiaAnestesia.Enabled := true
+   else if rbexSimAlergiaAnestesia.Checked = false then
+        edtAlergiaAnestesia.Enabled := false;
 end;
 
-procedure TfrmCadPaciente.rbexSimApreesTratDentClick(Sender: TObject);
-begin        { TODO -oTerence -cCadastro : Continuar daqui }
-   ShowMessage('Teste');
-{   if rbexSimApreesTratDent.State in [cbChecked] then
+procedure TfrmCadPaciente.rbexSimAlgumaAlergiaChange(Sender: TObject);
+begin
+   if rbexSimAlgumaAlergia.Checked then
+      edtAlgumaAlergia.Enabled := true
+   else if rbexSimAlgumaAlergia.Checked = false then
+      edtAlgumaAlergia.Enabled := false;
+end;
+
+procedure TfrmCadPaciente.rbexSimApreesTratDentChange(Sender: TObject);
+begin
+    if rbexSimApreesTratDent.Checked then
       edtApreensivoTratamento.Enabled := true
-   else if rbexSimApreesTratDent.State in[cbUnchecked] then
-      edtApreensivoTratamento.Enabled := false;  }
+   else if rbexSimApreesTratDent.Checked = false then
+      edtApreensivoTratamento.Enabled := false;
+end;
+
+procedure TfrmCadPaciente.rbexSimFoiHospitalizadoChange(Sender: TObject);
+begin
+   if rbexSimFoiHospitalizado.Checked then
+      edtFoiHospitalizado.Enabled := true
+   else if rbexSimFoiHospitalizado.Checked = false then
+      edtFoiHospitalizado.Enabled := false;
+end;
+
+procedure TfrmCadPaciente.rbexSimMenopausaChange(Sender: TObject);
+begin
+   if rbexSimMenopausa.Checked then
+      edtMenopausa.Enabled := true
+   else if rbexSimMenopausa.Checked = false then
+      edtMenopausa.Enabled := false;
+end;
+
+procedure TfrmCadPaciente.rbexSimTaGravidaChange(Sender: TObject);
+begin
+   if rbexSimTaGravida.Checked then
+      edtTaGravida.Enabled := true
+   else if rbexSimTaGravida.Checked = false then
+      edtTaGravida.Enabled := false;
+end;
+
+procedure TfrmCadPaciente.rbexSimTomaRemedioChange(Sender: TObject);
+begin
+   if rbexSimTomaRemedio.Checked then
+      edtTomaRemedio.Enabled := true
+   else if rbexSimTomaRemedio.Checked = false then
+      edtTomaRemedio.Enabled := false;
+end;
+
+procedure TfrmCadPaciente.rbexSimTratMedicoChange(Sender: TObject);
+begin
+   if rbexSimTratMedico.Checked then
+      edtTratamentoMedico.Enabled := true
+   else if rbexSimTratMedico.Checked = false then
+      edtTratamentoMedico.Enabled := false;
 end;
 
 procedure TfrmCadPaciente.HabilitaControles(controle: TWinControl);
