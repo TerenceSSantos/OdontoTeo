@@ -22,8 +22,7 @@ type
    Enfermidades = class
     public
        class function CarregaObjEnfermidades(objEnfermidades: TEnfermidades; frm: TfrmCadPaciente): TEnfermidades;
-       class procedure InclusaoEnfermidades(frm: TfrmCadPaciente);
-       class procedure EdicaoEnfermidades(frm: TfrmCadPaciente);
+       class procedure InclusaoOuEdicaoEnfermidades(frm: TfrmCadPaciente);
    end;
 
 implementation
@@ -34,6 +33,7 @@ class function Enfermidades.CarregaObjEnfermidades(objEnfermidades: TEnfermidade
 begin
   with objEnfermidades do
   begin
+     idEnfermidade := StrToInt(frm.edtCodEnfermidades.Text);
      idTblPaciente := StrToInt(frm.edtCodPaciente.Text);
      aids := frm.RetornoRadioGroup(frm.rgexAIDS.ItemIndex);
      anemia := frm.RetornoRadioGroup(frm.rgexAnemia.ItemIndex);
@@ -56,17 +56,20 @@ begin
      tumorBoca := frm.RetornoRadioGroup(frm.rgexTumorBoca.ItemIndex);
      ulceraHepatica := frm.RetornoRadioGroup(frm.rgexUlceraHepatica.ItemIndex);
   end;
+  result := objEnfermidades;
 end;
 
-class procedure Enfermidades.InclusaoEnfermidades(frm: TfrmCadPaciente);
+class procedure Enfermidades.InclusaoOuEdicaoEnfermidades(frm: TfrmCadPaciente);
 var
    objEnfermidades : TEnfermidades;
    objControlePaciente : TControlePaciente;
+   codEnfermidade : integer = 0;
 begin
-   objEnfermidades := TEnfermidades.Create;
-   objControlePaciente := TControlePaciente.Create;
    try
-      if objControlePaciente.InclusaoEnfermidades(CarregaObjEnfermidades(objEnfermidades, frm))then
+      objEnfermidades := TEnfermidades.Create;
+      objControlePaciente := TControlePaciente.Create;
+      codEnfermidade := objControlePaciente.InclusaoOuEdicaoEnfermidades(CarregaObjEnfermidades(objEnfermidades, frm));
+      if codEnfermidade > 0 then
        begin
            try
               frmMensagem := TfrmMensagem.Create(nil);
@@ -84,36 +87,6 @@ begin
       FreeAndNil(objEnfermidades);
    end;
 
-end;
-
-class procedure Enfermidades.EdicaoEnfermidades(frm: TfrmCadPaciente);
-var
-   objEnfermidades : TEnfermidades;
-   objControlePaciente : TControlePaciente;
-begin
-   objEnfermidades := TEnfermidades.Create;
-   objControlePaciente := TControlePaciente.Create;
-   try
-      objEnfermidades := TEnfermidades.Create;
-      objControlePaciente := TControlePaciente.Create;
-      objEnfermidades := CarregaObjEnfermidades(objEnfermidades, frm);
-      if objControlePaciente.EdicaoEnfermidades(objEnfermidades) then
-       begin
-         try
-            frmMensagem := TfrmMensagem.Create(nil);
-            frmMensagem.InfoFormMensagem('Alteração no cadastro de Enfermidades', tiInformacao, 'Cadastro de Enfermidades alterado com sucesso!');
-         finally
-            FreeAndNil(frmMensagem);
-         end;
-       end;
-
-      //DesabilitaControles(frmCadPaciente.pcCadPaciente.ActivePage);
-      estado := teNavegacao;
-      //EstadoBotoes;
-   finally
-      FreeAndNil(objControlePaciente);
-      FreeAndNil(objEnfermidades);
-   end;
 end;
 
 end.

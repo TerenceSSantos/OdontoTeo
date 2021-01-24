@@ -465,10 +465,7 @@ begin
           end;
 
       7 : begin
-             if estado in [teInclusao] then
-                Enfermidades.InclusaoEnfermidades(Self)
-             else if estado in [teEdicao] then
-                Enfermidades.EdicaoEnfermidades(Self);
+             Enfermidades.InclusaoOuEdicaoEnfermidades(Self);
           end;
    end;
 
@@ -587,6 +584,9 @@ begin
 
    if pcCadPaciente.PageIndex = 6 then
       edtCodSinaisSintomas.Text := '0';
+
+   if pcCadPaciente.PageIndex = 7 then;
+      edtCodEnfermidades.Text := '0';
 
 end;
 

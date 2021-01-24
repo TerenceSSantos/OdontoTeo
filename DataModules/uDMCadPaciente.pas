@@ -27,9 +27,8 @@ type
       strprocCadEditDadosBasicos: TZStoredProc;
       strprocCadEditEndereco: TZStoredProc;
       strprocCadEditDadosProf: TZStoredProc;
+      strprocCadEditEnfermidades: TZStoredProc;
       strprocCadEditSiniasSintomas: TZStoredProc;
-      strprocEditarEnfermidades: TZStoredProc;
-      strprocGravarEnfermidades: TZStoredProc;
       strprocInsertEditDocumentos: TZStoredProc;
       strprocCadEditResponsavel: TZStoredProc;
    private
@@ -59,8 +58,7 @@ type
 
       function InclusaoOuEdicaoSinaisSintomas(objSinaisSintomas: TSinaisSintomas): integer;
 
-      function InclusaoEnfermidades(objEnfermidades: TEnfermidades): boolean;
-      function EdicaoEnfermidades(objEnfermidades: TEnfermidades): boolean;
+      function InclusaoOuEdicaoEnfermidades(objEnfermidades: TEnfermidades): integer;
 
       var ativo : string;
       var nome : string;
@@ -266,6 +264,8 @@ begin
 end;
  }
 function TdmCadPaciente.ApagarResponsavel(codigo: integer): boolean;
+var
+   frmMensagem : TfrmMensagem;
 begin
    try
       strprocApagarResponsavel.Params[0].AsInteger := codigo;
@@ -384,6 +384,8 @@ begin
 end;
 
 function TdmCadPaciente.InclusaoOuEdicaoDadosProf(objDadosProf: TDadosProfissionais): integer;
+var
+   frmMensagem : TfrmMensagem;
 begin
    with strprocCadEditDadosProf do
    begin
@@ -462,6 +464,8 @@ begin
 end;
 
 function TdmCadPaciente.InclusaoOuEdicaoSinaisSintomas(objSinaisSintomas: TSinaisSintomas): integer;
+var
+   frmMensagem : TfrmMensagem;
 begin
    with strprocCadEditSiniasSintomas do
    begin
@@ -505,57 +509,12 @@ begin
    end;
 end;
 
-function TdmCadPaciente.InclusaoEnfermidades(objEnfermidades: TEnfermidades): boolean;
+function TdmCadPaciente.InclusaoOuEdicaoEnfermidades(objEnfermidades: TEnfermidades): integer;
 var
    frmMensagem : TfrmMensagem;
 begin
-   with strprocGravarEnfermidades do
-   begin
-      Params[0].Value := objEnfermidades.aids;
-      Params[1].Value := objEnfermidades.anemia;
-      Params[2].Value := objEnfermidades.asma;
-      Params[3].Value := objEnfermidades.diabete;
-      Params[4].Value := objEnfermidades.doencaCoracao;
-      Params[5].Value := objEnfermidades.tumorBoca;
-      Params[6].Value := objEnfermidades.doencaRenal;
-      Params[7].Value := objEnfermidades.disritmiaEpilepsia;
-      Params[8].Value := objEnfermidades.febreReumatica;
-      Params[9].Value := objEnfermidades.glaucoma;
-      Params[10].Value := objEnfermidades.gonorreia;
-      Params[11].Value := objEnfermidades.hanseniase;
-      Params[12].Value := objEnfermidades.hemofilia;
-      Params[13].Value := objEnfermidades.hepatite;
-      Params[14].Value := objEnfermidades.ictericia;
-      Params[15].Value := objEnfermidades.problemaHormonal;
-      Params[16].Value := objEnfermidades.sifilis;
-      Params[17].Value := objEnfermidades.sinusite;
-      Params[18].Value := objEnfermidades.tuberculose;
-      Params[19].Value := objEnfermidades.ulceraHepatica;
-      Params[20].AsInteger := objEnfermidades.idTblPaciente;
-      try
-         ExecProc;
-         result := true;
-      except on E: Exception do
-         begin
-            try
-               frmMensagem := TfrmMensagem.Create(Self);
-               frmMensagem.InfoFormMensagem('Inclusão de Enfermidades', tiErro, 'Erro ao tentar gravar a inclusão do registro' +
-                                            ' com a seguinte mensagem de erro:' + LineEnding + LineEnding + E.Message);
-            finally
-               FreeAndNil(frmMensagem);
-            end;
-            result := false;
-         end;
-      end;
-   end;
-end;
-
-function TdmCadPaciente.EdicaoEnfermidades(objEnfermidades: TEnfermidades): boolean;
-var
-   frmMensagem : TfrmMensagem;
-begin
-   with strprocEditarEnfermidades do
-   begin
+   with strprocCadEditEnfermidades do
+   begin                                                      { TODO : Erro aqui. }
       Params[0].AsInteger := objEnfermidades.idEnfermidade;
       Params[1].AsString := objEnfermidades.aids;
       Params[2].AsString := objEnfermidades.anemia;
@@ -578,21 +537,21 @@ begin
       Params[19].AsString := objEnfermidades.tuberculose;
       Params[20].AsString := objEnfermidades.ulceraHepatica;
       Params[21].AsInteger := objEnfermidades.idTblPaciente;
-   end;
-   try
-      strprocEditarEnfermidades.ExecProc;
-      result := true;
-   except on E: Exception do
-    begin
-       try
-         frmMensagem := TfrmMensagem.Create(Self);
-         frmMensagem.InfoFormMensagem('Alteração de dados de Enfermidades', tiErro, 'Erro ao tentar gravar a alteração do registro ' +
-                                      'com a seguinte mensagem de erro:' + LineEnding + LineEnding + E.Message);
-       finally
-          FreeAndNil(frmMensagem);
-       end;
-       result := false;
-    end;
+      try
+         ExecProc;
+         result := Params[22].AsInteger;
+      except on E: Exception do
+         begin
+            try
+               frmMensagem := TfrmMensagem.Create(Self);
+               frmMensagem.InfoFormMensagem('Cadastro de Enfermidades', tiErro, 'Erro ao tentar gravar o registro ' +
+                                            ' com a seguinte mensagem de erro:' + LineEnding + LineEnding + E.Message);
+            finally
+               FreeAndNil(frmMensagem);
+            end;
+            result := 0;
+         end;
+      end;
    end;
 end;
 

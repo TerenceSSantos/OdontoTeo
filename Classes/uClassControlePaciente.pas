@@ -40,8 +40,7 @@ type
 
         function InclusaoOuEdicaoSinaisSintomas(objSinaisSintomas: TSinaisSintomas): integer;
 
-        function InclusaoEnfermidades(objEnfermidades: TEnfermidades): boolean;
-        function EdicaoEnfermidades(objEnfermidades: TEnfermidades): boolean;
+        function InclusaoOuEdicaoEnfermidades(objEnfermidades: TEnfermidades): integer;
 
         constructor Create;
         destructor Destroy; override;
@@ -134,14 +133,9 @@ begin
    result := dmCadPaciente.InclusaoOuEdicaoSinaisSintomas(objSinaisSintomas);
 end;
 
-function TControlePaciente.InclusaoEnfermidades(objEnfermidades: TEnfermidades): boolean;
+function TControlePaciente.InclusaoOuEdicaoEnfermidades(objEnfermidades: TEnfermidades): integer;
 begin
-   result := dmCadPaciente.InclusaoEnfermidades(objEnfermidades);
-end;
-
-function TControlePaciente.EdicaoEnfermidades(objEnfermidades: TEnfermidades): boolean;
-begin
-   result := dmCadPaciente.EdicaoEnfermidades(objEnfermidades);
+   result := dmCadPaciente.InclusaoOuEdicaoEnfermidades(objEnfermidades);
 end;
 
 constructor TControlePaciente.Create;

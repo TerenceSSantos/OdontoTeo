@@ -65,9 +65,9 @@ var
    objControlePaciente : TControlePaciente;
    codSinaisSintomas : integer = 0;
 begin
-   objSinaisSintomas := TSinaisSintomas.Create;
-   objControlePaciente := TControlePaciente.Create;
    try
+      objSinaisSintomas := TSinaisSintomas.Create;
+      objControlePaciente := TControlePaciente.Create;
       codSinaisSintomas := objControlePaciente.InclusaoOuEdicaoSinaisSintomas(CarregaObjSinaisSintomas(objSinaisSintomas, frm));
       if codSinaisSintomas > 0 then
        begin

@@ -75,452 +75,6 @@ object dmCadPaciente: TdmCadPaciente
     left = 560
     top = 32
   end
-  object strprocGravarEnfermidades: TZStoredProc
-    Connection = dmConexao.zConexao
-    Params = <    
-      item
-        DataType = ftString
-        Name = 'AIDS'
-        ParamType = ptInput
-      end    
-      item
-        DataType = ftString
-        Name = 'ANEMIA'
-        ParamType = ptInput
-      end    
-      item
-        DataType = ftString
-        Name = 'ASMA'
-        ParamType = ptInput
-      end    
-      item
-        DataType = ftString
-        Name = 'DIABETE'
-        ParamType = ptInput
-      end    
-      item
-        DataType = ftString
-        Name = 'DOENCA_CORACAO'
-        ParamType = ptInput
-      end    
-      item
-        DataType = ftString
-        Name = 'TUMOR_BOCA'
-        ParamType = ptInput
-      end    
-      item
-        DataType = ftString
-        Name = 'DOENCA_RENAL'
-        ParamType = ptInput
-      end    
-      item
-        DataType = ftString
-        Name = 'DISRITMIA_EPILEPSIA'
-        ParamType = ptInput
-      end    
-      item
-        DataType = ftString
-        Name = 'FEBRE_REUMATICA'
-        ParamType = ptInput
-      end    
-      item
-        DataType = ftString
-        Name = 'GLAUCOMA'
-        ParamType = ptInput
-      end    
-      item
-        DataType = ftString
-        Name = 'GONORREIA'
-        ParamType = ptInput
-      end    
-      item
-        DataType = ftString
-        Name = 'HANSENIASE'
-        ParamType = ptInput
-      end    
-      item
-        DataType = ftString
-        Name = 'HEMOFILIA'
-        ParamType = ptInput
-      end    
-      item
-        DataType = ftString
-        Name = 'HEPATITE'
-        ParamType = ptInput
-      end    
-      item
-        DataType = ftString
-        Name = 'ICTERICIA'
-        ParamType = ptInput
-      end    
-      item
-        DataType = ftString
-        Name = 'PROBLEMA_HORMONAL'
-        ParamType = ptInput
-      end    
-      item
-        DataType = ftString
-        Name = 'SIFILIS'
-        ParamType = ptInput
-      end    
-      item
-        DataType = ftString
-        Name = 'SINUSITE'
-        ParamType = ptInput
-      end    
-      item
-        DataType = ftString
-        Name = 'TUBERCULOSE'
-        ParamType = ptInput
-      end    
-      item
-        DataType = ftString
-        Name = 'ULCERA_HEPATICA'
-        ParamType = ptInput
-      end    
-      item
-        DataType = ftInteger
-        Name = 'ID_TBLPACIENTE'
-        ParamType = ptInput
-      end>
-    StoredProcName = 'PROC_CAD_TBLENFERMIDADES'
-    left = 1204
-    top = 100
-    ParamData = <    
-      item
-        DataType = ftString
-        Name = 'AIDS'
-        ParamType = ptInput
-      end    
-      item
-        DataType = ftString
-        Name = 'ANEMIA'
-        ParamType = ptInput
-      end    
-      item
-        DataType = ftString
-        Name = 'ASMA'
-        ParamType = ptInput
-      end    
-      item
-        DataType = ftString
-        Name = 'DIABETE'
-        ParamType = ptInput
-      end    
-      item
-        DataType = ftString
-        Name = 'DOENCA_CORACAO'
-        ParamType = ptInput
-      end    
-      item
-        DataType = ftString
-        Name = 'TUMOR_BOCA'
-        ParamType = ptInput
-      end    
-      item
-        DataType = ftString
-        Name = 'DOENCA_RENAL'
-        ParamType = ptInput
-      end    
-      item
-        DataType = ftString
-        Name = 'DISRITMIA_EPILEPSIA'
-        ParamType = ptInput
-      end    
-      item
-        DataType = ftString
-        Name = 'FEBRE_REUMATICA'
-        ParamType = ptInput
-      end    
-      item
-        DataType = ftString
-        Name = 'GLAUCOMA'
-        ParamType = ptInput
-      end    
-      item
-        DataType = ftString
-        Name = 'GONORREIA'
-        ParamType = ptInput
-      end    
-      item
-        DataType = ftString
-        Name = 'HANSENIASE'
-        ParamType = ptInput
-      end    
-      item
-        DataType = ftString
-        Name = 'HEMOFILIA'
-        ParamType = ptInput
-      end    
-      item
-        DataType = ftString
-        Name = 'HEPATITE'
-        ParamType = ptInput
-      end    
-      item
-        DataType = ftString
-        Name = 'ICTERICIA'
-        ParamType = ptInput
-      end    
-      item
-        DataType = ftString
-        Name = 'PROBLEMA_HORMONAL'
-        ParamType = ptInput
-      end    
-      item
-        DataType = ftString
-        Name = 'SIFILIS'
-        ParamType = ptInput
-      end    
-      item
-        DataType = ftString
-        Name = 'SINUSITE'
-        ParamType = ptInput
-      end    
-      item
-        DataType = ftString
-        Name = 'TUBERCULOSE'
-        ParamType = ptInput
-      end    
-      item
-        DataType = ftString
-        Name = 'ULCERA_HEPATICA'
-        ParamType = ptInput
-      end    
-      item
-        DataType = ftInteger
-        Name = 'ID_TBLPACIENTE'
-        ParamType = ptInput
-      end>
-  end
-  object strprocEditarEnfermidades: TZStoredProc
-    Connection = dmConexao.zConexao
-    Params = <    
-      item
-        DataType = ftInteger
-        Name = 'ID_ENFERMIDADES'
-        ParamType = ptInput
-      end    
-      item
-        DataType = ftString
-        Name = 'AIDS'
-        ParamType = ptInput
-      end    
-      item
-        DataType = ftString
-        Name = 'ANEMIA'
-        ParamType = ptInput
-      end    
-      item
-        DataType = ftString
-        Name = 'ASMA'
-        ParamType = ptInput
-      end    
-      item
-        DataType = ftString
-        Name = 'DIABETE'
-        ParamType = ptInput
-      end    
-      item
-        DataType = ftString
-        Name = 'DOENCA_CORACAO'
-        ParamType = ptInput
-      end    
-      item
-        DataType = ftString
-        Name = 'TUMOR_BOCA'
-        ParamType = ptInput
-      end    
-      item
-        DataType = ftString
-        Name = 'DOENCA_RENAL'
-        ParamType = ptInput
-      end    
-      item
-        DataType = ftString
-        Name = 'DISRITMIA_EPILEPSIA'
-        ParamType = ptInput
-      end    
-      item
-        DataType = ftString
-        Name = 'FEBRE_REUMATICA'
-        ParamType = ptInput
-      end    
-      item
-        DataType = ftString
-        Name = 'GLAUCOMA'
-        ParamType = ptInput
-      end    
-      item
-        DataType = ftString
-        Name = 'GONORREIA'
-        ParamType = ptInput
-      end    
-      item
-        DataType = ftString
-        Name = 'HANSENIASE'
-        ParamType = ptInput
-      end    
-      item
-        DataType = ftString
-        Name = 'HEMOFILIA'
-        ParamType = ptInput
-      end    
-      item
-        DataType = ftString
-        Name = 'HEPATITE'
-        ParamType = ptInput
-      end    
-      item
-        DataType = ftString
-        Name = 'ICTERICIA'
-        ParamType = ptInput
-      end    
-      item
-        DataType = ftString
-        Name = 'PROBLEMA_HORMONAL'
-        ParamType = ptInput
-      end    
-      item
-        DataType = ftString
-        Name = 'SIFILIS'
-        ParamType = ptInput
-      end    
-      item
-        DataType = ftString
-        Name = 'SINUSITE'
-        ParamType = ptInput
-      end    
-      item
-        DataType = ftString
-        Name = 'TUBERCULOSE'
-        ParamType = ptInput
-      end    
-      item
-        DataType = ftString
-        Name = 'ULCERA_HEPATICA'
-        ParamType = ptInput
-      end    
-      item
-        DataType = ftInteger
-        Name = 'ID_TBLPACIENTE'
-        ParamType = ptInput
-      end>
-    StoredProcName = 'PROC_EDIT_TBLENFERMIDADES'
-    left = 1204
-    top = 176
-    ParamData = <    
-      item
-        DataType = ftInteger
-        Name = 'ID_ENFERMIDADES'
-        ParamType = ptInput
-      end    
-      item
-        DataType = ftString
-        Name = 'AIDS'
-        ParamType = ptInput
-      end    
-      item
-        DataType = ftString
-        Name = 'ANEMIA'
-        ParamType = ptInput
-      end    
-      item
-        DataType = ftString
-        Name = 'ASMA'
-        ParamType = ptInput
-      end    
-      item
-        DataType = ftString
-        Name = 'DIABETE'
-        ParamType = ptInput
-      end    
-      item
-        DataType = ftString
-        Name = 'DOENCA_CORACAO'
-        ParamType = ptInput
-      end    
-      item
-        DataType = ftString
-        Name = 'TUMOR_BOCA'
-        ParamType = ptInput
-      end    
-      item
-        DataType = ftString
-        Name = 'DOENCA_RENAL'
-        ParamType = ptInput
-      end    
-      item
-        DataType = ftString
-        Name = 'DISRITMIA_EPILEPSIA'
-        ParamType = ptInput
-      end    
-      item
-        DataType = ftString
-        Name = 'FEBRE_REUMATICA'
-        ParamType = ptInput
-      end    
-      item
-        DataType = ftString
-        Name = 'GLAUCOMA'
-        ParamType = ptInput
-      end    
-      item
-        DataType = ftString
-        Name = 'GONORREIA'
-        ParamType = ptInput
-      end    
-      item
-        DataType = ftString
-        Name = 'HANSENIASE'
-        ParamType = ptInput
-      end    
-      item
-        DataType = ftString
-        Name = 'HEMOFILIA'
-        ParamType = ptInput
-      end    
-      item
-        DataType = ftString
-        Name = 'HEPATITE'
-        ParamType = ptInput
-      end    
-      item
-        DataType = ftString
-        Name = 'ICTERICIA'
-        ParamType = ptInput
-      end    
-      item
-        DataType = ftString
-        Name = 'PROBLEMA_HORMONAL'
-        ParamType = ptInput
-      end    
-      item
-        DataType = ftString
-        Name = 'SIFILIS'
-        ParamType = ptInput
-      end    
-      item
-        DataType = ftString
-        Name = 'SINUSITE'
-        ParamType = ptInput
-      end    
-      item
-        DataType = ftString
-        Name = 'TUBERCULOSE'
-        ParamType = ptInput
-      end    
-      item
-        DataType = ftString
-        Name = 'ULCERA_HEPATICA'
-        ParamType = ptInput
-      end    
-      item
-        DataType = ftInteger
-        Name = 'ID_TBLPACIENTE'
-        ParamType = ptInput
-      end>
-  end
   object strprocApagarDadosBasicos: TZStoredProc
     Connection = dmConexao.zConexao
     Params = <    
@@ -1738,6 +1292,244 @@ object dmCadPaciente: TdmCadPaciente
       item
         DataType = ftInteger
         Name = 'COD_SINAISSINTOMAS'
+        ParamType = ptOutput
+      end>
+  end
+  object strprocCadEditEnfermidades: TZStoredProc
+    Connection = dmConexao.zConexao
+    Params = <    
+      item
+        DataType = ftInteger
+        Name = 'ID_ENFERMIDADES'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'AIDS'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'ANEMIA'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'ASMA'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'DIABETE'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'DOENCA_CORACAO'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'TUMOR_BOCA'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'DOENCA_RENAL'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'DISRITMIA_EPILEPSIA'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'FEBRE_REUMATICA'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'GLAUCOMA'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'GONORREIA'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'HANSENIASE'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'HEMOFILIA'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'HEPATITE'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'ICTERICIA'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'PROBLEMA_HORMONAL'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'SIFILIS'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'SINUSITE'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'TUBERCULOSE'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'ULCERA_HEPATICA'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftInteger
+        Name = 'ID_TBLPACIENTE'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftInteger
+        Name = 'COD_ENFERMIDADES'
+        ParamType = ptOutput
+      end>
+    StoredProcName = 'PROC_CAD_E_EDIT_TBLENFERMIDADES'
+    left = 1222
+    top = 100
+    ParamData = <    
+      item
+        DataType = ftInteger
+        Name = 'ID_ENFERMIDADES'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'AIDS'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'ANEMIA'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'ASMA'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'DIABETE'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'DOENCA_CORACAO'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'TUMOR_BOCA'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'DOENCA_RENAL'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'DISRITMIA_EPILEPSIA'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'FEBRE_REUMATICA'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'GLAUCOMA'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'GONORREIA'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'HANSENIASE'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'HEMOFILIA'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'HEPATITE'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'ICTERICIA'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'PROBLEMA_HORMONAL'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'SIFILIS'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'SINUSITE'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'TUBERCULOSE'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftString
+        Name = 'ULCERA_HEPATICA'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftInteger
+        Name = 'ID_TBLPACIENTE'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftInteger
+        Name = 'COD_ENFERMIDADES'
         ParamType = ptOutput
       end>
   end

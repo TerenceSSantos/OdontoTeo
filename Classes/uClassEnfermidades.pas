@@ -34,8 +34,6 @@ type
      FtumorBoca: string;
      FulceraHepatica: string;
 
-  protected
-
   public
      property idEnfermidade: integer read FidEnfermidade write FidEnfermidade;
      property aids: string read Faids write Faids;
