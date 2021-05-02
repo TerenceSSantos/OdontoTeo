@@ -1,7 +1,7 @@
 object frmCadPaciente: TfrmCadPaciente
-  Left = 451
+  Left = 462
   Height = 547
-  Top = 174
+  Top = 167
   Width = 1092
   BorderStyle = bsNone
   Caption = 'Cadastro de Pacientes'
@@ -611,10 +611,10 @@ object frmCadPaciente: TfrmCadPaciente
       Height = 362
       Top = 2
       Width = 1088
-      ActivePage = tabEnfermidades
+      ActivePage = tabEndereco
       Align = alClient
       Images = miglstCadPaciente
-      TabIndex = 7
+      TabIndex = 2
       TabOrder = 0
       OnChange = pcCadPacienteChange
       OnChanging = pcCadPacienteChanging
@@ -1251,7 +1251,6 @@ object frmCadPaciente: TfrmCadPaciente
             NumbersOnly = True
             TabStop = False
             TabOrder = 15
-            Text = '0'
             TextHint = 'Cód. doc. Paciente'
             Visible = False
           end

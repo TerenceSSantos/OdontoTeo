@@ -17,8 +17,11 @@ type
       qryTblEndereco: TZQuery;
       qryTblPaciente: TZQuery;
       qryTblResponsavel: TZQuery;
+      qryTblResponsavelCPF: TStringField;
+      qryTblResponsavelIDENTIDADE: TStringField;
       qryTblResponsavelID_RESPONSAVEL: TLongintField;
       qryTblResponsavelNOME_RESPONSAVEL: TStringField;
+      qryTblResponsavelORGAO_EXPEDIDOR: TStringField;
       qryTblResponsavelPARENTESCO: TStringField;
       strprocApagarDadosBasicos: TZStoredProc;
       strprocApagarResponsavel: TZStoredProc;
@@ -36,11 +39,12 @@ type
    public
       function TblPacienteVazia : boolean;
 
-      function EnviaDadosBasicos(objPaciente: TPaciente) : TPaciente;
+//      function EnviaDadosBasicos(objPaciente: TPaciente) : TPaciente;
 //      function ApagarCadastroBasico(codigo: integer): boolean;
 
       function InclusaoOuEdicaoDadosBasicos(objPaciente: TPaciente): integer;
       function ApagarDadosBasico(codigo: integer): boolean;
+      function SelectDadosBasicos(idPaciente: integer; objDadosBasicos: TPaciente): TPaciente;
 
       function InclusaoOuEdicaoDocumentos(objDocumentos: TDocumentos): integer;
 
@@ -49,6 +53,7 @@ type
       function SelectResponsavel(idTblPaciente: integer; objResponsavel: TResponsavelPaciente): TResponsavelPaciente;
 
       function InclusaoOuEdicaoEndereco(objEndereco: TEndereco): integer;
+      function SelectEndereco(idTblPaciente: integer; objEndereco: TEndereco): TEndereco;
 
       function InclusaoOuEdicaoContatos(objContatos: TContatos): integer;
 
@@ -150,6 +155,35 @@ begin
    end;
 end;
 
+function TdmCadPaciente.SelectDadosBasicos(idPaciente: integer; objDadosBasicos: TPaciente): TPaciente;
+var
+   qry : TZQuery;
+begin
+   try
+      qry := TZQuery.Create(nil);
+      qry.SQL.Add('select * from tbl_paciente ');
+      qry.SQL.Add('where id_paciente = ' + IntToStr(idPaciente));
+      qry.Connection := dmConexao.zConexao;
+      qry.Open;
+      objDadosBasicos.idPaciente := qry.FieldByName('ID_PACIENTE').AsInteger;
+      objDadosBasicos.nomePaciente := qry.FieldByName('NOME_PACIENTE').AsString;
+      objDadosBasicos.nomePai := qry.FieldByName('NOME_PAI').AsString;
+      objDadosBasicos.nomeMae := qry.FieldByName('NOME_MAE').AsString;
+      objDadosBasicos.estadoCivil := qry.FieldByName('ESTADO_CIVIL').AsString;
+      objDadosBasicos.nomeConjuge := qry.FieldByName('NOME_CONJUGE').AsString;
+      objDadosBasicos.sexo := qry.FieldByName('SEXO').AsString;
+      objDadosBasicos.dataNascimento := qry.FieldByName('DATA_NASCIMENTO').AsDateTime;
+      objDadosBasicos.naturalidade := qry.FieldByName('NATURALIDADE').AsString;
+      objDadosBasicos.ufNascimento := qry.FieldByName('UF_NASCIMENTO').AsString;
+      objDadosBasicos.nacionalidade := qry.FieldByName('NACIONALIDADE').AsString;
+      objDadosBasicos.ativo := qry.FieldByName('ATIVO').AsString;
+
+      result := objDadosBasicos;
+   finally
+      FreeAndNil(qry);
+   end;
+end;
+
 function TdmCadPaciente.InclusaoOuEdicaoDocumentos(objDocumentos: TDocumentos): integer;
 var
    frmMensagem: TfrmMensagem;
@@ -218,7 +252,7 @@ begin
    end;
 
 end;
-
+{
 function TdmCadPaciente.EnviaDadosBasicos(objPaciente: TPaciente): TPaciente;
 begin
                               // PREENCHER O OBJETO PACIENTE COM OS DADOS RECEBIDOS DA QUERY DEPOIS DE OPEN NA TABELA
@@ -239,7 +273,7 @@ begin
       objPaciente.identidadePaciente := qryTblPaciente.FieldByName('IDENTIDADE_PACIENTE').AsString;
       objPaciente.orgaoExpedidorID := qryTblPaciente.FieldByName('ORGAO_EXPEDIDOR_ID').AsString;   }
       result := objPaciente;
-end;
+end;  }
 {
 function TdmCadPaciente.ApagarCadastroBasico(codigo: integer): boolean;
 begin
@@ -289,11 +323,17 @@ function TdmCadPaciente.SelectResponsavel(idTblPaciente: integer; objResponsavel
 begin
    qryTblResponsavel.Close;
    qryTblResponsavel.SQL.Clear;
-   qryTblResponsavel.SQL.Add('select * from tbl_responsavel where id_tblPaciente = ' + IntToStr(idTblPaciente));
+   qryTblResponsavel.SQL.Add('SELECT R.*, D.*');
+   qryTblResponsavel.SQL.Add(' FROM TBL_RESPONSAVEL R');
+   qryTblResponsavel.SQL.Add(' LEFT JOIN TBL_DOCUMENTOS D on D.ID_TBLRESPONSAVEL = R.ID_RESPONSAVEL');
+   qryTblResponsavel.SQL.Add(' WHERE R.ID_TBLPACIENTE = ' + IntToStr(idTblPaciente));
    qryTblResponsavel.Open;
    objResponsavel.idResponsavel := qryTblResponsavelID_RESPONSAVEL.AsInteger;
    objResponsavel.nomeResponsavel := qryTblResponsavelNOME_RESPONSAVEL.AsString;
    objResponsavel.parentesco := qryTblResponsavelPARENTESCO.AsString;
+   objResponsavel.identidadeResponsavel := qryTblResponsavelIDENTIDADE.AsString;
+   objResponsavel.orgaoExpedidor := qryTblResponsavelORGAO_EXPEDIDOR.AsString;
+   objResponsavel.cpfResponsavel := qryTblResponsavelCPF.AsString;
    result := objResponsavel;
 end;
 
@@ -338,6 +378,21 @@ begin                                                          // 9 = TBLDADOSPR
          end;
       end;
    end;
+end;
+
+function TdmCadPaciente.SelectEndereco(idTblPaciente: integer; objEndereco: TEndereco): TEndereco;
+begin
+   qryTblEndereco.Close;
+   qryTblEndereco.Params[0].AsInteger := idTblPaciente;
+   qryTblEndereco.Open;
+   objEndereco.logradouro := qryTblEndereco.FieldByName('LOGRADOURO').AsString;
+   objEndereco.numero := qryTblEndereco.FieldByName('NUMERO').AsString;
+   objEndereco.complemento := qryTblEndereco.FieldByName('COMPLEMENTO').AsString;
+   objEndereco.bairro := qryTblEndereco.FieldByName('BAIRRO').AsString;
+   objEndereco.cidade := qryTblEndereco.FieldByName('CIDADE').AsString;
+   objEndereco.estado := qryTblEndereco.FieldByName('ESTADO').AsString;
+   objEndereco.cep := qryTblEndereco.FieldByName('CEP').AsString;
+   result := objEndereco;
 end;
 
 function TdmCadPaciente.InclusaoOuEdicaoContatos(objContatos: TContatos): integer;
@@ -514,7 +569,7 @@ var
    frmMensagem : TfrmMensagem;
 begin
    with strprocCadEditEnfermidades do
-   begin                                                      { TODO : Erro aqui. }
+   begin
       Params[0].AsInteger := objEnfermidades.idEnfermidade;
       Params[1].AsString := objEnfermidades.aids;
       Params[2].AsString := objEnfermidades.anemia;

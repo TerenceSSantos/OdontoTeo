@@ -4,7 +4,7 @@
     <PathDelim Value="\"/>
     <Version Value="11"/>
     <BuildModes Active="Default1"/>
-    <Units Count="69">
+    <Units Count="66">
       <Unit0>
         <Filename Value="prjOdontoTeo.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -18,12 +18,11 @@
         <ComponentName Value="frmPrincipal"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="15"/>
+        <EditorIndex Value="14"/>
         <TopLine Value="86"/>
         <CursorPos X="61" Y="38"/>
         <UsageCount Value="204"/>
         <Loaded Value="True"/>
-        <LoadedDesigner Value="True"/>
       </Unit1>
       <Unit2>
         <Filename Value="DataModules\uDMConexao.pas"/>
@@ -31,7 +30,7 @@
         <ComponentName Value="dmConexao"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
-        <EditorIndex Value="11"/>
+        <EditorIndex Value="10"/>
         <TopLine Value="13"/>
         <CursorPos X="65" Y="32"/>
         <UsageCount Value="201"/>
@@ -44,11 +43,12 @@
         <ComponentName Value="frmLocalizaPaciente"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="14"/>
-        <TopLine Value="29"/>
-        <CursorPos X="69" Y="136"/>
+        <EditorIndex Value="13"/>
+        <TopLine Value="61"/>
+        <CursorPos X="10" Y="70"/>
         <UsageCount Value="202"/>
         <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
       </Unit3>
       <Unit4>
         <Filename Value="DataModules\uDMCadPaciente.pas"/>
@@ -57,9 +57,9 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
         <IsVisibleTab Value="True"/>
-        <EditorIndex Value="10"/>
-        <TopLine Value="529"/>
-        <CursorPos Y="518"/>
+        <EditorIndex Value="9"/>
+        <TopLine Value="373"/>
+        <CursorPos X="55" Y="386"/>
         <UsageCount Value="202"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -76,7 +76,8 @@
         <Filename Value="Classes\uClassControlePaciente.pas"/>
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="4"/>
-        <CursorPos X="17" Y="9"/>
+        <TopLine Value="122"/>
+        <CursorPos X="71" Y="126"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
       </Unit6>
@@ -84,8 +85,8 @@
         <Filename Value="Classes\uClassResponsavelPaciente.pas"/>
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="17"/>
-        <CursorPos X="13" Y="16"/>
+        <TopLine Value="14"/>
+        <CursorPos X="82" Y="29"/>
         <UsageCount Value="200"/>
       </Unit7>
       <Unit8>
@@ -100,11 +101,10 @@
       <Unit9>
         <Filename Value="Classes\uClassSinaisSintomas.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="6"/>
+        <EditorIndex Value="-1"/>
         <TopLine Value="28"/>
         <CursorPos X="32" Y="16"/>
         <UsageCount Value="201"/>
-        <Loaded Value="True"/>
       </Unit9>
       <Unit10>
         <Filename Value="Forms\uSobre.pas"/>
@@ -120,11 +120,10 @@
       <Unit11>
         <Filename Value="Classes\uClassEnfermidades.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="5"/>
+        <EditorIndex Value="-1"/>
         <TopLine Value="29"/>
         <CursorPos X="6" Y="36"/>
         <UsageCount Value="202"/>
-        <Loaded Value="True"/>
       </Unit11>
       <Unit12>
         <Filename Value="Forms\uFrmMensagem.pas"/>
@@ -132,7 +131,7 @@
         <ComponentName Value="frmMensagem"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="13"/>
+        <EditorIndex Value="12"/>
         <TopLine Value="72"/>
         <CursorPos X="80" Y="91"/>
         <UsageCount Value="200"/>
@@ -141,9 +140,11 @@
       <Unit13>
         <Filename Value="Classes\uClassEndereco.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="-1"/>
+        <EditorIndex Value="5"/>
+        <TopLine Value="7"/>
         <CursorPos X="24" Y="25"/>
         <UsageCount Value="203"/>
+        <Loaded Value="True"/>
       </Unit13>
       <Unit14>
         <Filename Value="Classes\uClassAnamnese.pas"/>
@@ -168,8 +169,8 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="2"/>
-        <TopLine Value="448"/>
-        <CursorPos X="46" Y="468"/>
+        <TopLine Value="1122"/>
+        <CursorPos X="37" Y="1140"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -177,7 +178,7 @@
       <Unit17>
         <Filename Value="CadPaciente\uDadosBasicos.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="9"/>
+        <EditorIndex Value="8"/>
         <TopLine Value="14"/>
         <CursorPos X="46" Y="35"/>
         <UsageCount Value="200"/>
@@ -186,9 +187,11 @@
       <Unit18>
         <Filename Value="CadPaciente\uResponsavel.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="-1"/>
-        <CursorPos X="101" Y="16"/>
+        <EditorIndex Value="15"/>
+        <TopLine Value="23"/>
+        <CursorPos X="33" Y="45"/>
         <UsageCount Value="201"/>
+        <Loaded Value="True"/>
       </Unit18>
       <Unit19>
         <Filename Value="CadPaciente\uEndereco.pas"/>
@@ -201,7 +204,7 @@
       <Unit20>
         <Filename Value="CadPaciente\uContatos.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="7"/>
+        <EditorIndex Value="6"/>
         <TopLine Value="32"/>
         <CursorPos Y="38"/>
         <UsageCount Value="205"/>
@@ -210,7 +213,7 @@
       <Unit21>
         <Filename Value="CadPaciente\uDadoProfissional.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="8"/>
+        <EditorIndex Value="7"/>
         <TopLine Value="53"/>
         <CursorPos X="58" Y="67"/>
         <UsageCount Value="205"/>
@@ -237,8 +240,9 @@
       <Unit24>
         <Filename Value="CadPaciente\uEnfermidades.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="12"/>
-        <CursorPos X="94" Y="16"/>
+        <EditorIndex Value="11"/>
+        <TopLine Value="41"/>
+        <CursorPos X="29" Y="59"/>
         <UsageCount Value="203"/>
         <Loaded Value="True"/>
       </Unit24>
@@ -247,7 +251,7 @@
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="4" Y="33"/>
-        <UsageCount Value="174"/>
+        <UsageCount Value="200"/>
       </Unit25>
       <Unit26>
         <Filename Value="CadPaciente\uDocumentos.pas"/>
@@ -255,7 +259,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="52"/>
         <CursorPos X="59" Y="39"/>
-        <UsageCount Value="174"/>
+        <UsageCount Value="200"/>
       </Unit26>
       <Unit27>
         <Filename Value="Forms\uCadPacientes.pas"/>
@@ -265,425 +269,402 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="532"/>
         <CursorPos X="34" Y="551"/>
-        <UsageCount Value="185"/>
+        <UsageCount Value="179"/>
       </Unit27>
       <Unit28>
         <Filename Value="C:\Users\Terence\AppData\Local\lazarus\onlinepackagemanager\packages\zeosdbo\src\component\ZAbstractRODataset.pas"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="2411"/>
         <CursorPos Y="2425"/>
-        <UsageCount Value="10"/>
+        <UsageCount Value="4"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit28>
       <Unit29>
-        <Filename Value="D:\lazarus\lcl\include\messagedialogs.inc"/>
-        <EditorIndex Value="-1"/>
-        <CursorPos Y="12"/>
-        <UsageCount Value="5"/>
-      </Unit29>
-      <Unit30>
         <Filename Value="C:\Users\Terence\AppData\Local\lazarus\onlinepackagemanager\packages\zeosdbo\src\component\ZAbstractConnection.pas"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="1234"/>
         <CursorPos Y="1246"/>
-        <UsageCount Value="4"/>
+        <UsageCount Value="8"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
-      </Unit30>
-      <Unit31>
+      </Unit29>
+      <Unit30>
         <Filename Value="C:\Users\Terence\AppData\Local\lazarus\onlinepackagemanager\packages\zeosdbo\src\dbc\ZDbcInterbase6Utils.pas"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="882"/>
         <CursorPos Y="902"/>
-        <UsageCount Value="7"/>
+        <UsageCount Value="1"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
-      </Unit31>
-      <Unit32>
+      </Unit30>
+      <Unit31>
         <Filename Value="D:\lazarus\lcl\dbgrids.pas"/>
         <UnitName Value="DBGrids"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="854"/>
         <CursorPos Y="868"/>
-        <UsageCount Value="1"/>
-      </Unit32>
-      <Unit33>
-        <Filename Value="D:\lazarus\lcl\include\control.inc"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="2901"/>
-        <CursorPos Y="2915"/>
         <UsageCount Value="5"/>
-      </Unit33>
-      <Unit34>
-        <Filename Value="D:\lazarus\lcl\include\application.inc"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="2396"/>
-        <CursorPos X="53" Y="2410"/>
-        <UsageCount Value="5"/>
-      </Unit34>
-      <Unit35>
+      </Unit31>
+      <Unit32>
         <Filename Value="D:\lazarus\components\datetimectrls\datetimepicker.pas"/>
         <UnitName Value="DateTimePicker"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="19"/>
         <CursorPos X="20" Y="38"/>
-        <UsageCount Value="3"/>
-      </Unit35>
-      <Unit36>
+        <UsageCount Value="7"/>
+      </Unit32>
+      <Unit33>
         <Filename Value="D:\lazarus\fpc\3.0.4\source\rtl\objpas\sysutils\sysstrh.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="202"/>
         <CursorPos X="10" Y="215"/>
-        <UsageCount Value="4"/>
-      </Unit36>
-      <Unit37>
+        <UsageCount Value="8"/>
+      </Unit33>
+      <Unit34>
         <Filename Value="D:\lazarus\lcl\include\wincontrol.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="5408"/>
         <CursorPos Y="5420"/>
-        <UsageCount Value="3"/>
-      </Unit37>
-      <Unit38>
+        <UsageCount Value="7"/>
+      </Unit34>
+      <Unit35>
         <Filename Value="D:\lazarus\lcl\controls.pp"/>
         <UnitName Value="Controls"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="275"/>
         <CursorPos X="14" Y="278"/>
-        <UsageCount Value="1"/>
-      </Unit38>
-      <Unit39>
+        <UsageCount Value="5"/>
+      </Unit35>
+      <Unit36>
         <Filename Value="D:\lazarus\fpc\3.0.4\source\rtl\objpas\classes\classesh.inc"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="1068"/>
-        <CursorPos X="17" Y="1081"/>
-        <UsageCount Value="3"/>
-      </Unit39>
-      <Unit40>
+        <TopLine Value="425"/>
+        <CursorPos X="15" Y="438"/>
+        <UsageCount Value="13"/>
+      </Unit36>
+      <Unit37>
         <Filename Value="D:\lazarus\lcl\widgetset\wsforms.pp"/>
         <UnitName Value="WSForms"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="193"/>
         <CursorPos Y="206"/>
-        <UsageCount Value="4"/>
-      </Unit40>
-      <Unit41>
+        <UsageCount Value="8"/>
+      </Unit37>
+      <Unit38>
         <Filename Value="C:\Users\Terence\AppData\Local\lazarus\onlinepackagemanager\packages\bgracontrols-master\bcbutton.pas"/>
         <UnitName Value="BCButton"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="1180"/>
         <CursorPos Y="1193"/>
-        <UsageCount Value="4"/>
-      </Unit41>
-      <Unit42>
+        <UsageCount Value="8"/>
+      </Unit38>
+      <Unit39>
         <Filename Value="D:\lazarus\fpc\3.0.4\source\rtl\objpas\sysutils\sysstr.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="1849"/>
         <CursorPos X="3" Y="1851"/>
-        <UsageCount Value="4"/>
-      </Unit42>
-      <Unit43>
+        <UsageCount Value="8"/>
+      </Unit39>
+      <Unit40>
         <Filename Value="D:\lazarus\fpc\3.0.4\source\packages\rtl-objpas\src\inc\dateutils.pp"/>
         <EditorIndex Value="-1"/>
-        <UsageCount Value="3"/>
-      </Unit43>
-      <Unit44>
+        <UsageCount Value="7"/>
+      </Unit40>
+      <Unit41>
         <Filename Value="D:\lazarus\fpc\3.0.4\source\packages\rtl-objpas\src\inc\dateutil.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="259"/>
-        <UsageCount Value="3"/>
-      </Unit44>
-      <Unit45>
+        <UsageCount Value="7"/>
+      </Unit41>
+      <Unit42>
         <Filename Value="D:\lazarus\fpc\3.0.4\source\rtl\objpas\sysutils\syshelph.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="99"/>
         <CursorPos X="14" Y="111"/>
-        <UsageCount Value="10"/>
-      </Unit45>
-      <Unit46>
+        <UsageCount Value="4"/>
+      </Unit42>
+      <Unit43>
         <Filename Value="D:\lazarus\fpc\3.0.4\source\rtl\objpas\sysutils\syshelp.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="883"/>
         <CursorPos X="3" Y="885"/>
-        <UsageCount Value="10"/>
-      </Unit46>
-      <Unit47>
+        <UsageCount Value="4"/>
+      </Unit43>
+      <Unit44>
         <Filename Value="D:\lazarus\lcl\lclmessageglue.pas"/>
         <UnitName Value="LCLMessageGlue"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="104"/>
         <CursorPos Y="116"/>
-        <UsageCount Value="4"/>
-      </Unit47>
-      <Unit48>
+        <UsageCount Value="11"/>
+      </Unit44>
+      <Unit45>
         <Filename Value="D:\lazarus\lcl\interfaces\win32\win32callback.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="2662"/>
         <CursorPos Y="2681"/>
-        <UsageCount Value="2"/>
-      </Unit48>
-      <Unit49>
-        <Filename Value="Forms\uFrmSobre.pas"/>
-        <ComponentName Value="frmSobre"/>
-        <ResourceBaseClass Value="Form"/>
-        <UnitName Value="uSobre"/>
-        <EditorIndex Value="-1"/>
-        <CursorPos X="8"/>
-        <UsageCount Value="5"/>
-      </Unit49>
-      <Unit50>
-        <Filename Value="C:\Users\Terence\AppData\Local\lazarus\onlinepackagemanager\packages\spktoolbar\SpkToolbar\SpkToolbar.pas"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="670"/>
-        <CursorPos X="12" Y="36"/>
-        <UsageCount Value="5"/>
-      </Unit50>
-      <Unit51>
+        <UsageCount Value="6"/>
+      </Unit45>
+      <Unit46>
         <Filename Value="C:\Users\Terence\AppData\Local\lazarus\onlinepackagemanager\packages\Rx\rxcontrols\rxversinfo.pas"/>
         <UnitName Value="RxVersInfo"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="86"/>
         <CursorPos X="3" Y="48"/>
-        <UsageCount Value="3"/>
-      </Unit51>
-      <Unit52>
+        <UsageCount Value="7"/>
+      </Unit46>
+      <Unit47>
         <Filename Value="D:\lazarus\examples\lclversion\unit1.pas"/>
         <UnitName Value="Unit1"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="31"/>
         <CursorPos X="80" Y="8"/>
-        <UsageCount Value="3"/>
-      </Unit52>
-      <Unit53>
+        <UsageCount Value="7"/>
+      </Unit47>
+      <Unit48>
         <Filename Value="D:\lazarus\examples\designnonlcl\notlcldesigner.pas"/>
         <UnitName Value="NotLCLDesigner"/>
         <EditorIndex Value="-1"/>
-        <UsageCount Value="1"/>
-      </Unit53>
-      <Unit54>
+        <UsageCount Value="5"/>
+      </Unit48>
+      <Unit49>
         <Filename Value="D:\lazarus\lcl\include\radiogroup.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="428"/>
         <CursorPos Y="443"/>
-        <UsageCount Value="3"/>
-      </Unit54>
-      <Unit55>
+        <UsageCount Value="7"/>
+      </Unit49>
+      <Unit50>
         <Filename Value="D:\lazarus\lcl\dialogs.pp"/>
         <UnitName Value="Dialogs"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="783"/>
         <CursorPos Y="796"/>
-        <UsageCount Value="6"/>
-      </Unit55>
-      <Unit56>
+        <UsageCount Value="10"/>
+      </Unit50>
+      <Unit51>
         <Filename Value="D:\lazarus\lcl\include\customnotebook.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="379"/>
         <CursorPos Y="402"/>
-        <UsageCount Value="6"/>
-      </Unit56>
-      <Unit57>
+        <UsageCount Value="10"/>
+      </Unit51>
+      <Unit52>
         <Filename Value="D:\lazarus\fpc\3.0.4\source\rtl\objpas\sysutils\syshelpo.inc"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="3" Y="11"/>
-        <UsageCount Value="6"/>
-      </Unit57>
-      <Unit58>
+        <UsageCount Value="10"/>
+      </Unit52>
+      <Unit53>
         <Filename Value="D:\lazarus\components\lazarus-ccr-svn-r7466-components-exctrls\examples\CheckCtrlsEx\main.pas"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="46"/>
         <CursorPos X="51" Y="58"/>
-        <UsageCount Value="3"/>
-      </Unit58>
-      <Unit59>
+        <UsageCount Value="7"/>
+      </Unit53>
+      <Unit54>
         <Filename Value="D:\lazarus\fpc\3.0.4\source\packages\fcl-base\src\maskutils.pp"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="41" Y="21"/>
-        <UsageCount Value="1"/>
-      </Unit59>
-      <Unit60>
+        <UsageCount Value="5"/>
+      </Unit54>
+      <Unit55>
         <Filename Value="D:\lazarus\components\lazarus-ccr-svn-r7466-components-exctrls\source\excheckctrls.pas"/>
         <UnitName Value="ExCheckCtrls"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="1178"/>
         <CursorPos Y="1191"/>
-        <UsageCount Value="3"/>
-      </Unit60>
-      <Unit61>
+        <UsageCount Value="7"/>
+      </Unit55>
+      <Unit56>
         <Filename Value="D:\lazarus\lcl\maskedit.pp"/>
         <UnitName Value="MaskEdit"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="2119"/>
         <CursorPos Y="2131"/>
-        <UsageCount Value="3"/>
-      </Unit61>
-      <Unit62>
-        <Filename Value="C:\Users\Terence\AppData\Local\lazarus\onlinepackagemanager\packages\zeosdbo\src\dbc\ZDbcConnection.pas"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="1236"/>
-        <CursorPos Y="1249"/>
-        <UsageCount Value="5"/>
-        <DefaultSyntaxHighlighter Value="Delphi"/>
-      </Unit62>
-      <Unit63>
+        <UsageCount Value="7"/>
+      </Unit56>
+      <Unit57>
         <Filename Value="C:\Users\Terence\AppData\Local\lazarus\onlinepackagemanager\packages\zeosdbo\src\component\ZStoredProcedure.pas"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="357"/>
         <CursorPos Y="371"/>
-        <UsageCount Value="4"/>
+        <UsageCount Value="8"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
-      </Unit63>
-      <Unit64>
+      </Unit57>
+      <Unit58>
         <Filename Value="D:\lazarus\fpc\3.0.4\source\packages\fcl-base\src\nullstream.pp"/>
         <EditorIndex Value="-1"/>
-        <UsageCount Value="9"/>
-      </Unit64>
-      <Unit65>
+        <UsageCount Value="3"/>
+      </Unit58>
+      <Unit59>
         <Filename Value="..\Teste\LazDataDesktop\Simple object\unit1.pp"/>
         <UnitName Value="Unit1"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="91"/>
-        <UsageCount Value="10"/>
-      </Unit65>
-      <Unit66>
+        <UsageCount Value="4"/>
+      </Unit59>
+      <Unit60>
         <Filename Value="C:\Users\Terence\AppData\Local\lazarus\onlinepackagemanager\packages\mORMot\SynFPCTypInfo.pas"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="83"/>
+        <TopLine Value="82"/>
         <CursorPos X="31" Y="95"/>
-        <UsageCount Value="1"/>
-      </Unit66>
-      <Unit67>
+        <UsageCount Value="6"/>
+      </Unit60>
+      <Unit61>
         <Filename Value="D:\lazarus\fpc\3.0.4\source\rtl\objpas\typinfo.pp"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="13"/>
-        <CursorPos X="13" Y="19"/>
-        <UsageCount Value="1"/>
-      </Unit67>
-      <Unit68>
+        <TopLine Value="22"/>
+        <UsageCount Value="6"/>
+      </Unit61>
+      <Unit62>
         <Filename Value="C:\Users\Terence\AppData\Local\lazarus\onlinepackagemanager\packages\mORMot\SQLite3\mORMotMVC.pas"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="496"/>
         <CursorPos X="181" Y="80"/>
-        <UsageCount Value="1"/>
-      </Unit68>
+        <UsageCount Value="5"/>
+      </Unit62>
+      <Unit63>
+        <Filename Value="D:\lazarus\lcl\forms.pp"/>
+        <UnitName Value="Forms"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="855"/>
+        <CursorPos X="13" Y="866"/>
+        <UsageCount Value="13"/>
+      </Unit63>
+      <Unit64>
+        <Filename Value="D:\lazarus\fpc\3.0.4\source\rtl\inc\objpash.inc"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="195"/>
+        <CursorPos X="26" Y="206"/>
+        <UsageCount Value="8"/>
+      </Unit64>
+      <Unit65>
+        <Filename Value="D:\lazarus\fpc\3.0.4\source\rtl\inc\objpas.inc"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="368"/>
+        <CursorPos X="12" Y="371"/>
+        <UsageCount Value="8"/>
+      </Unit65>
     </Units>
     <JumpHistory Count="30" HistoryIndex="29">
       <Position1>
-        <Filename Value="CadPaciente\uEnfermidades.pas"/>
-        <Caret Line="57" TopLine="41"/>
+        <Filename Value="DataModules\uDMCadPaciente.pas"/>
+        <Caret Line="162" TopLine="145"/>
       </Position1>
       <Position2>
-        <Filename Value="CadPaciente\uEnfermidades.pas"/>
-        <Caret Line="58" TopLine="41"/>
+        <Filename Value="DataModules\uDMCadPaciente.pas"/>
+        <Caret Line="163" Column="43" TopLine="148"/>
       </Position2>
       <Position3>
-        <Filename Value="CadPaciente\uEnfermidades.pas"/>
-        <Caret Line="59" TopLine="41"/>
+        <Filename Value="DataModules\uDMCadPaciente.pas"/>
+        <Caret Line="39" Column="10" TopLine="35"/>
       </Position3>
       <Position4>
-        <Filename Value="CadPaciente\uEnfermidades.pas"/>
-        <Caret Line="60" TopLine="41"/>
+        <Filename Value="DataModules\uDMCadPaciente.pas"/>
+        <Caret Line="50" Column="69" TopLine="32"/>
       </Position4>
       <Position5>
-        <Filename Value="CadPaciente\uEnfermidades.pas"/>
-        <Caret Line="35" TopLine="22"/>
+        <Filename Value="DataModules\uDMCadPaciente.pas"/>
+        <Caret Line="320" Column="4" TopLine="317"/>
       </Position5>
       <Position6>
         <Filename Value="DataModules\uDMCadPaciente.pas"/>
-        <Caret Line="516" TopLine="510"/>
+        <Caret Line="50" Column="16" TopLine="39"/>
       </Position6>
       <Position7>
         <Filename Value="DataModules\uDMCadPaciente.pas"/>
-        <Caret Line="518" TopLine="510"/>
+        <Caret Line="326" Column="85" TopLine="311"/>
       </Position7>
       <Position8>
         <Filename Value="DataModules\uDMCadPaciente.pas"/>
-        <Caret Line="520" Column="3" TopLine="510"/>
+        <Caret Line="19" Column="24" TopLine="6"/>
       </Position8>
       <Position9>
         <Filename Value="DataModules\uDMCadPaciente.pas"/>
-        <Caret Line="518" TopLine="510"/>
+        <Caret Line="20" Column="24" TopLine="6"/>
       </Position9>
       <Position10>
         <Filename Value="DataModules\uDMCadPaciente.pas"/>
-        <Caret Line="520" Column="63" TopLine="510"/>
+        <Caret Line="21" Column="24" TopLine="6"/>
       </Position10>
       <Position11>
         <Filename Value="DataModules\uDMCadPaciente.pas"/>
-        <Caret Line="518" TopLine="510"/>
+        <Caret Line="22" Column="24" TopLine="6"/>
       </Position11>
       <Position12>
         <Filename Value="DataModules\uDMCadPaciente.pas"/>
-        <Caret Line="519" TopLine="510"/>
+        <Caret Line="320" Column="21" TopLine="299"/>
       </Position12>
       <Position13>
-        <Filename Value="CadPaciente\uSinaisSintomas.pas"/>
-        <Caret Line="71" Column="78" TopLine="41"/>
+        <Filename Value="DataModules\uDMCadPaciente.pas"/>
+        <Caret Line="321" Column="21" TopLine="300"/>
       </Position13>
       <Position14>
         <Filename Value="DataModules\uDMCadPaciente.pas"/>
-        <Caret Line="520" Column="22" TopLine="510"/>
+        <Caret Line="322" Column="23" TopLine="301"/>
       </Position14>
       <Position15>
         <Filename Value="DataModules\uDMCadPaciente.pas"/>
-        <Caret Line="516" TopLine="510"/>
+        <Caret Line="323" Column="21" TopLine="302"/>
       </Position15>
       <Position16>
         <Filename Value="DataModules\uDMCadPaciente.pas"/>
-        <Caret Line="519" TopLine="510"/>
+        <Caret Line="324" Column="21" TopLine="303"/>
       </Position16>
       <Position17>
         <Filename Value="DataModules\uDMCadPaciente.pas"/>
-        <Caret Line="518" Column="63" TopLine="505"/>
+        <Caret Line="325" Column="21" TopLine="304"/>
       </Position17>
       <Position18>
-        <Filename Value="Classes\uClassControlePaciente.pas"/>
-        <Caret Line="43" Column="33" TopLine="30"/>
+        <Filename Value="DataModules\uDMCadPaciente.pas"/>
+        <Caret Line="326" Column="21" TopLine="305"/>
       </Position18>
       <Position19>
         <Filename Value="DataModules\uDMCadPaciente.pas"/>
-        <Caret Line="519" Column="55" TopLine="505"/>
+        <Caret Line="327" Column="21" TopLine="306"/>
       </Position19>
       <Position20>
         <Filename Value="DataModules\uDMCadPaciente.pas"/>
-        <Caret Line="518" Column="68" TopLine="505"/>
+        <Caret Line="328" Column="53" TopLine="307"/>
       </Position20>
       <Position21>
-        <Filename Value="CadPaciente\uEnfermidades.pas"/>
-        <Caret Line="72" Column="7" TopLine="51"/>
+        <Filename Value="DataModules\uDMCadPaciente.pas"/>
+        <Caret Line="329" Column="55" TopLine="308"/>
       </Position21>
       <Position22>
-        <Filename Value="Classes\uClassControlePaciente.pas"/>
-        <Caret Line="43" Column="51" TopLine="6"/>
+        <Filename Value="DataModules\uDMCadPaciente.pas"/>
+        <Caret Line="319" Column="6" TopLine="309"/>
       </Position22>
       <Position23>
-        <Filename Value="CadPaciente\uEnfermidades.pas"/>
-        <Caret Line="16" Column="103" TopLine="5"/>
+        <Filename Value="DataModules\uDMCadPaciente.pas"/>
+        <Caret Line="320" Column="6" TopLine="310"/>
       </Position23>
       <Position24>
-        <Filename Value="Classes\uClassControlePaciente.pas"/>
-        <Caret Line="9" Column="123"/>
+        <Filename Value="DataModules\uDMCadPaciente.pas"/>
+        <Caret Line="321" Column="6" TopLine="311"/>
       </Position24>
       <Position25>
-        <Filename Value="CadPaciente\uEnfermidades.pas"/>
-        <Caret Line="63" Column="28" TopLine="36"/>
+        <Filename Value="DataModules\uDMCadPaciente.pas"/>
+        <Caret Line="335" Column="35" TopLine="312"/>
       </Position25>
       <Position26>
-        <Filename Value="CadPaciente\uEnfermidades.pas"/>
-        <Caret Line="65" Column="33" TopLine="36"/>
+        <Filename Value="CadPaciente\uCadPacientes.pas"/>
+        <Caret Line="1084" Column="3" TopLine="1073"/>
       </Position26>
       <Position27>
         <Filename Value="DataModules\uDMCadPaciente.pas"/>
-        <Caret Line="519" Column="53" TopLine="491"/>
+        <Caret Line="56" Column="90" TopLine="39"/>
       </Position27>
       <Position28>
-        <Filename Value="Classes\uClassEnfermidades.pas"/>
-        <Caret Line="36" Column="3" TopLine="27"/>
+        <Filename Value="Classes\uClassControlePaciente.pas"/>
+        <Caret Line="36" Column="18" TopLine="25"/>
       </Position28>
       <Position29>
-        <Filename Value="CadPaciente\uEnfermidades.pas"/>
-        <Caret Line="74" Column="89" TopLine="50"/>
+        <Filename Value="CadPaciente\uCadPacientes.pas"/>
+        <Caret Line="386" Column="58" TopLine="370"/>
       </Position29>
       <Position30>
-        <Filename Value="CadPaciente\uEnfermidades.pas"/>
-        <Caret Line="16" Column="103"/>
+        <Filename Value="CadPaciente\uCadPacientes.pas"/>
+        <Caret Line="1140" Column="37" TopLine="1122"/>
       </Position30>
     </JumpHistory>
     <RunParams>

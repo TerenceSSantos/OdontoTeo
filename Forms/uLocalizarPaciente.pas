@@ -32,11 +32,11 @@ type
       procedure pnlTituloMouseUp(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
       procedure rgAtivosInativosSelectionChanged(Sender: TObject);
    private
+      nomeFormQueChamou: string;
       procedure LocalizarPaciente;
       function AtivosInativos : string;
-
    public
-
+      procedure FormQueChamou(nomeForm: string);
    end;
 
 var
@@ -49,7 +49,7 @@ var
 implementation
 
 uses
-   uDMCadPaciente, uClassControlePaciente;
+   uDMCadPaciente, uClassControlePaciente, uCadPacientes;
 
 
 {$R *.lfm}
@@ -62,17 +62,21 @@ begin
 end;
 
 procedure TfrmLocalizaPaciente.btnLocalizarPacienteClick(Sender: TObject);
-var
-   objLocPaciente : TPaciente;
+//var
+//   objLocPaciente : TPaciente;
 begin
-   try
-      objLocPaciente := TPaciente.Create;
-      objLocPaciente := dmCadPaciente.EnviaDadosBasicos(objLocPaciente);
-      TControlePaciente.EnviaDadosBasicos(objLocPaciente);
-   finally
-      FreeAndNil(objLocPaciente);
-   end;
+   if (nomeFormQueChamou = 'frmCadPaciente') then
+      frmCadPaciente.SelectPaciente(dsFrmLocalizaPacientes.DataSet.FieldByName('ID_PACIENTE').AsInteger);
    Close;
+
+   //try
+   //   objLocPaciente := TPaciente.Create;
+   //   objLocPaciente := dmCadPaciente.EnviaDadosBasicos(objLocPaciente);
+   //   TControlePaciente.EnviaDadosBasicos(objLocPaciente);
+   //finally
+   //   FreeAndNil(objLocPaciente);
+   //end;
+
 end;
 
 procedure TfrmLocalizaPaciente.edtLocalizarPacienteChange(Sender: TObject);
@@ -137,6 +141,11 @@ begin
       else
          result := 'T';
    end;
+end;
+
+procedure TfrmLocalizaPaciente.FormQueChamou(nomeForm: string);
+begin
+   nomeFormQueChamou := nomeForm;          { TODO : Fazendo a chamada direta do formulario de pesquisa }
 end;
 
 

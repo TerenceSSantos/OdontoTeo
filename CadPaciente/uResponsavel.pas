@@ -42,7 +42,7 @@ begin
    objResponsavel.parentesco := frm.edtParentesco.Text;
    objResponsavel.cpfResponsavel := frm.mskedtCPFResp.Text;
    objResponsavel.identidadeResponsavel := frm.edtIdentidadeResp.Text;
-   objResponsavel.orgaoExpedidorID := frm.edtOrgaoExpedResp.Text;
+   objResponsavel.orgaoExpedidor := frm.edtOrgaoExpedResp.Text;
    result := objResponsavel;
 end;
 

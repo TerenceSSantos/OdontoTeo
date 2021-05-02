@@ -1,9 +1,9 @@
 object dmCadPaciente: TdmCadPaciente
   OldCreateOrder = False
   Height = 449
-  HorizontalOffset = 190
-  VerticalOffset = 145
-  Width = 1326
+  HorizontalOffset = 506
+  VerticalOffset = 117
+  Width = 898
   PPI = 96
   object qryTblPaciente: TZQuery
     Connection = dmConexao.zConexao
@@ -17,23 +17,24 @@ object dmCadPaciente: TdmCadPaciente
   object qryTblResponsavel: TZQuery
     Connection = dmConexao.zConexao
     SQL.Strings = (
-      'select *'
-      'from tbl_responsavel   '
-      'where (id_tblpaciente = :id_paciente)'
+      'SELECT R.*, D.*'
+      'FROM TBL_RESPONSAVEL R'
+      'LEFT JOIN TBL_DOCUMENTOS D on D.ID_TBLRESPONSAVEL = R.ID_RESPONSAVEL'
+      'WHERE (R.ID_TBLPACIENTE = :idPaciente)'
     )
     Params = <    
       item
-        DataType = ftInteger
-        Name = 'id_paciente'
-        ParamType = ptInput
+        DataType = ftUnknown
+        Name = 'idPaciente'
+        ParamType = ptUnknown
       end>
     left = 240
     top = 32
     ParamData = <    
       item
-        DataType = ftInteger
-        Name = 'id_paciente'
-        ParamType = ptInput
+        DataType = ftUnknown
+        Name = 'idPaciente'
+        ParamType = ptUnknown
       end>
     object qryTblResponsavelID_RESPONSAVEL: TLongintField
       FieldKind = fkData
@@ -64,11 +65,58 @@ object dmCadPaciente: TdmCadPaciente
       Required = False
       Size = 40
     end
+    object qryTblResponsavelIDENTIDADE: TStringField
+      FieldKind = fkData
+      FieldName = 'IDENTIDADE'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 80
+    end
+    object qryTblResponsavelORGAO_EXPEDIDOR: TStringField
+      FieldKind = fkData
+      FieldName = 'ORGAO_EXPEDIDOR'
+      Index = 4
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 120
+    end
+    object qryTblResponsavelCPF: TStringField
+      FieldKind = fkData
+      FieldName = 'CPF'
+      Index = 5
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 44
+    end
   end
   object qryTblEndereco: TZQuery
-    Params = <>
+    Connection = dmConexao.zConexao
+    SQL.Strings = (
+      'SELECT *'
+      'FROM TBL_ENDERECO'
+      'WHERE id_tblpaciente = :idpaciente'
+    )
+    Params = <    
+      item
+        DataType = ftUnknown
+        Name = 'idpaciente'
+        ParamType = ptUnknown
+      end>
     left = 404
     top = 32
+    ParamData = <    
+      item
+        DataType = ftUnknown
+        Name = 'idpaciente'
+        ParamType = ptUnknown
+      end>
   end
   object qryContatos: TZQuery
     Params = <>

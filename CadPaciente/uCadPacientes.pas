@@ -383,6 +383,8 @@ type
       function RetornoRadioGroup(ItemIndex: integer): string;
       procedure PreencheFormDadosBasicos(objDados: TPaciente);
       procedure PreencheAbaResponsavel(idPaciente: integer);
+      procedure PreencheAbaEndereco(idPaciente: integer);
+      procedure SelectPaciente(idPaciente: integer);
    end;
 
    TipoEstado = (teNavegacao, teInclusao, teEdicao);
@@ -399,8 +401,8 @@ var
 implementation
 
 uses
-   uClassControlePaciente, uFrmMensagem, uDadosBasicos, uResponsavel, uEndereco, uContatos, uDadoProfissional, uAnamnese,
-   uSinaisSintomas, uEnfermidades, uDocumentos;
+   uClassControlePaciente, uFrmMensagem, uLocalizarPaciente, uDadosBasicos, uResponsavel, uEndereco, uContatos, uDadoProfissional,
+   uAnamnese, uSinaisSintomas, uEnfermidades, uDocumentos;
 
 
 {$R *.lfm}
@@ -592,13 +594,22 @@ end;
 
 procedure TfrmCadPaciente.btnProcuraPacienteClick(Sender: TObject);
 var
-   objControlePaciente : TControlePaciente;
+//   objControlePaciente : TControlePaciente;
+   frmLocacilarPaciente : TfrmLocalizaPaciente;
 begin
+   //try
+   //   objControlePaciente := TControlePaciente.Create;
+   //   objControlePaciente.ChamaLocalizar;
+   //finally
+   //   FreeAndNil(objControlePaciente);
+   //end;
+
    try
-      objControlePaciente := TControlePaciente.Create;
-      objControlePaciente.ChamaLocalizar;
+      frmLocacilarPaciente := TfrmLocalizaPaciente.Create(nil);
+      frmLocacilarPaciente.FormQueChamou(self.Name);
+      frmLocacilarPaciente.ShowModal;
    finally
-      FreeAndNil(objControlePaciente);
+      FreeAndNil(frmLocacilarPaciente);
    end;
 end;
 
@@ -1070,8 +1081,6 @@ begin
    lblCodPaciente.Caption := 'Código: ' + edtCodPaciente.Text;
    lblNomePaciente.Caption := 'Nome do Paciente: ' + edtNomePaciente.Text;
 
- {--------------------------------------------CHAMAR SELECT DO RESPONSAVEL-----------------------------------------------------------}
-   PreencheAbaResponsavel(objDados.idPaciente);
 end;
 
 procedure TfrmCadPaciente.PreencheAbaResponsavel(idPaciente: integer);
@@ -1083,12 +1092,55 @@ begin
    objControlePaciente := TControlePaciente.Create;
    try
       objResponsavel := objControlePaciente.SelectResponsavel(idPaciente, objResponsavel);
-//      objDadosBasicos.idResponsavel := objResponsavel.idResponsavel;
       edtNomeResp.Text := objResponsavel.nomeResponsavel;
       edtParentesco.Text := objResponsavel.parentesco;
       edtCodResponsavel.Text := IntToStr(objResponsavel.idResponsavel);
+      mskedtCPFResp.Text := objResponsavel.cpfResponsavel;
+      edtIdentidadeResp.Text := objResponsavel.identidadeResponsavel;
+      edtOrgaoExpedResp.Text := objResponsavel.orgaoExpedidor;
    finally
+      FreeAndNil(objControlePaciente);
       FreeAndNil(objResponsavel);
+   end;
+end;
+
+procedure TfrmCadPaciente.PreencheAbaEndereco(idPaciente: integer);
+var
+   objEndereco : TEndereco;
+   objControlePaciente : TControlePaciente;
+begin
+   try
+      objEndereco := TEndereco.Create;
+      objControlePaciente := TControlePaciente.Create;
+      objEndereco := objControlePaciente.SelectEndereco(idPaciente, objEndereco);
+      edtLogradouro.Text := objEndereco.logradouro;
+      edtNumEndereco.Text := objEndereco.numero;
+      edtComplemento.Text := objEndereco.complemento;
+      edtBairro.Text := objEndereco.bairro;
+      edtCidade.Text := objEndereco.cidade;
+      cboxUFCasa.Text := objEndereco.estado;
+      mskedtCEPCasa.Text := objEndereco.cep;
+   finally
+      FreeAndNil(objControlePaciente);
+      FreeAndNil(objEndereco);
+   end;
+end;
+
+procedure TfrmCadPaciente.SelectPaciente(idPaciente: integer);
+var
+   objDadosBasicos : TPaciente;
+   objControlePaciente : TControlePaciente;
+begin
+   try
+      objDadosBasicos := TPaciente.Create;
+      objControlePaciente := TControlePaciente.Create;
+      objDadosBasicos := objControlePaciente.SelectDadosBasicos(idPaciente, objDadosBasicos);
+      PreencheFormDadosBasicos(objDadosBasicos);
+      PreencheAbaResponsavel(idPaciente);
+      PreencheAbaEndereco(idPaciente);
+   finally
+      FreeAndNil(objControlePaciente);
+      FreeAndNil(objDadosBasicos);
    end;
 end;
 

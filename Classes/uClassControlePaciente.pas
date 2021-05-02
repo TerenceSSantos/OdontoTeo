@@ -21,6 +21,8 @@ type
         function InclusaoOuEdicaoDadosBasicos(objPaciente: TPaciente): integer;
         function ApagarCadastroBasico(codigo: integer): boolean;
         function TblPacienteVazia : boolean;
+        function SelectDadosBasicos(idPaciente: integer;
+           objDadosBasicos: TPaciente): TPaciente;
         class procedure EnviaDadosBasicos(objPaciente: TPaciente);
 
         function InclusaoOuEdicaoDocumentos(objDocumentos: TDocumentos): integer;
@@ -31,6 +33,7 @@ type
         function SelectResponsavel(idTblPaciente: integer; objResponsavel: TResponsavelPaciente): TResponsavelPaciente;
 
         function InclusaoOuEdicaoEndereco(objEndereco: TEndereco): integer;
+        function SelectEndereco(idTblPaciente: integer; objEndereco: TEndereco): TEndereco;
 
         function InclusaoOuEdicaoContatos(objContatos : TContatos): integer;
 
@@ -83,6 +86,11 @@ begin
    result := dmCadPaciente.TblPacienteVazia;
 end;
 
+function TControlePaciente.SelectDadosBasicos(idPaciente: integer; objDadosBasicos: TPaciente): TPaciente;
+begin
+   result := dmCadPaciente.SelectDadosBasicos(idPaciente, objDadosBasicos);
+end;
+
 class procedure TControlePaciente.EnviaDadosBasicos(objPaciente: TPaciente);
 begin
    frmCadPaciente.PreencheFormDadosBasicos(objPaciente);
@@ -111,6 +119,11 @@ end;
 function TControlePaciente.InclusaoOuEdicaoEndereco(objEndereco: TEndereco): integer;
 begin
    result := dmCadPaciente.InclusaoOuEdicaoEndereco(objEndereco);
+end;
+
+function TControlePaciente.SelectEndereco(idTblPaciente: integer; objEndereco: TEndereco): TEndereco;
+begin
+   result := dmCadPaciente.SelectEndereco(idTblPaciente, objEndereco);
 end;
 
 function TControlePaciente.InclusaoOuEdicaoContatos(objContatos: TContatos): integer;
