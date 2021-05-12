@@ -18,7 +18,7 @@
         <ComponentName Value="frmPrincipal"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="14"/>
+        <EditorIndex Value="16"/>
         <TopLine Value="86"/>
         <CursorPos X="61" Y="38"/>
         <UsageCount Value="204"/>
@@ -30,7 +30,7 @@
         <ComponentName Value="dmConexao"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
-        <EditorIndex Value="10"/>
+        <EditorIndex Value="12"/>
         <TopLine Value="13"/>
         <CursorPos X="65" Y="32"/>
         <UsageCount Value="201"/>
@@ -43,7 +43,7 @@
         <ComponentName Value="frmLocalizaPaciente"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="13"/>
+        <EditorIndex Value="15"/>
         <TopLine Value="61"/>
         <CursorPos X="10" Y="70"/>
         <UsageCount Value="202"/>
@@ -56,10 +56,9 @@
         <ComponentName Value="dmCadPaciente"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
-        <IsVisibleTab Value="True"/>
-        <EditorIndex Value="9"/>
-        <TopLine Value="373"/>
-        <CursorPos X="55" Y="386"/>
+        <EditorIndex Value="11"/>
+        <TopLine Value="576"/>
+        <CursorPos X="79" Y="589"/>
         <UsageCount Value="202"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -76,18 +75,19 @@
         <Filename Value="Classes\uClassControlePaciente.pas"/>
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="4"/>
-        <TopLine Value="122"/>
-        <CursorPos X="71" Y="126"/>
+        <TopLine Value="149"/>
+        <CursorPos X="69" Y="153"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
       </Unit6>
       <Unit7>
         <Filename Value="Classes\uClassResponsavelPaciente.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="-1"/>
+        <EditorIndex Value="7"/>
         <TopLine Value="14"/>
         <CursorPos X="82" Y="29"/>
         <UsageCount Value="200"/>
+        <Loaded Value="True"/>
       </Unit7>
       <Unit8>
         <Filename Value="Classes\uClassContatos.pas"/>
@@ -131,7 +131,7 @@
         <ComponentName Value="frmMensagem"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="12"/>
+        <EditorIndex Value="14"/>
         <TopLine Value="72"/>
         <CursorPos X="80" Y="91"/>
         <UsageCount Value="200"/>
@@ -140,7 +140,7 @@
       <Unit13>
         <Filename Value="Classes\uClassEndereco.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="5"/>
+        <EditorIndex Value="6"/>
         <TopLine Value="7"/>
         <CursorPos X="24" Y="25"/>
         <UsageCount Value="203"/>
@@ -168,9 +168,10 @@
         <ComponentName Value="frmCadPaciente"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
+        <IsVisibleTab Value="True"/>
         <EditorIndex Value="2"/>
-        <TopLine Value="1122"/>
-        <CursorPos X="37" Y="1140"/>
+        <TopLine Value="1266"/>
+        <CursorPos X="51" Y="1277"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -178,7 +179,7 @@
       <Unit17>
         <Filename Value="CadPaciente\uDadosBasicos.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="8"/>
+        <EditorIndex Value="10"/>
         <TopLine Value="14"/>
         <CursorPos X="46" Y="35"/>
         <UsageCount Value="200"/>
@@ -187,7 +188,7 @@
       <Unit18>
         <Filename Value="CadPaciente\uResponsavel.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="15"/>
+        <EditorIndex Value="17"/>
         <TopLine Value="23"/>
         <CursorPos X="33" Y="45"/>
         <UsageCount Value="201"/>
@@ -204,7 +205,7 @@
       <Unit20>
         <Filename Value="CadPaciente\uContatos.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="6"/>
+        <EditorIndex Value="8"/>
         <TopLine Value="32"/>
         <CursorPos Y="38"/>
         <UsageCount Value="205"/>
@@ -213,7 +214,7 @@
       <Unit21>
         <Filename Value="CadPaciente\uDadoProfissional.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="7"/>
+        <EditorIndex Value="9"/>
         <TopLine Value="53"/>
         <CursorPos X="58" Y="67"/>
         <UsageCount Value="205"/>
@@ -231,7 +232,7 @@
       <Unit23>
         <Filename Value="CadPaciente\uSinaisSintomas.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="16"/>
+        <EditorIndex Value="18"/>
         <TopLine Value="49"/>
         <CursorPos X="7" Y="70"/>
         <UsageCount Value="204"/>
@@ -240,7 +241,7 @@
       <Unit24>
         <Filename Value="CadPaciente\uEnfermidades.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="11"/>
+        <EditorIndex Value="13"/>
         <TopLine Value="41"/>
         <CursorPos X="29" Y="59"/>
         <UsageCount Value="203"/>
@@ -249,9 +250,10 @@
       <Unit25>
         <Filename Value="Classes\uClassDocumentos.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="-1"/>
+        <EditorIndex Value="5"/>
         <CursorPos X="4" Y="33"/>
         <UsageCount Value="200"/>
+        <Loaded Value="True"/>
       </Unit25>
       <Unit26>
         <Filename Value="CadPaciente\uDocumentos.pas"/>
@@ -547,124 +549,124 @@
     </Units>
     <JumpHistory Count="30" HistoryIndex="29">
       <Position1>
-        <Filename Value="DataModules\uDMCadPaciente.pas"/>
-        <Caret Line="162" TopLine="145"/>
+        <Filename Value="CadPaciente\uCadPacientes.pas"/>
+        <Caret Line="386" Column="58" TopLine="370"/>
       </Position1>
       <Position2>
-        <Filename Value="DataModules\uDMCadPaciente.pas"/>
-        <Caret Line="163" Column="43" TopLine="148"/>
+        <Filename Value="CadPaciente\uCadPacientes.pas"/>
+        <Caret Line="1140" Column="23" TopLine="1122"/>
       </Position2>
       <Position3>
-        <Filename Value="DataModules\uDMCadPaciente.pas"/>
-        <Caret Line="39" Column="10" TopLine="35"/>
+        <Filename Value="CadPaciente\uCadPacientes.pas"/>
+        <Caret Line="387" Column="36" TopLine="374"/>
       </Position3>
       <Position4>
         <Filename Value="DataModules\uDMCadPaciente.pas"/>
-        <Caret Line="50" Column="69" TopLine="32"/>
+        <Caret Line="383" Column="48" TopLine="373"/>
       </Position4>
       <Position5>
         <Filename Value="DataModules\uDMCadPaciente.pas"/>
-        <Caret Line="320" Column="4" TopLine="317"/>
+        <Caret Line="59" Column="55" TopLine="36"/>
       </Position5>
       <Position6>
         <Filename Value="DataModules\uDMCadPaciente.pas"/>
-        <Caret Line="50" Column="16" TopLine="39"/>
+        <Caret Line="445" Column="52" TopLine="438"/>
       </Position6>
       <Position7>
-        <Filename Value="DataModules\uDMCadPaciente.pas"/>
-        <Caret Line="326" Column="85" TopLine="311"/>
+        <Filename Value="Classes\uClassControlePaciente.pas"/>
+        <Caret Line="39" Column="92" TopLine="13"/>
       </Position7>
       <Position8>
-        <Filename Value="DataModules\uDMCadPaciente.pas"/>
-        <Caret Line="19" Column="24" TopLine="6"/>
+        <Filename Value="Classes\uClassControlePaciente.pas"/>
+        <Caret Line="135" Column="67" TopLine="127"/>
       </Position8>
       <Position9>
-        <Filename Value="DataModules\uDMCadPaciente.pas"/>
-        <Caret Line="20" Column="24" TopLine="6"/>
+        <Filename Value="Classes\uClassControlePaciente.pas"/>
+        <Caret Line="39" Column="18" TopLine="18"/>
       </Position9>
       <Position10>
-        <Filename Value="DataModules\uDMCadPaciente.pas"/>
-        <Caret Line="21" Column="24" TopLine="6"/>
+        <Filename Value="CadPaciente\uCadPacientes.pas"/>
+        <Caret Line="1139" Column="52" TopLine="1133"/>
       </Position10>
       <Position11>
-        <Filename Value="DataModules\uDMCadPaciente.pas"/>
-        <Caret Line="22" Column="24" TopLine="6"/>
+        <Filename Value="CadPaciente\uCadPacientes.pas"/>
+        <Caret Line="1137" Column="54" TopLine="1124"/>
       </Position11>
       <Position12>
-        <Filename Value="DataModules\uDMCadPaciente.pas"/>
-        <Caret Line="320" Column="21" TopLine="299"/>
+        <Filename Value="CadPaciente\uCadPacientes.pas"/>
+        <Caret Line="1138" Column="80" TopLine="1125"/>
       </Position12>
       <Position13>
-        <Filename Value="DataModules\uDMCadPaciente.pas"/>
-        <Caret Line="321" Column="21" TopLine="300"/>
+        <Filename Value="CadPaciente\uCadPacientes.pas"/>
+        <Caret Line="1139" Column="52" TopLine="1126"/>
       </Position13>
       <Position14>
         <Filename Value="DataModules\uDMCadPaciente.pas"/>
-        <Caret Line="322" Column="23" TopLine="301"/>
+        <Caret Line="53" Column="29" TopLine="38"/>
       </Position14>
       <Position15>
         <Filename Value="DataModules\uDMCadPaciente.pas"/>
-        <Caret Line="323" Column="21" TopLine="302"/>
+        <Caret Line="338" Column="45" TopLine="322"/>
       </Position15>
       <Position16>
         <Filename Value="DataModules\uDMCadPaciente.pas"/>
-        <Caret Line="324" Column="21" TopLine="303"/>
+        <Caret Line="340" Column="80" TopLine="325"/>
       </Position16>
       <Position17>
         <Filename Value="DataModules\uDMCadPaciente.pas"/>
-        <Caret Line="325" Column="21" TopLine="304"/>
+        <Caret Line="339" Column="80" TopLine="324"/>
       </Position17>
       <Position18>
         <Filename Value="DataModules\uDMCadPaciente.pas"/>
-        <Caret Line="326" Column="21" TopLine="305"/>
+        <Caret Line="66" Column="55" TopLine="60"/>
       </Position18>
       <Position19>
         <Filename Value="DataModules\uDMCadPaciente.pas"/>
-        <Caret Line="327" Column="21" TopLine="306"/>
+        <Caret Line="582" Column="63" TopLine="576"/>
       </Position19>
       <Position20>
-        <Filename Value="DataModules\uDMCadPaciente.pas"/>
-        <Caret Line="328" Column="53" TopLine="307"/>
+        <Filename Value="Classes\uClassControlePaciente.pas"/>
+        <Caret Line="44" Column="92" TopLine="37"/>
       </Position20>
       <Position21>
-        <Filename Value="DataModules\uDMCadPaciente.pas"/>
-        <Caret Line="329" Column="55" TopLine="308"/>
+        <Filename Value="Classes\uClassControlePaciente.pas"/>
+        <Caret Line="151" Column="67" TopLine="149"/>
       </Position21>
       <Position22>
-        <Filename Value="DataModules\uDMCadPaciente.pas"/>
-        <Caret Line="319" Column="6" TopLine="309"/>
+        <Filename Value="Classes\uClassControlePaciente.pas"/>
+        <Caret Line="44" Column="18" TopLine="33"/>
       </Position22>
       <Position23>
-        <Filename Value="DataModules\uDMCadPaciente.pas"/>
-        <Caret Line="320" Column="6" TopLine="310"/>
+        <Filename Value="CadPaciente\uCadPacientes.pas"/>
+        <Caret Line="1113" Column="15" TopLine="1093"/>
       </Position23>
       <Position24>
-        <Filename Value="DataModules\uDMCadPaciente.pas"/>
-        <Caret Line="321" Column="6" TopLine="311"/>
+        <Filename Value="CadPaciente\uCadPacientes.pas"/>
+        <Caret Line="388" Column="58" TopLine="365"/>
       </Position24>
       <Position25>
-        <Filename Value="DataModules\uDMCadPaciente.pas"/>
-        <Caret Line="335" Column="35" TopLine="312"/>
+        <Filename Value="CadPaciente\uCadPacientes.pas"/>
+        <Caret Line="1178" Column="54" TopLine="1164"/>
       </Position25>
       <Position26>
-        <Filename Value="CadPaciente\uCadPacientes.pas"/>
-        <Caret Line="1084" Column="3" TopLine="1073"/>
+        <Filename Value="DataModules\uDMCadPaciente.pas"/>
+        <Caret Line="587" Column="93" TopLine="575"/>
       </Position26>
       <Position27>
         <Filename Value="DataModules\uDMCadPaciente.pas"/>
-        <Caret Line="56" Column="90" TopLine="39"/>
+        <Caret Line="593" Column="28" TopLine="576"/>
       </Position27>
       <Position28>
-        <Filename Value="Classes\uClassControlePaciente.pas"/>
-        <Caret Line="36" Column="18" TopLine="25"/>
+        <Filename Value="DataModules\uDMCadPaciente.pas"/>
+        <Caret Line="564" Column="42" TopLine="554"/>
       </Position28>
       <Position29>
-        <Filename Value="CadPaciente\uCadPacientes.pas"/>
-        <Caret Line="386" Column="58" TopLine="370"/>
+        <Filename Value="DataModules\uDMCadPaciente.pas"/>
+        <Caret Line="591" Column="59" TopLine="571"/>
       </Position29>
       <Position30>
-        <Filename Value="CadPaciente\uCadPacientes.pas"/>
-        <Caret Line="1140" Column="37" TopLine="1122"/>
+        <Filename Value="DataModules\uDMCadPaciente.pas"/>
+        <Caret Line="588" Column="90" TopLine="576"/>
       </Position30>
     </JumpHistory>
     <RunParams>

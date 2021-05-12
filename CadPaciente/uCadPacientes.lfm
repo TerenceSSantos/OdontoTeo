@@ -611,10 +611,10 @@ object frmCadPaciente: TfrmCadPaciente
       Height = 362
       Top = 2
       Width = 1088
-      ActivePage = tabEndereco
+      ActivePage = tabAnamnese
       Align = alClient
       Images = miglstCadPaciente
-      TabIndex = 2
+      TabIndex = 5
       TabOrder = 0
       OnChange = pcCadPacienteChange
       OnChanging = pcCadPacienteChanging
@@ -2839,7 +2839,6 @@ object frmCadPaciente: TfrmCadPaciente
           HorzScrollBar.Smooth = True
           HorzScrollBar.Tracking = True
           VertScrollBar.Page = 302
-          VertScrollBar.Position = 250
           Align = alClient
           BorderStyle = bsNone
           ClientHeight = 302

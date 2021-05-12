@@ -1,9 +1,9 @@
 object dmCadPaciente: TdmCadPaciente
   OldCreateOrder = False
   Height = 449
-  HorizontalOffset = 506
+  HorizontalOffset = 365
   VerticalOffset = 117
-  Width = 898
+  Width = 1215
   PPI = 96
   object qryTblPaciente: TZQuery
     Connection = dmConexao.zConexao
@@ -95,6 +95,24 @@ object dmCadPaciente: TdmCadPaciente
       Required = False
       Size = 44
     end
+    object qryTblResponsavelID_TBLPACIENTE: TLongintField
+      FieldKind = fkData
+      FieldName = 'ID_TBLPACIENTE'
+      Index = 6
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object qryTblResponsavelID_DOCUMENTOS: TLongintField
+      FieldKind = fkData
+      FieldName = 'ID_DOCUMENTOS'
+      Index = 7
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+    end
   end
   object qryTblEndereco: TZQuery
     Connection = dmConexao.zConexao
@@ -119,9 +137,25 @@ object dmCadPaciente: TdmCadPaciente
       end>
   end
   object qryContatos: TZQuery
-    Params = <>
+    SQL.Strings = (
+      'SELECT *'
+      'FROM TBL_CONTATOS'
+      'WHERE id_tblpaciente = :idpaciente'
+    )
+    Params = <    
+      item
+        DataType = ftUnknown
+        Name = 'idpaciente'
+        ParamType = ptUnknown
+      end>
     left = 560
     top = 32
+    ParamData = <    
+      item
+        DataType = ftUnknown
+        Name = 'idpaciente'
+        ParamType = ptUnknown
+      end>
   end
   object strprocApagarDadosBasicos: TZStoredProc
     Connection = dmConexao.zConexao

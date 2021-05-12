@@ -19,7 +19,9 @@ type
       qryTblResponsavel: TZQuery;
       qryTblResponsavelCPF: TStringField;
       qryTblResponsavelIDENTIDADE: TStringField;
+      qryTblResponsavelID_DOCUMENTOS: TLongintField;
       qryTblResponsavelID_RESPONSAVEL: TLongintField;
+      qryTblResponsavelID_TBLPACIENTE: TLongintField;
       qryTblResponsavelNOME_RESPONSAVEL: TStringField;
       qryTblResponsavelORGAO_EXPEDIDOR: TStringField;
       qryTblResponsavelPARENTESCO: TStringField;
@@ -56,10 +58,12 @@ type
       function SelectEndereco(idTblPaciente: integer; objEndereco: TEndereco): TEndereco;
 
       function InclusaoOuEdicaoContatos(objContatos: TContatos): integer;
+      function SelectContatos(idTblPaciente: integer; objContatos: TContatos): TContatos;
 
       function InclusaoOuEdicaoDadosProf(objDadosProf: TDadosProfissionais): integer;
 
       function InclusaoOuEdicaoAnamnese(objAnamnese: TAnamnese): integer;
+      function SelectAnamnese(idTblPaciente: integer; objAnamnese: TAnamnese): TAnamnese;
 
       function InclusaoOuEdicaoSinaisSintomas(objSinaisSintomas: TSinaisSintomas): integer;
 
@@ -334,6 +338,8 @@ begin
    objResponsavel.identidadeResponsavel := qryTblResponsavelIDENTIDADE.AsString;
    objResponsavel.orgaoExpedidor := qryTblResponsavelORGAO_EXPEDIDOR.AsString;
    objResponsavel.cpfResponsavel := qryTblResponsavelCPF.AsString;
+   objResponsavel.idTblPaciente := qryTblResponsavelID_TBLPACIENTE.AsInteger;
+//   objResponsavel. := qryTblResponsavelID_DOCUMENTOS.AsInteger;
    result := objResponsavel;
 end;
 
@@ -385,6 +391,7 @@ begin
    qryTblEndereco.Close;
    qryTblEndereco.Params[0].AsInteger := idTblPaciente;
    qryTblEndereco.Open;
+   objEndereco.idEndereco := qryTblEndereco.FieldByName('ID_ENDERECO').AsInteger;
    objEndereco.logradouro := qryTblEndereco.FieldByName('LOGRADOURO').AsString;
    objEndereco.numero := qryTblEndereco.FieldByName('NUMERO').AsString;
    objEndereco.complemento := qryTblEndereco.FieldByName('COMPLEMENTO').AsString;
@@ -436,6 +443,34 @@ begin
          result := 0;
       end;
    end;
+end;
+
+function TdmCadPaciente.SelectContatos(idTblPaciente: integer; objContatos: TContatos): TContatos;
+begin
+   qryContatos.Close;
+   qryContatos.Params[0].AsInteger := idTblPaciente;
+   qryContatos.Open;
+   objContatos.idContatos := qryContatos.ParamByName('ID_CONTATOS').AsInteger;
+   objContatos.dddTelCasa := qryContatos.ParamByName('DDD_TEL_CASA').AsString;
+   objContatos.telefoneCasa := qryContatos.ParamByName('TEL_CASA').AsString;
+   objContatos.operadoraTelCasa := qryContatos.ParamByName('OPERADORA_TEL_CASA').AsString;
+   objContatos.dddCelular1 := qryContatos.ParamByName('DDD_CELULAR1').AsString;
+   objContatos.NumeroCelular1 := qryContatos.ParamByName('CELULAR1').AsString;
+   objContatos.operadoraCelular1 := qryContatos.ParamByName('OPERADORA_CEL1').AsString;
+   objContatos.dddCelular2 := qryContatos.ParamByName('DDD_CELULAR2').AsString;
+   objContatos.numeroCelular2 := qryContatos.ParamByName('CELULAR2').AsString;
+   objContatos.operadoraCelular2 := qryContatos.ParamByName('OPERADORA_CEL2').AsString;
+   objContatos.dddTelTrabalho := qryContatos.ParamByName('DDD_TEL_TRABALHO').AsString;
+   objContatos.telefoneTrabalho := qryContatos.ParamByName('TEL_TRABALHO').AsString;
+   objContatos.operadoraTelTrabalho := qryContatos.ParamByName('OPERADORA_TEL_TRABALHO').AsString;
+   objContatos.dddTelRecado := qryContatos.ParamByName('DDD_TEL_RECADO').AsString;
+   objContatos.telefoneRecado := qryContatos.ParamByName('TELEFONE_RECADO').AsString;
+   objContatos.operadoraTelRecado := qryContatos.ParamByName('OPERADORA_TEL_RECADO').AsString;
+   objContatos.nomePessoaTelRecado := qryContatos.ParamByName('NOME_PESSOA_TEL_RECADO').AsString;
+   objContatos.email := qryContatos.ParamByName('EMAIL').AsString;
+   objContatos.idTblPaciente := qryContatos.ParamByName('ID_TBLPACIENTE').AsInteger;
+
+   result := objContatos;
 end;
 
 function TdmCadPaciente.InclusaoOuEdicaoDadosProf(objDadosProf: TDadosProfissionais): integer;
@@ -516,6 +551,51 @@ begin
 
       end;
    end;
+end;
+
+function TdmCadPaciente.SelectAnamnese(idTblPaciente: integer; objAnamnese: TAnamnese): TAnamnese;
+var
+   qry : TZQuery;
+begin
+   try
+      qry := TZQuery.Create(nil);
+      qry.Connection := dmConexao.zConexao;
+      qry.SQL.Add('SELECT * FROM tbl_anamnese WHERE ID_TBLPACIENTE =  :idTblPaciente');
+      qry.Params[0].Name := 'idTblPaciente';
+      qry.Params[0].AsInteger := idTblPaciente;
+      qry.Open;
+      objAnamnese.idAnamnese := qry.FieldByName('ID_ANAMNESE').AsInteger;
+      objAnamnese.consumoAcucar := qry.FieldByName('CONSUMO_ACUCAR').AsString;
+      objAnamnese.escovacao := qry.FieldByName('ESCOVACAO').AsString;
+      objAnamnese.usoFioDental := qry.FieldByName('USO_FIO_DENTAL').AsString;
+      objAnamnese.obsAnatomoHisto := qry.FieldByName('OBS_ANATOMO_HISTO').AsString;
+      objAnamnese.habitosViciosos := qry.FieldByName('HABITOS_VICIOSOS').AsString;
+      objAnamnese.antecedentesFamiliares := qry.FieldByName('ANTECEDENTES_FAMILIARES').AsString;
+      objAnamnese.apreensivoTratDentario := qry.FieldByName('APREENSIVO_TRAT_DENTARIO').AsString;
+      objAnamnese.porqueApreensivo := qry.FieldByName('PORQUE_APREENSIVO').AsString;
+      objAnamnese.tratamentoMedico := qry.FieldByName('TRATAMENTO_MEDICO').AsString;
+      objAnamnese.qualTratMedico := qry.FieldByName('QUAL_TRAT_MEDICO').AsString;
+      objAnamnese.tomaMedicamento := qry.FieldByName('TOMA_MEDICAMENTO').AsString;
+      objAnamnese.tomaQualMedicamento := qry.FieldByName('TOMA_QUAL_MEDICAMENTO').AsString;
+      objAnamnese.alergiaAnestesia := qry.FieldByName('ALERGIA_ANESTESIA').AsString;
+      objAnamnese.alergiaQualAnestesia := qry.FieldByName('ALERGIA_QUAL_ANESTESIA').AsString;
+      objAnamnese.algumaAlergia := qry.FieldByName('ALGUMA_ALERGIA').AsString;
+      objAnamnese.qualAlergia := qry.FieldByName('QUAL_ALERGIA').AsString;
+      objAnamnese.foiHospitalizado := qry.FieldByName('FOI_HOSPITALIZADO').AsString;
+      objAnamnese.porqueHospitalizado := qry.FieldByName('PORQUE_HOSPITALIZADO').AsString;
+      objAnamnese.estaGravida := qry.FieldByName('ESTA_GRAVIDA').AsString;
+      objAnamnese.previsaoParto := qry.FieldByName('PREVISAO_PARTO').AsString;
+      objAnamnese.teveQuantasGravidez := qry.FieldByName('TEVE_QUANTAS_GRAVIDEZ').AsInteger;
+      objAnamnese.quantosFilhos := qry.FieldByName('QUANTOS_FILHOS').AsInteger;
+      objAnamnese.chegouMenopausa := qry.FieldByName('CHEGOU_MENOPAUSA').AsString;
+      objAnamnese.quandoChegouMenopausa := qry.FieldByName('QUANDO_CHEGOU_MENOPAUSA').AsString;
+      objAnamnese.idTblPaciente := idTblPaciente;
+
+      result := objAnamnese;
+   finally
+      FreeAndNil(qry);
+   end;
+
 end;
 
 function TdmCadPaciente.InclusaoOuEdicaoSinaisSintomas(objSinaisSintomas: TSinaisSintomas): integer;

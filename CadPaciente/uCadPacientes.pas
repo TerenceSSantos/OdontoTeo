@@ -384,6 +384,8 @@ type
       procedure PreencheFormDadosBasicos(objDados: TPaciente);
       procedure PreencheAbaResponsavel(idPaciente: integer);
       procedure PreencheAbaEndereco(idPaciente: integer);
+      procedure PreencheAbaContatos(idPaciente: integer);
+      procedure PreencheAbaAnamnese(idPaciente: integer);
       procedure SelectPaciente(idPaciente: integer);
    end;
 
@@ -1092,6 +1094,7 @@ begin
    objControlePaciente := TControlePaciente.Create;
    try
       objResponsavel := objControlePaciente.SelectResponsavel(idPaciente, objResponsavel);
+      edtCodResponsavel.Text := IntToStr(objResponsavel.idResponsavel);
       edtNomeResp.Text := objResponsavel.nomeResponsavel;
       edtParentesco.Text := objResponsavel.parentesco;
       edtCodResponsavel.Text := IntToStr(objResponsavel.idResponsavel);
@@ -1113,6 +1116,7 @@ begin
       objEndereco := TEndereco.Create;
       objControlePaciente := TControlePaciente.Create;
       objEndereco := objControlePaciente.SelectEndereco(idPaciente, objEndereco);
+      edtCodEndPaciente.Text := IntToStr(objEndereco.idEndereco);
       edtLogradouro.Text := objEndereco.logradouro;
       edtNumEndereco.Text := objEndereco.numero;
       edtComplemento.Text := objEndereco.complemento;
@@ -1123,6 +1127,160 @@ begin
    finally
       FreeAndNil(objControlePaciente);
       FreeAndNil(objEndereco);
+   end;
+end;
+
+procedure TfrmCadPaciente.PreencheAbaContatos(idPaciente: integer);
+var
+   objContatos : TContatos;
+   objControlePaciente : TControlePaciente;
+begin
+   try
+      objContatos := TContatos.Create;
+      objControlePaciente := TControlePaciente.Create;
+      objContatos := objControlePaciente.SelectContatos(idPaciente, objContatos) ;
+      edtCodContatos.Text := IntToStr(objContatos.idContatos);
+      edtDDDCasa.Text := objContatos.dddTelCasa;
+      mskedtTelCasa.Text := objContatos.telefoneCasa;
+      cboxOperadoraCasa.Text := objContatos.operadoraTelCasa;
+      edtDDDCel1.Text := objContatos.dddCelular1;
+      mskedtCel1.Text := objContatos.NumeroCelular1;
+      cboxOperadoraCel1.Text := objContatos.operadoraCelular1;
+      edtDDDCel2.Text := objContatos.dddCelular2;
+      mskedtCel2.Text := objContatos.numeroCelular2;
+      cboxOperadoraCel2.Text := objContatos.operadoraCelular2;
+      edtDDDTelTrab.Text := objContatos.dddTelTrabalho;
+      mskedtTelTrab.Text := objContatos.telefoneTrabalho;
+      cboxOperadoraTelTrab.Text := objContatos.operadoraTelTrabalho;
+      edtDDDTelRecado.Text := objContatos.dddTelRecado;
+      mskedtTelRecado.Text := objContatos.telefoneRecado;
+      cboxOperadoraTelRecado.Text := objContatos.operadoraTelRecado;
+      edtPessoaRecado.Text := objContatos.nomePessoaTelRecado;
+      edtEmail.Text := objContatos.email;
+   finally
+      FreeAndNil(objControlePaciente);
+      FreeAndNil(objContatos);
+   end;
+end;
+
+procedure TfrmCadPaciente.PreencheAbaAnamnese(idPaciente: integer);
+var
+   objAnamnese : TAnamnese;
+   objControlePaciente : TControlePaciente;
+begin
+   try
+      objAnamnese := TAnamnese.Create;
+      objControlePaciente :=  TControlePaciente.Create;
+      objAnamnese := objControlePaciente.SelectAnamnese(idPaciente, objAnamnese);
+      edtCodAnamnese.Text := IntToStr(objAnamnese.idAnamnese);
+      cboxConsAcucar.Text := objAnamnese.consumoAcucar;
+      cboxEscovacao.Text := objAnamnese.escovacao;
+      cboxFioDental.Text := objAnamnese.usoFioDental;
+      memoObsAnatHistPatol.Text := objAnamnese.obsAnatomoHisto;
+      edtHabitosViciosos.Text := objAnamnese.habitosViciosos;
+      edtAntecFamiliar.Text := objAnamnese.antecedentesFamiliares;
+      case objAnamnese.apreensivoTratDentario of
+         'N' : begin
+                  rbexNaoApreesTratDent.Checked := true;
+                  rbexSimApreesTratDent.Checked := false;
+               end;
+         'S' : begin
+                  rbexSimApreesTratDent.Checked := true;
+                  rbexNaoApreesTratDent.Checked := false;
+                  edtApreensivoTratamento.Text := objAnamnese.porqueApreensivo;
+               end;
+      end;
+
+      case objAnamnese.tratamentoMedico of
+         'N' : begin
+                  rbexNaoTratMedico.Checked := true;
+                  rbexSimTratMedico.Checked := false;
+               end;
+         'S' : begin
+                  rbexNaoTratMedico.Checked := false;
+                  rbexSimTratMedico.Checked := true;
+                  edtTratamentoMedico.Text := objAnamnese.qualTratMedico;
+               end;
+      end;
+
+      case objAnamnese.tomaMedicamento of
+         'S' : begin
+                  rbexSimTomaRemedio.Checked := true;
+                  rbexNaoTomaRemedio.Checked := false;
+                  edtTomaRemedio.Text := objAnamnese.tomaQualMedicamento;
+               end;
+         'N' : begin
+                  rbexSimTomaRemedio.Checked := false;
+                  rbexNaoTomaRemedio.Checked := true;
+               end;
+      end;
+
+      case objAnamnese.alergiaAnestesia of
+         'S' : begin
+                  rbexSimAlergiaAnestesia.Checked := true;
+                  rbexNaoAlergiaAnestesia.Checked := false;
+                  edtAlergiaAnestesia.Text := objAnamnese.alergiaQualAnestesia;
+               end;
+         'N' : begin
+                  rbexSimAlergiaAnestesia.Checked := false;
+                  rbexNaoAlergiaAnestesia.Checked := true;
+               end;
+      end;
+
+      case objAnamnese.algumaAlergia of
+         'S' : begin
+                  rbexSimAlgumaAlergia.Checked := true;
+                  rbexNaoAlgumaAlergia.Checked := false;
+                  edtAlgumaAlergia.Text := objAnamnese.algumaAlergia;
+               end;
+         'N' : begin
+                  rbexSimAlgumaAlergia.Checked := false;
+                  rbexNaoAlgumaAlergia.Checked := true;
+               end;
+      end;
+
+      case objAnamnese.foiHospitalizado of
+         'S' : begin
+                  rbexSimFoiHospitalizado.Checked := true;
+                  rbexNaoFoiHospitalizado.Checked := false;
+                  edtFoiHospitalizado.Text := objAnamnese.porqueHospitalizado;
+               end;
+         'N' : begin
+                  rbexSimFoiHospitalizado.Checked := false;
+                  rbexNaoFoiHospitalizado.Checked := true;
+               end;
+      end;
+
+      case objAnamnese.estaGravida of
+         'S' : begin
+                  rbexSimTaGravida.Checked := true;
+                  rbexNaoTaGravida.Checked := false;
+                  edtTaGravida.Text := objAnamnese.previsaoParto;
+               end;
+         'N' : begin
+                  rbexSimTaGravida.Checked := false;
+                  rbexNaoTaGravida.Checked := true;
+               end;
+      end;
+
+      spedtQtdGravidez.Text := IntToStr(objAnamnese.teveQuantasGravidez);
+      spedtQtdFilhos.Text := IntToStr(objAnamnese.quantosFilhos);
+
+      case objAnamnese.chegouMenopausa of
+         'S' : begin
+                  rbexSimMenopausa.Checked := true;
+                  rbexNaoMenopausa.Checked := false;
+                  edtMenopausa.Text := objAnamnese.quandoChegouMenopausa;
+               end;
+         'N' : begin
+                  rbexSimMenopausa.Checked := false;
+                  rbexNaoMenopausa.Checked := true;
+               end;
+      end;
+
+   finally
+      FreeAndNil(objControlePaciente);
+      FreeAndNil(objAnamnese);
    end;
 end;
 
@@ -1138,6 +1296,7 @@ begin
       PreencheFormDadosBasicos(objDadosBasicos);
       PreencheAbaResponsavel(idPaciente);
       PreencheAbaEndereco(idPaciente);
+      PreencheAbaAnamnese(idPaciente);
    finally
       FreeAndNil(objControlePaciente);
       FreeAndNil(objDadosBasicos);

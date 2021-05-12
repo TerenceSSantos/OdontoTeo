@@ -36,10 +36,12 @@ type
         function SelectEndereco(idTblPaciente: integer; objEndereco: TEndereco): TEndereco;
 
         function InclusaoOuEdicaoContatos(objContatos : TContatos): integer;
+        function SelectContatos(idTblPaciente: integer; objContatos: TContatos): TContatos;
 
         function InclusaoOuEdicaoDadosProf(objDadosProf: TDadosProfissionais): integer;
 
         function InclusaoOuEdicaoAnamnese(objAnamnese: TAnamnese): integer;
+        function SelectAnamnese(idTblPaciente: integer; objAnamnese: TAnamnese): TAnamnese;
 
         function InclusaoOuEdicaoSinaisSintomas(objSinaisSintomas: TSinaisSintomas): integer;
 
@@ -131,6 +133,11 @@ begin
    result := dmCadPaciente.InclusaoOuEdicaoContatos(objContatos);
 end;
 
+function TControlePaciente.SelectContatos(idTblPaciente: integer; objContatos: TContatos): TContatos;
+begin
+   result := dmCadPaciente.SelectContatos(idTblPaciente, objContatos);
+end;
+
 function TControlePaciente.InclusaoOuEdicaoDadosProf(objDadosProf: TDadosProfissionais): integer;
 begin
    result := dmCadPaciente.InclusaoOuEdicaoDadosProf(objDadosProf);
@@ -139,6 +146,11 @@ end;
 function TControlePaciente.InclusaoOuEdicaoAnamnese(objAnamnese: TAnamnese): integer;
 begin
    result := dmCadPaciente.InclusaoOuEdicaoAnamnese(objAnamnese);
+end;
+
+function TControlePaciente.SelectAnamnese(idTblPaciente: integer; objAnamnese: TAnamnese): TAnamnese;
+begin
+   result := dmCadPaciente.SelectAnamnese(idTblPaciente, objAnamnese);
 end;
 
 function TControlePaciente.InclusaoOuEdicaoSinaisSintomas(objSinaisSintomas: TSinaisSintomas): integer;
