@@ -15,14 +15,14 @@ type
    private
       Fcpf: string;
       FIdentidade: string;
-      FIdIdentidade: integer;
+      FIdIDocumentos: integer;
       FIdTblDentista: integer;
       FIdTblPaciente: integer;
       FIdTblResponsavel: integer;
       FOrgaoExpedidor: string;
 
    public
-      property idIdentidade: integer read FIdIdentidade write FIdIdentidade;
+      property idDocumentos: integer read FIdIDocumentos write FIdIDocumentos;
       property identidade: string read FIdentidade write FIdentidade;
       property orgaoExpedidor: string read FOrgaoExpedidor write FOrgaoExpedidor;
       property cpf: string read Fcpf write Fcpf;

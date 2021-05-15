@@ -8,7 +8,7 @@ unit uClassPaciente;
 interface
 
 uses
-   Classes, SysUtils, dateutils;
+   Classes, SysUtils, dateutils, uClassDocumentos;
 
 type
    { Classe Paciente }
@@ -20,6 +20,7 @@ type
       Fativo: string;
 //      FCPF: string;
       FdataNascimento: TDate;
+      Fdocumento: TDocumentos;
       FestadoCivil: string;
       Fidade: integer;
 //      FidentidadePaciente: string;
@@ -52,21 +53,21 @@ type
 //      property orgaoExpedidorID : string read ForgaoExpedidorID write ForgaoExpedidorID;
       property ativo : string read Fativo write Fativo;
       property idade: integer read Fidade write Fidade;
-      property idResponsavel: integer read FidResponsavel write FidResponsavel;
+//      property idResponsavel: integer read FidResponsavel write FidResponsavel;
+      property documento: TDocumentos read Fdocumento write Fdocumento;
 
       procedure CalculaIdade;
       function IdadeEmMeses: integer;
       function IdadeEmDias : integer;
       function RetornoIdadeCompleta : string;
 
-      //constructor Create;
-      //destructor Destroy; override;
+      constructor Create;
+      destructor Destroy; override;
    end;
 
 implementation
 
 { TPaciente }
-
 
 procedure TPaciente.CalculaIdade;
 begin
@@ -150,6 +151,18 @@ begin
             idadeCompleta := idadeCompleta + IntToStr(IdadeEmDias) + ' dias';
 
       result := idadeCompleta;
+end;
+
+constructor TPaciente.Create;
+begin
+   documento := TDocumentos.Create;
+end;
+
+destructor TPaciente.Destroy;
+begin
+   inherited Destroy;
+   documento.Free;
+   documento := nil;
 end;
 
 end.

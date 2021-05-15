@@ -14,6 +14,7 @@ type
    TDadosProfissionais = class
    private
       Fcargo: string;
+      Fendereco: TEndereco;
       FidDadoProfissional: integer;
       FnomeEmpresa: string;
       FidTblPaciente: integer;
@@ -24,26 +25,27 @@ type
        property cargo: string read Fcargo write Fcargo;
        property idTblPaciente: integer read FidTblPaciente write FidTblPaciente;
        property idTblEndereco: integer read FidTblEndereco write FidTblEndereco;
+       property endereco: TEndereco read Fendereco write Fendereco;
 
-       //constructor Create;
-       //destructor Destroy; override;
+       constructor Create;
+       destructor Destroy; override;
    end;
 
 implementation
 
 { TDadosProfissionais }
 
-//constructor TDadosProfissionais.Create;
-//begin
-//   enderecoEmpresa := TEndereco.Create;
-//end;
-//
-//destructor TDadosProfissionais.Destroy;
-//begin
-//   inherited;
-//   enderecoEmpresa.Free;
-//   enderecoEmpresa := nil;
-//end;
+constructor TDadosProfissionais.Create;
+begin
+   endereco := TEndereco.Create;
+end;
+
+destructor TDadosProfissionais.Destroy;
+begin
+   inherited;
+   endereco.Free;
+   endereco := nil;
+end;
 
 end.
 

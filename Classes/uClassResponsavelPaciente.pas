@@ -15,7 +15,7 @@ type
    private
       FidTblPaciente: integer;
       FidResponsavel: integer;
-      FnomeResponsavel: string;
+      FnomeResponsavel: string;        { TODO : Criar o campo tipo documento no Responsável }
       Fparentesco: string;
       FcpfResponsavel: string;
       FidentidadeResponsavel: string;

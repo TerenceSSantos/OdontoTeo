@@ -611,10 +611,10 @@ object frmCadPaciente: TfrmCadPaciente
       Height = 362
       Top = 2
       Width = 1088
-      ActivePage = tabAnamnese
+      ActivePage = tabResponsavel
       Align = alClient
       Images = miglstCadPaciente
-      TabIndex = 5
+      TabIndex = 1
       TabOrder = 0
       OnChange = pcCadPacienteChange
       OnChanging = pcCadPacienteChanging
@@ -1244,10 +1244,10 @@ object frmCadPaciente: TfrmCadPaciente
             ParentFont = False
           end
           object edtCodDocPaciente: TEdit
-            Left = 500
+            Left = 616
             Height = 23
-            Top = 245
-            Width = 40
+            Top = 217
+            Width = 120
             NumbersOnly = True
             TabStop = False
             TabOrder = 15
@@ -1456,7 +1456,6 @@ object frmCadPaciente: TfrmCadPaciente
             TabOrder = 5
             Text = '0'
             TextHint = 'Código do Responsável'
-            Visible = False
           end
           object edtCodDocResp: TEdit
             Left = 73
@@ -1468,7 +1467,6 @@ object frmCadPaciente: TfrmCadPaciente
             TabOrder = 6
             Text = '0'
             TextHint = 'Cód. doc. Responsável'
-            Visible = False
           end
           object mskedtCPFResp: TMaskEdit
             Left = 152

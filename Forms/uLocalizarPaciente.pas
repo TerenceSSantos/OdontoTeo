@@ -145,7 +145,7 @@ end;
 
 procedure TfrmLocalizaPaciente.FormQueChamou(nomeForm: string);
 begin
-   nomeFormQueChamou := nomeForm;          { TODO : Fazendo a chamada direta do formulario de pesquisa }
+   nomeFormQueChamou := nomeForm;
 end;
 
 

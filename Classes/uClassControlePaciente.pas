@@ -39,13 +39,16 @@ type
         function SelectContatos(idTblPaciente: integer; objContatos: TContatos): TContatos;
 
         function InclusaoOuEdicaoDadosProf(objDadosProf: TDadosProfissionais): integer;
+        function SelectDadosProfissionais(idTblPaciente: integer; objDadosProf: TDadosProfissionais): TDadosProfissionais;
 
         function InclusaoOuEdicaoAnamnese(objAnamnese: TAnamnese): integer;
         function SelectAnamnese(idTblPaciente: integer; objAnamnese: TAnamnese): TAnamnese;
 
         function InclusaoOuEdicaoSinaisSintomas(objSinaisSintomas: TSinaisSintomas): integer;
+        function SelectSinaisSintomas(idTblPaciente: integer; objSinaisSintomas: TSinaisSintomas): TSinaisSintomas;
 
         function InclusaoOuEdicaoEnfermidades(objEnfermidades: TEnfermidades): integer;
+        function SelectEnfermidades(idTblPaciente: integer; objEnfermidades: TEnfermidades): TEnfermidades;
 
         constructor Create;
         destructor Destroy; override;
@@ -95,7 +98,7 @@ end;
 
 class procedure TControlePaciente.EnviaDadosBasicos(objPaciente: TPaciente);
 begin
-   frmCadPaciente.PreencheFormDadosBasicos(objPaciente);
+   frmCadPaciente.PreencheAbaDadosBasicos(objPaciente);
 end;
 
 function TControlePaciente.InclusaoOuEdicaoDocumentos(objDocumentos: TDocumentos): integer;
@@ -143,6 +146,11 @@ begin
    result := dmCadPaciente.InclusaoOuEdicaoDadosProf(objDadosProf);
 end;
 
+function TControlePaciente.SelectDadosProfissionais(idTblPaciente: integer; objDadosProf: TDadosProfissionais): TDadosProfissionais;
+begin
+   result := dmCadPaciente.SelectDadosProfissionais(idTblPaciente, objDadosProf);
+end;
+
 function TControlePaciente.InclusaoOuEdicaoAnamnese(objAnamnese: TAnamnese): integer;
 begin
    result := dmCadPaciente.InclusaoOuEdicaoAnamnese(objAnamnese);
@@ -158,9 +166,19 @@ begin
    result := dmCadPaciente.InclusaoOuEdicaoSinaisSintomas(objSinaisSintomas);
 end;
 
+function TControlePaciente.SelectSinaisSintomas(idTblPaciente: integer; objSinaisSintomas: TSinaisSintomas): TSinaisSintomas;
+begin
+   result := dmCadPaciente.SelectSinaisSintomas(idTblPaciente, objSinaisSintomas);
+end;
+
 function TControlePaciente.InclusaoOuEdicaoEnfermidades(objEnfermidades: TEnfermidades): integer;
 begin
    result := dmCadPaciente.InclusaoOuEdicaoEnfermidades(objEnfermidades);
+end;
+
+function TControlePaciente.SelectEnfermidades(idTblPaciente: integer; objEnfermidades: TEnfermidades): TEnfermidades;
+begin
+   result := dmCadPaciente.SelectEnfermidades(idTblPaciente, objEnfermidades);
 end;
 
 constructor TControlePaciente.Create;

@@ -1,7 +1,7 @@
 object dmCadPaciente: TdmCadPaciente
   OldCreateOrder = False
   Height = 449
-  HorizontalOffset = 365
+  HorizontalOffset = 335
   VerticalOffset = 117
   Width = 1215
   PPI = 96
@@ -123,20 +123,21 @@ object dmCadPaciente: TdmCadPaciente
     )
     Params = <    
       item
-        DataType = ftUnknown
+        DataType = ftInteger
         Name = 'idpaciente'
-        ParamType = ptUnknown
+        ParamType = ptInput
       end>
     left = 404
     top = 32
     ParamData = <    
       item
-        DataType = ftUnknown
+        DataType = ftInteger
         Name = 'idpaciente'
-        ParamType = ptUnknown
+        ParamType = ptInput
       end>
   end
   object qryContatos: TZQuery
+    Connection = dmConexao.zConexao
     SQL.Strings = (
       'SELECT *'
       'FROM TBL_CONTATOS'
@@ -144,17 +145,17 @@ object dmCadPaciente: TdmCadPaciente
     )
     Params = <    
       item
-        DataType = ftUnknown
+        DataType = ftInteger
         Name = 'idpaciente'
-        ParamType = ptUnknown
+        ParamType = ptInput
       end>
     left = 560
     top = 32
     ParamData = <    
       item
-        DataType = ftUnknown
+        DataType = ftInteger
         Name = 'idpaciente'
-        ParamType = ptUnknown
+        ParamType = ptInput
       end>
   end
   object strprocApagarDadosBasicos: TZStoredProc

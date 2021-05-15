@@ -61,13 +61,16 @@ type
       function SelectContatos(idTblPaciente: integer; objContatos: TContatos): TContatos;
 
       function InclusaoOuEdicaoDadosProf(objDadosProf: TDadosProfissionais): integer;
+      function SelectDadosProfissionais(idTblPaciente: integer; objDadosProf: TDadosProfissionais): TDadosProfissionais;
 
       function InclusaoOuEdicaoAnamnese(objAnamnese: TAnamnese): integer;
       function SelectAnamnese(idTblPaciente: integer; objAnamnese: TAnamnese): TAnamnese;
 
       function InclusaoOuEdicaoSinaisSintomas(objSinaisSintomas: TSinaisSintomas): integer;
+      function SelectSinaisSintomas(idTblPaciente: integer; objSinaisSintomas: TSinaisSintomas): TSinaisSintomas;
 
       function InclusaoOuEdicaoEnfermidades(objEnfermidades: TEnfermidades): integer;
+      function SelectEnfermidades(idTblPaciente: integer; objEnfermidades: TEnfermidades): TEnfermidades;
 
       var ativo : string;
       var nome : string;
@@ -164,10 +167,19 @@ var
    qry : TZQuery;
 begin
    try
-      qry := TZQuery.Create(nil);
-      qry.SQL.Add('select * from tbl_paciente ');
-      qry.SQL.Add('where id_paciente = ' + IntToStr(idPaciente));
+      qry := TZQuery.Create(nil);          { TODO : Alterar a forma de select dos Dados Básicos com os Documentos }
+      //qry.SQL.Add('select * from tbl_paciente ');
+      //qry.SQL.Add('where id_paciente = ' + IntToStr(idPaciente));
+      qry.Close;
+      qry.SQL.Add('SELECT P.*, D.*');
+      qry.SQL.Add(' FROM tbl_paciente P');
+      qry.SQL.Add(' LEFT JOIN TBL_DOCUMENTOS D on D.id_tblpaciente = P.id_paciente');
+      qry.SQL.Add(' WHERE P.id_paciente =  :idTblPaciente');
       qry.Connection := dmConexao.zConexao;
+      qry.Params[0].Name := 'idTblPaciente';
+      qry.Params[0].DataType := ftInteger;
+      qry.Params[0].ParamType := ptInput;
+      qry.Params[0].AsInteger := idPaciente;
       qry.Open;
       objDadosBasicos.idPaciente := qry.FieldByName('ID_PACIENTE').AsInteger;
       objDadosBasicos.nomePaciente := qry.FieldByName('NOME_PACIENTE').AsString;
@@ -181,6 +193,10 @@ begin
       objDadosBasicos.ufNascimento := qry.FieldByName('UF_NASCIMENTO').AsString;
       objDadosBasicos.nacionalidade := qry.FieldByName('NACIONALIDADE').AsString;
       objDadosBasicos.ativo := qry.FieldByName('ATIVO').AsString;
+      objDadosBasicos.documento.cpf := qry.FieldByName('CPF').AsString;
+      objDadosBasicos.documento.identidade := qry.FieldByName('IDENTIDADE').AsString;
+      objDadosBasicos.documento.orgaoExpedidor := qry.FieldByName('ORGAO_EXPEDIDOR').AsString;
+      objDadosBasicos.documento.idDocumentos := qry.FieldByName('ID_DOCUMENTOS').AsInteger;
 
       result := objDadosBasicos;
    finally
@@ -194,7 +210,7 @@ var
 begin
    with strprocInsertEditDocumentos do
    begin
-      Params[0].AsInteger := objDocumentos.idIdentidade;
+      Params[0].AsInteger := objDocumentos.idDocumentos;
       Params[1].AsString := objDocumentos.identidade;
       Params[2].AsString := objDocumentos.orgaoExpedidor;
       Params[3].AsString := objDocumentos.cpf;
@@ -450,25 +466,25 @@ begin
    qryContatos.Close;
    qryContatos.Params[0].AsInteger := idTblPaciente;
    qryContatos.Open;
-   objContatos.idContatos := qryContatos.ParamByName('ID_CONTATOS').AsInteger;
-   objContatos.dddTelCasa := qryContatos.ParamByName('DDD_TEL_CASA').AsString;
-   objContatos.telefoneCasa := qryContatos.ParamByName('TEL_CASA').AsString;
-   objContatos.operadoraTelCasa := qryContatos.ParamByName('OPERADORA_TEL_CASA').AsString;
-   objContatos.dddCelular1 := qryContatos.ParamByName('DDD_CELULAR1').AsString;
-   objContatos.NumeroCelular1 := qryContatos.ParamByName('CELULAR1').AsString;
-   objContatos.operadoraCelular1 := qryContatos.ParamByName('OPERADORA_CEL1').AsString;
-   objContatos.dddCelular2 := qryContatos.ParamByName('DDD_CELULAR2').AsString;
-   objContatos.numeroCelular2 := qryContatos.ParamByName('CELULAR2').AsString;
-   objContatos.operadoraCelular2 := qryContatos.ParamByName('OPERADORA_CEL2').AsString;
-   objContatos.dddTelTrabalho := qryContatos.ParamByName('DDD_TEL_TRABALHO').AsString;
-   objContatos.telefoneTrabalho := qryContatos.ParamByName('TEL_TRABALHO').AsString;
-   objContatos.operadoraTelTrabalho := qryContatos.ParamByName('OPERADORA_TEL_TRABALHO').AsString;
-   objContatos.dddTelRecado := qryContatos.ParamByName('DDD_TEL_RECADO').AsString;
-   objContatos.telefoneRecado := qryContatos.ParamByName('TELEFONE_RECADO').AsString;
-   objContatos.operadoraTelRecado := qryContatos.ParamByName('OPERADORA_TEL_RECADO').AsString;
-   objContatos.nomePessoaTelRecado := qryContatos.ParamByName('NOME_PESSOA_TEL_RECADO').AsString;
-   objContatos.email := qryContatos.ParamByName('EMAIL').AsString;
-   objContatos.idTblPaciente := qryContatos.ParamByName('ID_TBLPACIENTE').AsInteger;
+   objContatos.idContatos := qryContatos.FieldByName('ID_CONTATOS').AsInteger;
+   objContatos.dddTelCasa := qryContatos.FieldByName('DDD_TEL_CASA').AsString;
+   objContatos.telefoneCasa := qryContatos.FieldByName('TEL_CASA').AsString;
+   objContatos.operadoraTelCasa := qryContatos.FieldByName('OPERADORA_TEL_CASA').AsString;
+   objContatos.dddCelular1 := qryContatos.FieldByName('DDD_CELULAR1').AsString;
+   objContatos.NumeroCelular1 := qryContatos.FieldByName('CELULAR1').AsString;
+   objContatos.operadoraCelular1 := qryContatos.FieldByName('OPERADORA_CEL1').AsString;
+   objContatos.dddCelular2 := qryContatos.FieldByName('DDD_CELULAR2').AsString;
+   objContatos.numeroCelular2 := qryContatos.FieldByName('CELULAR2').AsString;
+   objContatos.operadoraCelular2 := qryContatos.FieldByName('OPERADORA_CEL2').AsString;
+   objContatos.dddTelTrabalho := qryContatos.FieldByName('DDD_TEL_TRABALHO').AsString;
+   objContatos.telefoneTrabalho := qryContatos.FieldByName('TEL_TRABALHO').AsString;
+   objContatos.operadoraTelTrabalho := qryContatos.FieldByName('OPERADORA_TEL_TRABALHO').AsString;
+   objContatos.dddTelRecado := qryContatos.FieldByName('DDD_TEL_RECADO').AsString;
+   objContatos.telefoneRecado := qryContatos.FieldByName('TELEFONE_RECADO').AsString;
+   objContatos.operadoraTelRecado := qryContatos.FieldByName('OPERADORA_TEL_RECADO').AsString;
+   objContatos.nomePessoaTelRecado := qryContatos.FieldByName('NOME_PESSOA_TEL_RECADO').AsString;
+   objContatos.email := qryContatos.FieldByName('EMAIL').AsString;
+   objContatos.idTblPaciente := qryContatos.FieldByName('ID_TBLPACIENTE').AsInteger;
 
    result := objContatos;
 end;
@@ -498,6 +514,42 @@ begin
          end;
          result := 0;
       end;
+   end;
+end;
+
+function TdmCadPaciente.SelectDadosProfissionais(idTblPaciente: integer; objDadosProf: TDadosProfissionais): TDadosProfissionais;
+var
+   qry : TZQuery;
+begin
+   try
+      qry := TZQuery.Create(nil);
+      qry.Connection := dmConexao.zConexao;
+      qry.Close;
+      qry.SQL.Add('SELECT P.*, E.*');
+      qry.SQL.Add(' FROM tbl_dado_profissional P');
+      qry.SQL.Add(' left join tbl_endereco E on E.id_tbldadosprof = P.id_dado_profissional');
+      qry.SQL.Add(' WHERE P.id_tblpaciente =  :idTblPaciente' );
+      qry.Params[0].Name := 'idTblPaciente';
+      qry.Params[0].DataType := ftInteger;
+      qry.Params[0].ParamType := ptInput;
+      qry.Params[0].AsInteger := idTblPaciente;
+      qry.Open;
+      objDadosProf.idDadoProfissional := qry.FieldByName('ID_DADO_PROFISSIONAL').AsInteger;
+      objDadosProf.nomeEmpresa := qry.FieldByName('NOME_EMPRESA').AsString;
+      objDadosProf.cargo := qry.FieldByName('CARGO').AsString;
+      objDadosProf.idTblPaciente := idTblPaciente;
+      objDadosProf.endereco.idEndereco := qry.FieldByName('ID_ENDERECO').AsInteger;
+      objDadosProf.endereco.logradouro := qry.FieldByName('LOGRADOURO').AsString;
+      objDadosProf.endereco.numero := qry.FieldByName('NUMERO').AsString;
+      objDadosProf.endereco.complemento := qry.FieldByName('COMPLEMENTO').AsString;
+      objDadosProf.endereco.bairro := qry.FieldByName('BAIRRO').AsString;
+      objDadosProf.endereco.cidade := qry.FieldByName('CIDADE').AsString;
+      objDadosProf.endereco.estado := qry.FieldByName('ESTADO').AsString;
+      objDadosProf.endereco.cep := qry.FieldByName('CEP').AsString;
+
+      result := objDadosProf;
+   finally
+      FreeAndNil(qry);
    end;
 end;
 
@@ -562,6 +614,8 @@ begin
       qry.Connection := dmConexao.zConexao;
       qry.SQL.Add('SELECT * FROM tbl_anamnese WHERE ID_TBLPACIENTE =  :idTblPaciente');
       qry.Params[0].Name := 'idTblPaciente';
+      qry.Params[0].DataType := ftInteger;
+      qry.Params[0].ParamType := ptInput;
       qry.Params[0].AsInteger := idTblPaciente;
       qry.Open;
       objAnamnese.idAnamnese := qry.FieldByName('ID_ANAMNESE').AsInteger;
@@ -644,6 +698,49 @@ begin
    end;
 end;
 
+function TdmCadPaciente.SelectSinaisSintomas(idTblPaciente: integer; objSinaisSintomas: TSinaisSintomas): TSinaisSintomas;
+var
+   qry : TZQuery;
+begin
+   try
+      qry := TZQuery.Create(nil);
+      qry.Connection := dmConexao.zConexao;
+      qry.Close;
+      qry.SQL.Add('SELECT * FROM tbl_sinais_sintomas WHERE ID_TBLPACIENTE =  :idTblPaciente');
+      qry.Params[0].Name := 'idTblPaciente';
+      qry.Params[0].DataType := ftInteger;
+      qry.Params[0].ParamType := ptInput;
+      qry.Params[0].AsInteger := idTblPaciente;
+      qry.Open;
+      objSinaisSintomas.idSinaisSintomas := qry.FieldByName('ID_SINAIS_SINTOMAS').AsInteger;
+      objSinaisSintomas.alteracaoApetite := qry.FieldByName('ALTERACAO_APETITE').AsString;
+      objSinaisSintomas.calorExagerado := qry.FieldByName('CALOR_EXAGERADO').AsString;
+      objSinaisSintomas.cansaFacil := qry.FieldByName('CANSA_FACIL').AsString;
+      objSinaisSintomas.coceiraAnormal := qry.FieldByName('COCEIRA_ANORMAL').AsString;
+      objSinaisSintomas.dificuldadeEngolir := qry.FieldByName('DIFICULDADE_ENGOLIR').AsString;
+      objSinaisSintomas.dificuldadeMastigar := qry.FieldByName('DIFICULDADE_MASTIGAR').AsString;
+      objSinaisSintomas.dorFacial := qry.FieldByName('DOR_FACIAL').AsString;
+      objSinaisSintomas.dorFrequenteCabeca := qry.FieldByName('DOR_CABECA_FREQUENTE').AsString;
+      objSinaisSintomas.dorOuvidoFrequente := qry.FieldByName('DOR_OUVIDO_FREQUENTE').AsString;
+      objSinaisSintomas.emagrecimentoAcentuado := qry.FieldByName('EMAGRECIMENTO_ACENTUADO').AsString;
+      objSinaisSintomas.estaloMandibula := qry.FieldByName('ESTALO_MANDIBULA').AsString;
+      objSinaisSintomas.febreFrequente := qry.FieldByName('FEBRE_FREQUENTE').AsString;
+      objSinaisSintomas.indigestaoFrequente := qry.FieldByName('INDIGESTAO_FREQUENTE').AsString;
+      objSinaisSintomas.maCicatrizacao := qry.FieldByName('MA_CICATRIZACAO').AsString;
+      objSinaisSintomas.miccaoFrequente := qry.FieldByName('MICCAO_FREQUENTE').AsString;
+      objSinaisSintomas.rangeDentes := qry.FieldByName('RANGE_DENTES').AsString;
+      objSinaisSintomas.respiraPelaBoca := qry.FieldByName('RESPIRA_BOCA').AsString;
+      objSinaisSintomas.sangramentoAnormal := qry.FieldByName('SANGRAMENTO_ANORMAL').AsString;
+      objSinaisSintomas.tonturaDesmaio := qry.FieldByName('TONTURA_DESMAIOS').AsString;
+      objSinaisSintomas.poucaSaliva := qry.FieldByName('POUCA_SALIVA').AsString;
+      objSinaisSintomas.idTblPaciente := idTblPaciente;
+
+      result := objSinaisSintomas;
+   finally
+      FreeAndNil(qry);
+   end;
+end;
+
 function TdmCadPaciente.InclusaoOuEdicaoEnfermidades(objEnfermidades: TEnfermidades): integer;
 var
    frmMensagem : TfrmMensagem;
@@ -687,6 +784,49 @@ begin
             result := 0;
          end;
       end;
+   end;
+end;
+
+function TdmCadPaciente.SelectEnfermidades(idTblPaciente: integer; objEnfermidades: TEnfermidades): TEnfermidades;
+var
+   qry : TZQuery;
+begin
+   try
+      qry := TZQuery.Create(nil);
+      qry.Connection := dmConexao.zConexao;
+      qry.Close;
+      qry.SQL.Add('SELECT * FROM tbl_enfermidades WHERE ID_TBLPACIENTE =  :idTblPaciente');
+      qry.Params[0].Name := 'idTblPaciente';
+      qry.Params[0].DataType := ftInteger;
+      qry.Params[0].ParamType := ptInput;
+      qry.Params[0].AsInteger := idTblPaciente;
+      qry.Open;
+      objEnfermidades.idEnfermidade := qry.FieldByName('ID_ENFERMIDADES').AsInteger;
+      objEnfermidades.aids := qry.FieldByName('AIDS').AsString;
+      objEnfermidades.anemia := qry.FieldByName('ANEMIA').AsString;
+      objEnfermidades.asma := qry.FieldByName('ASMA').AsString;
+      objEnfermidades.diabete := qry.FieldByName('DIABETE').AsString;
+      objEnfermidades.doencaCoracao := qry.FieldByName('DOENCA_CORACAO').AsString;
+      objEnfermidades.tumorBoca := qry.FieldByName('TUMOR_BOCA').AsString;
+      objEnfermidades.doencaRenal := qry.FieldByName('DOENCA_RENAL').AsString;
+      objEnfermidades.disritmiaEpilepsia := qry.FieldByName('DISRITMIA_EPILEPSIA').AsString;
+      objEnfermidades.febreReumatica := qry.FieldByName('FEBRE_REUMATICA').AsString;
+      objEnfermidades.glaucoma := qry.FieldByName('GLAUCOMA').AsString;
+      objEnfermidades.gonorreia := qry.FieldByName('GONORREIA').AsString;
+      objEnfermidades.hanseniase := qry.FieldByName('HANSENIASE').AsString;
+      objEnfermidades.hemofilia := qry.FieldByName('HEMOFILIA').AsString;
+      objEnfermidades.hepatite := qry.FieldByName('HEPATITE').AsString;
+      objEnfermidades.ictericia := qry.FieldByName('ICTERICIA').AsString;
+      objEnfermidades.problemaHormonal := qry.FieldByName('PROBLEMA_HORMONAL').AsString;
+      objEnfermidades.sifilis := qry.FieldByName('SIFILIS').AsString;
+      objEnfermidades.sinusite := qry.FieldByName('SINUSITE').AsString;
+      objEnfermidades.tuberculose := qry.FieldByName('TUBERCULOSE').AsString;
+      objEnfermidades.ulceraHepatica := qry.FieldByName('ULCERA_HEPATICA').AsString;
+      objEnfermidades.idTblPaciente := idTblPaciente;
+
+      result := objEnfermidades;
+   finally
+      FreeAndNil(qry);
    end;
 end;
 
