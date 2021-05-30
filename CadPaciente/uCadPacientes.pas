@@ -382,7 +382,10 @@ type
    public
       function RetornoRadioGroup(ItemIndex: integer): string;
       procedure PreencheAbaDadosBasicos(objDados: TPaciente);
+
       procedure PreencheAbaResponsavel(idPaciente: integer);
+      procedure PreencheAbaResponsavel(objResponsavel: TResponsavelPaciente);
+
       procedure PreencheAbaEndereco(idPaciente: integer);
       procedure PreencheAbaContatos(idPaciente: integer);
       procedure PreencheAbaDadosProf(idPaciente: integer);
@@ -400,7 +403,7 @@ var
    px, py : integer;
    estado : TipoEstado = teNavegacao;    // teNavegacao, teInclusao, teEdicao
 //   objDadosBasicos : TPaciente;
-   objDadosBasicosAntesAlteracao : TPaciente;
+   objAntesAlteracao : TObject;
    topPosition : integer;
 
 implementation
@@ -484,24 +487,68 @@ procedure TfrmCadPaciente.btnCancelaCadastroClick(Sender: TObject);
 begin
    if estado in [teEdicao] then
     begin
-      PreencheAbaDadosBasicos(objDadosBasicosAntesAlteracao);
-      FreeAndNil(objDadosBasicosAntesAlteracao);
-    end
-   else
-      LimpaControles(pcCadPaciente.ActivePage);
+      case pcCadPaciente.PageIndex of
+         0 : begin
+                PreencheAbaDadosBasicos(TPaciente(objAntesAlteracao));
+                FreeAndNil(objAntesAlteracao);
+             end;
+         1 : begin
+                PreencheAbaResponsavel(TResponsavelPaciente(objAntesAlteracao));
+                FreeAndNil(objAntesAlteracao);
+             end;
+      end;           { TODO : Continuar daqui }
+
+    end;
+   //else
+   //   LimpaControles(pcCadPaciente.ActivePage);
 
    estado := teNavegacao;
-   //EstadoBotoes;
+   EstadoBotoes;
    DesabilitaControles(pcCadPaciente.ActivePage);
 end;
 
 procedure TfrmCadPaciente.btnAlteraCadastroClick(Sender: TObject);
 begin
    estado := teEdicao;
-   //EstadoBotoes;
+   EstadoBotoes;
    HabilitaControles(pcCadPaciente.ActivePage);
-   objDadosBasicosAntesAlteracao := TPaciente.Create;
-   objDadosBasicosAntesAlteracao := DadosBasicos.CarregaObjDadosBasicos(objDadosBasicosAntesAlteracao, Self);
+   case pcCadPaciente.PageIndex of
+      0 : begin
+             objAntesAlteracao := TPaciente.Create;
+             objAntesAlteracao := DadosBasicos.CarregaObjDadosBasicos(TPaciente(objAntesAlteracao), Self);
+          end;
+      1 : begin
+             objAntesAlteracao := TResponsavelPaciente.Create;
+             objAntesAlteracao := Responsavel.CarregaObjResponsavel(TResponsavelPaciente(objAntesAlteracao), Self);
+          end;
+      2 : begin
+             objAntesAlteracao := TEndereco.Create;                                                     // 8 = TBL_PACIENTE
+             objAntesAlteracao := Endereco.CarregaObjEndereco(TEndereco(objAntesAlteracao), Self, 8);   // 9 = TBL_DADOSPROF
+          end;
+      3 : begin
+             objAntesAlteracao := TContatos.Create;
+             objAntesAlteracao := Contatos.CarregaObjContatos(TContatos(objAntesAlteracao), Self);
+          end;
+      4 : begin
+             objAntesAlteracao := TDadosProfissionais.Create;
+             objAntesAlteracao := DadosProfissionais.CarregaObjDadoProfissional(TDadosProfissionais(objAntesAlteracao), Self);
+          end;
+      5 : begin
+             objAntesAlteracao := TAnamnese.Create;
+             objAntesAlteracao := Anamnese.CarregaObjAnamnese(TAnamnese(objAntesAlteracao), Self);
+          end;
+      6 : begin
+             objAntesAlteracao := TSinaisSintomas.Create;
+             objAntesAlteracao := SinaisSintomas.CarregaObjSinaisSintomas(TSinaisSintomas(objAntesAlteracao), Self);
+          end;
+      7 : begin
+             objAntesAlteracao := TEnfermidades.Create;
+             objAntesAlteracao := Enfermidades.CarregaObjEnfermidades(TEnfermidades(objAntesAlteracao), Self);
+          end;
+   end;
+
+// TPaciente(objAntesAlteracao).nomePaciente := ;
+
 end;
 
 procedure TfrmCadPaciente.btnApagaCadastroClick(Sender: TObject);
@@ -510,7 +557,7 @@ var
 begin
    frmMensagem := TfrmMensagem.Create(nil);
    frmMensagem.InfoFormMensagem('Apagar Registro?', tiDuvida, 'Tem certeza que você deseja apagar o cadastro de ' +
-                                pcCadPaciente.ActivePage.Caption + 'do:' + LineEnding + edtNomePaciente.Text + '?');
+                                pcCadPaciente.ActivePage.Caption + ' do: ' + LineEnding + edtNomePaciente.Text + '?');
 
    case pcCadPaciente.ActivePageIndex of
       0 : if frmMensagem.resultadoBtn = mrOK then //Caso o resultado da mensagem seja SIM transmite o código para deleção
@@ -533,7 +580,7 @@ procedure TfrmCadPaciente.btnNovoCadastroClick(Sender: TObject);
 begin
    estado := teInclusao;
    HabilitaControles(pcCadPaciente.ActivePage);
-   //EstadoBotoes;
+   EstadoBotoes;
    LimpaControles(pcCadPaciente.ActivePage);
    if pcCadPaciente.PageIndex = 0 then
    begin
@@ -546,8 +593,8 @@ begin
          edtNomePaciente.SetFocus;
       end;
    end;
-   if rgexSexo.ItemIndex = 1 then
-      CasoHomem;
+   //if rgexSexo.ItemIndex = 1 then
+   //   CasoHomem;
 
    if pcCadPaciente.PageIndex = 1 then
    begin
@@ -573,7 +620,7 @@ begin
    begin
       edtCodAnamnese.Text := '0';
       DesabilitaEditsSimNaoAnamnese;
-      if (rgexSexo.ItemIndex = 1) or (rgexSexo.ItemIndex = -1) then
+     { if (rgexSexo.ItemIndex = 1) or (rgexSexo.ItemIndex = -1) then
        begin
           gbTaGravida.Enabled := false;
           gbQtdGravidez.Enabled := false;
@@ -586,7 +633,7 @@ begin
           gbQtdGravidez.Enabled := true;
           gbQtdFilhos.Enabled := true;
           gbMenopausa.Enabled := true;
-       end;
+       end;   }
    end;
 
    if pcCadPaciente.PageIndex = 6 then
@@ -670,7 +717,7 @@ var
 begin
    topPosition := frmCadPaciente.Top;
    pcCadPaciente.TabIndex := 0;
-   try
+{   try
       objControlePaciente := TControlePaciente.Create;
       if objControlePaciente.TblPacienteVazia = true then
       begin
@@ -680,7 +727,7 @@ begin
       end;
    finally
       FreeAndNil(objControlePaciente);
-   end;
+   end; }
    DesabilitaTemaRadioButtonEX(Sender);
 end;
 
@@ -791,7 +838,7 @@ begin
        frmCadPaciente.Height := 547;
        frmCadPaciente.Top := topPosition;
    end;
-   //EstadoBotoes;
+   EstadoBotoes;
 end;
 
 procedure TfrmCadPaciente.pcCadPacienteChanging(Sender: TObject; var AllowChange: Boolean);
@@ -922,6 +969,7 @@ begin
 end;
 
 procedure TfrmCadPaciente.EstadoBotoes;
+var i: integer;
 begin
    if (estado = teInclusao) OR (estado = teEdicao) then
    begin
@@ -951,20 +999,132 @@ begin
          btnCancelaCadastro.Enabled := false;
          btnProcuraPaciente.Enabled := true;
       end
-      else if pcCadPaciente.PageIndex <> 0 then
+      else if pcCadPaciente.PageIndex = 1 then
        begin
-          if edtNomePaciente.Text = EmptyStr then
+          if StrToInt(edtCodResponsavel.Text) > 0 then
            begin
-              btnNovoCadastro.Enabled := false;
-              btnAlteraCadastro.Enabled := false;
-              btnApagaCadastro.Enabled := false;
+             btnNovoCadastro.Enabled := false;
+             btnAlteraCadastro.Enabled := true;
+             btnApagaCadastro.Enabled := true;
            end
-          else if edtNomePaciente.Text <> EmptyStr then
+          else
            begin
               btnNovoCadastro.Enabled := true;
-              btnAlteraCadastro.Enabled := true;
-              btnApagaCadastro.Enabled := true;
+              btnAlteraCadastro.Enabled := false;
+              btnApagaCadastro.Enabled := false;
            end;
+          btnGravaCadastro.Enabled := false;
+          btnCancelaCadastro.Enabled := false;
+          btnProcuraPaciente.Enabled := true;
+       end
+      else if pcCadPaciente.PageIndex = 2 then
+       begin
+         if StrToInt(edtCodEndPaciente.Text) > 0 then
+           begin
+             btnNovoCadastro.Enabled := false;
+             btnAlteraCadastro.Enabled := true;
+             btnApagaCadastro.Enabled := true;
+           end
+          else
+           begin
+              btnNovoCadastro.Enabled := true;
+              btnAlteraCadastro.Enabled := false;
+              btnApagaCadastro.Enabled := false;
+           end;
+         btnGravaCadastro.Enabled := false;
+         btnCancelaCadastro.Enabled := false;
+         btnProcuraPaciente.Enabled := true;
+       end
+      else if pcCadPaciente.PageIndex = 3 then
+       begin
+         if StrToInt(edtCodContatos.Text) > 0 then
+          begin
+             btnNovoCadastro.Enabled := false;
+             btnAlteraCadastro.Enabled := true;
+             btnApagaCadastro.Enabled := true;
+          end
+          else
+           begin
+              btnNovoCadastro.Enabled := true;
+              btnAlteraCadastro.Enabled := false;
+              btnApagaCadastro.Enabled := false;
+           end;
+         btnGravaCadastro.Enabled := false;
+         btnCancelaCadastro.Enabled := false;
+         btnProcuraPaciente.Enabled := true;
+       end
+      else if pcCadPaciente.PageIndex = 4 then
+       begin
+         if StrToInt(edtCodDadosProf.Text) > 0 then
+          begin
+             btnNovoCadastro.Enabled := false;
+             btnAlteraCadastro.Enabled := true;
+             btnApagaCadastro.Enabled := true;
+          end
+          else
+           begin
+              btnNovoCadastro.Enabled := true;
+              btnAlteraCadastro.Enabled := false;
+              btnApagaCadastro.Enabled := false;
+           end;
+         btnGravaCadastro.Enabled := false;
+         btnCancelaCadastro.Enabled := false;
+         btnProcuraPaciente.Enabled := true;
+       end
+      else if pcCadPaciente.PageIndex = 5 then
+       begin
+         if StrToInt(edtCodAnamnese.Text) > 0 then
+          begin
+             btnNovoCadastro.Enabled := false;
+             btnAlteraCadastro.Enabled := true;
+             btnApagaCadastro.Enabled := true;
+          end
+          else
+           begin
+              btnNovoCadastro.Enabled := true;
+              btnAlteraCadastro.Enabled := false;
+              btnApagaCadastro.Enabled := false;
+           end;
+         btnGravaCadastro.Enabled := false;
+         btnCancelaCadastro.Enabled := false;
+         btnProcuraPaciente.Enabled := true;
+       end
+      else if pcCadPaciente.PageIndex = 6 then
+       begin
+         if StrToInt(edtCodSinaisSintomas.Text) > 0 then
+          begin
+             btnNovoCadastro.Enabled := false;
+             btnAlteraCadastro.Enabled := true;
+             btnApagaCadastro.Enabled := true;
+          end
+          else
+           begin
+              btnNovoCadastro.Enabled := true;
+              btnAlteraCadastro.Enabled := false;
+              btnApagaCadastro.Enabled := false;
+           end;
+         btnGravaCadastro.Enabled := false;
+         btnCancelaCadastro.Enabled := false;
+         btnProcuraPaciente.Enabled := true;
+       end
+      else if pcCadPaciente.PageIndex = 7 then
+       begin
+          i := StrToInt(edtCodEnfermidades.Text);
+         if  i > 0 then
+          begin
+             btnNovoCadastro.Enabled := false;
+             btnAlteraCadastro.Enabled := true;
+             btnApagaCadastro.Enabled := true;
+          end
+         else
+           begin
+              btnNovoCadastro.Enabled := true;
+              btnAlteraCadastro.Enabled := false;
+              btnApagaCadastro.Enabled := false;
+           end;
+         btnGravaCadastro.Enabled := false;
+         btnCancelaCadastro.Enabled := false;
+         btnProcuraPaciente.Enabled := true;
        end;
 end;
 
@@ -981,6 +1141,8 @@ begin
    if controle is TBCPanel then
       for i := 0 to controle.ControlCount -1 do
       begin
+         if controle.Controls[i] is TMaskEdit then
+            (controle.Controls[i] as TMaskEdit).Clear;
          if controle.Controls[i] is TEdit and Visible = true then
             (controle.Controls[i] as TCustomEdit).Clear;
          if controle.Controls[i] is TComboBox then
@@ -1105,14 +1267,30 @@ begin
       edtNomeResp.Text := objResponsavel.nomeResponsavel;
       edtParentesco.Text := objResponsavel.parentesco;
       edtCodResponsavel.Text := IntToStr(objResponsavel.idResponsavel);
-      mskedtCPFResp.Text := objResponsavel.cpfResponsavel;
-      edtIdentidadeResp.Text := objResponsavel.identidadeResponsavel;
-      edtOrgaoExpedResp.Text := objResponsavel.orgaoExpedidor;
-      edtCodDocResp.Text := IntToStr(objResponsavel.identidadeResponsavel);
+      mskedtCPFResp.Text := objResponsavel.documento.cpf;
+      edtIdentidadeResp.Text := objResponsavel.documento.identidade;
+      edtOrgaoExpedResp.Text := objResponsavel.documento.orgaoExpedidor;
+      edtCodDocResp.Text := IntToStr(objResponsavel.documento.idDocumentos);
    finally
       FreeAndNil(objControlePaciente);
       FreeAndNil(objResponsavel);
    end;
+end;
+
+procedure TfrmCadPaciente.PreencheAbaResponsavel(objResponsavel: TResponsavelPaciente);
+begin
+   //try
+      edtCodResponsavel.Text := IntToStr(objResponsavel.idResponsavel);
+      edtNomeResp.Text := objResponsavel.nomeResponsavel;
+      edtParentesco.Text := objResponsavel.parentesco;
+      edtCodResponsavel.Text := IntToStr(objResponsavel.idResponsavel);
+      mskedtCPFResp.Text := objResponsavel.documento.cpf;
+      edtIdentidadeResp.Text := objResponsavel.documento.identidade;
+      edtOrgaoExpedResp.Text := objResponsavel.documento.orgaoExpedidor;
+      edtCodDocResp.Text := IntToStr(objResponsavel.documento.idDocumentos);
+   //finally
+      //FreeAndNil(objResponsavel);
+   //end;
 end;
 
 procedure TfrmCadPaciente.PreencheAbaEndereco(idPaciente: integer);
@@ -1478,6 +1656,7 @@ begin
       objEnfermidades := TEnfermidades.Create;
       objControlePaciente := TControlePaciente.Create;
       objEnfermidades := objControlePaciente.SelectEnfermidades(idPaciente, objEnfermidades);
+      edtCodEnfermidades.Text := IntToStr(objEnfermidades.idEnfermidade);
       case objEnfermidades.aids of
          'S' : rgexAids.ItemIndex := 0;
          'N' : rgexAids.ItemIndex := 1;

@@ -5,7 +5,7 @@ unit uClassResponsavelPaciente;
 interface
 
 uses
-   Classes, SysUtils;
+   Classes, SysUtils, uClassDocumentos;
 
 type
 
@@ -13,30 +13,44 @@ type
 
    TResponsavelPaciente = class
    private
+      Fdocumento: TDocumentos;
       FidTblPaciente: integer;
       FidResponsavel: integer;
-      FnomeResponsavel: string;        { TODO : Criar o campo tipo documento no Responsável }
+      FnomeResponsavel: string;
       Fparentesco: string;
-      FcpfResponsavel: string;
-      FidentidadeResponsavel: string;
-      ForgaoExpedidor: string;
+      //FcpfResponsavel: string;
+      //FidentidadeResponsavel: string;
+      //ForgaoExpedidor: string;
    public
       property idResponsavel : integer read FidResponsavel write FidResponsavel;
       property nomeResponsavel : string read FnomeResponsavel write FnomeResponsavel;
       property parentesco : string read Fparentesco write Fparentesco;
-      property cpfResponsavel : string read FcpfResponsavel write FcpfResponsavel;
-      property identidadeResponsavel : string read FidentidadeResponsavel write FidentidadeResponsavel;
-      property orgaoExpedidor : string read ForgaoExpedidor write ForgaoExpedidor;
+      //property cpfResponsavel : string read FcpfResponsavel write FcpfResponsavel;
+      //property identidadeResponsavel : string read FidentidadeResponsavel write FidentidadeResponsavel;
+      //property orgaoExpedidor : string read ForgaoExpedidor write ForgaoExpedidor;
       property idTblPaciente : integer read FidTblPaciente write FidTblPaciente;
+      property documento : TDocumentos read Fdocumento write Fdocumento;
 
-      //constructor Create;
-      //destructor Destroy; override;
+      constructor Create;
+      destructor Destroy; override;
    end;
 
 implementation
 
 { TResponsavelPaciente }
 
+
+constructor TResponsavelPaciente.Create;
+begin
+   documento := TDocumentos.Create;
+end;
+
+destructor TResponsavelPaciente.Destroy;
+begin
+   documento.Free;
+   documento := nil;
+   inherited Destroy;
+end;
 
 end.
 

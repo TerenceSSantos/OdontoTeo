@@ -22,6 +22,7 @@ type
       qryTblResponsavelID_DOCUMENTOS: TLongintField;
       qryTblResponsavelID_RESPONSAVEL: TLongintField;
       qryTblResponsavelID_TBLPACIENTE: TLongintField;
+      qryTblResponsavelID_TBLRESPONSAVEL: TLongintField;
       qryTblResponsavelNOME_RESPONSAVEL: TStringField;
       qryTblResponsavelORGAO_EXPEDIDOR: TStringField;
       qryTblResponsavelPARENTESCO: TStringField;
@@ -167,7 +168,7 @@ var
    qry : TZQuery;
 begin
    try
-      qry := TZQuery.Create(nil);          { TODO : Alterar a forma de select dos Dados Básicos com os Documentos }
+      qry := TZQuery.Create(nil);
       //qry.SQL.Add('select * from tbl_paciente ');
       //qry.SQL.Add('where id_paciente = ' + IntToStr(idPaciente));
       qry.Close;
@@ -351,9 +352,14 @@ begin
    objResponsavel.idResponsavel := qryTblResponsavelID_RESPONSAVEL.AsInteger;
    objResponsavel.nomeResponsavel := qryTblResponsavelNOME_RESPONSAVEL.AsString;
    objResponsavel.parentesco := qryTblResponsavelPARENTESCO.AsString;
-   objResponsavel.identidadeResponsavel := qryTblResponsavelIDENTIDADE.AsString;
-   objResponsavel.orgaoExpedidor := qryTblResponsavelORGAO_EXPEDIDOR.AsString;
-   objResponsavel.cpfResponsavel := qryTblResponsavelCPF.AsString;
+   //objResponsavel.identidadeResponsavel := qryTblResponsavelIDENTIDADE.AsString;
+   //objResponsavel.orgaoExpedidor := qryTblResponsavelORGAO_EXPEDIDOR.AsString;
+   //objResponsavel.cpfResponsavel := qryTblResponsavelCPF.AsString;
+   objResponsavel.documento.identidade := qryTblResponsavelIDENTIDADE.AsString;
+   objResponsavel.documento.orgaoExpedidor := qryTblResponsavelORGAO_EXPEDIDOR.AsString;
+   objResponsavel.documento.cpf := qryTblResponsavelCPF.AsString;
+   objResponsavel.documento.idDocumentos := qryTblResponsavelID_DOCUMENTOS.AsInteger;
+
    objResponsavel.idTblPaciente := qryTblResponsavelID_TBLPACIENTE.AsInteger;
 //   objResponsavel. := qryTblResponsavelID_DOCUMENTOS.AsInteger;
    result := objResponsavel;

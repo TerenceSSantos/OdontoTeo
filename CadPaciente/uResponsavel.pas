@@ -40,9 +40,10 @@ begin
    objResponsavel.idTblPaciente := StrToInt(frm.edtCodPaciente.Text);
    objResponsavel.nomeResponsavel := frm.edtNomeResp.Text;
    objResponsavel.parentesco := frm.edtParentesco.Text;
-   objResponsavel.cpfResponsavel := frm.mskedtCPFResp.Text;
-   objResponsavel.identidadeResponsavel := frm.edtIdentidadeResp.Text;
-   objResponsavel.orgaoExpedidor := frm.edtOrgaoExpedResp.Text;
+   objResponsavel.documento.cpf := frm.mskedtCPFResp.Text;
+   objResponsavel.documento.identidade := frm.edtIdentidadeResp.Text;
+   objResponsavel.documento.orgaoExpedidor := frm.edtOrgaoExpedResp.Text;
+   objResponsavel.documento.idDocumentos := StrToInt(frm.edtCodDocResp.Text);
    result := objResponsavel;
 end;
 

@@ -113,6 +113,15 @@ object dmCadPaciente: TdmCadPaciente
       ReadOnly = False
       Required = True
     end
+    object qryTblResponsavelID_TBLRESPONSAVEL: TLongintField
+      FieldKind = fkData
+      FieldName = 'ID_TBLRESPONSAVEL'
+      Index = 8
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
   end
   object qryTblEndereco: TZQuery
     Connection = dmConexao.zConexao

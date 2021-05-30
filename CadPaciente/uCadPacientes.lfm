@@ -321,7 +321,7 @@ object frmCadPaciente: TfrmCadPaciente
     object btnNovoCadastro: TBitBtn
       Left = 8
       Height = 80
-      Top = 0
+      Top = 2
       Width = 125
       Caption = 'Novo Cadastro'
       Font.CharSet = ANSI_CHARSET
@@ -344,6 +344,7 @@ object frmCadPaciente: TfrmCadPaciente
       Top = 2
       Width = 125
       Caption = 'Alterar Cadastro'
+      Enabled = False
       Font.CharSet = ANSI_CHARSET
       Font.Color = 65664
       Font.Height = -13
@@ -364,6 +365,7 @@ object frmCadPaciente: TfrmCadPaciente
       Top = 2
       Width = 125
       Caption = 'Apagar Cadastro'
+      Enabled = False
       Font.CharSet = ANSI_CHARSET
       Font.Color = 65664
       Font.Height = -13
@@ -385,6 +387,7 @@ object frmCadPaciente: TfrmCadPaciente
       Width = 125
       Caption = 'Gravar Cadastro'
       Default = True
+      Enabled = False
       Font.CharSet = ANSI_CHARSET
       Font.Color = 65664
       Font.Height = -13
@@ -405,6 +408,7 @@ object frmCadPaciente: TfrmCadPaciente
       Top = 2
       Width = 125
       Caption = 'Cancelar Cadastro'
+      Enabled = False
       Font.CharSet = ANSI_CHARSET
       Font.Color = 65664
       Font.Height = -13
@@ -1456,6 +1460,7 @@ object frmCadPaciente: TfrmCadPaciente
             TabOrder = 5
             Text = '0'
             TextHint = 'Código do Responsável'
+            Visible = False
           end
           object edtCodDocResp: TEdit
             Left = 73
@@ -1467,6 +1472,7 @@ object frmCadPaciente: TfrmCadPaciente
             TabOrder = 6
             Text = '0'
             TextHint = 'Cód. doc. Responsável'
+            Visible = False
           end
           object mskedtCPFResp: TMaskEdit
             Left = 152
@@ -2807,6 +2813,7 @@ object frmCadPaciente: TfrmCadPaciente
             Width = 120
             TabStop = False
             TabOrder = 9
+            Text = '0'
             TextHint = 'ID Dados Profissionais'
             Visible = False
           end
@@ -2817,6 +2824,7 @@ object frmCadPaciente: TfrmCadPaciente
             Width = 120
             TabStop = False
             TabOrder = 10
+            Text = '0'
             TextHint = 'ID EndereçoDados Profissionais'
             Visible = False
           end
@@ -3921,6 +3929,7 @@ object frmCadPaciente: TfrmCadPaciente
               Width = 120
               TabStop = False
               TabOrder = 16
+              Text = '0'
               TextHint = 'ID Anamnese'
               Visible = False
             end
@@ -4873,6 +4882,7 @@ object frmCadPaciente: TfrmCadPaciente
             Width = 120
             TabStop = False
             TabOrder = 20
+            Text = '0'
             TextHint = 'ID Sinais e Sintomas'
             Visible = False
           end
@@ -5824,6 +5834,7 @@ object frmCadPaciente: TfrmCadPaciente
             Width = 120
             TabStop = False
             TabOrder = 20
+            Text = '0'
             TextHint = 'ID Enfermidades'
             Visible = False
           end
