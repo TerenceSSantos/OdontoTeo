@@ -1,7 +1,7 @@
 object frmMensagem: TfrmMensagem
-  Left = 517
+  Left = 632
   Height = 200
-  Top = 119
+  Top = 115
   Width = 600
   BorderStyle = bsNone
   Caption = 'frmMensagem'

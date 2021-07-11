@@ -1,7 +1,7 @@
 object frmCadPaciente: TfrmCadPaciente
-  Left = 462
+  Left = 448
   Height = 547
-  Top = 167
+  Top = 106
   Width = 1092
   BorderStyle = bsNone
   Caption = 'Cadastro de Pacientes'
@@ -405,7 +405,7 @@ object frmCadPaciente: TfrmCadPaciente
     object btnCancelaCadastro: TBitBtn
       Left = 711
       Height = 80
-      Top = 2
+      Top = 0
       Width = 125
       Caption = 'Cancelar Cadastro'
       Enabled = False
@@ -615,10 +615,10 @@ object frmCadPaciente: TfrmCadPaciente
       Height = 362
       Top = 2
       Width = 1088
-      ActivePage = tabResponsavel
+      ActivePage = tabSinaisSintomas
       Align = alClient
       Images = miglstCadPaciente
-      TabIndex = 1
+      TabIndex = 6
       TabOrder = 0
       OnChange = pcCadPacienteChange
       OnChanging = pcCadPacienteChanging
@@ -1255,6 +1255,7 @@ object frmCadPaciente: TfrmCadPaciente
             NumbersOnly = True
             TabStop = False
             TabOrder = 15
+            Text = '0'
             TextHint = 'Cód. doc. Paciente'
             Visible = False
           end

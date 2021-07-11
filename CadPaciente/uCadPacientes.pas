@@ -387,11 +387,23 @@ type
       procedure PreencheAbaResponsavel(objResponsavel: TResponsavelPaciente);
 
       procedure PreencheAbaEndereco(idPaciente: integer);
+      procedure PreencheAbaEndereco(objEndereco: TEndereco);
+
       procedure PreencheAbaContatos(idPaciente: integer);
+      procedure PreencheAbaContatos(objContatos: TContatos);
+
       procedure PreencheAbaDadosProf(idPaciente: integer);
+      procedure PreencheAbaDadosProf(objDadosProf: TDadosProfissionais);
+
       procedure PreencheAbaAnamnese(idPaciente: integer);
+      procedure PreencheAbaAnamnese(objAnamnese: TAnamnese);
+
       procedure PreencheAbaSinaisSintomas(idPaciente: integer);
+      procedure PreencheAbaSinaisSintomas(objSinaisSintomas: TSinaisSintomas);
+
       procedure PreencheAbaEnfermidades(idPaciente: integer);
+      procedure PreencheAbaEnfermidades(objEnfermidades: TEnfermidades);
+
       procedure SelectPaciente(idPaciente: integer);
    end;
 
@@ -409,7 +421,8 @@ var
 implementation
 
 uses
-   uClassControlePaciente, uFrmMensagem, uLocalizarPaciente, uDadosBasicos, uResponsavel, uEndereco, uContatos, uDadoProfissional,
+   uClassControlePaciente, uFrmMensagem, uLocalizarPaciente, uMarcarSimNao,
+   uDadosBasicos, uResponsavel, uEndereco, uContatos, uDadoProfissional,
    uAnamnese, uSinaisSintomas, uEnfermidades, uDocumentos;
 
 
@@ -462,8 +475,6 @@ begin
              DadosProfissionais.InclusaoOuEdicaoDadoProf(Self);
              if (Trim(edtLogradEmpresa.Text) <> EmptyStr) then      // 8 = TBL_PACIENTE
                 Endereco.InclusaoOuEdicaoEndereco(Self, 9);;       // 9 = TBL_DADOSPROF
-             //if estado in [teInclusao] then
-             //   DadosProfissionais.InclusaoDadoProfissional(Self);
           end;
 
       5 : begin
@@ -478,9 +489,9 @@ begin
              Enfermidades.InclusaoOuEdicaoEnfermidades(Self);
           end;
    end;
-
-
-
+   estado := teNavegacao;
+   EstadoBotoes;
+   DesabilitaControles(pcCadPaciente.ActivePage);
 end;
 
 procedure TfrmCadPaciente.btnCancelaCadastroClick(Sender: TObject);
@@ -496,8 +507,31 @@ begin
                 PreencheAbaResponsavel(TResponsavelPaciente(objAntesAlteracao));
                 FreeAndNil(objAntesAlteracao);
              end;
-      end;           { TODO : Continuar daqui }
-
+         2 : begin
+                PreencheAbaEndereco(TEndereco(objAntesAlteracao));
+                FreeAndNil(objAntesAlteracao);
+             end;
+         3 : begin
+                PreencheAbaContatos(TContatos(objAntesAlteracao));
+                FreeAndNil(objAntesAlteracao);
+             end;
+         4 : begin
+                PreencheAbaDadosProf(TDadosProfissionais(objAntesAlteracao));
+                FreeAndNil(objAntesAlteracao);
+             end;
+         5 : begin
+                PreencheAbaAnamnese(TAnamnese(objAntesAlteracao));
+                FreeAndNil(objAntesAlteracao);
+             end;
+         6 : begin
+                PreencheAbaSinaisSintomas(TSinaisSintomas(objAntesAlteracao));
+                FreeAndNil(objAntesAlteracao);
+             end;
+         7 : begin
+                PreencheAbaEnfermidades(TEnfermidades(objAntesAlteracao));
+                FreeAndNil(objAntesAlteracao);
+             end;
+      end;
     end;
    //else
    //   LimpaControles(pcCadPaciente.ActivePage);
@@ -512,6 +546,8 @@ begin
    estado := teEdicao;
    EstadoBotoes;
    HabilitaControles(pcCadPaciente.ActivePage);
+   if not Assigned(objAntesAlteracao) then
+      objAntesAlteracao := TObject.Create;
    case pcCadPaciente.PageIndex of
       0 : begin
              objAntesAlteracao := TPaciente.Create;
@@ -572,7 +608,7 @@ begin
       //6 : ;
       //7 : ;
    end;
-
+   LimpaControles(pcCadPaciente.ActivePage);
    FreeAndNil(frmMensagem);
 end;
 
@@ -591,6 +627,7 @@ begin
       begin
          chkboxAtivo.Checked := true;
          edtNomePaciente.SetFocus;
+         edtCodDocPaciente.Text := '0';
       end;
    end;
    //if rgexSexo.ItemIndex = 1 then
@@ -600,27 +637,34 @@ begin
    begin
       edtCodResponsavel.Text := '0';
       edtCodDocResp.Text := '0';
+      edtNomeResp.SetFocus;
    end;
 
    if pcCadPaciente.PageIndex = 2 then
     begin
        edtCodEndPaciente.Text := '0';
+       edtLogradouro.SetFocus;
     end;
 
-   if pcCadPaciente.PageIndex = 3 then;
+   if pcCadPaciente.PageIndex = 3 then
+    begin
       edtCodContatos.Text := '0';
+      edtDDDCasa.SetFocus;
+    end;
 
    if pcCadPaciente.PageIndex = 4 then
       begin
          edtCodDadosProf.Text := '0';
          edtCodEndDadosProf.Text := '0';
+         edtNomeEmpresa.SetFocus;
       end;
 
    if pcCadPaciente.PageIndex = 5 then
    begin
       edtCodAnamnese.Text := '0';
+      cboxConsAcucar.SetFocus;
       DesabilitaEditsSimNaoAnamnese;
-     { if (rgexSexo.ItemIndex = 1) or (rgexSexo.ItemIndex = -1) then
+      if (rgexSexo.ItemIndex = 1) or (rgexSexo.ItemIndex = -1) then
        begin
           gbTaGravida.Enabled := false;
           gbQtdGravidez.Enabled := false;
@@ -633,11 +677,19 @@ begin
           gbQtdGravidez.Enabled := true;
           gbQtdFilhos.Enabled := true;
           gbMenopausa.Enabled := true;
-       end;   }
+       end;
    end;
 
    if pcCadPaciente.PageIndex = 6 then
+    begin
+      try
+         frmSimNao := TfrmSimNao.Create(nil);
+         frmSimNao.ShowModal;
+      finally
+         FreeAndNil(frmSimNao);
+      end;
       edtCodSinaisSintomas.Text := '0';
+    end;
 
    if pcCadPaciente.PageIndex = 7 then;
       edtCodEnfermidades.Text := '0';
@@ -1316,6 +1368,18 @@ begin
    end;
 end;
 
+procedure TfrmCadPaciente.PreencheAbaEndereco(objEndereco: TEndereco);
+begin
+   edtCodEndPaciente.Text := IntToStr(objEndereco.idEndereco);
+   edtLogradouro.Text := objEndereco.logradouro;
+   edtNumEndereco.Text := objEndereco.numero;
+   edtComplemento.Text := objEndereco.complemento;
+   edtBairro.Text := objEndereco.bairro;
+   edtCidade.Text := objEndereco.cidade;
+   cboxUFCasa.Text := objEndereco.estado;
+   mskedtCEPCasa.Text := objEndereco.cep;
+end;
+
 procedure TfrmCadPaciente.PreencheAbaContatos(idPaciente: integer);
 var
    objContatos : TContatos;
@@ -1349,6 +1413,28 @@ begin
    end;
 end;
 
+procedure TfrmCadPaciente.PreencheAbaContatos(objContatos: TContatos);
+begin
+   edtCodContatos.Text := IntToStr(objContatos.idContatos);
+   edtDDDCasa.Text := objContatos.dddTelCasa;
+   mskedtTelCasa.Text := objContatos.telefoneCasa;
+   cboxOperadoraCasa.Text := objContatos.operadoraTelCasa;
+   edtDDDCel1.Text := objContatos.dddCelular1;
+   mskedtCel1.Text := objContatos.NumeroCelular1;
+   cboxOperadoraCel1.Text := objContatos.operadoraCelular1;
+   edtDDDCel2.Text := objContatos.dddCelular2;
+   mskedtCel2.Text := objContatos.numeroCelular2;
+   cboxOperadoraCel2.Text := objContatos.operadoraCelular2;
+   edtDDDTelTrab.Text := objContatos.dddTelTrabalho;
+   mskedtTelTrab.Text := objContatos.telefoneTrabalho;
+   cboxOperadoraTelTrab.Text := objContatos.operadoraTelTrabalho;
+   edtDDDTelRecado.Text := objContatos.dddTelRecado;
+   mskedtTelRecado.Text := objContatos.telefoneRecado;
+   cboxOperadoraTelRecado.Text := objContatos.operadoraTelRecado;
+   edtPessoaRecado.Text := objContatos.nomePessoaTelRecado;
+   edtEmail.Text := objContatos.email;
+end;
+
 procedure TfrmCadPaciente.PreencheAbaDadosProf(idPaciente: integer);
 var
    objDadosProf : TDadosProfissionais;
@@ -1367,6 +1453,15 @@ begin
       FreeAndNil(objControlePaciente);
       FreeAndNil(objDadosProf);
    end;
+end;
+
+procedure TfrmCadPaciente.PreencheAbaDadosProf(objDadosProf: TDadosProfissionais);
+begin
+   edtCodDadosProf.Text := IntToStr(objDadosProf.idDadoProfissional);
+   edtCodEndDadosProf.Text := IntToStr(objDadosProf.endereco.idEndereco);
+   edtNomeEmpresa.Text := objDadosProf.nomeEmpresa;
+   edtCargo.Text := objDadosProf.cargo;
+   edtLogradEmpresa.Text := objDadosProf.endereco.logradouro;
 end;
 
 procedure TfrmCadPaciente.PreencheAbaAnamnese(idPaciente: integer);
@@ -1487,6 +1582,115 @@ begin
    finally
       FreeAndNil(objControlePaciente);
       FreeAndNil(objAnamnese);
+   end;
+end;
+
+procedure TfrmCadPaciente.PreencheAbaAnamnese(objAnamnese: TAnamnese);
+begin
+   edtCodAnamnese.Text := IntToStr(objAnamnese.idAnamnese);
+   cboxConsAcucar.Text := objAnamnese.consumoAcucar;
+   cboxEscovacao.Text := objAnamnese.escovacao;
+   cboxFioDental.Text := objAnamnese.usoFioDental;
+   memoObsAnatHistPatol.Text := objAnamnese.obsAnatomoHisto;
+   edtHabitosViciosos.Text := objAnamnese.habitosViciosos;
+   edtAntecFamiliar.Text := objAnamnese.antecedentesFamiliares;
+   case objAnamnese.apreensivoTratDentario of
+      'N' : begin
+               rbexNaoApreesTratDent.Checked := true;
+               rbexSimApreesTratDent.Checked := false;
+            end;
+      'S' : begin
+               rbexSimApreesTratDent.Checked := true;
+               rbexNaoApreesTratDent.Checked := false;
+               edtApreensivoTratamento.Text := objAnamnese.porqueApreensivo;
+            end;
+   end;
+
+   case objAnamnese.tratamentoMedico of
+      'N' : begin
+               rbexNaoTratMedico.Checked := true;
+               rbexSimTratMedico.Checked := false;
+            end;
+      'S' : begin
+               rbexNaoTratMedico.Checked := false;
+               rbexSimTratMedico.Checked := true;
+               edtTratamentoMedico.Text := objAnamnese.qualTratMedico;
+            end;
+   end;
+
+   case objAnamnese.tomaMedicamento of
+      'S' : begin
+               rbexSimTomaRemedio.Checked := true;
+               rbexNaoTomaRemedio.Checked := false;
+               edtTomaRemedio.Text := objAnamnese.tomaQualMedicamento;
+            end;
+      'N' : begin
+               rbexSimTomaRemedio.Checked := false;
+               rbexNaoTomaRemedio.Checked := true;
+            end;
+   end;
+
+   case objAnamnese.alergiaAnestesia of
+      'S' : begin
+               rbexSimAlergiaAnestesia.Checked := true;
+               rbexNaoAlergiaAnestesia.Checked := false;
+               edtAlergiaAnestesia.Text := objAnamnese.alergiaQualAnestesia;
+            end;
+      'N' : begin
+               rbexSimAlergiaAnestesia.Checked := false;
+               rbexNaoAlergiaAnestesia.Checked := true;
+            end;
+   end;
+
+   case objAnamnese.algumaAlergia of
+      'S' : begin
+               rbexSimAlgumaAlergia.Checked := true;
+               rbexNaoAlgumaAlergia.Checked := false;
+               edtAlgumaAlergia.Text := objAnamnese.algumaAlergia;
+            end;
+      'N' : begin
+               rbexSimAlgumaAlergia.Checked := false;
+               rbexNaoAlgumaAlergia.Checked := true;
+            end;
+   end;
+
+   case objAnamnese.foiHospitalizado of
+      'S' : begin
+               rbexSimFoiHospitalizado.Checked := true;
+               rbexNaoFoiHospitalizado.Checked := false;
+               edtFoiHospitalizado.Text := objAnamnese.porqueHospitalizado;
+            end;
+      'N' : begin
+               rbexSimFoiHospitalizado.Checked := false;
+               rbexNaoFoiHospitalizado.Checked := true;
+            end;
+   end;
+
+   case objAnamnese.estaGravida of
+      'S' : begin
+               rbexSimTaGravida.Checked := true;
+               rbexNaoTaGravida.Checked := false;
+               edtTaGravida.Text := objAnamnese.previsaoParto;
+            end;
+      'N' : begin
+               rbexSimTaGravida.Checked := false;
+               rbexNaoTaGravida.Checked := true;
+            end;
+   end;
+
+   spedtQtdGravidez.Text := IntToStr(objAnamnese.teveQuantasGravidez);
+   spedtQtdFilhos.Text := IntToStr(objAnamnese.quantosFilhos);
+
+   case objAnamnese.chegouMenopausa of
+      'S' : begin
+               rbexSimMenopausa.Checked := true;
+               rbexNaoMenopausa.Checked := false;
+               edtMenopausa.Text := objAnamnese.quandoChegouMenopausa;
+            end;
+      'N' : begin
+               rbexSimMenopausa.Checked := false;
+               rbexNaoMenopausa.Checked := true;
+            end;
    end;
 end;
 
@@ -1647,6 +1851,151 @@ begin
    end;
 end;
 
+procedure TfrmCadPaciente.PreencheAbaSinaisSintomas(objSinaisSintomas: TSinaisSintomas);
+begin
+   case objSinaisSintomas.alteracaoApetite of
+      'S' : rgexAlteracaoApetite.ItemIndex := 0;
+      'N' : rgexAlteracaoApetite.ItemIndex := 1;
+      else
+         rgexCalorExagerado.ItemIndex := -1;
+   end;
+
+   case objSinaisSintomas.calorExagerado of
+      'S' : rgexCalorExagerado.ItemIndex := 0;
+      'N' : rgexCalorExagerado.ItemIndex := 1;
+      else
+         rgexCalorExagerado.ItemIndex := -1;
+   end;
+
+   case objSinaisSintomas.cansaFacil of
+      'S' : rgexCansaFacil.ItemIndex := 0;
+      'N' : rgexCansaFacil.ItemIndex := 1;
+      else
+         rgexCansaFacil.ItemIndex := -1;
+   end;
+
+   case objSinaisSintomas.coceiraAnormal of
+      'S' : rgexCoceiraAnormal.ItemIndex := 0;
+      'N' : rgexCoceiraAnormal.ItemIndex := 1;
+      else
+         rgexCoceiraAnormal.ItemIndex := -1;
+   end;
+
+   case objSinaisSintomas.dificuldadeEngolir of
+      'S' : rgexDificuldadeEngolir.ItemIndex := 0;
+      'N' : rgexDificuldadeEngolir.ItemIndex := 1;
+      else
+         rgexDificuldadeEngolir.ItemIndex := -1;
+   end;
+
+   case objSinaisSintomas.dificuldadeMastigar of
+      'S' : rgexDificuldadeMastigar.ItemIndex := 0;
+      'N' : rgexDificuldadeMastigar.ItemIndex := 1;
+      else
+         rgexDificuldadeMastigar.ItemIndex := -1;
+   end;
+
+   case objSinaisSintomas.dorFacial of
+      'S' : rgexDorFacial.ItemIndex := 0;
+      'N' : rgexDorFacial.ItemIndex := 1;
+      else
+         rgexDorFacial.ItemIndex := -1;
+   end;
+
+   case objSinaisSintomas.dorFrequenteCabeca of
+      'S' : rgexDorCabecaFrequente.ItemIndex := 0;
+      'N' : rgexDorCabecaFrequente.ItemIndex := 1;
+      else
+         rgexDorCabecaFrequente.ItemIndex := -1;
+   end;
+
+   case objSinaisSintomas.dorOuvidoFrequente of
+      'S' : rgexDorOuvidoFrequente.ItemIndex := 0;
+      'N' : rgexDorOuvidoFrequente.ItemIndex := 1;
+      else
+         rgexDorOuvidoFrequente.ItemIndex := -1;
+   end;
+
+   case objSinaisSintomas.emagrecimentoAcentuado of
+      'S' : rgexEmagrecimentoAcentuado.ItemIndex := 0;
+      'N' : rgexEmagrecimentoAcentuado.ItemIndex := 1;
+      else
+         rgexEmagrecimentoAcentuado.ItemIndex := -1;
+   end;
+
+   case objSinaisSintomas.estaloMandibula of
+      'S' : rgexEstaloMandibula.ItemIndex := 0;
+      'N' : rgexEstaloMandibula.ItemIndex := 1;
+      else
+         rgexEstaloMandibula.ItemIndex := -1;
+   end;
+
+   case objSinaisSintomas.febreFrequente of
+      'S' : rgexFebreFrequente.ItemIndex := 0;
+      'N' : rgexFebreFrequente.ItemIndex := 1;
+      else
+         rgexFebreFrequente.ItemIndex := -1;
+   end;
+
+   case objSinaisSintomas.indigestaoFrequente of
+      'S' : rgexIndigestaoFrequente.ItemIndex := 0;
+      'N' : rgexIndigestaoFrequente.ItemIndex := 1;
+      else
+         rgexIndigestaoFrequente.ItemIndex := -1;
+   end;
+
+   case objSinaisSintomas.maCicatrizacao of
+      'S' : rgexMaCicatrizacao.ItemIndex := 0;
+      'N' : rgexMaCicatrizacao.ItemIndex := 1;
+      else
+         rgexMaCicatrizacao.ItemIndex := -1;
+   end;
+
+   case objSinaisSintomas.miccaoFrequente of
+      'S' : rgexMiccaoFrequente.ItemIndex := 0;
+      'N' : rgexMiccaoFrequente.ItemIndex := 1;
+      else
+         rgexMiccaoFrequente.ItemIndex := -1;
+   end;
+
+   case objSinaisSintomas.rangeDentes of
+      'S' : rgexRangeDentes.ItemIndex := 0;
+      'N' : rgexRangeDentes.ItemIndex := 1;
+      else
+         rgexRangeDentes.ItemIndex := -1;
+   end;
+
+   case objSinaisSintomas.respiraPelaBoca of
+      'S' : rgexRespiraPelaBoca.ItemIndex := 0;
+      'N' : rgexRespiraPelaBoca.ItemIndex := 1;
+      else
+         rgexRespiraPelaBoca.ItemIndex := -1;
+   end;
+
+   case objSinaisSintomas.sangramentoAnormal of
+      'S' : rgexSangramentoAnormal.ItemIndex := 0;
+      'N' : rgexSangramentoAnormal.ItemIndex := 1;
+      else
+         rgexSangramentoAnormal.ItemIndex := -1;
+   end;
+
+   case objSinaisSintomas.tonturaDesmaio of
+      'S' : rgexTonturasDesmaios.ItemIndex := 0;
+      'N' : rgexTonturasDesmaios.ItemIndex := 1;
+      else
+         rgexTonturasDesmaios.ItemIndex := -1;
+   end;
+
+   case objSinaisSintomas.poucaSaliva of
+      'S' : rgexPoucaSaliva.ItemIndex := 0;
+      'N' : rgexPoucaSaliva.ItemIndex := 1;
+      else
+         rgexPoucaSaliva.ItemIndex := -1;
+   end;
+
+   edtCodSinaisSintomas.Text := IntToStr(objSinaisSintomas.idSinaisSintomas);
+end;
+
 procedure TfrmCadPaciente.PreencheAbaEnfermidades(idPaciente: integer);
 var
    objEnfermidades : TEnfermidades;
@@ -1799,6 +2148,150 @@ begin
    finally
       FreeAndNil(objControlePaciente);
       FreeAndNil(objEnfermidades);
+   end;
+end;
+
+procedure TfrmCadPaciente.PreencheAbaEnfermidades(objEnfermidades: TEnfermidades);
+begin
+   edtCodEnfermidades.Text := IntToStr(objEnfermidades.idEnfermidade);
+   case objEnfermidades.aids of
+      'S' : rgexAids.ItemIndex := 0;
+      'N' : rgexAids.ItemIndex := 1;
+      else
+         rgexAids.ItemIndex := -1;
+   end;
+
+   case objEnfermidades.anemia of
+      'S' : rgexAnemia.ItemIndex := 0;
+      'N' : rgexAnemia.ItemIndex := 1;
+      else
+         rgexAnemia.ItemIndex := -1;
+   end;
+
+   case objEnfermidades.asma of
+      'S' : rgexAsma.ItemIndex := 0;
+      'N' : rgexAsma.ItemIndex := 1;
+      else
+         rgexAsma.ItemIndex := -1;
+   end;
+
+   case objEnfermidades.diabete of
+      'S' : rgexDiabetes.ItemIndex := 0;
+      'N' : rgexDiabetes.ItemIndex := 1;
+      else
+         rgexDiabetes.ItemIndex := -1;
+   end;
+
+   case objEnfermidades.doencaCoracao of
+      'S' : rgexDoencaCoracao.ItemIndex := 0;
+      'N' : rgexDoencaCoracao.ItemIndex := 1;
+      else
+         rgexDoencaCoracao.ItemIndex := -1;
+   end;
+
+   case objEnfermidades.tumorBoca of
+      'S' : rgexTumorBoca.ItemIndex := 0;
+      'N' : rgexTumorBoca.ItemIndex := 1;
+      else
+         rgexTumorBoca.ItemIndex := -1;
+   end;
+
+   case objEnfermidades.doencaRenal of
+      'S' : rgexDoencaRenal.ItemIndex := 0;
+      'N' : rgexDoencaRenal.ItemIndex := 1;
+      else
+         rgexDoencaRenal.ItemIndex := -1;
+   end;
+
+   case objEnfermidades.disritmiaEpilepsia of
+      'S' : rgexDisritmiaEpilepsia.ItemIndex := 0;
+      'N' : rgexDisritmiaEpilepsia.ItemIndex := 1;
+      else
+         rgexDisritmiaEpilepsia.ItemIndex := -1;
+   end;
+
+   case objEnfermidades.febreReumatica of
+      'S' : rgexFebreReumatica.ItemIndex := 0;
+      'N' : rgexFebreReumatica.ItemIndex := 1;
+      else
+         rgexFebreReumatica.ItemIndex := -1;
+   end;
+
+   case objEnfermidades.glaucoma of
+      'S' : rgexGlaucoma.ItemIndex := 0;
+      'N' : rgexGlaucoma.ItemIndex := 1;
+      else
+         rgexGlaucoma.ItemIndex := -1;
+   end;
+
+   case objEnfermidades.gonorreia of
+      'S' : rgexGonorreia.ItemIndex := 0;
+      'N' : rgexGonorreia.ItemIndex := 1;
+      else
+         rgexGonorreia.ItemIndex := -1;
+   end;
+
+   case objEnfermidades.hanseniase of
+      'S' : rgexHanseniase.ItemIndex := 0;
+      'N' : rgexHanseniase.ItemIndex := 1;
+      else
+         rgexHanseniase.ItemIndex := -1;
+   end;
+
+   case objEnfermidades.hemofilia of
+      'S' : rgexHemofilia.ItemIndex := 0;
+      'N' : rgexHemofilia.ItemIndex := 1;
+      else
+         rgexHemofilia.ItemIndex := -1;
+   end;
+
+   case objEnfermidades.hepatite of
+      'S' : rgexHepatite.ItemIndex := 0;
+      'N' : rgexHepatite.ItemIndex := 1;
+      else
+         rgexHepatite.ItemIndex := -1;
+   end;
+
+   case objEnfermidades.ictericia of
+      'S' : rgexIctericia.ItemIndex := 0;
+      'N' : rgexIctericia.ItemIndex := 1;
+      else
+         rgexIctericia.ItemIndex := -1;
+   end;
+
+   case objEnfermidades.problemaHormonal of
+      'S' : rgexProblemaHormonal.ItemIndex := 0;
+      'N' : rgexProblemaHormonal.ItemIndex := 1;
+      else
+         rgexProblemaHormonal.ItemIndex := -1;
+   end;
+
+   case objEnfermidades.sifilis of
+      'S' : rgexSifilis.ItemIndex := 0;
+      'N' : rgexSifilis.ItemIndex := 1;
+      else
+         rgexSifilis.ItemIndex := -1;
+   end;
+
+   case objEnfermidades.sinusite of
+      'S' : rgexSinusite.ItemIndex := 0;
+      'N' : rgexSinusite.ItemIndex := 1;
+      else
+         rgexSinusite.ItemIndex := -1;
+   end;
+
+   case objEnfermidades.tuberculose of
+      'S' : rgexTuberculose.ItemIndex := 0;
+      'N' : rgexTuberculose.ItemIndex := 1;
+      else
+         rgexTuberculose.ItemIndex := -1;
+   end;
+
+   case objEnfermidades.ulceraHepatica of
+      'S' : rgexUlceraHepatica.ItemIndex := 0;
+      'N' : rgexUlceraHepatica.ItemIndex := 1;
+      else
+         rgexUlceraHepatica.ItemIndex := -1;
    end;
 end;
 

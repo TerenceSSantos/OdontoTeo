@@ -18,7 +18,7 @@
     <VersionInfo>
       <UseVersionInfo Value="True"/>
       <AutoIncrementBuild Value="True"/>
-      <BuildNr Value="69"/>
+      <BuildNr Value="70"/>
       <Language Value="0416"/>
       <StringTable Comments="Produto destinado a uso em Consultório Dentário" ProductVersion="0.0"/>
     </VersionInfo>
@@ -92,7 +92,7 @@
         <PackageName Value="LCL"/>
       </Item12>
     </RequiredPackages>
-    <Units Count="27">
+    <Units Count="28">
       <Unit0>
         <Filename Value="prjOdontoTeo.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -222,6 +222,12 @@
         <Filename Value="CadPaciente\uDocumentos.pas"/>
         <IsPartOfProject Value="True"/>
       </Unit26>
+      <Unit27>
+        <Filename Value="Forms\uMarcarSimNao.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frmSimNao"/>
+        <ResourceBaseClass Value="Form"/>
+      </Unit27>
     </Units>
   </ProjectOptions>
   <CompilerOptions>

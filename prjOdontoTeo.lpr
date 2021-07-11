@@ -14,7 +14,7 @@ uses
    uClassEnfermidades, uFrmMensagem, uClassEndereco, uClassAnamnese,
    uClassDadosProfissionais, uDadosBasicos, uResponsavel, uEndereco, uContatos,
    uDadoProfissional, uAnamnese, uSinaisSintomas, uEnfermidades,
-   uClassDocumentos, uDocumentos;
+   uClassDocumentos, uDocumentos, uMarcarSimNao;
 
 {$R *.res}
 
