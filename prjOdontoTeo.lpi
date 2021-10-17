@@ -18,7 +18,7 @@
     <VersionInfo>
       <UseVersionInfo Value="True"/>
       <AutoIncrementBuild Value="True"/>
-      <BuildNr Value="70"/>
+      <BuildNr Value="72"/>
       <Language Value="0416"/>
       <StringTable Comments="Produto destinado a uso em Consultório Dentário" ProductVersion="0.0"/>
     </VersionInfo>
@@ -33,7 +33,7 @@
           </Target>
           <SearchPaths>
             <IncludeFiles Value="$(ProjOutDir)"/>
-            <OtherUnitFiles Value="Forms;DataModules;Classes;CadPaciente"/>
+            <OtherUnitFiles Value="Forms;DataModules;Classes;CadPaciente;CadDentistas"/>
             <UnitOutputDirectory Value="lib\$(TargetCPU)-$(TargetOS)"/>
           </SearchPaths>
           <Linking>
@@ -92,7 +92,7 @@
         <PackageName Value="LCL"/>
       </Item12>
     </RequiredPackages>
-    <Units Count="28">
+    <Units Count="30">
       <Unit0>
         <Filename Value="prjOdontoTeo.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -226,8 +226,22 @@
         <Filename Value="Forms\uMarcarSimNao.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="frmSimNao"/>
+        <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
       </Unit27>
+      <Unit28>
+        <Filename Value="CadDentistas\uFrmCadDentistas.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frmCadDentistas"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+      </Unit28>
+      <Unit29>
+        <Filename Value="DataModules\uDMCadDentista.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="dmCadDentista"/>
+        <ResourceBaseClass Value="DataModule"/>
+      </Unit29>
     </Units>
   </ProjectOptions>
   <CompilerOptions>

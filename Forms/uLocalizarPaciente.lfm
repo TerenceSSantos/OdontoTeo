@@ -1,7 +1,7 @@
 object frmLocalizaPaciente: TfrmLocalizaPaciente
   Left = 873
   Height = 556
-  Top = 103
+  Top = 104
   Width = 400
   BorderStyle = bsNone
   Caption = 'frmLocalizaPaciente'

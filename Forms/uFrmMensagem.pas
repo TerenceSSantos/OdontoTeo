@@ -28,12 +28,9 @@ type
       procedure btnCancelarClick(Sender: TObject);
       procedure btnOkClick(Sender: TObject);
       procedure lblMensagemResize(Sender: TObject);
-      procedure pnlTituloMouseDown(Sender: TObject; Button: TMouseButton;
-         Shift: TShiftState; X, Y: Integer);
-      procedure pnlTituloMouseMove(Sender: TObject; Shift: TShiftState; X,
-         Y: Integer);
-      procedure pnlTituloMouseUp(Sender: TObject; Button: TMouseButton;
-         Shift: TShiftState; X, Y: Integer);
+      procedure pnlTituloMouseDown(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
+      procedure pnlTituloMouseMove(Sender: TObject; Shift: TShiftState; X, Y: Integer);
+      procedure pnlTituloMouseUp(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
    private
 
    public

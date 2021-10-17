@@ -707,10 +707,9 @@ begin
    //finally
    //   FreeAndNil(objControlePaciente);
    //end;
-
    try
       frmLocacilarPaciente := TfrmLocalizaPaciente.Create(nil);
-      frmLocacilarPaciente.FormQueChamou(self.Name);
+      frmLocacilarPaciente.FormQueChamou(Self.Name);
       frmLocacilarPaciente.ShowModal;
    finally
       FreeAndNil(frmLocacilarPaciente);

@@ -1,7 +1,7 @@
 object frmPrincipal: TfrmPrincipal
-  Left = 34
+  Left = 574
   Height = 707
-  Top = 103
+  Top = 111
   Width = 898
   BorderStyle = bsNone
   Caption = 'frmPrincipal'
@@ -481,6 +481,7 @@ object frmPrincipal: TfrmPrincipal
         end
         object spkbtnCadDentistas: TSpkLargeButton
           Caption = 'Cadastro de Dentistas'
+          OnClick = spkbtnCadDentistasClick
           LargeImageIndex = 1
         end
       end

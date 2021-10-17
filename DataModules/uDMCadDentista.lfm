@@ -1,0 +1,17 @@
+object dmCadDentista: TdmCadDentista
+  OldCreateOrder = False
+  Height = 227
+  HorizontalOffset = 295
+  VerticalOffset = 112
+  Width = 444
+  PPI = 96
+  object qryDentista: TZQuery
+    Connection = dmConexao.zConexao
+    SQL.Strings = (
+      'select * from tbl_dentista'
+    )
+    Params = <>
+    left = 64
+    top = 37
+  end
+end

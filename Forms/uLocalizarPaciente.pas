@@ -32,10 +32,11 @@ type
       procedure pnlTituloMouseUp(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
       procedure rgAtivosInativosSelectionChanged(Sender: TObject);
    private
-      nomeFormQueChamou: string;
+
       procedure LocalizarPaciente;
       function AtivosInativos : string;
    public
+      nomeFormQueChamou: string;
       procedure FormQueChamou(nomeForm: string);
    end;
 
@@ -49,7 +50,7 @@ var
 implementation
 
 uses
-   uDMCadPaciente, uClassControlePaciente, uCadPacientes;
+   uDMCadPaciente, uClassControlePaciente, uCadPacientes, uDMCadDentista;
 
 
 {$R *.lfm}
@@ -66,7 +67,7 @@ procedure TfrmLocalizaPaciente.btnLocalizarPacienteClick(Sender: TObject);
 //   objLocPaciente : TPaciente;
 begin
    if (nomeFormQueChamou = 'frmCadPaciente') then
-      frmCadPaciente.SelectPaciente(dsFrmLocalizaPacientes.DataSet.FieldByName('ID_PACIENTE').AsInteger);
+      frmCadPaciente.SelectPaciente(dmCadPaciente.qryTblPaciente.FieldByName('ID_PACIENTE').AsInteger);
    Close;
 
    //try
@@ -86,8 +87,32 @@ end;
 
 procedure TfrmLocalizaPaciente.FormShow(Sender: TObject);
 begin
-   edtLocalizarPaciente.SetFocus;
-   LocalizarPaciente;
+   if nomeFormQueChamou = 'frmCadDentistas' then
+   begin;
+      pnlTitulo.Caption := 'Localizar Dentista';
+      rgAtivosInativos.Caption := 'Dentistas Ativos - Inativos - Todos';
+      lblLocalizarPaciente.Caption := 'Localizar Dentista (procura a partir de parte do nome)';
+      btnLocalizarPaciente.Caption := 'Dentista selecionado';
+      dsFrmLocalizaPacientes.DataSet := dmCadDentista.qryDentista;
+      dbgridLocalizarPaciente.Columns[0].Title.Caption := 'Código';
+      dbgridLocalizarPaciente.Columns[1].Title.Caption := 'Nome Dentista';
+      if dmCadDentista.TabelaVazia then
+       begin
+         btnLocalizarPaciente.Enabled := false;
+         edtLocalizarPaciente.Enabled := false;
+         rgAtivosInativos.Enabled := false;
+       end
+       else
+       begin
+         btnLocalizarPaciente.Enabled := true;
+         edtLocalizarPaciente.Enabled := true;
+         rgAtivosInativos.Enabled := true;
+         edtLocalizarPaciente.SetFocus;
+         LocalizarPaciente;
+       end;
+   end
+   else
+       LocalizarPaciente;
 end;
 
 procedure TfrmLocalizaPaciente.pnlTituloMouseDown(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
@@ -121,16 +146,26 @@ end;
 
 procedure TfrmLocalizaPaciente.LocalizarPaciente;
 begin
-   dmCadPaciente.ativo := AtivosInativos;     // ** FUNÇÃO RETORNANDO SE TRAZ OS ATIVOS, INATIVOS OU TODOS PARA VARIAVEL DE dmCadPaciente.
-   dmCadPaciente.nome := edtLocalizarPaciente.Text;
-
-   dmCadPaciente.MontaSelect;
-
-   if dmCadPaciente.qryTblPaciente.IsEmpty then   // ** DESABILITAR O BOTÃO EM CASO DE DATASET VAZIO OU HABILITAR EM CASO DE DADOS
-      btnLocalizarPaciente.Enabled := false
-   else
-      btnLocalizarPaciente.Enabled := true;
-
+   if nomeFormQueChamou = 'frmCadDentistas' then
+    begin
+      dmCadDentista.nome := edtLocalizarPaciente.Text;
+      dmCadDentista.ativo := AtivosInativos;
+      dmCadDentista.MontaSelect;
+      if dmCadDentista.qryDentista.IsEmpty then
+         btnLocalizarPaciente.Enabled := false
+      else
+         btnLocalizarPaciente.Enabled := true;
+    end
+   else if nomeFormQueChamou = 'frmCadPaciente' then
+    begin
+      dmCadPaciente.nome := edtLocalizarPaciente.Text;;
+      dmCadPaciente.ativo := AtivosInativos;     // ** FUNÇÃO RETORNANDO SE TRAZ OS ATIVOS, INATIVOS OU TODOS PARA VARIAVEL DE dmCadPaciente.
+      dmCadPaciente.MontaSelect;
+      if dmCadPaciente.qryTblPaciente.IsEmpty then   // ** DESABILITAR O BOTÃO EM CASO DE DATASET VAZIO OU HABILITAR EM CASO DE DADOS
+         btnLocalizarPaciente.Enabled := false
+      else
+         btnLocalizarPaciente.Enabled := true;
+    end;
 end;
 
 function TfrmLocalizaPaciente.AtivosInativos: string;
@@ -145,7 +180,11 @@ end;
 
 procedure TfrmLocalizaPaciente.FormQueChamou(nomeForm: string);
 begin
-   nomeFormQueChamou := nomeForm;
+   nomeFormQueChamou := nomeForm;       { TODO : Alterar a forma do Form que chamou para o create. }
+   if nomeForm = 'frmCadPaciente' then
+      dsFrmLocalizaPacientes.DataSet := dmCadPaciente.qryTblPaciente
+   else if nomeForm = 'frmCadDentistas' then
+      dsFrmLocalizaPacientes.DataSet := dmCadDentista.qryDentista;
 end;
 
 

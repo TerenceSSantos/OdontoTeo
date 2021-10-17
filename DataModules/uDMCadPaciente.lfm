@@ -1,9 +1,9 @@
 object dmCadPaciente: TdmCadPaciente
   OldCreateOrder = False
   Height = 449
-  HorizontalOffset = 335
-  VerticalOffset = 117
-  Width = 1215
+  HorizontalOffset = -7
+  VerticalOffset = 118
+  Width = 898
   PPI = 96
   object qryTblPaciente: TZQuery
     Connection = dmConexao.zConexao

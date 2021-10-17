@@ -14,7 +14,7 @@ uses
    uClassEnfermidades, uFrmMensagem, uClassEndereco, uClassAnamnese,
    uClassDadosProfissionais, uDadosBasicos, uResponsavel, uEndereco, uContatos,
    uDadoProfissional, uAnamnese, uSinaisSintomas, uEnfermidades,
-   uClassDocumentos, uDocumentos, uMarcarSimNao;
+   uClassDocumentos, uDocumentos, uMarcarSimNao, uFrmCadDentistas, uDMCadDentista;
 
 {$R *.res}
 
@@ -25,6 +25,7 @@ begin
    Application.Initialize;
    Application.CreateForm(TdmConexao, dmConexao);
    Application.CreateForm(TdmCadPaciente, dmCadPaciente);
+   Application.CreateForm(TdmCadDentista, dmCadDentista);
    Application.CreateForm(TfrmPrincipal, frmPrincipal);
    Application.Run;
 end.

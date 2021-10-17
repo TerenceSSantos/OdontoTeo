@@ -1,7 +1,7 @@
 object frmSimNao: TfrmSimNao
-  Left = 308
+  Left = 309
   Height = 193
-  Top = 121
+  Top = 122
   Width = 550
   BorderStyle = bsNone
   Caption = 'frmSimNao'

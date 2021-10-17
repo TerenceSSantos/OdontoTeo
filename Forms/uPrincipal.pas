@@ -36,6 +36,7 @@ type
       procedure FormCreate(Sender: TObject);
       procedure FormShow(Sender: TObject);
       procedure spkbarPrincipalTabChanging(Sender: TObject; OldIndex, NewIndex: integer; var Allowed: boolean);
+      procedure spkbtnCadDentistasClick(Sender: TObject);
       procedure spkbtnCadPacientesClick(Sender: TObject);
       procedure Timer1Timer(Sender: TObject);
    private
@@ -50,7 +51,7 @@ var
 implementation
 
 uses
-   uCadPacientes, uSobre, RxVersInfo;
+   uCadPacientes, uSobre, uFrmCadDentistas, RxVersInfo;
 
 {$R *.lfm}
 
@@ -102,6 +103,16 @@ begin
        end;
        Allowed := false;
     end;
+end;
+
+procedure TfrmPrincipal.spkbtnCadDentistasClick(Sender: TObject);
+begin
+   try
+      frmCadDentistas := TfrmCadDentistas.Create(self);
+      frmCadDentistas.ShowModal;
+   finally
+      FreeAndNil(frmCadDentistas);
+   end;
 end;
 
 procedure TfrmPrincipal.spkbtnCadPacientesClick(Sender: TObject);
