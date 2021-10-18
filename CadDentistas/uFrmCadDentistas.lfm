@@ -8,6 +8,7 @@ object frmCadDentistas: TfrmCadDentistas
   ClientHeight = 469
   ClientWidth = 949
   OnCreate = FormCreate
+  Position = poScreenCenter
   LCLVersion = '2.0.8.0'
   object pnlTitulo: TBCPanel
     Left = 0
@@ -57,6 +58,9 @@ object frmCadDentistas: TfrmCadDentistas
     Rounding.RoundY = 10
     Rounding.RoundOptions = [rrBottomRightSquare, rrBottomLeftSquare, rrDefault]
     TabOrder = 0
+    OnMouseDown = pnlTituloMouseDown
+    OnMouseMove = pnlTituloMouseMove
+    OnMouseUp = pnlTituloMouseUp
     object btnFechar: TBCButton
       Left = 910
       Height = 24

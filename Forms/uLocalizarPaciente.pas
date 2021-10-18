@@ -50,7 +50,7 @@ var
 implementation
 
 uses
-   uDMCadPaciente, uClassControlePaciente, uCadPacientes, uDMCadDentista;
+   uDMCadPaciente, uClassControlePaciente, uCadPacientes, uDMCadDentista, uFrmCadDentistas;
 
 
 {$R *.lfm}
@@ -96,11 +96,13 @@ begin
       dsFrmLocalizaPacientes.DataSet := dmCadDentista.qryDentista;
       dbgridLocalizarPaciente.Columns[0].Title.Caption := 'Código';
       dbgridLocalizarPaciente.Columns[1].Title.Caption := 'Nome Dentista';
+      dbgridLocalizarPaciente.Columns[0].FieldName := 'ID_DENTISTA';
+      dbgridLocalizarPaciente.Columns[1].FieldName := 'NOME_DENTISTA';
+
       if dmCadDentista.TabelaVazia then
        begin
          btnLocalizarPaciente.Enabled := false;
          edtLocalizarPaciente.Enabled := false;
-         rgAtivosInativos.Enabled := false;
        end
        else
        begin
@@ -152,9 +154,16 @@ begin
       dmCadDentista.ativo := AtivosInativos;
       dmCadDentista.MontaSelect;
       if dmCadDentista.qryDentista.IsEmpty then
-         btnLocalizarPaciente.Enabled := false
+       BEGIN
+         btnLocalizarPaciente.Enabled := false;
+         edtLocalizarPaciente.Enabled := false;
+       end
       else
+       begin
          btnLocalizarPaciente.Enabled := true;
+         edtLocalizarPaciente.Enabled := true;
+         rgAtivosInativos.Enabled := true;
+       end;
     end
    else if nomeFormQueChamou = 'frmCadPaciente' then
     begin

@@ -110,6 +110,12 @@ type
       procedure btnFecharClick(Sender: TObject);
       procedure btnProcuraDentistaClick(Sender: TObject);
       procedure FormCreate(Sender: TObject);
+      procedure pnlTituloMouseDown(Sender: TObject; Button: TMouseButton;
+         Shift: TShiftState; X, Y: Integer);
+      procedure pnlTituloMouseMove(Sender: TObject; Shift: TShiftState; X,
+         Y: Integer);
+      procedure pnlTituloMouseUp(Sender: TObject; Button: TMouseButton;
+         Shift: TShiftState; X, Y: Integer);
    private
 
    public
@@ -118,6 +124,8 @@ type
 
 var
    frmCadDentistas: TfrmCadDentistas;
+   capitura : boolean = false;
+   px, py : integer;
 
 implementation
 
@@ -150,6 +158,30 @@ end;
 procedure TfrmCadDentistas.FormCreate(Sender: TObject);
 begin
    pcCadDentista.ActivePageIndex := 0;
+end;
+
+procedure TfrmCadDentistas.pnlTituloMouseDown(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
+begin
+   capitura := true;
+   if capitura then
+   begin
+      px := X;
+      py := Y;
+   end;
+end;
+
+procedure TfrmCadDentistas.pnlTituloMouseMove(Sender: TObject; Shift: TShiftState; X, Y: Integer);
+begin
+   if capitura then
+   begin
+      Left := (Left + X) - px;
+      Top := (Top + Y) - py;
+   end;
+end;
+
+procedure TfrmCadDentistas.pnlTituloMouseUp(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
+begin
+   capitura := false;
 end;
 
 end.
